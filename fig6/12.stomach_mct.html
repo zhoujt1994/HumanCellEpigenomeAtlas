@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="stomach-mct">
 <h1>12. Stomach mct<a class="headerlink" href="#stomach-mct" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -570,7 +566,6 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">zscore</span>
 </pre></div>
 </div>
 </div>
@@ -603,6 +598,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 13389 × 3029
+    obs: &#39;Sample&#39;, &#39;Tissue_in_paper&#39;, &#39;Batch&#39;, &#39;Sample_Barcode&#39;, &#39;sum&#39;, &#39;detected&#39;, &#39;Study&#39;, &#39;Patient_type&#39;, &#39;Patient_status&#39;, &#39;MT.prop&#39;, &#39;sizeFactor&#39;, &#39;Global_cluster_selected&#39;, &#39;Celltypes_global&#39;, &#39;Tissuetypes_global&#39;, &#39;celltype&#39;, &#39;cell_type_ontology_term_id&#39;, &#39;assay_ontology_term_id&#39;, &#39;tissue_ontology_term_id&#39;, &#39;disease_ontology_term_id&#39;, &#39;sex_ontology_term_id&#39;, &#39;organism_ontology_term_id&#39;, &#39;self_reported_ethnicity_ontology_term_id&#39;, &#39;donor_id&#39;, &#39;suspension_type&#39;, &#39;development_stage_ontology_term_id&#39;, &#39;is_primary_data&#39;, &#39;tissue_type&#39;, &#39;cell_type&#39;, &#39;assay&#39;, &#39;disease&#39;, &#39;organism&#39;, &#39;sex&#39;, &#39;tissue&#39;, &#39;self_reported_ethnicity&#39;, &#39;development_stage&#39;, &#39;observation_joinid&#39;, &#39;total_counts&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    var: &#39;feature_name&#39;, &#39;feature_reference&#39;, &#39;feature_biotype&#39;, &#39;feature_length&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;, &#39;highly_variable_nbatches&#39;, &#39;celltype_enriched_features&#39;
+    uns: &#39;celltype_feature_enrichment&#39;, &#39;log1p&#39;, &#39;pca&#39;
+    obsm: &#39;RNA_pc30hm_tsne&#39;, &#39;RNA_pca&#39;, &#39;X_pca&#39;, &#39;X_pca_harmony&#39;, &#39;X_tsne&#39;
+    varm: &#39;PCs&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -625,6 +630,9 @@
                         <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7784501207d3c5f335521a41d25c4cea02dc2a772c8a456d674d3f782cccc474.png" src="../_images/7784501207d3c5f335521a41d25c4cea02dc2a772c8a456d674d3f782cccc474.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -656,6 +664,23 @@
 <span class="n">ct2mt</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">xx</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">selc</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">selc</span><span class="p">[</span><span class="n">xx</span><span class="p">]}</span>
 <span class="n">rna_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rna_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">ct2mt</span><span class="p">)</span>
 <span class="n">rna_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>majortype
+Epithl     6909
+Tcell      1320
+Endo       1213
+Endocri     951
+Fibro       866
+Bnaive      651
+Plasma      625
+Bmem        329
+Others      278
+Mast        144
+Macro       103
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -695,6 +720,124 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bmem_n</th>
+      <td>HLA-DRA</td>
+      <td>CD74</td>
+      <td>MS4A1</td>
+      <td>HLA-DPA1</td>
+      <td>HLA-DPB1</td>
+    </tr>
+    <tr>
+      <th>Bnaive_n</th>
+      <td>CD37</td>
+      <td>HLA-DRA</td>
+      <td>CD74</td>
+      <td>MS4A1</td>
+      <td>IGKC</td>
+    </tr>
+    <tr>
+      <th>Endo_n</th>
+      <td>SPARCL1</td>
+      <td>PECAM1</td>
+      <td>IFITM3</td>
+      <td>GNG11</td>
+      <td>TIMP3</td>
+    </tr>
+    <tr>
+      <th>Endocri_n</th>
+      <td>CHGA</td>
+      <td>LY6H</td>
+      <td>CPE</td>
+      <td>RBP1</td>
+      <td>TTR</td>
+    </tr>
+    <tr>
+      <th>Epithl_n</th>
+      <td>CYSTM1</td>
+      <td>PSCA</td>
+      <td>CA2</td>
+      <td>MUC1</td>
+      <td>S100P</td>
+    </tr>
+    <tr>
+      <th>Fibro_n</th>
+      <td>CALD1</td>
+      <td>MYL9</td>
+      <td>TAGLN</td>
+      <td>SELENOM</td>
+      <td>TPM2</td>
+    </tr>
+    <tr>
+      <th>Macro_n</th>
+      <td>HLA-DRA</td>
+      <td>HLA-DPA1</td>
+      <td>HLA-DPB1</td>
+      <td>CD74</td>
+      <td>FTL</td>
+    </tr>
+    <tr>
+      <th>Mast_n</th>
+      <td>TPSAB1</td>
+      <td>TPSB2</td>
+      <td>CPA3</td>
+      <td>FTH1</td>
+      <td>HPGDS</td>
+    </tr>
+    <tr>
+      <th>Others_n</th>
+      <td>GNG11</td>
+      <td>IFITM3</td>
+      <td>PLVAP</td>
+      <td>SPARCL1</td>
+      <td>SRGN</td>
+    </tr>
+    <tr>
+      <th>Plasma_n</th>
+      <td>JCHAIN</td>
+      <td>MZB1</td>
+      <td>IGHA1</td>
+      <td>IGKC</td>
+      <td>DERL3</td>
+    </tr>
+    <tr>
+      <th>Tcell_n</th>
+      <td>PTPRC</td>
+      <td>CD2</td>
+      <td>CD3D</td>
+      <td>CCL5</td>
+      <td>TRAC</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -703,11 +846,26 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 6085 × 58870
+    obs: &#39;InputReadPairs&#39;, &#39;InputReadPairsBP&#39;, &#39;TrimmedReadPairs&#39;, &#39;R1WithAdapters&#39;, &#39;R1QualTrimBP&#39;, &#39;R1TrimmedReadsBP&#39;, &#39;R2WithAdapters&#39;, &#39;R2QualTrimBP&#39;, &#39;R2TrimmedReadsBP&#39;, &#39;UniqueMappedReads&#39;, &#39;UniqueMappingRate&#39;, &#39;MultiMappedReads&#39;, &#39;MultiMappingRate&#39;, &#39;OverallMappingRate&#39;, &#39;UniqueAlignFinalReads&#39;, &#39;UniqueAlignDuplicatedReads&#39;, &#39;UniqueAlignPCRDuplicationRate&#39;, &#39;MultiAlignFinalReads&#39;, &#39;MultiAlignDuplicatedReads&#39;, &#39;MultiAlignPCRDuplicationRate&#39;, &#39;mCCCCov&#39;, &#39;mCGCov&#39;, &#39;mCHCov&#39;, &#39;mCCCmC&#39;, &#39;mCGmC&#39;, &#39;mCHmC&#39;, &#39;mCCCFrac&#39;, &#39;mCGFrac&#39;, &#39;mCHFrac&#39;, &#39;TotalRNAReads&#39;, &#39;RNADetectedGenes&#39;
+    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;, &#39;gene_name&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mct_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mct_adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">mct_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+JFINP    3057
+IOBHV    3028
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -726,6 +884,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  2,   1, 233, ...,  10,   2,  22])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -737,6 +900,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7bb997cf8de3d116531a0cd5a4b01f0522b9e85d1d1fdd28cd7d6344fa12b0c0.png" src="../_images/7bb997cf8de3d116531a0cd5a4b01f0522b9e85d1d1fdd28cd7d6344fa12b0c0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -766,6 +932,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/baef7cccb02ddcb122ab3428231b1cf2caad8c49a7417b27c362a1d7d19ad024.png" src="../_images/baef7cccb02ddcb122ab3428231b1cf2caad8c49a7417b27c362a1d7d19ad024.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -787,6 +956,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 components passed P cutoff of 0.05.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -805,6 +982,8 @@
 <span class="n">mct_adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;RNA_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">hm_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mct_adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -854,6 +1033,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0aa9ac694dbb2b5fc4d4f2993d9756181f0735241889ef1c5f65f0aa03313079.png" src="../_images/0aa9ac694dbb2b5fc4d4f2993d9756181f0735241889ef1c5f65f0aa03313079.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -895,6 +1077,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/432c7257a86f935ad53aeb8cb65a4db54ebf7333627a16323608d4f1fbd9aca6.png" src="../_images/432c7257a86f935ad53aeb8cb65a4db54ebf7333627a16323608d4f1fbd9aca6.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -912,11 +1097,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5869 5923 6056 6056
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">mct_adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[(</span><span class="n">mct_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;UniqueAlignFinalReads&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">500000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mct_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;mCCCFrac&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.1</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5768
 </pre></div>
 </div>
 </div>
@@ -928,6 +1123,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5768 × 0
+    obs: &#39;Donor&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;5kCG_u17hm_leiden&#39;
+    obsm: &#39;5kCG_lsi&#39;, &#39;5kCG_u17_tsne&#39;, &#39;5kCG_u17hm_tsne&#39;, &#39;X_lsi&#39;, &#39;X_lsi_harmony&#39;, &#39;X_pca_harmony&#39;, &#39;X_tsne&#39;
+    obsp: &#39;connectivities&#39;, &#39;distances&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -936,6 +1139,23 @@
 
 <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;5kCG_u17hm_leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">clusterdict</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cluster
+0     2977
+1     1077
+2      326
+3      261
+4      253
+5      232
+6      199
+7      155
+8      121
+9       96
+10      71
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -971,6 +1191,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/stomach_mct/&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -988,6 +1213,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(22, 58870) (22, 2)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1001,6 +1231,11 @@
         <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">ct1</span><span class="p">,</span> <span class="n">ct2</span><span class="p">])</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55
 </pre></div>
 </div>
 </div>
@@ -1035,6 +1270,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1479
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1061,11 +1301,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/be3c6ee4c0759afc2ec8b77716963cbc687d3d860888709184d509260e287ae9.png" src="../_images/be3c6ee4c0759afc2ec8b77716963cbc687d3d860888709184d509260e287ae9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rna_adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">rna_adata</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="n">rna_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">rna_adata</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">var</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">rna_adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">)</span>
 <span class="n">rna_adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 13389 × 31942
+    obs: &#39;Sample&#39;, &#39;Tissue_in_paper&#39;, &#39;Batch&#39;, &#39;Sample_Barcode&#39;, &#39;sum&#39;, &#39;detected&#39;, &#39;Study&#39;, &#39;Patient_type&#39;, &#39;Patient_status&#39;, &#39;MT.prop&#39;, &#39;sizeFactor&#39;, &#39;Global_cluster_selected&#39;, &#39;Celltypes_global&#39;, &#39;Tissuetypes_global&#39;, &#39;celltype&#39;, &#39;cell_type_ontology_term_id&#39;, &#39;assay_ontology_term_id&#39;, &#39;tissue_ontology_term_id&#39;, &#39;disease_ontology_term_id&#39;, &#39;sex_ontology_term_id&#39;, &#39;organism_ontology_term_id&#39;, &#39;self_reported_ethnicity_ontology_term_id&#39;, &#39;donor_id&#39;, &#39;suspension_type&#39;, &#39;development_stage_ontology_term_id&#39;, &#39;is_primary_data&#39;, &#39;tissue_type&#39;, &#39;cell_type&#39;, &#39;assay&#39;, &#39;disease&#39;, &#39;organism&#39;, &#39;sex&#39;, &#39;tissue&#39;, &#39;self_reported_ethnicity&#39;, &#39;development_stage&#39;, &#39;observation_joinid&#39;, &#39;total_counts&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    var: &#39;feature_name&#39;, &#39;feature_reference&#39;, &#39;feature_biotype&#39;, &#39;feature_length&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;, &#39;highly_variable_nbatches&#39;
+    obsm: &#39;RNA_pc30hm_tsne&#39;, &#39;RNA_pca&#39;, &#39;X_pca&#39;, &#39;X_pca_harmony&#39;, &#39;X_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -1118,6 +1369,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cd18809c0e5a48dad1f0cc597ef0e36be9ae3f9a658303a14a6de2b99e5e0a13.png" src="../_images/cd18809c0e5a48dad1f0cc597ef0e36be9ae3f9a658303a14a6de2b99e5e0a13.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1134,11 +1388,27 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;cell_type&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/650a6947b4c07fc2fe071ab0fb99517d929c44da347523010345b7b5015162d4.png" src="../_images/650a6947b4c07fc2fe071ab0fb99517d929c44da347523010345b7b5015162d4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mct_adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">mCT_raw.h5ad&#39;</span><span class="p">)</span>
 <span class="n">mct_adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 6056 × 34213
+    obs: &#39;InputReadPairs&#39;, &#39;InputReadPairsBP&#39;, &#39;TrimmedReadPairs&#39;, &#39;R1WithAdapters&#39;, &#39;R1QualTrimBP&#39;, &#39;R1TrimmedReadsBP&#39;, &#39;R2WithAdapters&#39;, &#39;R2QualTrimBP&#39;, &#39;R2TrimmedReadsBP&#39;, &#39;UniqueMappedReads&#39;, &#39;UniqueMappingRate&#39;, &#39;MultiMappedReads&#39;, &#39;MultiMappingRate&#39;, &#39;OverallMappingRate&#39;, &#39;UniqueAlignFinalReads&#39;, &#39;UniqueAlignDuplicatedReads&#39;, &#39;UniqueAlignPCRDuplicationRate&#39;, &#39;MultiAlignFinalReads&#39;, &#39;MultiAlignDuplicatedReads&#39;, &#39;MultiAlignPCRDuplicationRate&#39;, &#39;mCCCCov&#39;, &#39;mCGCov&#39;, &#39;mCHCov&#39;, &#39;mCCCmC&#39;, &#39;mCGmC&#39;, &#39;mCHmC&#39;, &#39;mCCCFrac&#39;, &#39;mCGFrac&#39;, &#39;mCHFrac&#39;, &#39;TotalRNAReads&#39;, &#39;RNADetectedGenes&#39;, &#39;Donor&#39;, &#39;n_genes&#39;, &#39;n_counts&#39;, &#39;5kCG_leiden&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;, &#39;gene_name&#39;, &#39;n_cells&#39;
+    uns: &#39;log1p&#39;, &#39;pca&#39;
+    obsm: &#39;RNA_pc20_tsne&#39;, &#39;RNA_pc20hm_tsne&#39;, &#39;RNA_pca&#39;, &#39;X_pca&#39;, &#39;X_pca_harmony&#39;, &#39;X_tsne&#39;
+    varm: &#39;PCs&#39;
 </pre></div>
 </div>
 </div>
@@ -1150,10 +1420,446 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>gene_name</th>
+      <th>DDX11L1</th>
+      <th>WASH7P</th>
+      <th>OR4G4P</th>
+      <th>OR4G11P</th>
+      <th>OR4F5</th>
+      <th>AL627309.1</th>
+      <th>CICP27</th>
+      <th>AL627309.5</th>
+      <th>WASH9P</th>
+      <th>AP006222.1</th>
+      <th>...</th>
+      <th>MT-CO3</th>
+      <th>MT-TG</th>
+      <th>MT-ND3</th>
+      <th>MT-ND4L</th>
+      <th>MT-ND4</th>
+      <th>MT-ND5</th>
+      <th>MT-ND6</th>
+      <th>MT-CYB</th>
+      <th>MT-TT</th>
+      <th>MT-TP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SM_IOBHV_P2-6-E5-B11</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.807107</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.482863</td>
+      <td>3.486031</td>
+      <td>0.482863</td>
+      <td>0.482863</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P2-6-E5-C24</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>2.767197</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.642603</td>
+      <td>1.052305</td>
+      <td>1.553606</td>
+      <td>2.334203</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P2-6-E5-E24</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>1.021780</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.781809</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.215164</td>
+      <td>1.021780</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P2-6-E5-E12</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.183955</td>
+      <td>3.973066</td>
+      <td>0.000000</td>
+      <td>0.757827</td>
+      <td>1.711009</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P2-6-E5-B12</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>1.379871</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.555950</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.770114</td>
+      <td>2.132505</td>
+      <td>1.379871</td>
+      <td>1.379871</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P8-4-I15-C8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>2.783384</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>3.373472</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.674351</td>
+      <td>0.0</td>
+      <td>1.152995</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P8-4-I15-I7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>2.503873</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.336957</td>
+      <td>1.889322</td>
+      <td>3.268312</td>
+      <td>1.336957</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P8-4-I15-M8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>4.750327</td>
+      <td>0.0</td>
+      <td>1.826176</td>
+      <td>0.000000</td>
+      <td>2.811226</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.811226</td>
+      <td>0.0</td>
+      <td>2.811226</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P8-4-I15-L20</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>3.033125</td>
+      <td>0.0</td>
+      <td>1.201452</td>
+      <td>0.000000</td>
+      <td>3.033125</td>
+      <td>2.439058</td>
+      <td>1.201452</td>
+      <td>2.212365</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SM_IOBHV_P8-4-I15-J19</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.22407</td>
+      <td>0.438035</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.741613</td>
+      <td>...</td>
+      <td>0.741613</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>4.424234</td>
+      <td>1.578486</td>
+      <td>1.871277</td>
+      <td>0.741613</td>
+      <td>2.572039</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>6056 rows × 34213 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marker</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bmem_n</th>
+      <td>HLA-DRA</td>
+      <td>CD74</td>
+      <td>MS4A1</td>
+      <td>HLA-DPA1</td>
+      <td>HLA-DPB1</td>
+    </tr>
+    <tr>
+      <th>Bnaive_n</th>
+      <td>CD37</td>
+      <td>HLA-DRA</td>
+      <td>CD74</td>
+      <td>MS4A1</td>
+      <td>IGKC</td>
+    </tr>
+    <tr>
+      <th>Endo_n</th>
+      <td>SPARCL1</td>
+      <td>PECAM1</td>
+      <td>IFITM3</td>
+      <td>GNG11</td>
+      <td>TIMP3</td>
+    </tr>
+    <tr>
+      <th>Endocri_n</th>
+      <td>CHGA</td>
+      <td>LY6H</td>
+      <td>CPE</td>
+      <td>RBP1</td>
+      <td>TTR</td>
+    </tr>
+    <tr>
+      <th>Epithl_n</th>
+      <td>CYSTM1</td>
+      <td>PSCA</td>
+      <td>CA2</td>
+      <td>MUC1</td>
+      <td>S100P</td>
+    </tr>
+    <tr>
+      <th>Fibro_n</th>
+      <td>CALD1</td>
+      <td>MYL9</td>
+      <td>TAGLN</td>
+      <td>SELENOM</td>
+      <td>TPM2</td>
+    </tr>
+    <tr>
+      <th>Macro_n</th>
+      <td>HLA-DRA</td>
+      <td>HLA-DPA1</td>
+      <td>HLA-DPB1</td>
+      <td>CD74</td>
+      <td>FTL</td>
+    </tr>
+    <tr>
+      <th>Mast_n</th>
+      <td>TPSAB1</td>
+      <td>TPSB2</td>
+      <td>CPA3</td>
+      <td>FTH1</td>
+      <td>HPGDS</td>
+    </tr>
+    <tr>
+      <th>Others_n</th>
+      <td>GNG11</td>
+      <td>IFITM3</td>
+      <td>PLVAP</td>
+      <td>SPARCL1</td>
+      <td>SRGN</td>
+    </tr>
+    <tr>
+      <th>Plasma_n</th>
+      <td>JCHAIN</td>
+      <td>MZB1</td>
+      <td>IGHA1</td>
+      <td>IGKC</td>
+      <td>DERL3</td>
+    </tr>
+    <tr>
+      <th>Tcell_n</th>
+      <td>PTPRC</td>
+      <td>CD2</td>
+      <td>CD3D</td>
+      <td>CCL5</td>
+      <td>TRAC</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">zscore</span>
 </pre></div>
 </div>
 </div>
@@ -1188,6 +1894,9 @@
         
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0253dcb10d9940d7c4e2c50e842c77ab94b6c813e3a3cad44ef60018514592d7.png" src="../_images/0253dcb10d9940d7c4e2c50e842c77ab94b6c813e3a3cad44ef60018514592d7.png" />
 </div>
 </div>
 </section>

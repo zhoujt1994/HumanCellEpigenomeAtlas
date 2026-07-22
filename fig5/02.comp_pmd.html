@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="comp-pmd">
 <h1>2. Comp pmd<a class="headerlink" href="#comp-pmd" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -664,6 +660,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/b6accea136cacda0ed319ea8ced7e6ba488c0beabd8db6c34fa847606f91f280.png" src="../_images/b6accea136cacda0ed319ea8ced7e6ba488c0beabd8db6c34fa847606f91f280.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -672,6 +671,9 @@
 <span class="n">tmp</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">label3c</span><span class="p">,</span> <span class="n">corder</span> <span class="o">=</span> <span class="n">order_row</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">nc</span><span class="o">=</span><span class="n">nc</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/27852711e3fe3d08891788171bc762d661e780a3a35d6e986448e461590fae54.png" src="../_images/27852711e3fe3d08891788171bc762d661e780a3a35d6e986448e461590fae54.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -710,6 +712,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/57b62641a60f6f35d1a14250fccf8b845231374db4fa0fea0eb0810f91793479.png" src="../_images/57b62641a60f6f35d1a14250fccf8b845231374db4fa0fea0eb0810f91793479.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -747,6 +752,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/5016d348ff1cecdda61ac63e5901c92c43e54a3d05ac42d5e9d137091cdaea88.png" src="../_images/5016d348ff1cecdda61ac63e5901c92c43e54a3d05ac42d5e9d137091cdaea88.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -771,6 +779,9 @@
 <span class="c1"># fig.savefig(f&#39;{outdir}comp_pmd_comporder_kmeans10.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9e957466fffd1762d6ddb8af673d2abb3c15331244fda5cfe9eaffdce03249cc.png" src="../_images/9e957466fffd1762d6ddb8af673d2abb3c15331244fda5cfe9eaffdce03249cc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -797,6 +808,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/30ba4fd83f2c4948b57f43584c909f506a39ceaeb1078aee00bc08e770be81c9.png" src="../_images/30ba4fd83f2c4948b57f43584c909f506a39ceaeb1078aee00bc08e770be81c9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -805,6 +819,9 @@
 <span class="n">tmp</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">label3c</span><span class="p">,</span> <span class="n">corder</span> <span class="o">=</span> <span class="n">order_row</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">nc</span><span class="o">=</span><span class="n">nc</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/27852711e3fe3d08891788171bc762d661e780a3a35d6e986448e461590fae54.png" src="../_images/27852711e3fe3d08891788171bc762d661e780a3a35d6e986448e461590fae54.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -843,12 +860,54 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/063d51edca1dcc13be31af4cc9f102eb2f49d549564f1189a7904d72d569f585.png" src="../_images/063d51edca1dcc13be31af4cc9f102eb2f49d549564f1189a7904d72d569f585.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">comptmp</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">corder</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">comptmp</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">datatmp</span><span class="p">[</span><span class="n">ct</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fibro Adr -0.4696066934544801
+Fibro Mus -0.488204475529475
+Fibro EpiN -0.4092487506238873
+Fibro Brst -0.6363147255226962
+Fibro Sk -0.5015807853394326
+Fibro EndN -0.48612811021670777
+Fibro GI -0.5193303214891105
+Fibro HT -0.5377667939038807
+Neu Exc 0.23433213931631366
+Neu Inh 0.2193913440688712
+Glia Astro -0.18097036348608214
+Epi Endcri -0.5559560168217726
+Glia Oligo -0.20502165304795908
+Hema B -0.6287959638002504
+Hema NK -0.7154698189121014
+Hema Tmem -0.6426450032346182
+Hema Tnaive -0.7157460346775558
+Hema Mast -0.7307108281767946
+Hema Myeloid -0.7660586777367807
+Epi Aci -0.5392670248658549
+Epi Duc -0.5084059919720998
+Epi AdrCtx -0.588428026310207
+Mus Crd -0.4430974858311366
+Epi Krt/Lum -0.5901305184245133
+Epi Alv -0.4220095270711217
+Epi Gas -0.5571067103467813
+Epi Ent -0.6305932933117723
+Epi TPB -0.6801187051169961
+Endo Vsc -0.7243881744539497
+Endo Lym -0.647220047982146
+Mus Skl -0.5508059275717501
+Epi BrstBasal -0.4369336040409474
+Neu Schw -0.4431504656168035
+Fibro Myo -0.3644415663559445
+Perivascular -0.6453634038115412
 </pre></div>
 </div>
 </div>
@@ -935,6 +994,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.8367002022979049 0.90102755625968
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,6 +1027,8 @@
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">plot_bw</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="n">Call</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -1071,6 +1137,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/66b34f1b7718f147f601e0cbd3c9d3589c0a651f6511496c37fa68789d16e012.png" src="../_images/66b34f1b7718f147f601e0cbd3c9d3589c0a651f6511496c37fa68789d16e012.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1124,6 +1193,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0c33c3a2cc37b81f29610249ce657d6cf7a71e4b4778a0ed1e89e5394e8152b5.png" src="../_images/0c33c3a2cc37b81f29610249ce657d6cf7a71e4b4778a0ed1e89e5394e8152b5.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1141,6 +1213,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>768
+</pre></div>
+</div>
+<img alt="../_images/8819781fb944a1170abbc27710bed392fdc403d06615360e144cc6f78ac23ba2.png" src="../_images/8819781fb944a1170abbc27710bed392fdc403d06615360e144cc6f78ac23ba2.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1157,6 +1235,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3a97863b8b91590f5887b5ccc966cc0e8ce0f854b0ae5105923294ea89071259.png" src="../_images/3a97863b8b91590f5887b5ccc966cc0e8ce0f854b0ae5105923294ea89071259.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1179,6 +1260,9 @@
 <span class="n">corder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/143fb43060ffd6184f112babef2cd9ac77eaca9430ec08b38c40f8fbb37f597d.png" src="../_images/143fb43060ffd6184f112babef2cd9ac77eaca9430ec08b38c40f8fbb37f597d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1205,6 +1289,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/ce0d2afb7243101fd88df2698090ac8bb7c3615955c9c1778f1168824902a408.png" src="../_images/ce0d2afb7243101fd88df2698090ac8bb7c3615955c9c1778f1168824902a408.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1219,6 +1306,9 @@
 <span class="n">corder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/039937b54171d7859a86bdd4cd0553dd30f7d30af90797e5e5f2c7e1a8f9c73d.png" src="../_images/039937b54171d7859a86bdd4cd0553dd30f7d30af90797e5e5f2c7e1a8f9c73d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1237,6 +1327,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/22f1e99d01a4fc88e1ae71d2a517e880fe56c252731d88f2300d24b068b34a2d.png" src="../_images/22f1e99d01a4fc88e1ae71d2a517e880fe56c252731d88f2300d24b068b34a2d.png" />
 </div>
 </div>
 </section>

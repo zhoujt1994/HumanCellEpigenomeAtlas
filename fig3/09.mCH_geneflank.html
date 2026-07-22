@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mch-geneflank">
 <h1>9. MCH geneflank<a class="headerlink" href="#mch-geneflank" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -716,6 +712,101 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TSS</th>
+      <th>TES</th>
+      <th>strand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11869</td>
+      <td>14409</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>29570</td>
+      <td>14404</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>17436</td>
+      <td>17369</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>29554</td>
+      <td>31109</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>30366</td>
+      <td>30503</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>55878</th>
+      <td>50738196</td>
+      <td>50745334</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>55879</th>
+      <td>50743520</td>
+      <td>50740593</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>55880</th>
+      <td>50755434</td>
+      <td>50754675</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th>55881</th>
+      <td>50756948</td>
+      <td>50801309</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <th>55882</th>
+      <td>50783663</td>
+      <td>50767501</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+<p>55883 rows × 3 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -767,6 +858,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -812,6 +908,49 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCH_geneflank/gene&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCH_geneflank/tss&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCH_geneflank/tes&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCH_geneflank/CGI&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCH_geneflank/cCREs_distal2k&#39;] [&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c0&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c1&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c10&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c11&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c12&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c13&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c14&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c15&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c16&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c17&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c18&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c19&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c2&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c20&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c21&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c22&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c23&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c24&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c25&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c26&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c27&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c28&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c29&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c3&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c30&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c31&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c32&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c33&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c34&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c4&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c5&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c6&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c7&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c8&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CHN/c9&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -852,6 +991,200 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c22 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c25 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c26 finished
+tss-c20 finished
+tss-c18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c12 finished
+tss-c21 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c11 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c23 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c24 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c16 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c13 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c19 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c14 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c10 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c27 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c29 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c32 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c31 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c28 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c33 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c30 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c34 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c7 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c6 finished
+tss-c9 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c8 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c11 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tss-c5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c10 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c13 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c14 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c22 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c19 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c20 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c21 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c24 finished
+tes-c2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c26 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c16 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c25 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c29 finished
+tes-c23 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c30 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c27 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c28 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c32 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c31 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c33 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c34 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c6 finished
+tes-c7 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tes-c9 finished
+tes-c8 finished
+tes-c5 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -874,6 +1207,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCH_geneflank/&#39;
 </pre></div>
 </div>
 </div>
@@ -917,6 +1255,80 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23-tss finished
+c22-tss finished
+c17-tss finished
+c11-tss finished
+c19-tss finished
+c21-tss finished
+c18-tss finished
+c20-tss finished
+c2-tss finished
+c10-tss finished
+c12-tss finished
+c24-tss finished
+c15-tss finished
+c13-tss finished
+c14-tss finished
+c25-tss finished
+c26-tss finished
+c16-tss finished
+c1-tss finished
+c0-tss finished
+c29-tss finished
+c3-tss finished
+c30-tss finished
+c32-tss finished
+c31-tss finished
+c33-tss finished
+c34-tss finished
+c28-tss finished
+c27-tss finished
+c6-tss finished
+c8-tss finished
+c7-tss finished
+c4-tss finished
+c5-tss finished
+c9-tss finished
+c0-tes finished
+c1-tes finished
+c12-tes finished
+c11-tes finished
+c10-tes finished
+c13-tes finished
+c15-tes finished
+c16-tes finished
+c17-tes finished
+c19-tes finished
+c2-tes finished
+c20-tes finished
+c18-tes finished
+c14-tes finished
+c21-tes finished
+c23-tes finished
+c22-tes finished
+c26-tes finished
+c31-tes finished
+c32-tes finished
+c34-tes finished
+c33-tes finished
+c25-tes finished
+c4-tes finished
+c30-tes finished
+c5-tes finished
+c24-tes finished
+c29-tes finished
+c3-tes finished
+c6-tes finished
+c7-tes finished
+c8-tes finished
+c9-tes finished
+c27-tes finished
+c28-tes finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -944,6 +1356,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f0bac42f8dfae2797b72b92fc8d39438163d49d2b2107350f43267fd3d8c2f59.png" src="../_images/f0bac42f8dfae2797b72b92fc8d39438163d49d2b2107350f43267fd3d8c2f59.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -976,6 +1391,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8341b4f86b3ca15c74c4c87058c1101aad150a964319afd8de40374b106699f9.png" src="../_images/8341b4f86b3ca15c74c4c87058c1101aad150a964319afd8de40374b106699f9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1003,6 +1421,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b87aee5e2aff4e9add110b0f7b3da2c579271bc993db88b2716a0a4cc6f7de3.png" src="../_images/8b87aee5e2aff4e9add110b0f7b3da2c579271bc993db88b2716a0a4cc6f7de3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1032,6 +1453,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/5bfe48368642875c0b1cb410489f1788942d705601c5f6f2d7704f5ebe1f770c.png" src="../_images/5bfe48368642875c0b1cb410489f1788942d705601c5f6f2d7704f5ebe1f770c.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1060,6 +1484,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/07dcc90bfcf1ad6e8fe782760f6faa91a7eb7b517a5ad4d31be3a6f3eb7df24f.png" src="../_images/07dcc90bfcf1ad6e8fe782760f6faa91a7eb7b517a5ad4d31be3a6f3eb7df24f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1087,6 +1514,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b3894a4bd69d27f580bf89a070654469768f35e9be7207857161ee4b59edbf2a.png" src="../_images/b3894a4bd69d27f580bf89a070654469768f35e9be7207857161ee4b59edbf2a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1120,6 +1550,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5d9881fdf225acb7939865ee0b2f0316fbcde80dd31ed5ca030bad0a7a0935c2.png" src="../_images/5d9881fdf225acb7939865ee0b2f0316fbcde80dd31ed5ca030bad0a7a0935c2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1165,6 +1598,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peak_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;731749x104 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 4770526 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -1263,6 +1702,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f6d873941c0&gt;
+</pre></div>
+</div>
+<img alt="../_images/9b41f15f7509a812eb510606ec01a277bef8d9f145d592f1efef64314c710765.png" src="../_images/9b41f15f7509a812eb510606ec01a277bef8d9f145d592f1efef64314c710765.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1292,6 +1737,45 @@
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">data</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cCREs_distal2k.split</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">.slop</span><span class="si">{</span><span class="n">ws</span><span class="si">}</span><span class="s1">b.</span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s1">b.celltype.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
+c3
+c22
+c9
+c20
+c25
+c30
+c13
+c8
+c4
+c18
+c2
+c29
+c17
+c19
+c28
+c6
+c11
+c32
+c34
+c23
+c31
+c14
+c7
+c24
+c0
+c27
+c1
+c15
+c26
+c5
+c10
+c16
+c21
+c12
 </pre></div>
 </div>
 </div>
@@ -1327,6 +1811,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cCREs_distal2k_flankCH.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8c1b80b892b92a00d08356a936e2b44732c929e6526c0da7e173418fe078029e.png" src="../_images/8c1b80b892b92a00d08356a936e2b44732c929e6526c0da7e173418fe078029e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1365,6 +1852,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1389,6 +1878,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/b4053af8575184ab5380f384e21e1a3d2c92ea01e68b6744e0d584bc4df25bc7.png" src="../_images/b4053af8575184ab5380f384e21e1a3d2c92ea01e68b6744e0d584bc4df25bc7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1409,6 +1901,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/765499bb89dd1899dd4d4a93f9ca4e41f6d4f7955bfcca997effc3209e5b7b0a.png" src="../_images/765499bb89dd1899dd4d4a93f9ca4e41f6d4f7955bfcca997effc3209e5b7b0a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1424,6 +1919,12 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Celltype cCRE mCH&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Celltype cCRE mCH&#39;)
+</pre></div>
+</div>
+<img alt="../_images/7e2130131f59aba5ecb8e7c05d1f101d745388affdecc7186b17c6070f41ae9c.png" src="../_images/7e2130131f59aba5ecb8e7c05d1f101d745388affdecc7186b17c6070f41ae9c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1445,6 +1946,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/42ca0ffa459462bb63546a2d68a77c27eee9b60fbb7b907c2b3a22bc1327f438.png" src="../_images/42ca0ffa459462bb63546a2d68a77c27eee9b60fbb7b907c2b3a22bc1327f438.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1463,6 +1967,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCH_geneflank/L1_annot_mCH_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1465802c584253fec76611817ec9657bbf81ae45c090e8c5b83f8075592d26e5.png" src="../_images/1465802c584253fec76611817ec9657bbf81ae45c090e8c5b83f8075592d26e5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1517,6 +2024,27 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;500k&#39;),
+ Text(50, 0, &#39;TSS&#39;),
+ Text(100, 0, &#39;TES&#39;),
+ Text(150, 0, &#39;500k&#39;),
+ Text(200, 0, &#39;TSS&#39;),
+ Text(250, 0, &#39;TES&#39;),
+ Text(300, 0, &#39;500k&#39;),
+ Text(350, 0, &#39;TSS&#39;),
+ Text(400, 0, &#39;TES&#39;),
+ Text(450, 0, &#39;500k&#39;),
+ Text(500, 0, &#39;TSS&#39;),
+ Text(550, 0, &#39;TES&#39;),
+ Text(600, 0, &#39;500k&#39;),
+ Text(650, 0, &#39;TSS&#39;),
+ Text(700, 0, &#39;TES&#39;),
+ Text(750, 0, &#39;500k&#39;)]
+</pre></div>
+</div>
+<img alt="../_images/3d6685b8d56638db94c93883fa1b35441dc51108a81d6950b3be7ad86eb989bb.png" src="../_images/3d6685b8d56638db94c93883fa1b35441dc51108a81d6950b3be7ad86eb989bb.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1560,6 +2088,27 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;500k&#39;),
+ Text(50, 0, &#39;TSS&#39;),
+ Text(100, 0, &#39;TES&#39;),
+ Text(150, 0, &#39;500k&#39;),
+ Text(200, 0, &#39;TSS&#39;),
+ Text(250, 0, &#39;TES&#39;),
+ Text(300, 0, &#39;500k&#39;),
+ Text(350, 0, &#39;TSS&#39;),
+ Text(400, 0, &#39;TES&#39;),
+ Text(450, 0, &#39;500k&#39;),
+ Text(500, 0, &#39;TSS&#39;),
+ Text(550, 0, &#39;TES&#39;),
+ Text(600, 0, &#39;500k&#39;),
+ Text(650, 0, &#39;TSS&#39;),
+ Text(700, 0, &#39;TES&#39;),
+ Text(750, 0, &#39;500k&#39;)]
+</pre></div>
+</div>
+<img alt="../_images/884e8e5c7ee9dee71b81d45933cd2622715da43e111ff748b277c3d6bf3bad9c.png" src="../_images/884e8e5c7ee9dee71b81d45933cd2622715da43e111ff748b277c3d6bf3bad9c.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1574,6 +2123,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/10c2dc78b72e00e01b664b29156f2798cd20a610a5bca1e7e826e42861c24eff.png" src="../_images/10c2dc78b72e00e01b664b29156f2798cd20a610a5bca1e7e826e42861c24eff.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1587,6 +2139,9 @@
     
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/13104fc18f998c8b18b198329d385721aa96798ccc04c3b2e78a3e45456542ba.png" src="../_images/13104fc18f998c8b18b198329d385721aa96798ccc04c3b2e78a3e45456542ba.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1641,6 +2196,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;2k&#39;),
+ Text(50, 0, &#39;TSS&#39;),
+ Text(100, 0, &#39;2k&#39;),
+ Text(150, 0, &#39;TSS&#39;),
+ Text(200, 0, &#39;2k&#39;),
+ Text(250, 0, &#39;TSS&#39;),
+ Text(300, 0, &#39;2k&#39;),
+ Text(350, 0, &#39;TSS&#39;),
+ Text(400, 0, &#39;2k&#39;),
+ Text(450, 0, &#39;TSS&#39;),
+ Text(500, 0, &#39;2k&#39;)]
+</pre></div>
+</div>
+<img alt="../_images/3bf4eee89fa1bc7e152b18070c662a12a5270b405e526ae165ea59fed4965a48.png" src="../_images/3bf4eee89fa1bc7e152b18070c662a12a5270b405e526ae165ea59fed4965a48.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1684,6 +2255,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;2k&#39;),
+ Text(50, 0, &#39;TSS&#39;),
+ Text(100, 0, &#39;2k&#39;),
+ Text(150, 0, &#39;TSS&#39;),
+ Text(200, 0, &#39;2k&#39;),
+ Text(250, 0, &#39;TSS&#39;),
+ Text(300, 0, &#39;2k&#39;),
+ Text(350, 0, &#39;TSS&#39;),
+ Text(400, 0, &#39;2k&#39;),
+ Text(450, 0, &#39;TSS&#39;),
+ Text(500, 0, &#39;2k&#39;)]
+</pre></div>
+</div>
+<img alt="../_images/10b1c7012ffc512ce3ff9fe9465d370cc4fd1ade2ff014e15b0864a1eab57f91.png" src="../_images/10b1c7012ffc512ce3ff9fe9465d370cc4fd1ade2ff014e15b0864a1eab57f91.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1702,6 +2289,12 @@
               <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7fe58bf403d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/3371372e6062c864dd1d7302f3735f855101a71a6a9f7788549c79f6f5524bf3.png" src="../_images/3371372e6062c864dd1d7302f3735f855101a71a6a9f7788549c79f6f5524bf3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1734,6 +2327,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/678659f9e2f81e1984890fa423e389a74ea44dcb7e25fba664b964ad1650b376.png" src="../_images/678659f9e2f81e1984890fa423e389a74ea44dcb7e25fba664b964ad1650b376.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1752,10 +2348,29 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2674008, 9)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>feature
+exon              1279686
+CDS                753983
+UTR                306442
+transcript         208621
+start_codon         87197
+stop_codon          79378
+gene                58870
+Selenocysteine        122
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1828,6 +2443,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1868,6 +2485,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1892,6 +2511,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1905,6 +2526,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1912,6 +2535,113 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom</th>
+      <th>TSS</th>
+      <th>start</th>
+      <th>end</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chr1</td>
+      <td>11869</td>
+      <td>10869</td>
+      <td>11869</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>chr1</td>
+      <td>29570</td>
+      <td>29570</td>
+      <td>30570</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>chr1</td>
+      <td>17436</td>
+      <td>17436</td>
+      <td>18436</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>chr1</td>
+      <td>29554</td>
+      <td>28554</td>
+      <td>29554</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>chr1</td>
+      <td>30366</td>
+      <td>29366</td>
+      <td>30366</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>55878</th>
+      <td>chr22</td>
+      <td>50738196</td>
+      <td>50737196</td>
+      <td>50738196</td>
+    </tr>
+    <tr>
+      <th>55879</th>
+      <td>chr22</td>
+      <td>50743520</td>
+      <td>50743520</td>
+      <td>50744520</td>
+    </tr>
+    <tr>
+      <th>55880</th>
+      <td>chr22</td>
+      <td>50755434</td>
+      <td>50755434</td>
+      <td>50756434</td>
+    </tr>
+    <tr>
+      <th>55881</th>
+      <td>chr22</td>
+      <td>50756948</td>
+      <td>50755948</td>
+      <td>50756948</td>
+    </tr>
+    <tr>
+      <th>55882</th>
+      <td>chr22</td>
+      <td>50783663</td>
+      <td>50783663</td>
+      <td>50784663</td>
+    </tr>
+  </tbody>
+</table>
+<p>55883 rows × 4 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1956,6 +2686,93 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34-tss1k finished
+c30-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c22-tss1k finished
+c29-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c25-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c24-tss1k finished
+c28-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c27-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c31-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c32-tss1k finished
+c20-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c26-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c21-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c18-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c11-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c13-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c19-tss1k finished
+c17-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c12-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c15-tss1k finished
+c8-tss1k finished
+c4-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c7-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6-tss1k finished
+c9-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c3-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c2-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5-tss1k finished
+c10-tss1k finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1-tss1k finished
+c0-tss1k finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1993,6 +2810,45 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
+c9 finished
+c3 finished
+c20 finished
+c25 finished
+c22 finished
+c13 finished
+c8 finished
+c4 finished
+c29 finished
+c18 finished
+c30 finished
+c19 finished
+c17 finished
+c6 finished
+c2 finished
+c11 finished
+c28 finished
+c7 finished
+c23 finished
+c32 finished
+c31 finished
+c14 finished
+c0 finished
+c34 finished
+c1 finished
+c24 finished
+c10 finished
+c12 finished
+c15 finished
+c27 finished
+c26 finished
+c16 finished
+c5 finished
+c21 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2016,6 +2872,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3d5979b31f3ef9f90ce7a507bb7bcae5d6f54e2b442f888bf9020fb60e8df689.png" src="../_images/3d5979b31f3ef9f90ce7a507bb7bcae5d6f54e2b442f888bf9020fb60e8df689.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2043,6 +2902,9 @@
 <span class="n">rorder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6859cac66caec762ffe3c3bbfef3cdb3dac2f08680ff1ccc66ccd56b0068e399.png" src="../_images/6859cac66caec762ffe3c3bbfef3cdb3dac2f08680ff1ccc66ccd56b0068e399.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2072,6 +2934,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/a0d30dfde65c1086e4c55d17d7874a29da95162a598cb41c013c30c00451ea47.png" src="../_images/a0d30dfde65c1086e4c55d17d7874a29da95162a598cb41c013c30c00451ea47.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2092,6 +2957,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCH_geneflank/L1_geneannot_mCH_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/649c52a9088638a375101131dd90e6bc0309f097cd9a9a4dfffc48a10e80e132.png" src="../_images/649c52a9088638a375101131dd90e6bc0309f097cd9a9a4dfffc48a10e80e132.png" />
 </div>
 </div>
 </section>

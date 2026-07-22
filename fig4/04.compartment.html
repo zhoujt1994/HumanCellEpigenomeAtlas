@@ -537,14 +537,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="compartment">
 <h1>4. Compartment<a class="headerlink" href="#compartment" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -599,6 +595,11 @@
 <span class="n">indir</span> <span class="o">=</span> <span class="n">indir_raw</span>
 <span class="n">coollist</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2any/c*-c*.cool&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coollist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>420
 </pre></div>
 </div>
 </div>
@@ -657,6 +658,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c36 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c35 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -676,6 +685,18 @@
 <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">cool_list_path</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;hicluster merge-cool --input_cool_tsv_file </span><span class="si">{</span><span class="n">cool_list_path</span><span class="si">}</span><span class="s1"> --output_cool </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged.cool&#39;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>command	merge-cool
+input_cool_tsv_file	/large_storage/zhoulab/zhoujt/project/ENTEx/merged_cool_impute/100K/coollist.txt
+output_cool	/large_storage/zhoulab/zhoujt/project/ENTEx/merged_cool_impute/100K/merged.cool
+hicluster: Executing merge-cool...
+merge-cool finished.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -699,6 +720,11 @@
     <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
 <span class="n">bin_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(28760, 7)
 </pre></div>
 </div>
 </div>
@@ -746,6 +772,33 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1
+chr2
+chr3
+chr4
+chr5
+chr6
+chr7
+chr8
+chr9
+chr10
+chr11
+chr12
+chr13
+chr14
+chr15
+chr16
+chr17
+chr18
+chr19
+chr20
+chr21
+chr22
+</pre></div>
+</div>
+<img alt="../_images/82a3b1908d9bafb707c3f134847c0d87646ff6583fc62f64dd85745853783424.png" src="../_images/82a3b1908d9bafb707c3f134847c0d87646ff6583fc62f64dd85745853783424.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,10 +833,34 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86689
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cool</span><span class="o">.</span><span class="n">info</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bin-size&#39;: 100000,
+ &#39;bin-type&#39;: &#39;fixed&#39;,
+ &#39;creation-date&#39;: &#39;2024-09-16T00:07:04.659375&#39;,
+ &#39;format&#39;: &#39;HDF5::Cooler&#39;,
+ &#39;format-url&#39;: &#39;https://github.com/open2c/cooler&#39;,
+ &#39;format-version&#39;: 3,
+ &#39;generated-by&#39;: &#39;cooler-0.10.0&#39;,
+ &#39;genome-assembly&#39;: &#39;unknown&#39;,
+ &#39;group_n_cells&#39;: 86689,
+ &#39;metadata&#39;: {},
+ &#39;nbins&#39;: 28760,
+ &#39;nchroms&#39;: 22,
+ &#39;nnz&#39;: 20182844,
+ &#39;storage-mode&#39;: &#39;symmetric-upper&#39;,
+ &#39;sum&#39;: 15654.352142333984}
 </pre></div>
 </div>
 </div>
@@ -808,6 +885,9 @@
 <span class="c1"># plt.savefig(f&#39;{indir}/plot/celltype_A_decay.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10048e186675c203c9f202c116592c3c73f69ca499526d57d1a0aa70692bfbe8.png" src="../_images/10048e186675c203c9f202c116592c3c73f69ca499526d57d1a0aa70692bfbe8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -867,6 +947,32 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1 0
+chr2 0
+chr3 1
+chr4 0
+chr5 0
+chr6 0
+chr7 0
+chr8 0
+chr9 0
+chr10 0
+chr11 0
+chr12 0
+chr13 0
+chr14 0
+chr15 0
+chr16 0
+chr17 0
+chr18 0
+chr19 0
+chr20 0
+chr21 0
+chr22 0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -899,6 +1005,9 @@
 <span class="c1"># plt.savefig(f&#39;{indir}/plot/celltype_compraw.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2742720170ea34c4f0289b05a235cea8941b6bed9286ed7cdc4dffe5677e6a66.png" src="../_images/2742720170ea34c4f0289b05a235cea8941b6bed9286ed7cdc4dffe5677e6a66.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -933,6 +1042,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/3e5b838450089717e45f9e350e1741f6bd3fe0d9d83379343d4121437e70e8b8.png" src="../_images/3e5b838450089717e45f9e350e1741f6bd3fe0d9d83379343d4121437e70e8b8.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -953,6 +1065,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24121
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,6 +1080,12 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">,</span> <span class="s1">&#39;raw_pcloading&#39;</span><span class="p">],</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">,</span> <span class="s1">&#39;impute_pcloading&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=0.9720753155640292, pvalue=0.0)
+</pre></div>
+</div>
+<img alt="../_images/082abb7669c13f3092bdda37b5d4d9fdbbb92e459363e75f709b636d8dc50c4e.png" src="../_images/082abb7669c13f3092bdda37b5d4d9fdbbb92e459363e75f709b636d8dc50c4e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1050,6 +1173,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9e8c748b8f2a496a7632133ffd6d6a14625ea382ee4d19837a7320ef94054853.png" src="../_images/9e8c748b8f2a496a7632133ffd6d6a14625ea382ee4d19837a7320ef94054853.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1071,6 +1197,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24478
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1081,6 +1212,12 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">,</span> <span class="s1">&#39;raw_pcloading&#39;</span><span class="p">],</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">,</span> <span class="s1">&#39;impute_pcloading&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=1.0, pvalue=0.0)
+</pre></div>
+</div>
+<img alt="../_images/bc320488e6340771a230e65fb6303078539fa779e25485e1004b49e9d1c55a79.png" src="../_images/bc320488e6340771a230e65fb6303078539fa779e25485e1004b49e9d1c55a79.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1116,6 +1253,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/97b82049d21290a21b1726dda48a35b0b3ae73539a5573ee131f044bacc22e91.png" src="../_images/97b82049d21290a21b1726dda48a35b0b3ae73539a5573ee131f044bacc22e91.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1150,6 +1290,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/7fd6773ce1c1b33119f5e1af3ca8250596b9c863c0e69748208eb63fc414b04b.png" src="../_images/7fd6773ce1c1b33119f5e1af3ca8250596b9c863c0e69748208eb63fc414b04b.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1166,6 +1309,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=0.9698369792220771, pvalue=0.0)
+</pre></div>
+</div>
+<img alt="../_images/bb4a9fc2ecc0d69989df90e3441f97474cce82d932f9bccdaa4c66c9efc9aef8.png" src="../_images/bb4a9fc2ecc0d69989df90e3441f97474cce82d932f9bccdaa4c66c9efc9aef8.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1181,6 +1330,12 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">pc_raw</span><span class="p">,</span> <span class="n">pc_impute</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=0.9472669602893187, pvalue=0.0)
+</pre></div>
+</div>
+<img alt="../_images/ab584c723995723eb249a50dc9cd87293b6fc0f9601f2b7fce2b9473fa2667b4.png" src="../_images/ab584c723995723eb249a50dc9cd87293b6fc0f9601f2b7fce2b9473fa2667b4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1217,6 +1372,45 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34 finished [&#39;c34&#39;, &#39;Fibro-Myo&#39;, 0.9472669602893187]
+c33 finished [&#39;c33&#39;, &#39;Endo-Lym&#39;, 0.9535356392144603]
+c32 finished [&#39;c32&#39;, &#39;Fibro-Mus&#39;, 0.9176997583184119]
+c30 finished [&#39;c30&#39;, &#39;Epi-Duc&#39;, 0.9684158711773876]
+c29 finished [&#39;c29&#39;, &#39;Fibro-Adr&#39;, 0.9501121276923421]
+c22 finished [&#39;c22&#39;, &#39;Epi-Aci&#39;, 0.9698369792220771]
+c28 finished [&#39;c28&#39;, &#39;Fibro-EpiN&#39;, 0.9216951009090472]
+c19 finished [&#39;c19&#39;, &#39;Fibro-EndN&#39;, 0.9299171748563917]
+c13 finished [&#39;c13&#39;, &#39;Epi-Endcri&#39;, 0.9449528775987925]
+c25 finished [&#39;c25&#39;, &#39;Epi-BrstBasal&#39;, 0.9570333523610016]
+c20 finished [&#39;c20&#39;, &#39;Epi-Alv&#39;, 0.9598823276404593]
+c18 finished [&#39;c18&#39;, &#39;Epi-Krt_Lum&#39;, 0.9551505065424472]
+c9 finished [&#39;c9&#39;, &#39;Epi-AdrCtx&#39;, 0.9630521768033613]
+c11 finished [&#39;c11&#39;, &#39;Fibro-HT&#39;, 0.9403766912862495]
+c3 finished [&#39;c3&#39;, &#39;Endo-Ves&#39;, 0.9498370942050132]
+c2 finished [&#39;c2&#39;, &#39;Epi-TPB&#39;, 0.9642077465407987]
+c8 finished [&#39;c8&#39;, &#39;Epi-Ent&#39;, 0.9511287600128197]
+c17 finished [&#39;c17&#39;, &#39;Fibro-Brst&#39;, 0.9414298233122803]
+c6 finished [&#39;c6&#39;, &#39;Fibro-GI&#39;, 0.9525606073492526]
+c4 finished [&#39;c4&#39;, &#39;Epi-Gas&#39;, 0.9603840193041383]
+c31 finished [&#39;c31&#39;, &#39;Glia-Astro&#39;, 0.9362610222967688]
+c23 finished [&#39;c23&#39;, &#39;Fibro-Sk&#39;, 0.9376578734536838]
+c14 finished [&#39;c14&#39;, &#39;Glia-Oligo&#39;, 0.9275625278470148]
+c24 finished [&#39;c24&#39;, &#39;Hema-Mast&#39;, 0.9676584012039442]
+c27 finished [&#39;c27&#39;, &#39;Hema-NK&#39;, 0.9716769589422763]
+c26 finished [&#39;c26&#39;, &#39;Mus-Crd&#39;, 0.9355212453010587]
+c15 finished [&#39;c15&#39;, &#39;Hema-Tnaive&#39;, 0.9800725651703052]
+c7 finished [&#39;c7&#39;, &#39;Hema-B&#39;, 0.9805732233669663]
+c5 finished [&#39;c5&#39;, &#39;Mus-Skl&#39;, 0.9409652582703779]
+c21 finished [&#39;c21&#39;, &#39;Neu-Schw&#39;, 0.9379682410774164]
+c0 finished [&#39;c0&#39;, &#39;Hema-Myeloid&#39;, 0.9769746168887234]
+c10 finished [&#39;c10&#39;, &#39;Neu-Exc&#39;, 0.9231002422335395]
+c16 finished [&#39;c16&#39;, &#39;Neu-Inh&#39;, 0.9377176145177353]
+c12 finished [&#39;c12&#39;, &#39;SmMus_Peri&#39;, 0.9377774037161363]
+c1 finished [&#39;c1&#39;, &#39;Hema-Tmem&#39;, 0.9867870682811271]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1245,6 +1439,45 @@
         <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
         
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34 finished
+c30 finished
+c32 finished
+c33 finished
+c29 finished
+c22 finished
+c28 finished
+c25 finished
+c20 finished
+c13 finished
+c18 finished
+c19 finished
+c2 finished
+c17 finished
+c9 finished
+c6 finished
+c11 finished
+c8 finished
+c4 finished
+c31 finished
+c3 finished
+c23 finished
+c24 finished
+c27 finished
+c26 finished
+c14 finished
+c15 finished
+c7 finished
+c21 finished
+c12 finished
+c5 finished
+c10 finished
+c16 finished
+c0 finished
+c1 finished
 </pre></div>
 </div>
 </div>
@@ -1321,6 +1554,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;c2&#39;
 </pre></div>
 </div>
 </div>
@@ -1419,6 +1657,40 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L5_ET finished
+L56_NP finished
+L23_IT finished
+L4_IT finished
+L6_IT finished
+L6b finished
+L5_IT finished
+L6_IT_Car3 finished
+Lamp5 finished
+L6_CT finished
+Lamp5_LHX6 finished
+SubCtx finished
+Sncg finished
+Pvalb_ChC finished
+Vip finished
+Pvalb finished
+Sst finished
+MSN_D1 finished
+MSN_D2 finished
+Amy finished
+CHD7 finished
+Foxp2 finished
+OPC finished
+ODC finished
+ASC finished
+VLMC finished
+EC finished
+PC finished
+MGC finished
+merged finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1457,6 +1729,276 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BB</th>
+      <th>AA</th>
+      <th>BA</th>
+      <th>AB</th>
+      <th>strength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>L5_ET</th>
+      <td>1.348505</td>
+      <td>1.262203</td>
+      <td>0.708481</td>
+      <td>0.708481</td>
+      <td>1.842468</td>
+    </tr>
+    <tr>
+      <th>L6b</th>
+      <td>1.291788</td>
+      <td>1.330709</td>
+      <td>0.683750</td>
+      <td>0.683750</td>
+      <td>1.917731</td>
+    </tr>
+    <tr>
+      <th>SubCtx</th>
+      <td>1.236652</td>
+      <td>1.368936</td>
+      <td>0.658978</td>
+      <td>0.658978</td>
+      <td>1.976991</td>
+    </tr>
+    <tr>
+      <th>L6_IT_Car3</th>
+      <td>1.299906</td>
+      <td>1.325469</td>
+      <td>0.626082</td>
+      <td>0.626082</td>
+      <td>2.096671</td>
+    </tr>
+    <tr>
+      <th>L56_NP</th>
+      <td>1.311511</td>
+      <td>1.331668</td>
+      <td>0.626919</td>
+      <td>0.626919</td>
+      <td>2.108070</td>
+    </tr>
+    <tr>
+      <th>L6_IT</th>
+      <td>1.298863</td>
+      <td>1.347858</td>
+      <td>0.623379</td>
+      <td>0.623379</td>
+      <td>2.122883</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <td>1.343647</td>
+      <td>1.332711</td>
+      <td>0.614503</td>
+      <td>0.614503</td>
+      <td>2.177662</td>
+    </tr>
+    <tr>
+      <th>Foxp2</th>
+      <td>1.291581</td>
+      <td>1.370952</td>
+      <td>0.607887</td>
+      <td>0.607887</td>
+      <td>2.189991</td>
+    </tr>
+    <tr>
+      <th>Sncg</th>
+      <td>1.345780</td>
+      <td>1.375168</td>
+      <td>0.619657</td>
+      <td>0.619657</td>
+      <td>2.195527</td>
+    </tr>
+    <tr>
+      <th>L6_CT</th>
+      <td>1.291535</td>
+      <td>1.397869</td>
+      <td>0.611131</td>
+      <td>0.611131</td>
+      <td>2.200350</td>
+    </tr>
+    <tr>
+      <th>CHD7</th>
+      <td>1.297236</td>
+      <td>1.364787</td>
+      <td>0.600250</td>
+      <td>0.600250</td>
+      <td>2.217427</td>
+    </tr>
+    <tr>
+      <th>merged</th>
+      <td>1.231826</td>
+      <td>1.475701</td>
+      <td>0.605544</td>
+      <td>0.605544</td>
+      <td>2.235614</td>
+    </tr>
+    <tr>
+      <th>Pvalb_ChC</th>
+      <td>1.274394</td>
+      <td>1.436267</td>
+      <td>0.603899</td>
+      <td>0.603899</td>
+      <td>2.244299</td>
+    </tr>
+    <tr>
+      <th>L23_IT</th>
+      <td>1.256678</td>
+      <td>1.393642</td>
+      <td>0.583772</td>
+      <td>0.583772</td>
+      <td>2.269996</td>
+    </tr>
+    <tr>
+      <th>L5_IT</th>
+      <td>1.263534</td>
+      <td>1.455531</td>
+      <td>0.597170</td>
+      <td>0.597170</td>
+      <td>2.276625</td>
+    </tr>
+    <tr>
+      <th>MSN_D1</th>
+      <td>1.241947</td>
+      <td>1.448782</td>
+      <td>0.589151</td>
+      <td>0.589151</td>
+      <td>2.283567</td>
+    </tr>
+    <tr>
+      <th>MSN_D2</th>
+      <td>1.277473</td>
+      <td>1.409101</td>
+      <td>0.574044</td>
+      <td>0.574044</td>
+      <td>2.340041</td>
+    </tr>
+    <tr>
+      <th>Vip</th>
+      <td>1.325455</td>
+      <td>1.422411</td>
+      <td>0.579338</td>
+      <td>0.579338</td>
+      <td>2.371556</td>
+    </tr>
+    <tr>
+      <th>Pvalb</th>
+      <td>1.265274</td>
+      <td>1.515272</td>
+      <td>0.578515</td>
+      <td>0.578515</td>
+      <td>2.403175</td>
+    </tr>
+    <tr>
+      <th>Sst</th>
+      <td>1.291474</td>
+      <td>1.466535</td>
+      <td>0.571911</td>
+      <td>0.571911</td>
+      <td>2.411224</td>
+    </tr>
+    <tr>
+      <th>Lamp5_LHX6</th>
+      <td>1.321902</td>
+      <td>1.435453</td>
+      <td>0.563871</td>
+      <td>0.563871</td>
+      <td>2.445023</td>
+    </tr>
+    <tr>
+      <th>L4_IT</th>
+      <td>1.228220</td>
+      <td>1.490808</td>
+      <td>0.554261</td>
+      <td>0.554261</td>
+      <td>2.452842</td>
+    </tr>
+    <tr>
+      <th>Lamp5</th>
+      <td>1.341595</td>
+      <td>1.420382</td>
+      <td>0.555473</td>
+      <td>0.555473</td>
+      <td>2.486151</td>
+    </tr>
+    <tr>
+      <th>EC</th>
+      <td>1.516187</td>
+      <td>1.381944</td>
+      <td>0.542193</td>
+      <td>0.542193</td>
+      <td>2.672600</td>
+    </tr>
+    <tr>
+      <th>ASC</th>
+      <td>1.463769</td>
+      <td>1.367253</td>
+      <td>0.528202</td>
+      <td>0.528202</td>
+      <td>2.679866</td>
+    </tr>
+    <tr>
+      <th>VLMC</th>
+      <td>1.550196</td>
+      <td>1.322227</td>
+      <td>0.528425</td>
+      <td>0.528425</td>
+      <td>2.717910</td>
+    </tr>
+    <tr>
+      <th>OPC</th>
+      <td>1.614372</td>
+      <td>1.415822</td>
+      <td>0.479717</td>
+      <td>0.479717</td>
+      <td>3.158317</td>
+    </tr>
+    <tr>
+      <th>ODC</th>
+      <td>1.518158</td>
+      <td>1.442945</td>
+      <td>0.465697</td>
+      <td>0.465697</td>
+      <td>3.179216</td>
+    </tr>
+    <tr>
+      <th>PC</th>
+      <td>1.683920</td>
+      <td>1.473416</td>
+      <td>0.441736</td>
+      <td>0.441736</td>
+      <td>3.573785</td>
+    </tr>
+    <tr>
+      <th>MGC</th>
+      <td>1.740897</td>
+      <td>1.540446</td>
+      <td>0.326825</td>
+      <td>0.326825</td>
+      <td>5.020036</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1485,6 +2027,9 @@
 <span class="c1"># plt.savefig(f&#39;{indir}/plot/celltype_saddle_raw.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2114e2b743068a03daa681ad122e5fd074eb6f5755c6de8a50815fdd7fbdbc1a.png" src="../_images/2114e2b743068a03daa681ad122e5fd074eb6f5755c6de8a50815fdd7fbdbc1a.png" />
 </div>
 </div>
 </section>

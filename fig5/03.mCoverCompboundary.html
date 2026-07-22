@@ -537,14 +537,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mcovercompboundary">
 <h1>3. MCoverCompboundary<a class="headerlink" href="#mcovercompboundary" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>

@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="l2any-l2both-diffloop">
 <h1>12. L2any L2both diffloop<a class="headerlink" href="#l2any-l2both-diffloop" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -555,8 +551,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gliderport.preset</span><span class="w"> </span><span class="kn">import</span> <span class="n">notebook_snakemake</span>
 </pre></div>
 </div>
 </div>
@@ -564,7 +558,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="s1">&#39;/data/ENTEx/&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/&#39;</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;/mnt/disks/jupyter/home/jzhou_salk_edu/sky_workdir/ENTEx/analysis/&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -576,6 +570,159 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>L2_any</th>
+      <th>L2_mc</th>
+      <th>L2_3c</th>
+      <th>L2_both</th>
+      <th>L1</th>
+      <th>L1_annot</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>group</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c5-c0-PT-1LVAN</th>
+      <td>c5-c0</td>
+      <td>c5-c1</td>
+      <td>c5-c0</td>
+      <td>c5-c1</td>
+      <td>c5</td>
+      <td>Mus Skl</td>
+      <td>772</td>
+    </tr>
+    <tr>
+      <th>c1-c0-4809</th>
+      <td>c1-c0</td>
+      <td>c1-c0</td>
+      <td>c1-c0</td>
+      <td>c1-c0</td>
+      <td>c1</td>
+      <td>Hema Tmem</td>
+      <td>771</td>
+    </tr>
+    <tr>
+      <th>c5-c0-PT-1K2DA</th>
+      <td>c5-c0</td>
+      <td>c5-c1</td>
+      <td>c5-c0</td>
+      <td>c5-c1</td>
+      <td>c5</td>
+      <td>Mus Skl</td>
+      <td>627</td>
+    </tr>
+    <tr>
+      <th>c4-c0-PT-1LGRB</th>
+      <td>c4-c0</td>
+      <td>c4-c0</td>
+      <td>c4-c0</td>
+      <td>c4-c0</td>
+      <td>c4</td>
+      <td>Epi Gas</td>
+      <td>593</td>
+    </tr>
+    <tr>
+      <th>c4-c0-PT-1LVAN</th>
+      <td>c4-c0</td>
+      <td>c4-c0</td>
+      <td>c4-c0</td>
+      <td>c4-c0</td>
+      <td>c4</td>
+      <td>Epi Gas</td>
+      <td>533</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>c8-c9-Other</th>
+      <td>c8-c9</td>
+      <td>c8-c0</td>
+      <td>c8-c4</td>
+      <td>c8-c0</td>
+      <td>c8</td>
+      <td>Epi Ent</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c8-c0-Other</th>
+      <td>c8-c0</td>
+      <td>c8-c0</td>
+      <td>c8-c0</td>
+      <td>c8-c0</td>
+      <td>c8</td>
+      <td>Epi Ent</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c15-c1-Other</th>
+      <td>c15-c1</td>
+      <td>c15-c0</td>
+      <td>c15-c0</td>
+      <td>c15-c0</td>
+      <td>c15</td>
+      <td>Hema Tnaive</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c12-c4-Other</th>
+      <td>c12-c4</td>
+      <td>c12-c3</td>
+      <td>c12-c4</td>
+      <td>c12-c3</td>
+      <td>c12</td>
+      <td>SmMus/Peri</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c3-c3-Other</th>
+      <td>c3-c3</td>
+      <td>c3-c4</td>
+      <td>c3-c4</td>
+      <td>c3-c4</td>
+      <td>c3</td>
+      <td>Endo Ves</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>940 rows × 7 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,11 +759,31 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>61
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gliderport.preset</span><span class="w"> </span><span class="kn">import</span> <span class="n">notebook_snakemake</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dmr_group</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>61
 </pre></div>
 </div>
 </div>
@@ -657,6 +824,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;c10-c0&#39;], [&#39;c10-c4&#39;]]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -666,12 +838,33 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>588
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coolpath</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">coollist_L2any.txt&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">coolpath</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span><span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">coolpath</span><span class="o">.</span><span class="n">values</span><span class="p">})</span>
 <span class="n">coolpath</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0-c0         /entex/loop/092924-L2any/0/0/c0-c0/c0-c0/c0-c0
+c0-c1         /entex/loop/092924-L2any/0/0/c0-c1/c0-c1/c0-c1
+c0-c10     /entex/loop/092924-L2any/0/0/c0-c10/c0-c10/c0-c10
+c0-c11     /entex/loop/092924-L2any/0/0/c0-c11/c0-c11/c0-c11
+c0-c12     /entex/loop/092924-L2any/0/0/c0-c12/c0-c12/c0-c12
+                                 ...                        
+c10-c15    /entex/loop/092924-L2any/9/9/c10-c15/c10-c15/c...
+c10-c16    /entex/loop/092924-L2any/9/9/c10-c16/c10-c16/c...
+c10-c17    /entex/loop/092924-L2any/9/9/c10-c17/c10-c17/c...
+c10-c2     /entex/loop/092924-L2any/9/9/c10-c2/c10-c2/c10-c2
+c10-c3     /entex/loop/092924-L2any/9/9/c10-c3/c10-c3/c10-c3
+Length: 420, dtype: object
 </pre></div>
 </div>
 </div>
@@ -768,6 +961,76 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1 E finished
+chr1 Q finished
+chr1 T finished
+chr2 Q finished
+chr2 E finished
+chr2 T finished
+chr3 E finished
+chr3 Q finished
+chr3 T finished
+chr4 Q finished
+chr4 E finished
+chr4 T finished
+chr5 Q finished
+chr5 E finished
+chr6 E finished
+chr6 Q finished
+chr5 T finished
+chr7 E finished
+chr7 Q finished
+chr6 T finished
+chr8 Q finished
+chr7 T finished
+chr8 E finished
+chr9 Q finished
+chr9 E finished
+chr8 T finished
+chr9 T finished
+chr10 E finished
+chr10 Q finished
+chr11 Q finished
+chr10 T finished
+chr11 E finished
+chr12 E finished
+chr12 Q finished
+chr11 T finished
+chr13 E finished
+chr13 Q finished
+chr12 T finished
+chr14 Q finished
+chr13 T finished
+chr14 E finished
+chr15 Q finished
+chr15 E finished
+chr14 T finished
+chr16 E finished
+chr15 T finished
+chr16 Q finished
+chr17 Q finished
+chr16 T finished
+chr17 E finished
+chr17 T finished
+chr18 E finished
+chr18 Q finished
+chr19 Q finished
+chr19 E finished
+chr18 T finished
+chr19 T finished
+chr20 Q finished
+chr20 E finished
+chr21 Q finished
+chr21 E finished
+chr20 T finished
+chr21 T finished
+chr22 Q finished
+chr22 E finished
+chr22 T finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -810,11 +1073,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">ctgroup</span><span class="p">))</span>
 <span class="n">leg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c10-c0&#39;, &#39;c10-c4&#39;], dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -830,6 +1103,137 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chr1</td>
+      <td>960000</td>
+      <td>970000</td>
+      <td>chr1</td>
+      <td>1210000</td>
+      <td>1220000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>chr1</td>
+      <td>1000000</td>
+      <td>1010000</td>
+      <td>chr1</td>
+      <td>1100000</td>
+      <td>1110000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>chr1</td>
+      <td>1000000</td>
+      <td>1010000</td>
+      <td>chr1</td>
+      <td>1110000</td>
+      <td>1120000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>chr1</td>
+      <td>1010000</td>
+      <td>1020000</td>
+      <td>chr1</td>
+      <td>1090000</td>
+      <td>1100000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>chr1</td>
+      <td>1010000</td>
+      <td>1020000</td>
+      <td>chr1</td>
+      <td>1100000</td>
+      <td>1110000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>479734</th>
+      <td>chr22</td>
+      <td>50570000</td>
+      <td>50580000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+    </tr>
+    <tr>
+      <th>479735</th>
+      <td>chr22</td>
+      <td>50580000</td>
+      <td>50590000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+    </tr>
+    <tr>
+      <th>479736</th>
+      <td>chr22</td>
+      <td>50590000</td>
+      <td>50600000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+    </tr>
+    <tr>
+      <th>479737</th>
+      <td>chr22</td>
+      <td>50600000</td>
+      <td>50610000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+    </tr>
+    <tr>
+      <th>479738</th>
+      <td>chr22</td>
+      <td>50610000</td>
+      <td>50620000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+    </tr>
+  </tbody>
+</table>
+<p>479739 rows × 6 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -849,6 +1253,32 @@
         <span class="n">pv</span> <span class="o">=</span> <span class="n">triu</span><span class="p">(</span><span class="n">cool</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
         <span class="n">loopall</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loopfilter</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">matrix</span><span class="si">}</span><span class="s1">anova&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pv</span><span class="p">[(</span><span class="n">looptmp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">looptmp</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])]</span><span class="o">.</span><span class="n">A1</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1
+chr2
+chr3
+chr4
+chr5
+chr6
+chr7
+chr8
+chr9
+chr10
+chr11
+chr12
+chr13
+chr14
+chr15
+chr16
+chr17
+chr18
+chr19
+chr20
+chr21
+chr22
 </pre></div>
 </div>
 </div>
@@ -931,6 +1361,12 @@
         <span class="n">loopq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">ct</span><span class="p">]))</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
         
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-c4 finished
+c10-c0 finished
 </pre></div>
 </div>
 </div>

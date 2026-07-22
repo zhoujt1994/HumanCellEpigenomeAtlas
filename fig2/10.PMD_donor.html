@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pmd-donor">
 <h1>10. PMD donor<a class="headerlink" href="#pmd-donor" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -668,6 +664,155 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>287509
+chunk19 finished
+chunk20 finished
+chunk4 finished
+chunk9 finished
+chunk22 finished
+chunk15 finished
+chunk31 finished
+chunk16 finished
+chunk23 finished
+chunk18 finished
+chunk2 finished
+chunk7 finished
+chunk17 finished
+chunk10 finished
+chunk11 finished
+chunk1 finished
+chunk29 finished
+chunk3 finished
+chunk28 finished
+chunk21 finished
+chunk5 finished
+chunk8 finished
+chunk30 finished
+chunk14 finished
+chunk25 finished
+chunk26 finished
+chunk13 finished
+chunk27 finished
+chunk6 finished
+chunk12 finished
+chunk24 finished
+chunk32 finished
+chunk35 finished
+chunk37 finished
+chunk40 finished
+chunk39 finished
+chunk36 finished
+chunk41 finished
+chunk33 finished
+chunk38 finished
+chunk42 finished
+chunk46 finished
+chunk0 finished
+chunk45 finished
+chunk43 finished
+chunk44 finished
+chunk34 finished
+chunk47 finished
+chunk67 finished
+chunk63 finished
+chunk73 finished
+chunk65 finished
+chunk64 finished
+chunk68 finished
+chunk66 finished
+chunk72 finished
+chunk71 finished
+chunk70 finished
+chunk75 finished
+chunk77 finished
+chunk48 finished
+chunk69 finished
+chunk49 finished
+chunk76 finished
+chunk78 finished
+chunk50 finished
+chunk57 finished
+chunk56 finished
+chunk51 finished
+chunk59 finished
+chunk55 finished
+chunk58 finished
+chunk79 finished
+chunk52 finished
+chunk53 finished
+chunk60 finished
+chunk62 finished
+chunk74 finished
+chunk61 finished
+chunk54 finished
+chunk80 finished
+chunk86 finished
+chunk82 finished
+chunk81 finished
+chunk84 finished
+chunk85 finished
+chunk91 finished
+chunk87 finished
+chunk89 finished
+chunk88 finished
+chunk104 finished
+chunk95 finished
+chunk90 finished
+chunk96 finished
+chunk93 finished
+chunk83 finished
+chunk92 finished
+chunk94 finished
+chunk101 finished
+chunk100 finished
+chunk98 finished
+chunk107 finished
+chunk99 finished
+chunk112 finished
+chunk106 finished
+chunk97 finished
+chunk105 finished
+chunk108 finished
+chunk113 finished
+chunk102 finished
+chunk117 finished
+chunk115 finished
+chunk114 finished
+chunk103 finished
+chunk116 finished
+chunk118 finished
+chunk123 finished
+chunk122 finished
+chunk119 finished
+chunk121 finished
+chunk110 finished
+chunk120 finished
+chunk109 finished
+chunk127 finished
+chunk125 finished
+chunk126 finished
+chunk111 finished
+chunk124 finished
+chunk130 finished
+chunk140 finished
+chunk131 finished
+chunk129 finished
+chunk141 finished
+chunk143 finished
+chunk139 finished
+chunk136 finished
+chunk128 finished
+chunk132 finished
+chunk134 finished
+chunk142 finished
+chunk137 finished
+chunk138 finished
+chunk135 finished
+chunk133 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -688,6 +833,14 @@
     <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">cluster_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+4
+5
+6
 </pre></div>
 </div>
 </div>
@@ -764,6 +917,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>287509
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,10 +971,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allc_path_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Epi-TPB-9213&#39;: &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_donor/allc/Epi-TPB-9213.CGN-Merge.allc.tsv.gz&#39;,
+ &#39;Epi-TPB-9216&#39;: &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_donor/allc/Epi-TPB-9216.CGN-Merge.allc.tsv.gz&#39;,
+ &#39;T-Mem_11714&#39;: &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_donor/allc/T-Mem_11714.CGN-merge.allc.tsv.gz&#39;,
+ &#39;T-Mem_4809&#39;: &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_donor/allc/T-Mem_4809.CGN-merge.allc.tsv.gz&#39;}
 </pre></div>
 </div>
 </div>
@@ -859,6 +1030,586 @@
     <span class="c1"># sc.pp.neighbors(adata, n_neighbors=knn, use_rep=&#39;X&#39;)</span>
     <span class="c1"># sc.tl.leiden(adata, resolution=0.1, random_state=0, flavor=&#39;igraph&#39;)</span>
     <span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_10kb_hist.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
+chunk31 finished
+chunk23 finished
+chunk22 finished
+chunk15 finished
+chunk14 finished
+chunk30 finished
+chunk7 finished
+chunk9 finished
+chunk20 finished
+chunk3 finished
+chunk4 finished
+chunk28 finished
+chunk8 finished
+chunk21 finished
+chunk10 finished
+chunk25 finished
+chunk26 finished
+chunk29 finished
+chunk5 finished
+chunk2 finished
+chunk13 finished
+chunk27 finished
+chunk11 finished
+chunk18 finished
+chunk16 finished
+chunk12 finished
+chunk24 finished
+chunk1 finished
+chunk17 finished
+chunk0 finished
+chunk32 finished
+chunk33 finished
+chunk38 finished
+chunk37 finished
+chunk36 finished
+chunk39 finished
+chunk35 finished
+chunk6 finished
+chunk34 finished
+chunk63 finished
+chunk67 finished
+chunk65 finished
+chunk66 finished
+chunk40 finished
+chunk64 finished
+chunk68 finished
+chunk41 finished
+chunk48 finished
+chunk42 finished
+chunk49 finished
+chunk45 finished
+chunk71 finished
+chunk46 finished
+chunk69 finished
+chunk57 finished
+chunk43 finished
+chunk50 finished
+chunk44 finished
+chunk55 finished
+chunk56 finished
+chunk51 finished
+chunk58 finished
+chunk59 finished
+chunk52 finished
+chunk47 finished
+chunk53 finished
+chunk60 finished
+chunk62 finished
+chunk61 finished
+chunk70 finished
+chunk72 finished
+chunk73 finished
+chunk54 finished
+chunk74 finished
+chunk75 finished
+chunk78 finished
+chunk77 finished
+chunk86 finished
+chunk84 finished
+chunk82 finished
+chunk76 finished
+chunk91 finished
+chunk80 finished
+chunk81 finished
+chunk88 finished
+chunk87 finished
+chunk95 finished
+chunk89 finished
+chunk94 finished
+chunk92 finished
+chunk85 finished
+chunk98 finished
+chunk96 finished
+chunk107 finished
+chunk99 finished
+chunk106 finished
+chunk104 finished
+chunk97 finished
+chunk100 finished
+chunk90 finished
+chunk83 finished
+chunk103 finished
+chunk93 finished
+chunk108 finished
+chunk101 finished
+chunk111 finished
+chunk79 finished
+chunk110 finished
+chunk102 finished
+chunk109 finished
+chunk105 finished
+chunk129 finished
+chunk136 finished
+chunk128 finished
+chunk126 finished
+chunk134 finished
+chunk112 finished
+chunk113 finished
+chunk138 finished
+chunk140 finished
+chunk118 finished
+chunk117 finished
+chunk131 finished
+chunk130 finished
+chunk142 finished
+chunk119 finished
+chunk127 finished
+chunk114 finished
+chunk123 finished
+chunk120 finished
+chunk121 finished
+chunk122 finished
+chunk125 finished
+chunk132 finished
+chunk116 finished
+chunk133 finished
+chunk115 finished
+chunk124 finished
+chunk137 finished
+chunk143 finished
+chunk139 finished
+chunk141 finished
+chunk135 finished
+chunk3 finished
+chunk9 finished
+chunk8 finished
+chunk29 finished
+chunk2 finished
+chunk1 finished
+chunk0 finished
+chunk6 finished
+chunk4 finished
+chunk12 finished
+chunk19 finished
+chunk20 finished
+chunk21 finished
+chunk5 finished
+chunk15 finished
+chunk31 finished
+chunk28 finished
+chunk25 finished
+chunk22 finished
+chunk14 finished
+chunk23 finished
+chunk30 finished
+chunk10 finished
+chunk13 finished
+chunk26 finished
+chunk27 finished
+chunk11 finished
+chunk18 finished
+chunk16 finished
+chunk24 finished
+chunk7 finished
+chunk17 finished
+chunk32 finished
+chunk36 finished
+chunk33 finished
+chunk37 finished
+chunk38 finished
+chunk39 finished
+chunk40 finished
+chunk41 finished
+chunk35 finished
+chunk34 finished
+chunk64 finished
+chunk67 finished
+chunk65 finished
+chunk66 finished
+chunk42 finished
+chunk48 finished
+chunk49 finished
+chunk45 finished
+chunk57 finished
+chunk43 finished
+chunk44 finished
+chunk68 finished
+chunk46 finished
+chunk50 finished
+chunk51 finished
+chunk59 finished
+chunk55 finished
+chunk58 finished
+chunk56 finished
+chunk60 finished
+chunk53 finished
+chunk62 finished
+chunk52 finished
+chunk63 finished
+chunk47 finished
+chunk69 finished
+chunk70 finished
+chunk61 finished
+chunk71 finished
+chunk54 finished
+chunk75 finished
+chunk74 finished
+chunk77 finished
+chunk76 finished
+chunk72 finished
+chunk85 finished
+chunk73 finished
+chunk99 finished
+chunk100 finished
+chunk102 finished
+chunk78 finished
+chunk81 finished
+chunk82 finished
+chunk86 finished
+chunk80 finished
+chunk91 finished
+chunk84 finished
+chunk95 finished
+chunk87 finished
+chunk92 finished
+chunk88 finished
+chunk94 finished
+chunk89 finished
+chunk96 finished
+chunk98 finished
+chunk90 finished
+chunk97 finished
+chunk101 finished
+chunk104 finished
+chunk106 finished
+chunk93 finished
+chunk107 finished
+chunk83 finished
+chunk105 finished
+chunk79 finished
+chunk111 finished
+chunk109 finished
+chunk112 finished
+chunk113 finished
+chunk108 finished
+chunk103 finished
+chunk137 finished
+chunk132 finished
+chunk133 finished
+chunk110 finished
+chunk117 finished
+chunk135 finished
+chunk118 finished
+chunk119 finished
+chunk140 finished
+chunk123 finished
+chunk114 finished
+chunk139 finished
+chunk130 finished
+chunk121 finished
+chunk141 finished
+chunk136 finished
+chunk138 finished
+chunk125 finished
+chunk122 finished
+chunk127 finished
+chunk131 finished
+chunk124 finished
+chunk120 finished
+chunk129 finished
+chunk116 finished
+chunk128 finished
+chunk134 finished
+chunk126 finished
+chunk115 finished
+chunk143 finished
+chunk142 finished
+chunk19 finished
+chunk29 finished
+chunk28 finished
+chunk21 finished
+chunk22 finished
+chunk26 finished
+chunk7 finished
+chunk24 finished
+chunk9 finished
+chunk30 finished
+chunk23 finished
+chunk16 finished
+chunk20 finished
+chunk3 finished
+chunk4 finished
+chunk31 finished
+chunk5 finished
+chunk8 finished
+chunk15 finished
+chunk25 finished
+chunk14 finished
+chunk11 finished
+chunk13 finished
+chunk27 finished
+chunk10 finished
+chunk18 finished
+chunk2 finished
+chunk17 finished
+chunk12 finished
+chunk6 finished
+chunk1 finished
+chunk32 finished
+chunk33 finished
+chunk39 finished
+chunk0 finished
+chunk34 finished
+chunk40 finished
+chunk41 finished
+chunk42 finished
+chunk43 finished
+chunk35 finished
+chunk37 finished
+chunk36 finished
+chunk38 finished
+chunk63 finished
+chunk64 finished
+chunk65 finished
+chunk67 finished
+chunk49 finished
+chunk45 finished
+chunk46 finished
+chunk48 finished
+chunk57 finished
+chunk56 finished
+chunk50 finished
+chunk44 finished
+chunk51 finished
+chunk55 finished
+chunk58 finished
+chunk59 finished
+chunk47 finished
+chunk68 finished
+chunk52 finished
+chunk60 finished
+chunk53 finished
+chunk62 finished
+chunk69 finished
+chunk71 finished
+chunk70 finished
+chunk66 finished
+chunk61 finished
+chunk54 finished
+chunk77 finished
+chunk78 finished
+chunk76 finished
+chunk73 finished
+chunk72 finished
+chunk74 finished
+chunk75 finished
+chunk79 finished
+chunk98 finished
+chunk93 finished
+chunk100 finished
+chunk99 finished
+chunk80 finished
+chunk82 finished
+chunk86 finished
+chunk81 finished
+chunk91 finished
+chunk87 finished
+chunk84 finished
+chunk92 finished
+chunk85 finished
+chunk95 finished
+chunk88 finished
+chunk89 finished
+chunk104 finished
+chunk94 finished
+chunk105 finished
+chunk106 finished
+chunk96 finished
+chunk90 finished
+chunk97 finished
+chunk83 finished
+chunk111 finished
+chunk101 finished
+chunk102 finished
+chunk112 finished
+chunk113 finished
+chunk107 finished
+chunk108 finished
+chunk114 finished
+chunk115 finished
+chunk103 finished
+chunk110 finished
+chunk109 finished
+chunk130 finished
+chunk131 finished
+chunk128 finished
+chunk136 finished
+chunk121 finished
+chunk117 finished
+chunk122 finished
+chunk123 finished
+chunk116 finished
+chunk118 finished
+chunk139 finished
+chunk119 finished
+chunk140 finished
+chunk126 finished
+chunk125 finished
+chunk127 finished
+chunk120 finished
+chunk132 finished
+chunk129 finished
+chunk143 finished
+chunk135 finished
+chunk124 finished
+chunk137 finished
+chunk134 finished
+chunk142 finished
+chunk133 finished
+chunk141 finished
+chunk138 finished
+chunk19 finished
+chunk28 finished
+chunk9 finished
+chunk22 finished
+chunk16 finished
+chunk18 finished
+chunk17 finished
+chunk24 finished
+chunk20 finished
+chunk4 finished
+chunk3 finished
+chunk29 finished
+chunk21 finished
+chunk8 finished
+chunk31 finished
+chunk23 finished
+chunk15 finished
+chunk5 finished
+chunk30 finished
+chunk14 finished
+chunk26 finished
+chunk25 finished
+chunk10 finished
+chunk13 finished
+chunk27 finished
+chunk2 finished
+chunk7 finished
+chunk11 finished
+chunk12 finished
+chunk1 finished
+chunk6 finished
+chunk32 finished
+chunk35 finished
+chunk33 finished
+chunk37 finished
+chunk36 finished
+chunk39 finished
+chunk38 finished
+chunk0 finished
+chunk34 finished
+chunk63 finished
+chunk67 finished
+chunk65 finished
+chunk64 finished
+chunk66 finished
+chunk40 finished
+chunk41 finished
+chunk68 finished
+chunk42 finished
+chunk48 finished
+chunk49 finished
+chunk46 finished
+chunk45 finished
+chunk69 finished
+chunk57 finished
+chunk56 finished
+chunk43 finished
+chunk50 finished
+chunk44 finished
+chunk51 finished
+chunk55 finished
+chunk59 finished
+chunk58 finished
+chunk47 finished
+chunk71 finished
+chunk60 finished
+chunk52 finished
+chunk53 finished
+chunk62 finished
+chunk70 finished
+chunk61 finished
+chunk72 finished
+chunk73 finished
+chunk54 finished
+chunk75 finished
+chunk74 finished
+chunk76 finished
+chunk85 finished
+chunk79 finished
+chunk96 finished
+chunk77 finished
+chunk78 finished
+chunk86 finished
+chunk80 finished
+chunk82 finished
+chunk81 finished
+chunk91 finished
+chunk95 finished
+chunk87 finished
+chunk84 finished
+chunk92 finished
+chunk104 finished
+chunk94 finished
+chunk88 finished
+chunk89 finished
+chunk107 finished
+chunk106 finished
+chunk98 finished
+chunk100 finished
+chunk103 finished
+chunk99 finished
+chunk108 finished
+chunk97 finished
+chunk93 finished
+chunk90 finished
+chunk83 finished
+chunk101 finished
+chunk110 finished
+chunk109 finished
+chunk111 finished
+chunk102 finished
+chunk105 finished
+chunk123 finished
+chunk127 finished
+chunk131 finished
+chunk128 finished
+chunk112 finished
+chunk113 finished
+chunk133 finished
+chunk139 finished
+chunk140 finished
+chunk117 finished
+chunk141 finished
+chunk114 finished
+chunk130 finished
+chunk122 finished
+chunk120 finished
+chunk126 finished
+chunk116 finished
+chunk118 finished
+chunk119 finished
+chunk115 finished
+chunk136 finished
+chunk121 finished
+chunk125 finished
+chunk129 finished
+chunk134 finished
+chunk124 finished
+chunk138 finished
+chunk132 finished
+chunk142 finished
+chunk137 finished
+chunk135 finished
+chunk143 finished
 </pre></div>
 </div>
 </div>
@@ -923,6 +1674,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9beb31aebb121ded84e1ff64732672c4552b2c5922d5f95c5da26b8bfad89e2a.png" src="../_images/9beb31aebb121ded84e1ff64732672c4552b2c5922d5f95c5da26b8bfad89e2a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -943,6 +1697,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PMD_donor/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.10kb_hist_confusion.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/77cab074166dd5822c2da9436fc697483eef7e3fa7ae7e69fdc3e048332317da.png" src="../_images/77cab074166dd5822c2da9436fc697483eef7e3fa7ae7e69fdc3e048332317da.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -981,6 +1738,9 @@
 <span class="c1"># fig.savefig(&#39;mCG_distribution/L1_10kb_hist_kmeans4.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5d67db5717eb606a0423951cc6e4728bd4ada8f9948bfdfaf885211af1bf90fe.png" src="../_images/5d67db5717eb606a0423951cc6e4728bd4ada8f9948bfdfaf885211af1bf90fe.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1067,6 +1827,23 @@
             <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">xx</span><span class="p">[</span><span class="n">xx</span><span class="o">&gt;-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yy</span><span class="p">[</span><span class="n">xx</span><span class="o">&gt;-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10469
+10470
+10471
+10472
+10473
+10476
+10477
+10478
+10480
+10482
+10483
+10484
+10485
 </pre></div>
 </div>
 </div>

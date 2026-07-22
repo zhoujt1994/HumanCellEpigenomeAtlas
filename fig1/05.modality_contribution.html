@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modality-contribution">
 <h1>5. Modality contribution<a class="headerlink" href="#modality-contribution" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -564,9 +560,6 @@
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ps.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sans-serif&#39;</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Helvetica&#39;</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">BalancedRandomForestClassifier</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering.ConsensusClustering</span><span class="w"> </span><span class="kn">import</span> <span class="n">_r1_normalize</span><span class="p">,</span> <span class="n">_r2_normalize</span><span class="p">,</span> <span class="n">_split_train_test_per_group</span><span class="p">,</span> <span class="n">single_supervise_evaluation</span>
 </pre></div>
 </div>
 </div>
@@ -590,6 +583,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -604,6 +602,11 @@
     <span class="n">npc_3c</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;_seuratL2_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span><span class="p">)</span>
     <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 9
 </pre></div>
 </div>
 </div>
@@ -756,6 +759,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">BalancedRandomForestClassifier</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">_create_model</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
@@ -794,6 +805,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Balanced accuracy on the training set: 0.763
+Balanced accuracy on the hold-out set: 0.558
+[&#39;c0&#39; &#39;c1&#39; &#39;c10&#39; &#39;c11&#39; &#39;c2&#39; &#39;c3&#39; &#39;c4&#39; &#39;c5&#39; &#39;c6&#39; &#39;c7&#39; &#39;c8&#39; &#39;c9&#39;]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Balanced accuracy on the training set: 0.769
+Balanced accuracy on the hold-out set: 0.544
+[&#39;c0&#39; &#39;c1&#39; &#39;c10&#39; &#39;c11&#39; &#39;c2&#39; &#39;c3&#39; &#39;c4&#39; &#39;c5&#39; &#39;c6&#39; &#39;c7&#39; &#39;c8&#39; &#39;c9&#39;]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Balanced accuracy on the training set: 0.965
+Balanced accuracy on the hold-out set: 0.913
+[&#39;c0&#39; &#39;c1&#39; &#39;c10&#39; &#39;c11&#39; &#39;c2&#39; &#39;c3&#39; &#39;c4&#39; &#39;c5&#39; &#39;c6&#39; &#39;c7&#39; &#39;c8&#39; &#39;c9&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -801,6 +829,9 @@
 <span class="n">rorder</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ff6c0cfa0c6fd5fb1bd8b26db0914772af54545cdd31216338d19883ee75c76f.png" src="../_images/ff6c0cfa0c6fd5fb1bd8b26db0914772af54545cdd31216338d19883ee75c76f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -825,6 +856,23 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">rorder</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;c10&#39;),
+ Text(0, 1, &#39;c1&#39;),
+ Text(0, 2, &#39;c3&#39;),
+ Text(0, 3, &#39;c11&#39;),
+ Text(0, 4, &#39;c2&#39;),
+ Text(0, 5, &#39;c7&#39;),
+ Text(0, 6, &#39;c9&#39;),
+ Text(0, 7, &#39;c0&#39;),
+ Text(0, 8, &#39;c4&#39;),
+ Text(0, 9, &#39;c8&#39;),
+ Text(0, 10, &#39;c5&#39;),
+ Text(0, 11, &#39;c6&#39;)]
+</pre></div>
+</div>
+<img alt="../_images/cceb1c84cfe1c03049cb035b97d23f731ff5e09e2478be8776c3d7887736cd8c.png" src="../_images/cceb1c84cfe1c03049cb035b97d23f731ff5e09e2478be8776c3d7887736cd8c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -855,11 +903,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c50d75a0f51ea2c62294bd19cacea4ae653183fefb5801a42c915797841bc135.png" src="../_images/c50d75a0f51ea2c62294bd19cacea4ae653183fefb5801a42c915797841bc135.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">xx</span><span class="p">],</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">yy</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c3 c0
+c5 c10
+c2 c18
 </pre></div>
 </div>
 </div>
@@ -891,6 +949,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0357de7e6d5562b47a38f55de1d517e319a4607821ac355d4b55beefd97cf497.png" src="../_images/0357de7e6d5562b47a38f55de1d517e319a4607821ac355d4b55beefd97cf497.png" />
+<img alt="../_images/4e9fa3ccbf68c41f6bdd908d4ed60ec14fc7abd1e33183fc882ed4200b5b2573.png" src="../_images/4e9fa3ccbf68c41f6bdd908d4ed60ec14fc7abd1e33183fc882ed4200b5b2573.png" />
+<img alt="../_images/2d8bf4d86820a9f99acffbed9e78ea7f07ef93112f1cdec2e89e01c51ddfb92b.png" src="../_images/2d8bf4d86820a9f99acffbed9e78ea7f07ef93112f1cdec2e89e01c51ddfb92b.png" />
+<img alt="../_images/04eb6d7dac17706cf9ba83bc1bfdd613fd53131a7bb78346917585a09673ef23.png" src="../_images/04eb6d7dac17706cf9ba83bc1bfdd613fd53131a7bb78346917585a09673ef23.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -900,6 +964,13 @@
     <span class="n">confusion_matrix</span><span class="p">,</span>
     <span class="n">pairwise_distances</span><span class="p">,</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering.ConsensusClustering</span><span class="w"> </span><span class="kn">import</span> <span class="n">_r1_normalize</span><span class="p">,</span> <span class="n">_r2_normalize</span><span class="p">,</span> <span class="n">_split_train_test_per_group</span><span class="p">,</span> <span class="n">single_supervise_evaluation</span>
 </pre></div>
 </div>
 </div>

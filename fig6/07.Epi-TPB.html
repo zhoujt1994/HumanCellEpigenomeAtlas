@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="epi-tpb">
 <h1>7. Epi TPB<a class="headerlink" href="#epi-tpb" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -643,6 +639,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5228 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    obsm: &#39;5kCG_lsi&#39;, &#39;5kCG_u14_seuratL2&#39;, &#39;5kCG_u14_seuratL2_tsne&#39;, &#39;X_lsi&#39;, &#39;X_tsne&#39;, &#39;5kCG_u14_tsne&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -658,6 +661,64 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+    <tr>
+      <th>Donor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9213</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>495.0</td>
+      <td>364.0</td>
+      <td>1103.0</td>
+      <td>736.0</td>
+    </tr>
+    <tr>
+      <th>9216</th>
+      <td>1238.0</td>
+      <td>1289.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -671,6 +732,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>celltype_abbr
+SCT    4753
+VCT     475
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -688,6 +757,16 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;cell_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;cell_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell_group
+SCT-9213    2571
+SCT-9216    2182
+VCT-9216     346
+VCT-9213     129
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -752,6 +831,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/235385e3a5874a506d9ee46610dfd21a56c6b581a93b3182ebcb80d9050a88a1.png" src="../_images/235385e3a5874a506d9ee46610dfd21a56c6b581a93b3182ebcb80d9050a88a1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,6 +895,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/6d20a5cb567815acd4ef030fba31c1e4f848d223344509b3d0c0403a95ad6a47.png" src="../_images/6d20a5cb567815acd4ef030fba31c1e4f848d223344509b3d0c0403a95ad6a47.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -820,6 +905,11 @@
 
 <span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/&#39;</span>
 <span class="n">outdir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/Epi-TPB/&#39;
 </pre></div>
 </div>
 </div>
@@ -840,6 +930,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seldmr</span> <span class="o">=</span> <span class="p">((</span><span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;SCT-9213&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;VCT-9213&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;SCT-9216&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;VCT-9216&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;ndms&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">seldmr</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3534
 </pre></div>
 </div>
 </div>
@@ -865,6 +960,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/e3a792ca0dbdaa79002c8371d72902ad4b36390326f12a5594a608fa8ed74502.png" src="../_images/e3a792ca0dbdaa79002c8371d72902ad4b36390326f12a5594a608fa8ed74502.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -886,6 +984,11 @@
            <span class="p">(</span><span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">donor_clusters</span><span class="p">[</span><span class="s1">&#39;9216&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">donor_clusters</span><span class="p">[</span><span class="s1">&#39;9216&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span> 
            <span class="o">&amp;</span> <span class="p">(</span><span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;ndms&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dmr_data</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">seldmr</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>96686
 </pre></div>
 </div>
 </div>
@@ -911,6 +1014,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/10f764b7cefb4c70f4fc2876c0069f70658522cd64d188321b447d3febfb6c56.png" src="../_images/10f764b7cefb4c70f4fc2876c0069f70658522cd64d188321b447d3febfb6c56.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -927,6 +1033,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mccluster_3ccluster_dmr_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c65843468b1db87aa608027d9a7f13b9045c33a0a0114927e757152cfe486268.png" src="../_images/c65843468b1db87aa608027d9a7f13b9045c33a0a0114927e757152cfe486268.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -955,6 +1064,53 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Subtype DMR</th>
+      <th>mCG cluster DMR</th>
+    </tr>
+    <tr>
+      <th>mc_comp</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.076683</td>
+      <td>0.013749</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.136609</td>
+      <td>0.975417</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.786708</td>
+      <td>0.010834</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -968,6 +1124,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">Epi-TPB_DMR_3state_stackedbar.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b62ae9a293c643cb1a4f81e12686f65c02dd6d607005827616358eadac1856de.png" src="../_images/b62ae9a293c643cb1a4f81e12686f65c02dd6d607005827616358eadac1856de.png" />
 </div>
 </div>
 </section>

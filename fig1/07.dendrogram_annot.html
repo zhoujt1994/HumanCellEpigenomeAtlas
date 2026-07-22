@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dendrogram-annot">
 <h1>7. Dendrogram annot<a class="headerlink" href="#dendrogram-annot" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -574,9 +570,10 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dendrogram</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -630,6 +627,137 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>L1</th>
+      <th>L1_annot</th>
+      <th>L1_abbr</th>
+      <th>L2_any</th>
+      <th>celltype_annot</th>
+      <th>celltype_abbr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c33-c0</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c0</td>
+      <td>Endo Lymphatic Esophagus</td>
+      <td>Endo Lym Esp</td>
+    </tr>
+    <tr>
+      <th>c33-c1</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c1</td>
+      <td>Endo Lymphatic Skin</td>
+      <td>Endo Lym Skn</td>
+    </tr>
+    <tr>
+      <th>c33-c2</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c2</td>
+      <td>Endo Lymphatic Breast</td>
+      <td>Endo Lym Brs</td>
+    </tr>
+    <tr>
+      <th>c33-c3</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c3</td>
+      <td>Endo Lymphatic Mix</td>
+      <td>Endo Lym Mix</td>
+    </tr>
+    <tr>
+      <th>c33-c4</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c4</td>
+      <td>Endo Lymphatic Mix</td>
+      <td>Endo Lym Mix</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>c4-3c14</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c14</td>
+      <td>Epi Gastric Endocrine</td>
+      <td>Endocrine</td>
+    </tr>
+    <tr>
+      <th>c4-3c15</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c15</td>
+      <td>Epi Gastric Neck</td>
+      <td>Neck</td>
+    </tr>
+    <tr>
+      <th>c4-3c16</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c16</td>
+      <td>Epi Gastric Chief</td>
+      <td>Chief</td>
+    </tr>
+    <tr>
+      <th>c4-3c17</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c17</td>
+      <td>Epi Gastric Chief</td>
+      <td>Chief</td>
+    </tr>
+    <tr>
+      <th>c4-3c18</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c18</td>
+      <td>Epi Gastric Chief</td>
+      <td>Chief</td>
+    </tr>
+  </tbody>
+</table>
+<p>457 rows × 6 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -641,6 +769,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;L1&#39;, &#39;L1_annot&#39;
+    obsm: &#39;5kCG100k3C_u50pc50&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -649,6 +784,13 @@
 <span class="c1"># # labelany = np.load(f&#39;{outdir}{ct}_mergeany_rocpr.npy&#39;, allow_pickle=True)</span>
 <span class="c1"># adata.obs[&#39;celltype&#39;] = meta[&#39;celltype_L2_both_annot&#39;].copy()</span>
 <span class="c1"># adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 2324 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;
+    obsm: &#39;5kCG100k3C_u15pc10&#39;, &#39;5kCG100k3C_u15pc10_tsne&#39;, &#39;X_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -678,6 +820,13 @@
                     <span class="n">method_hclust</span><span class="o">=</span><span class="n">method_hclust</span><span class="p">,</span>
                     <span class="n">n_jobs</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 <span class="n">dendro</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pc_center</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating a temporary cluster...done:
+socket cluster with 32 nodes on host ‘localhost’
+Multiscale bootstrap... Done.
 </pre></div>
 </div>
 </div>
@@ -754,10 +903,32 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dendro_annot/All_correlation_average.dendro&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      c9
+1      c8
+2      c7
+3      c6
+4      c5
+5      c4
+6      c3
+7      c2
+8     c11
+9     c10
+10     c1
+11     c0
+dtype: object
 </pre></div>
 </div>
 </div>
@@ -826,10 +997,68 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hema-B
+Hema-NK
+Hema-Tmem
+Hema-Tnaive
+Hema-Myeloid
+Hema-Mast
+Epi-TPB
+Epi-AdrCtx
+Mus-Crd
+Mus-Skl
+Epi-Alv
+Epi-Gas
+Epi-Ent
+Epi-Aci
+Epi-Krt_Lum
+Epi-Duc
+Neu-Schw
+Glia-Oligo
+Glia-Astro
+Epi-Endcri
+Neu-Exc
+Neu-Inh
+Endo-Vsc
+Endo-Lym
+Epi-BrstBasal
+Perivascular
+Fibro-Adr
+Fibro-Myo
+Fibro-HT
+Fibro-EndN
+Fibro-Brst
+Fibro-EpiN
+Fibro-Mus
+Fibro-Sk
+Fibro-GI
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dendrogram</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Hema B&#39;, &#39;Hema NK&#39;, &#39;Hema Tmem&#39;, &#39;Hema Tnaive&#39;, &#39;Hema Myeloid&#39;,
+       &#39;Hema Mast&#39;, &#39;Epi TPB&#39;, &#39;Epi AdrCtx&#39;, &#39;Mus Crd&#39;, &#39;Mus Skl&#39;, &#39;Epi Alv&#39;,
+       &#39;Epi Gas&#39;, &#39;Epi Ent&#39;, &#39;Epi Aci&#39;, &#39;Epi Krt/Lum&#39;, &#39;Epi Duc&#39;, &#39;Neu Schw&#39;,
+       &#39;Glia Oligo&#39;, &#39;Glia Astro&#39;, &#39;Epi Endcri&#39;, &#39;Neu Exc&#39;, &#39;Neu Inh&#39;,
+       &#39;Endo Vsc&#39;, &#39;Endo Lym&#39;, &#39;Epi BrstBasal&#39;, &#39;Perivascular&#39;, &#39;Fibro Adr&#39;,
+       &#39;Fibro Myo&#39;, &#39;Fibro HT&#39;, &#39;Fibro EndN&#39;, &#39;Fibro Brst&#39;, &#39;Fibro EpiN&#39;,
+       &#39;Fibro Mus&#39;, &#39;Fibro Sk&#39;, &#39;Fibro GI&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -857,6 +1086,50 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>CG_roc</th>
+      <th>CG_pr</th>
+      <th>3C_roc</th>
+      <th>3C_pr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0.531446</td>
+      <td>2</td>
+      <td>0.927452</td>
+      <td>0.992311</td>
+      <td>0.999877</td>
+      <td>0.999988</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -986,6 +1259,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dendro_annot/dendrogram_</span><span class="si">{</span><span class="n">method_dist</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_hclust</span><span class="si">}</span><span class="s1">_horizontal_even.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fdae3364446b7eb5c4b2dca7f06ece0ac83d5dff4c4af547fd585c3c0b88bb11.png" src="../_images/fdae3364446b7eb5c4b2dca7f06ece0ac83d5dff4c4af547fd585c3c0b88bb11.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1117,10 +1393,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4c70108be20fdd031a643cf53f5da41298c3babe8761cbe986a2a20b08f0477a.png" src="../_images/4c70108be20fdd031a643cf53f5da41298c3babe8761cbe986a2a20b08f0477a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc_center</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c10&#39;, &#39;c21&#39;, &#39;c8&#39;, &#39;c33&#39;, &#39;c9&#39;, &#39;c24&#39;, &#39;c29&#39;, &#39;c0&#39;, &#39;c22&#39;, &#39;c12&#39;,
+       &#39;c28&#39;, &#39;c13&#39;, &#39;c1&#39;, &#39;c26&#39;, &#39;c30&#39;, &#39;c18&#39;, &#39;c27&#39;, &#39;c34&#39;, &#39;c17&#39;, &#39;c4&#39;,
+       &#39;c7&#39;, &#39;c32&#39;, &#39;c19&#39;, &#39;c15&#39;, &#39;c23&#39;, &#39;c5&#39;, &#39;c2&#39;, &#39;c14&#39;, &#39;c6&#39;, &#39;c3&#39;, &#39;c31&#39;,
+       &#39;c20&#39;, &#39;c16&#39;, &#39;c25&#39;, &#39;c11&#39;],
+      dtype=&#39;object&#39;, name=&#39;L1&#39;)
 </pre></div>
 </div>
 </div>
@@ -1131,10 +1419,88 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2,
+ 14,
+ 33,
+ 27,
+ 34,
+ 17,
+ 22,
+ 0,
+ 15,
+ 4,
+ 21,
+ 5,
+ 1,
+ 19,
+ 24,
+ 10,
+ 20,
+ 28,
+ 9,
+ 29,
+ 32,
+ 26,
+ 11,
+ 7,
+ 16,
+ 30,
+ 12,
+ 6,
+ 31,
+ 23,
+ 25,
+ 13,
+ 8,
+ 18,
+ 3]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;c7&#39;,
+ &#39;c27&#39;,
+ &#39;c1&#39;,
+ &#39;c15&#39;,
+ &#39;c0&#39;,
+ &#39;c24&#39;,
+ &#39;c2&#39;,
+ &#39;c9&#39;,
+ &#39;c26&#39;,
+ &#39;c5&#39;,
+ &#39;c20&#39;,
+ &#39;c4&#39;,
+ &#39;c8&#39;,
+ &#39;c22&#39;,
+ &#39;c18&#39;,
+ &#39;c30&#39;,
+ &#39;c21&#39;,
+ &#39;c14&#39;,
+ &#39;c31&#39;,
+ &#39;c13&#39;,
+ &#39;c10&#39;,
+ &#39;c16&#39;,
+ &#39;c3&#39;,
+ &#39;c33&#39;,
+ &#39;c25&#39;,
+ &#39;c12&#39;,
+ &#39;c29&#39;,
+ &#39;c34&#39;,
+ &#39;c11&#39;,
+ &#39;c19&#39;,
+ &#39;c17&#39;,
+ &#39;c28&#39;,
+ &#39;c32&#39;,
+ &#39;c23&#39;,
+ &#39;c6&#39;]
 </pre></div>
 </div>
 </div>
@@ -1145,6 +1511,413 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>CG_roc</th>
+      <th>CG_pr</th>
+      <th>3C_roc</th>
+      <th>3C_pr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>35</th>
+      <td>13</td>
+      <td>8</td>
+      <td>0.411217</td>
+      <td>2</td>
+      <td>0.999959</td>
+      <td>0.999974</td>
+      <td>0.986017</td>
+      <td>0.991651</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>32</td>
+      <td>26</td>
+      <td>0.433781</td>
+      <td>2</td>
+      <td>0.999999</td>
+      <td>0.999999</td>
+      <td>0.999957</td>
+      <td>0.999974</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>12</td>
+      <td>6</td>
+      <td>0.437554</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.997739</td>
+      <td>0.998844</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>18</td>
+      <td>3</td>
+      <td>0.488865</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.995729</td>
+      <td>0.998477</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>33</td>
+      <td>27</td>
+      <td>0.530176</td>
+      <td>2</td>
+      <td>0.999990</td>
+      <td>0.999998</td>
+      <td>0.993434</td>
+      <td>0.998462</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>35</td>
+      <td>38</td>
+      <td>0.530788</td>
+      <td>4</td>
+      <td>0.999987</td>
+      <td>0.999996</td>
+      <td>0.986037</td>
+      <td>0.995472</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>14</td>
+      <td>39</td>
+      <td>0.587241</td>
+      <td>3</td>
+      <td>0.999889</td>
+      <td>0.999988</td>
+      <td>0.965173</td>
+      <td>0.995662</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>11</td>
+      <td>7</td>
+      <td>0.593531</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.996558</td>
+      <td>0.999591</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>24</td>
+      <td>10</td>
+      <td>0.595344</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999860</td>
+      <td>0.999941</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>25</td>
+      <td>40</td>
+      <td>0.602050</td>
+      <td>5</td>
+      <td>0.999988</td>
+      <td>0.999997</td>
+      <td>0.990760</td>
+      <td>0.997087</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>23</td>
+      <td>44</td>
+      <td>0.647783</td>
+      <td>6</td>
+      <td>0.999964</td>
+      <td>0.999993</td>
+      <td>0.997571</td>
+      <td>0.999407</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>30</td>
+      <td>37</td>
+      <td>0.673438</td>
+      <td>3</td>
+      <td>0.999654</td>
+      <td>0.999816</td>
+      <td>0.994727</td>
+      <td>0.997163</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>19</td>
+      <td>43</td>
+      <td>0.675028</td>
+      <td>3</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.998639</td>
+      <td>0.999245</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>28</td>
+      <td>9</td>
+      <td>0.688473</td>
+      <td>2</td>
+      <td>0.999997</td>
+      <td>0.999999</td>
+      <td>0.998163</td>
+      <td>0.999287</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>31</td>
+      <td>45</td>
+      <td>0.712202</td>
+      <td>7</td>
+      <td>0.999988</td>
+      <td>0.999997</td>
+      <td>0.998742</td>
+      <td>0.999554</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>21</td>
+      <td>5</td>
+      <td>0.715713</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999928</td>
+      <td>0.999975</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>20</td>
+      <td>48</td>
+      <td>0.736488</td>
+      <td>3</td>
+      <td>0.999978</td>
+      <td>0.999987</td>
+      <td>0.999813</td>
+      <td>0.999898</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>1</td>
+      <td>47</td>
+      <td>0.742784</td>
+      <td>4</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999978</td>
+      <td>0.999982</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>46</td>
+      <td>49</td>
+      <td>0.748464</td>
+      <td>10</td>
+      <td>0.998565</td>
+      <td>0.999597</td>
+      <td>0.990637</td>
+      <td>0.997240</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>50</td>
+      <td>52</td>
+      <td>0.761853</td>
+      <td>6</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999062</td>
+      <td>0.999222</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>29</td>
+      <td>36</td>
+      <td>0.772654</td>
+      <td>3</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>2</td>
+      <td>41</td>
+      <td>0.801312</td>
+      <td>4</td>
+      <td>0.999995</td>
+      <td>0.999998</td>
+      <td>0.999993</td>
+      <td>0.999998</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>34</td>
+      <td>17</td>
+      <td>0.804350</td>
+      <td>2</td>
+      <td>0.999998</td>
+      <td>1.000000</td>
+      <td>0.999971</td>
+      <td>0.999996</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>51</td>
+      <td>55</td>
+      <td>0.810038</td>
+      <td>6</td>
+      <td>0.999996</td>
+      <td>0.999998</td>
+      <td>0.999684</td>
+      <td>0.999807</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>15</td>
+      <td>4</td>
+      <td>0.817460</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>16</td>
+      <td>53</td>
+      <td>0.823491</td>
+      <td>11</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999770</td>
+      <td>0.999982</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>0</td>
+      <td>59</td>
+      <td>0.833232</td>
+      <td>3</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>54</td>
+      <td>58</td>
+      <td>0.871135</td>
+      <td>12</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999882</td>
+      <td>0.999926</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>42</td>
+      <td>60</td>
+      <td>0.883368</td>
+      <td>13</td>
+      <td>0.999990</td>
+      <td>0.999997</td>
+      <td>0.999573</td>
+      <td>0.999870</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>56</td>
+      <td>57</td>
+      <td>0.884172</td>
+      <td>6</td>
+      <td>0.999960</td>
+      <td>0.999979</td>
+      <td>0.999964</td>
+      <td>0.999976</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>62</td>
+      <td>63</td>
+      <td>0.915300</td>
+      <td>25</td>
+      <td>0.999954</td>
+      <td>0.999922</td>
+      <td>0.999713</td>
+      <td>0.999737</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>61</td>
+      <td>65</td>
+      <td>0.945066</td>
+      <td>28</td>
+      <td>0.999998</td>
+      <td>1.000000</td>
+      <td>0.999630</td>
+      <td>0.999929</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>22</td>
+      <td>66</td>
+      <td>0.961741</td>
+      <td>29</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.999999</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>64</td>
+      <td>67</td>
+      <td>0.976185</td>
+      <td>35</td>
+      <td>0.999927</td>
+      <td>0.999974</td>
+      <td>0.999830</td>
+      <td>0.999877</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

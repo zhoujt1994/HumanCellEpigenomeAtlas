@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="loop-dmr-motif">
 <h1>6. Loop dmr motif<a class="headerlink" href="#loop-dmr-motif" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -599,6 +595,317 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chr10:100000953-100000961</th>
+      <th>chr10:100001679-100002245</th>
+      <th>chr10:100003300-100003767</th>
+      <th>chr10:100004641-100005072</th>
+      <th>chr10:100005550-100005711</th>
+      <th>chr10:100005979-100006587</th>
+      <th>chr10:100006892-100007008</th>
+      <th>chr10:100007313-100007734</th>
+      <th>chr10:100007991-100008955</th>
+      <th>chr10:100010619-100010667</th>
+      <th>...</th>
+      <th>chr9:99977538-99978235</th>
+      <th>chr9:9997974-9998312</th>
+      <th>chr9:99982260-99982626</th>
+      <th>chr9:99985900-99985916</th>
+      <th>chr9:9998593-9999196</th>
+      <th>chr9:99994951-99994988</th>
+      <th>chr9:9999586-10000062</th>
+      <th>chr9:99997862-99997949</th>
+      <th>chr9:99998235-99999140</th>
+      <th>motifs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.160</td>
+      <td>0.000</td>
+      <td>2.190</td>
+      <td>4.0000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0.00000</td>
+      <td>0.0000</td>
+      <td>2.7400</td>
+      <td>0.000</td>
+      <td>3.2500</td>
+      <td>0.000</td>
+      <td>2.330</td>
+      <td>0.000</td>
+      <td>4.3700</td>
+      <td>bergman__Adf1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.147</td>
+      <td>9.270</td>
+      <td>2.850</td>
+      <td>0.0000</td>
+      <td>3.300</td>
+      <td>0.000</td>
+      <td>0.337</td>
+      <td>0.2460</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0.20100</td>
+      <td>0.1220</td>
+      <td>0.1180</td>
+      <td>0.000</td>
+      <td>0.0368</td>
+      <td>0.145</td>
+      <td>0.114</td>
+      <td>0.000</td>
+      <td>0.0186</td>
+      <td>bergman__Aef1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.191</td>
+      <td>4.520</td>
+      <td>0.287</td>
+      <td>0.1590</td>
+      <td>0.113</td>
+      <td>0.131</td>
+      <td>0.117</td>
+      <td>0.0756</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>4.65000</td>
+      <td>0.3320</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>0.1180</td>
+      <td>0.000</td>
+      <td>0.201</td>
+      <td>0.000</td>
+      <td>4.6700</td>
+      <td>bergman__Hr46</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0.00000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>bergman__Kr</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.325</td>
+      <td>3.320</td>
+      <td>3.480</td>
+      <td>0.0000</td>
+      <td>3.290</td>
+      <td>0.000</td>
+      <td>3.680</td>
+      <td>0.1950</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0.11300</td>
+      <td>0.0762</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>3.6400</td>
+      <td>0.000</td>
+      <td>3.790</td>
+      <td>0.166</td>
+      <td>2.9100</td>
+      <td>bergman__Su_H_</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10244</th>
+      <td>0.0</td>
+      <td>3.030</td>
+      <td>2.650</td>
+      <td>0.000</td>
+      <td>2.7600</td>
+      <td>0.000</td>
+      <td>2.030</td>
+      <td>3.360</td>
+      <td>3.8800</td>
+      <td>2.260</td>
+      <td>...</td>
+      <td>0.00745</td>
+      <td>3.0600</td>
+      <td>0.0203</td>
+      <td>0.000</td>
+      <td>2.7900</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>11.8000</td>
+      <td>yetfasco__YPR008W_1425</td>
+    </tr>
+    <tr>
+      <th>10245</th>
+      <td>0.0</td>
+      <td>3.480</td>
+      <td>2.390</td>
+      <td>1.080</td>
+      <td>1.7300</td>
+      <td>4.970</td>
+      <td>1.090</td>
+      <td>1.970</td>
+      <td>2.4600</td>
+      <td>0.589</td>
+      <td>...</td>
+      <td>3.55000</td>
+      <td>5.5300</td>
+      <td>1.6000</td>
+      <td>0.000</td>
+      <td>1.5700</td>
+      <td>0.000</td>
+      <td>0.783</td>
+      <td>0.000</td>
+      <td>3.6500</td>
+      <td>yetfasco__YPR009W_2236</td>
+    </tr>
+    <tr>
+      <th>10246</th>
+      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>2.100</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>1.39000</td>
+      <td>0.0000</td>
+      <td>1.5900</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.0000</td>
+      <td>yetfasco__YPR054W_1875</td>
+    </tr>
+    <tr>
+      <th>10247</th>
+      <td>0.0</td>
+      <td>2.280</td>
+      <td>0.499</td>
+      <td>0.490</td>
+      <td>0.0427</td>
+      <td>2.420</td>
+      <td>0.211</td>
+      <td>2.150</td>
+      <td>3.5000</td>
+      <td>0.289</td>
+      <td>...</td>
+      <td>1.17000</td>
+      <td>0.4000</td>
+      <td>2.4100</td>
+      <td>0.488</td>
+      <td>0.5250</td>
+      <td>0.000</td>
+      <td>1.550</td>
+      <td>1.470</td>
+      <td>0.5000</td>
+      <td>yetfasco__YPR065W_1396</td>
+    </tr>
+    <tr>
+      <th>10248</th>
+      <td>0.0</td>
+      <td>0.728</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>2.4000</td>
+      <td>0.346</td>
+      <td>0.000</td>
+      <td>0.478</td>
+      <td>3.4900</td>
+      <td>0.000</td>
+      <td>...</td>
+      <td>0.86900</td>
+      <td>0.1160</td>
+      <td>0.4220</td>
+      <td>0.000</td>
+      <td>1.7600</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>3.9000</td>
+      <td>yetfasco__YPR086W_1327</td>
+    </tr>
+  </tbody>
+</table>
+<p>10249 rows × 1434607 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -607,6 +914,317 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chr10:100000953-100000961</th>
+      <th>chr10:100001679-100002245</th>
+      <th>chr10:100003300-100003767</th>
+      <th>chr10:100004641-100005072</th>
+      <th>chr10:100005550-100005711</th>
+      <th>chr10:100005979-100006587</th>
+      <th>chr10:100006892-100007008</th>
+      <th>chr10:100007313-100007734</th>
+      <th>chr10:100007991-100008955</th>
+      <th>chr10:100010619-100010667</th>
+      <th>...</th>
+      <th>chr9:99977538-99978235</th>
+      <th>chr9:9997974-9998312</th>
+      <th>chr9:99982260-99982626</th>
+      <th>chr9:99985900-99985916</th>
+      <th>chr9:9998593-9999196</th>
+      <th>chr9:99994951-99994988</th>
+      <th>chr9:9999586-10000062</th>
+      <th>chr9:99997862-99997949</th>
+      <th>chr9:99998235-99999140</th>
+      <th>motifs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>486783</td>
+      <td>260023</td>
+      <td>351572</td>
+      <td>170215</td>
+      <td>38161</td>
+      <td>1380185</td>
+      <td>913022</td>
+      <td>547266</td>
+      <td>630594</td>
+      <td>920779</td>
+      <td>...</td>
+      <td>849617</td>
+      <td>1121566</td>
+      <td>113829</td>
+      <td>627519</td>
+      <td>70786</td>
+      <td>1340733</td>
+      <td>155655</td>
+      <td>773621</td>
+      <td>30882</td>
+      <td>bergman__Adf1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1430362</td>
+      <td>485306</td>
+      <td>3650</td>
+      <td>284624</td>
+      <td>1204526</td>
+      <td>259915</td>
+      <td>1028390</td>
+      <td>323163</td>
+      <td>357766</td>
+      <td>1080975</td>
+      <td>...</td>
+      <td>396008</td>
+      <td>553475</td>
+      <td>566479</td>
+      <td>1430808</td>
+      <td>886770</td>
+      <td>489009</td>
+      <td>580628</td>
+      <td>1303225</td>
+      <td>948536</td>
+      <td>bergman__Aef1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1334825</td>
+      <td>553790</td>
+      <td>74736</td>
+      <td>393761</td>
+      <td>629372</td>
+      <td>775212</td>
+      <td>713955</td>
+      <td>758953</td>
+      <td>928132</td>
+      <td>1353101</td>
+      <td>...</td>
+      <td>56751</td>
+      <td>346583</td>
+      <td>1212642</td>
+      <td>1391036</td>
+      <td>755315</td>
+      <td>1394674</td>
+      <td>532279</td>
+      <td>1314125</td>
+      <td>54773</td>
+      <td>bergman__Hr46</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>470014</td>
+      <td>337413</td>
+      <td>1301488</td>
+      <td>435391</td>
+      <td>946829</td>
+      <td>282733</td>
+      <td>700044</td>
+      <td>696182</td>
+      <td>1290127</td>
+      <td>1167551</td>
+      <td>...</td>
+      <td>650399</td>
+      <td>1258293</td>
+      <td>844281</td>
+      <td>137706</td>
+      <td>803858</td>
+      <td>670526</td>
+      <td>223425</td>
+      <td>846298</td>
+      <td>436567</td>
+      <td>bergman__Kr</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1136763</td>
+      <td>646010</td>
+      <td>407007</td>
+      <td>341707</td>
+      <td>1378618</td>
+      <td>417820</td>
+      <td>1291473</td>
+      <td>269931</td>
+      <td>715252</td>
+      <td>1223087</td>
+      <td>...</td>
+      <td>814111</td>
+      <td>882039</td>
+      <td>1178608</td>
+      <td>1272470</td>
+      <td>282253</td>
+      <td>1182956</td>
+      <td>239618</td>
+      <td>743839</td>
+      <td>537104</td>
+      <td>bergman__Su_H_</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10244</th>
+      <td>1272249</td>
+      <td>314376</td>
+      <td>424919</td>
+      <td>1231945</td>
+      <td>392799</td>
+      <td>1027851</td>
+      <td>577368</td>
+      <td>237816</td>
+      <td>161777</td>
+      <td>530243</td>
+      <td>...</td>
+      <td>803523</td>
+      <td>305909</td>
+      <td>783283</td>
+      <td>1077709</td>
+      <td>381958</td>
+      <td>1318906</td>
+      <td>1164090</td>
+      <td>826648</td>
+      <td>5328</td>
+      <td>yetfasco__YPR008W_1425</td>
+    </tr>
+    <tr>
+      <th>10245</th>
+      <td>1320267</td>
+      <td>222793</td>
+      <td>443445</td>
+      <td>869302</td>
+      <td>646574</td>
+      <td>88212</td>
+      <td>865735</td>
+      <td>566130</td>
+      <td>424771</td>
+      <td>1048797</td>
+      <td>...</td>
+      <td>213519</td>
+      <td>62524</td>
+      <td>689755</td>
+      <td>1319715</td>
+      <td>698657</td>
+      <td>1269703</td>
+      <td>978143</td>
+      <td>1402808</td>
+      <td>200421</td>
+      <td>yetfasco__YPR009W_2236</td>
+    </tr>
+    <tr>
+      <th>10246</th>
+      <td>1064736</td>
+      <td>830949</td>
+      <td>1168886</td>
+      <td>116706</td>
+      <td>803468</td>
+      <td>585823</td>
+      <td>521375</td>
+      <td>534861</td>
+      <td>1333105</td>
+      <td>1242986</td>
+      <td>...</td>
+      <td>178018</td>
+      <td>812907</td>
+      <td>158730</td>
+      <td>481060</td>
+      <td>475737</td>
+      <td>739574</td>
+      <td>815349</td>
+      <td>917062</td>
+      <td>914831</td>
+      <td>yetfasco__YPR054W_1875</td>
+    </tr>
+    <tr>
+      <th>10247</th>
+      <td>1403716</td>
+      <td>330497</td>
+      <td>944062</td>
+      <td>948549</td>
+      <td>1190765</td>
+      <td>297144</td>
+      <td>1099773</td>
+      <td>363173</td>
+      <td>107881</td>
+      <td>1057308</td>
+      <td>...</td>
+      <td>649093</td>
+      <td>996121</td>
+      <td>299837</td>
+      <td>949438</td>
+      <td>930549</td>
+      <td>1231691</td>
+      <td>523607</td>
+      <td>550359</td>
+      <td>943255</td>
+      <td>yetfasco__YPR065W_1396</td>
+    </tr>
+    <tr>
+      <th>10248</th>
+      <td>922533</td>
+      <td>528056</td>
+      <td>1151973</td>
+      <td>1001772</td>
+      <td>317755</td>
+      <td>629235</td>
+      <td>1017721</td>
+      <td>588533</td>
+      <td>189022</td>
+      <td>1338624</td>
+      <td>...</td>
+      <td>500816</td>
+      <td>725342</td>
+      <td>604777</td>
+      <td>1005263</td>
+      <td>384186</td>
+      <td>1323158</td>
+      <td>982371</td>
+      <td>964711</td>
+      <td>142774</td>
+      <td>yetfasco__YPR086W_1327</td>
+    </tr>
+  </tbody>
+</table>
+<p>10249 rows × 1434607 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -640,6 +1258,13 @@
 <span class="c1">#     rank_tmp.to_feather(f&#39;{outdir}{ct}/regions_vs_motifs.rankings.feather&#39;)</span>
 <span class="c1">#     print(&#39;Write rank&#39;, time.time()-start_time)</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
+ERROR! Session/line number was not unique in database. History logging moved to new session 3476
+Filter DMR 21.95212984085083
 </pre></div>
 </div>
 </div>

@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="compare-bulkhic">
 <h1>11. Compare bulkhic<a class="headerlink" href="#compare-bulkhic" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -626,6 +622,341 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>File format</th>
+      <th>File type</th>
+      <th>File format type</th>
+      <th>Output type</th>
+      <th>File assembly</th>
+      <th>Experiment accession</th>
+      <th>Assay</th>
+      <th>Donor(s)</th>
+      <th>Biosample term id</th>
+      <th>Biosample term name</th>
+      <th>...</th>
+      <th>Platform</th>
+      <th>Controlled by</th>
+      <th>File Status</th>
+      <th>s3_uri</th>
+      <th>Azure URL</th>
+      <th>File analysis title</th>
+      <th>File analysis status</th>
+      <th>Audit WARNING</th>
+      <th>Audit NOT_COMPLIANT</th>
+      <th>Audit ERROR</th>
+    </tr>
+    <tr>
+      <th>File accession</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ENCFF913YQH</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>contact domains</td>
+      <td>GRCh38</td>
+      <td>ENCSR941KKW</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO907YUG/</td>
+      <td>UBERON:0002080</td>
+      <td>heart right ventricle</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/04/08/a01d9ed5-9ca9-4e...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.14.0 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF899OOL</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>loops</td>
+      <td>GRCh38</td>
+      <td>ENCSR941KKW</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO907YUG/</td>
+      <td>UBERON:0002080</td>
+      <td>heart right ventricle</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/04/08/169d70cd-7225-4f...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.14.0 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF736ITL</th>
+      <td>hic</td>
+      <td>hic</td>
+      <td>NaN</td>
+      <td>mapping quality thresholded contact matrix</td>
+      <td>GRCh38</td>
+      <td>ENCSR941KKW</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO907YUG/</td>
+      <td>UBERON:0002080</td>
+      <td>heart right ventricle</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/04/08/ee68574f-5c97-43...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.14.0 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF407JPA</th>
+      <td>hic</td>
+      <td>hic</td>
+      <td>NaN</td>
+      <td>mapping quality thresholded contact matrix</td>
+      <td>GRCh38</td>
+      <td>ENCSR836MWK</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO394DKX/</td>
+      <td>CL:0000896</td>
+      <td>activated CD4-positive, alpha-beta T cell</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2024/02/12/7a8e6640-0b8d-4b...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.1 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF946UFJ</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>contact domains</td>
+      <td>GRCh38</td>
+      <td>ENCSR836MWK</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO394DKX/</td>
+      <td>CL:0000896</td>
+      <td>activated CD4-positive, alpha-beta T cell</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2024/02/12/f92efdd1-b1c9-47...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.1 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ENCFF759YOI</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>contact domains</td>
+      <td>GRCh38</td>
+      <td>ENCSR968JCS</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO707TUE/</td>
+      <td>UBERON:0002740</td>
+      <td>posterior cingulate gyrus</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/12/06/f425e10f-c3f9-40...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.1 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF216IAK</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>loops</td>
+      <td>GRCh38</td>
+      <td>ENCSR968JCS</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO707TUE/</td>
+      <td>UBERON:0002740</td>
+      <td>posterior cingulate gyrus</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/12/06/3b9da660-5a30-4d...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.1 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF711XSR</th>
+      <td>hic</td>
+      <td>hic</td>
+      <td>NaN</td>
+      <td>mapping quality thresholded contact matrix</td>
+      <td>GRCh38</td>
+      <td>ENCSR874HTT</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO707TUE/</td>
+      <td>UBERON:0002626</td>
+      <td>head of caudate nucleus</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/10/26/1442d0c4-acd7-47...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.0 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF136BPK</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>contact domains</td>
+      <td>GRCh38</td>
+      <td>ENCSR874HTT</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO707TUE/</td>
+      <td>UBERON:0002626</td>
+      <td>head of caudate nucleus</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/10/26/376da7e4-51ea-45...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.0 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ENCFF730RTY</th>
+      <td>bedpe</td>
+      <td>bedpe</td>
+      <td>NaN</td>
+      <td>loops</td>
+      <td>GRCh38</td>
+      <td>ENCSR874HTT</td>
+      <td>intact Hi-C</td>
+      <td>/human-donors/ENCDO707TUE/</td>
+      <td>UBERON:0002626</td>
+      <td>head of caudate nucleus</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>released</td>
+      <td>s3://encode-public/2022/10/26/eb743fc7-efde-4d...</td>
+      <td>https://datasetencode.blob.core.windows.net/da...</td>
+      <td>ENCODE4 v1.15.0 GRCh38</td>
+      <td>released</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>323 rows × 58 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,6 +1057,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4920640, 108) (4920640, 108)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -803,6 +1139,245 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>Qanova</th>
+      <th>Eanova</th>
+      <th>Tanova</th>
+      <th>Epval</th>
+      <th>E-fdr</th>
+      <th>Qpval</th>
+      <th>Q-fdr</th>
+      <th>Tpval</th>
+      <th>T-fdr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1-90-96</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>960000</td>
+      <td>970000</td>
+      <td>5.042329</td>
+      <td>20.926895</td>
+      <td>4.494431</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>8.341023e-110</td>
+      <td>8.165374e-109</td>
+      <td>1.090170e-90</td>
+      <td>2.869749e-89</td>
+    </tr>
+    <tr>
+      <th>chr1-90-97</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>970000</td>
+      <td>980000</td>
+      <td>4.738470</td>
+      <td>19.486002</td>
+      <td>2.717560</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.899026e-99</td>
+      <td>3.186306e-98</td>
+      <td>3.626022e-34</td>
+      <td>2.268452e-33</td>
+    </tr>
+    <tr>
+      <th>chr1-90-98</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>980000</td>
+      <td>990000</td>
+      <td>4.301203</td>
+      <td>17.806469</td>
+      <td>2.210808</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.352196e-84</td>
+      <td>2.712431e-83</td>
+      <td>1.004186e-20</td>
+      <td>3.644723e-20</td>
+    </tr>
+    <tr>
+      <th>chr1-90-99</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>990000</td>
+      <td>1000000</td>
+      <td>3.700243</td>
+      <td>16.479128</td>
+      <td>1.971232</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.880206e-64</td>
+      <td>1.633354e-63</td>
+      <td>4.231184e-15</td>
+      <td>1.150216e-14</td>
+    </tr>
+    <tr>
+      <th>chr1-90-100</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>1000000</td>
+      <td>1010000</td>
+      <td>3.205522</td>
+      <td>15.836222</td>
+      <td>1.911751</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.521436e-48</td>
+      <td>4.557278e-48</td>
+      <td>8.531849e-14</td>
+      <td>2.152616e-13</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr22-5057-5063</th>
+      <td>chr22</td>
+      <td>50570000</td>
+      <td>50580000</td>
+      <td>chr22</td>
+      <td>50630000</td>
+      <td>50640000</td>
+      <td>2.214853</td>
+      <td>15.689219</td>
+      <td>1.981052</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7.983715e-21</td>
+      <td>1.207860e-20</td>
+      <td>2.554515e-15</td>
+      <td>7.030564e-15</td>
+    </tr>
+    <tr>
+      <th>chr22-5058-5067</th>
+      <td>chr22</td>
+      <td>50580000</td>
+      <td>50590000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>6.897342</td>
+      <td>26.117575</td>
+      <td>2.094782</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.223421e-177</td>
+      <td>3.296435e-176</td>
+      <td>6.245877e-18</td>
+      <td>1.975720e-17</td>
+    </tr>
+    <tr>
+      <th>chr22-5059-5067</th>
+      <td>chr22</td>
+      <td>50590000</td>
+      <td>50600000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>6.583107</td>
+      <td>25.551344</td>
+      <td>2.303068</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>6.856992e-166</td>
+      <td>1.571334e-164</td>
+      <td>4.963425e-23</td>
+      <td>2.002546e-22</td>
+    </tr>
+    <tr>
+      <th>chr22-5060-5067</th>
+      <td>chr22</td>
+      <td>50600000</td>
+      <td>50610000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>7.204093</td>
+      <td>26.817493</td>
+      <td>3.212370</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.470852e-189</td>
+      <td>1.090107e-187</td>
+      <td>9.389484e-49</td>
+      <td>9.272779e-48</td>
+    </tr>
+    <tr>
+      <th>chr22-5061-5067</th>
+      <td>chr22</td>
+      <td>50610000</td>
+      <td>50620000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>9.370002</td>
+      <td>27.395016</td>
+      <td>4.485466</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.145649e-272</td>
+      <td>1.843671e-270</td>
+      <td>2.215692e-90</td>
+      <td>5.797941e-89</td>
+    </tr>
+  </tbody>
+</table>
+<p>4920640 rows × 15 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -839,11 +1414,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9599639845400545 1.0364333894937898
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selp</span> <span class="o">=</span> <span class="p">((</span><span class="n">zscore</span><span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selp</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>282103
 </pre></div>
 </div>
 </div>
@@ -907,6 +1492,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/68210007cb08e7ab292febbbc737790eb90211fe0bd41ff9059e3171e9672e8f.png" src="../_images/68210007cb08e7ab292febbbc737790eb90211fe0bd41ff9059e3171e9672e8f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -935,6 +1523,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0b024a2e5fd3797cc7be125f3262bd5ad746810835386086b5c0533108f1c010.png" src="../_images/0b024a2e5fd3797cc7be125f3262bd5ad746810835386086b5c0533108f1c010.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -949,6 +1540,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;compare_bulkhic/Ecorr_subtype_ENCODE.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a7628ac3ff13a0e9ec9a1d3474d959afd1cf8f8fb35ae7782ea51a3941acc3bd.png" src="../_images/a7628ac3ff13a0e9ec9a1d3474d959afd1cf8f8fb35ae7782ea51a3941acc3bd.png" />
 </div>
 </div>
 </section>

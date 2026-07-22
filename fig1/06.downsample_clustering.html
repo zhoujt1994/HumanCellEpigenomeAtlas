@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="downsample-clustering">
 <h1>6. Downsample clustering<a class="headerlink" href="#downsample-clustering" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -600,12 +596,31 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 301626 × 461706
+    var: &#39;chrom&#39;, &#39;end&#39;, &#39;start&#39;
+    obsm: &#39;5kCG_lsi&#39;, &#39;5kCG_u100hm_tsne&#39;, &#39;X_lsi&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">CEMBA.mC.Metadata.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 <span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">57</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">CEMBA.mC.Metadata.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">meta</span>
+
+<span class="ne">NameError</span>: name &#39;adata&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -642,6 +657,65 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SubClass
+PGRN-PARN-MDRN Hoxb5 Glut             1278
+PB Evx2 Glut                           852
+NTS Phox2b Glut                        773
+PH Pitx2 Glut                          641
+MB-ant-ve Dmrta2 Glut                  551
+PAG-ND-PCG Onecut1 Gaba                536
+PARN-MDRNd-NTS Gbx2 Gly-Gaba           528
+SPA-SPFm-SPFp-POL-PIL-PoT Sp9 Glut     503
+PPN-CUN-PCG Otp En1 Gaba               462
+PAG-RN Nkx2-2 Otx1 Gaba                460
+PCG-PRNr Vsx2 Nkx6-1 Glut              447
+PB Lmx1a Glut                          431
+CU-ECU-SPVI Foxb1 Glut                 425
+MRN-VTN-PPN Pax5 Cdh23 Gaba            425
+CS-RPO Meis2 Gaba                      368
+PRT Tcf7l2 Gaba                        367
+PAG-MRN-RN Foxa2 Gaba                  361
+PRP-NI-PRNc-GRN Otp Glut               356
+MY Lhx1 Gly-Gaba                       329
+CS-PRNr-DR En1 Sox2 Gaba               313
+CUN-PPN Evx2 Meis2 Glut                306
+PRC-PAG Pax6 Glut                      303
+LDT-PCG-CS Gata3 Lhx1 Gaba             293
+CS-PRNr-PCG Tmem163 Otp Gaba           293
+SCiw Pitx2 Glut                        272
+MRN Pou3f1 C1ql4 Glut                  268
+LDT-PCG Vsx2 Lhx4 Glut                 233
+PB-NTS Phox2b Ebf3 Lmx1b Glut          223
+NTS-PARN Neurod2 Gly-Gaba              222
+MB-MY Tph2 Glut-Sero                   191
+PH-LHA Foxb1 Glut                      161
+NI-RPO Gata3 Nr4a2 Gaba                159
+SPVI-SPVC Tlx3 Ebf3 Glut               156
+CUN Evx2 Lhx2 Glut                     141
+IC Tfap2d Maf Glut                     111
+POR Gata3 Gly-Gaba                      93
+PRNc Otp Gly-Gaba                       88
+PB Pax5 Glut                            87
+B-PB Nr4a2 Glut                         84
+NTS Dbh Glut                            80
+PH-ant-LHA Otp Bsx Glut                 79
+PRNc-PARN Tlx1 Glut                     77
+LDT-PCG St18 Gaba                       68
+SPVC Mafa Glut                          67
+ZI Pax6 Gaba                            66
+DTN-LDT-IPN Otp Pax3 Gaba               62
+MV-SPIV-PRP Dmbx1 Gly-Gaba              61
+IPN-LDT Vsx2 Nkx6-1 Glut                60
+LHA-AHN-PVH Otp Trh Glut                59
+DMX VII Tbx20 Chol                      46
+IF-RL-CLI-PAG Foxa1 Glut                44
+SNr Six3 Gaba                           42
+PRP Otp Gly-Gaba                        40
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -670,6 +744,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1427
+1397
+14941
+32336
+251525
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -680,12 +763,26 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2573,) (1346,) (411,) (61,)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">selc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cell_list</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">selc</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000
+1000
+1000
+1000
+1000
 </pre></div>
 </div>
 </div>
@@ -721,6 +818,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list_alt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;1000x461706 sparse matrix of type &#39;&lt;class &#39;numpy.float32&#39;&gt;&#39;
+	with 14271903 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -832,6 +935,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/32f9161418134424b4b5406013929b6ede3869b27462ce15b4e69a9fb918e043.png" src="../_images/32f9161418134424b4b5406013929b6ede3869b27462ce15b4e69a9fb918e043.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -867,6 +973,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cell_dsgroup_precision_roc.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/feb4945ee08683129dd0a1b952a1a4e8c81c3f4337f2d12d6950a86b489a08c1.png" src="../_images/feb4945ee08683129dd0a1b952a1a4e8c81c3f4337f2d12d6950a86b489a08c1.png" />
 </div>
 </div>
 </section>

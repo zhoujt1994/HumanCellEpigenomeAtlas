@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pmd-rna">
 <h1>3. PMD RNA<a class="headerlink" href="#pmd-rna" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -618,6 +614,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">line_palette.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/70c52d4baa0ee3b6acaddb8bfbbf7d7d4a0b521b1b5cfd47d616d50c768e0d22.png" src="../_images/70c52d4baa0ee3b6acaddb8bfbbf7d7d4a0b521b1b5cfd47d616d50c768e0d22.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -796,6 +795,46 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c4 finished
+c29 finished
+c19 finished
+c8 finished
+c22 finished
+c3 finished
+c33 finished
+c6 finished
+c30 finished
+c9 finished
+c11 finished
+c32 finished
+c17 finished
+c28 finished
+c34 finished
+c20 finished
+c18 finished
+c13 finished
+c25 finished
+c23 finished
+c31 finished
+c14 finished
+c27 finished
+c0 finished
+c24 finished
+c16 finished
+c15 finished
+c10 finished
+c1 finished
+c26 finished
+c21 finished
+c5 finished
+c35 finished
+c12 finished
+c2 finished
+c36 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -815,6 +854,19 @@
 <span class="n">bw_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.CGN-Merge.frac.bw&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">bw_list</span><span class="p">])</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dmr_list</span><span class="p">,</span> <span class="n">bw_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene&#39;] [&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/SCT-9213&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/SCT-9216&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/VCT-9213&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/VCT-9216&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Tc-Mem-11714&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Tc-Mem-4809&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Th-Mem-11714&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Th-Mem-4809&#39;]
 </pre></div>
 </div>
 </div>
@@ -846,6 +898,56 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5585800
+5585800
+5585800
+5585800
+5585800
+5585800
+5585800
+5585800
+83620508362050
+
+8362050
+8362050
+8362050
+8362050
+8362050
+8362050
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/VCT-9213 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/VCT-9216 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Th-Mem-11714 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Tc-Mem-4809 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Th-Mem-4809 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Tc-Mem-11714 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/SCT-9216 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/SCT-9213 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/VCT-9213 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/VCT-9216 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Th-Mem-11714 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Tc-Mem-11714 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Th-Mem-4809 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Hema-Tmem-PBMC/Tc-Mem-4809 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/SCT-9213 finished
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene-/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_DMR/Epi-TPB/SCT-9216 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -870,6 +972,26 @@
         <span class="n">ratio</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">peak_ct</span><span class="si">}</span><span class="s1">.split</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">.slop</span><span class="si">{</span><span class="n">num2str</span><span class="p">(</span><span class="n">ws</span><span class="o">*</span><span class="n">w</span><span class="p">)</span><span class="si">}</span><span class="s1">b.</span><span class="si">{</span><span class="n">num2str</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span><span class="si">}</span><span class="s1">b.</span><span class="si">{</span><span class="n">mc_ct</span><span class="si">}</span><span class="s1">.CGN-Merge.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">peak_ct</span><span class="p">,</span> <span class="n">mc_ct</span><span class="p">)</span>
         
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss SCT-9213
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss SCT-9216
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss VCT-9213
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss VCT-9216
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss Tc-Mem-11714
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss Tc-Mem-4809
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss Th-Mem-11714
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/tss Th-Mem-4809
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene SCT-9213
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene SCT-9216
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene VCT-9213
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene VCT-9216
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene Tc-Mem-11714
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene Tc-Mem-4809
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene Th-Mem-11714
+/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_RNA/flank_bed/gene Th-Mem-4809
 </pre></div>
 </div>
 </div>
@@ -933,6 +1055,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cbf40beda8dc81c14c90bcaac9a31cd8aad4fc7abca3e94aecb4c3af6f6304d4.png" src="../_images/cbf40beda8dc81c14c90bcaac9a31cd8aad4fc7abca3e94aecb4c3af6f6304d4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -975,6 +1100,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/90f166d8753c79c2836e031181b4ea56540244cec54df723eebd7361b85823f7.png" src="../_images/90f166d8753c79c2836e031181b4ea56540244cec54df723eebd7361b85823f7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1014,6 +1142,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tss_3state_exprgroup_stackedbar.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/949151df70534ee94299e3067966e4f7524068f38b4bf4be9310773df77d1888.png" src="../_images/949151df70534ee94299e3067966e4f7524068f38b4bf4be9310773df77d1888.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1063,6 +1194,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/d615b869586b0e6e6f5b1f3ed833232689b4722cfc8d0770b0854661a3592816.png" src="../_images/d615b869586b0e6e6f5b1f3ed833232689b4722cfc8d0770b0854661a3592816.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1097,6 +1231,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/bef305b171c62f86ef2be7256a3be606abf8320ce5dc69d9070689b2738092dc.png" src="../_images/bef305b171c62f86ef2be7256a3be606abf8320ce5dc69d9070689b2738092dc.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1127,6 +1264,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tss_3state_fcgroup_pmdsubtype_stackedbar.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee4d415ed220ee94b3eaf13f8a254b04e0f9f9c3d36274335c2c4bd101368789.png" src="../_images/ee4d415ed220ee94b3eaf13f8a254b04e0f9f9c3d36274335c2c4bd101368789.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1167,6 +1307,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1277 1425
+1 568 505
+2 261 211
+</pre></div>
+</div>
+<img alt="../_images/c69e01593afb63b878e0028f94c22150fae172310010d6bb3c2aadfb6e134058.png" src="../_images/c69e01593afb63b878e0028f94c22150fae172310010d6bb3c2aadfb6e134058.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1206,6 +1354,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1277 1425
+1 568 505
+2 261 211
+</pre></div>
+</div>
+<img alt="../_images/d85fd2cf95d3fde4cea9b0cce01f4e9cffa9107dd78c02f7178d4431bffdd502.png" src="../_images/d85fd2cf95d3fde4cea9b0cce01f4e9cffa9107dd78c02f7178d4431bffdd502.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1217,6 +1373,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_name_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Epi-TPB&#39;, &#39;Hema-Tmem-PBMC&#39;]
 </pre></div>
 </div>
 </div>
@@ -1255,6 +1416,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6151
+3692
+</pre></div>
+</div>
+<img alt="../_images/a05c4b97887c7826bc497c83c86a59e5ffff70907b7eb4305ccd8413eb9644d5.png" src="../_images/a05c4b97887c7826bc497c83c86a59e5ffff70907b7eb4305ccd8413eb9644d5.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1281,6 +1449,13 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">degvolcano_pmdsubtype_tsspmd.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5355
+1994
+</pre></div>
+</div>
+<img alt="../_images/b289da60d3b4715cac4b2f2a099d79c7dff3dd770fe73379a67c5b0bba10f064.png" src="../_images/b289da60d3b4715cac4b2f2a099d79c7dff3dd770fe73379a67c5b0bba10f064.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1335,6 +1510,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9595a3665d6d2b62dd1e37182fc5a61205d66c4ffc720eb76f74e2869a13bc60.png" src="../_images/9595a3665d6d2b62dd1e37182fc5a61205d66c4ffc720eb76f74e2869a13bc60.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1369,6 +1547,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9db4df080b100ea9c22674e92d72cd7fa065a799bca596a7ae1f6e4af7921292.png" src="../_images/9db4df080b100ea9c22674e92d72cd7fa065a799bca596a7ae1f6e4af7921292.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1400,6 +1581,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tss_3state_fcgroup_pmdnonpmd_stackedbar.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/46ae193c72c806dc9f2ccd07512b8e1dc8acb978af88dbc74ff63a74461a4600.png" src="../_images/46ae193c72c806dc9f2ccd07512b8e1dc8acb978af88dbc74ff63a74461a4600.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1440,6 +1624,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 666 584
+1 375 304
+2 622 320
+3 849 634
+</pre></div>
+</div>
+<img alt="../_images/67eb0818df85c760360fc7584fa4081331f620b8208825973c6fa8df2c79d4d7.png" src="../_images/67eb0818df85c760360fc7584fa4081331f620b8208825973c6fa8df2c79d4d7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1478,6 +1671,15 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">mCG_tssflank_deg_pmdnonpmd.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 666 584
+1 375 304
+2 622 320
+3 849 634
+</pre></div>
+</div>
+<img alt="../_images/c1b3078aadc1607034b587fb41f81d6f51765cf13e6ea3107b62ca2edd6fed72.png" src="../_images/c1b3078aadc1607034b587fb41f81d6f51765cf13e6ea3107b62ca2edd6fed72.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1518,10 +1720,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 666 584
+1 375 304
+2 622 320
+3 849 634
+</pre></div>
+</div>
+<img alt="../_images/81fea789afc48c368cf91cdfd63c143371bf97baf1aa452cc4d3df44392f761b.png" src="../_images/81fea789afc48c368cf91cdfd63c143371bf97baf1aa452cc4d3df44392f761b.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_name_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Epi-Exocri&#39;, &#39;Hema-B-PBMC&#39;, &#39;Hema-Th-PBMC&#39;, &#39;Hema-Tc-PBMC&#39;]
 </pre></div>
 </div>
 </div>
@@ -1560,6 +1776,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1237
+1858
+3672
+3429
+</pre></div>
+</div>
+<img alt="../_images/2f8e5c63530d565327d448e82a9c463108ff4a6c3797806379d22e1a62d4c65a.png" src="../_images/2f8e5c63530d565327d448e82a9c463108ff4a6c3797806379d22e1a62d4c65a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1587,10 +1812,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>897
+1502
+1993
+1840
+</pre></div>
+</div>
+<img alt="../_images/761112e172f4ec9352fd79b23cad7f1ca34c939aaf277b0e07b42c6b83509fce.png" src="../_images/761112e172f4ec9352fd79b23cad7f1ca34c939aaf277b0e07b42c6b83509fce.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/&#39;
 </pre></div>
 </div>
 </div>

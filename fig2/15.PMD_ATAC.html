@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pmd-atac">
 <h1>15. PMD ATAC<a class="headerlink" href="#pmd-atac" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -620,6 +616,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -700,6 +701,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>34
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -748,6 +754,44 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
+c30 finished
+c25 finished
+c32 finished
+c19 finished
+c17 finished
+c22 finished
+c29 finished
+c9 finished
+c4 finished
+c28 finished
+c34 finished
+c23 finished
+c13 finished
+c6 finished
+c20 finished
+c11 finished
+c3 finished
+c8 finished
+c18 finished
+c31 finished
+c27 finished
+c15 finished
+c1 finished
+c35 finished
+c14 finished
+c24 finished
+c5 finished
+c0 finished
+c21 finished
+c26 finished
+c16 finished
+c10 finished
+c12 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -775,6 +819,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/403d93868668220d660df598e2429fbe1a57be62d631ff690e1eb2832fb895b9.png" src="../_images/403d93868668220d660df598e2429fbe1a57be62d631ff690e1eb2832fb895b9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -785,6 +832,25 @@
     <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3    0.408498
+2    0.500330
+1    0.040895
+0    0.050277
+dtype: float64
+3    0.282169
+2    0.380582
+1    0.038402
+0    0.298847
+dtype: float64
+3    0.359858
+2    0.340981
+1    0.012214
+0    0.286947
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -802,7 +868,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="s1">&#39;/mnt/disks/jupyter/home/jzhou_salk_edu/sky_workdir/ENTEx/&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -811,6 +877,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/PBMC/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;L1&#39;, &#39;leiden&#39;, &#39;TissueL1&#39;, &#39;ClusterTissue&#39;, &#39;L1_new&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;
+    obsm: &#39;5kCG100k3C_u24pc7&#39;, &#39;5kCG100k3C_u24pc7_tsne&#39;, &#39;X_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -852,11 +925,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/d13f5df5258c18d79ef262d30eab001c68680c91f7a8c1cab8d43d6c5b121f65.png" src="../_images/d13f5df5258c18d79ef262d30eab001c68680c91f7a8c1cab8d43d6c5b121f65.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_merge</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L1pre/merge_5kCG_echo_entex_immune.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata_merge</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 28012 × 472120
+    obs: &#39;Unnamed: 0&#39;, &#39;uid&#39;, &#39;index_name&#39;, &#39;MultiplexReadsTotal&#39;, &#39;IndexReadsTotal&#39;, &#39;IndexReadsRatio&#39;, &#39;IndexBpTotal&#39;, &#39;IndexTrimedBpTotal&#39;, &#39;IndexTrimedReadsTotal&#39;, &#39;ReadsQualTrimBpTotal&#39;, &#39;ReadsLengthFilterTotal&#39;, &#39;ReadsWithAdapterTotal&#39;, &#39;TrimedReadsAveLength&#39;, &#39;IndexTrimedReadsRatio&#39;, &#39;CTOB&#39;, &#39;CTOT&#39;, &#39;R1MappedRatio&#39;, &#39;R1TotalC&#39;, &#39;R1TrimmedReads&#39;, &#39;R1UniqueMappedReads&#39;, &#39;R1UnmappedReads&#39;, &#39;R1UnuniqueMappedReads&#39;, &#39;OB&#39;, &#39;OT&#39;, &#39;R2MappedRatio&#39;, &#39;R2TotalC&#39;, &#39;R2TrimmedReads&#39;, &#39;R2UniqueMappedReads&#39;, &#39;R2UnmappedReads&#39;, &#39;R2UnuniqueMappedReads&#39;, &#39;TotalUniqueMappedReads&#39;, &#39;TotalMappedRatio&#39;, &#39;DupReads&#39;, &#39;TotalReadsBeforeDeDup&#39;, &#39;DeduppedReads&#39;, &#39;DeduppedRatio&#39;, &#39;CCC_Rate&#39;, &#39;CG_Rate&#39;, &#39;CG_RateAdj&#39;, &#39;CH_Rate&#39;, &#39;CH_RateAdj&#39;, &#39;genome_cov&#39;, &#39;plate1&#39;, &#39;plate2&#39;, &#39;Pos96&#39;, &#39;real_plate&#39;, &#39;Col96&#39;, &#39;Row96&#39;, &#39;Col384&#39;, &#39;Row384&#39;, &#39;Pos384&#39;, &#39;MappingRate&#39;, &#39;leiden&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;umap_0&#39;, &#39;umap_1&#39;, &#39;sampleID&#39;, &#39;cell_type&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;Replicate&#39;, &#39;Cohort&#39;, &#39;celltype&#39;, &#39;Donor&#39;, &#39;batch&#39;, &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Tissue&#39;
+    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;
+    obsm: &#39;X_lsi_integrate&#39;, &#39;X_tsne&#39;, &#39;seuratcc28npc33_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -912,6 +996,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/d28fafc9f24e1c76d5c901c83cf1ae890969fb68f01f9b5f995e949c400c0dfb.png" src="../_images/d28fafc9f24e1c76d5c901c83cf1ae890969fb68f01f9b5f995e949c400c0dfb.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -925,13 +1012,17 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allc/&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/gale/netapp/entex/ENTEx/allc_CGN/&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
 <span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_merge&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;PMD_ATAC/allclist_PBMC_celltype.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -948,6 +1039,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 9631 × 107194
+    obs: &#39;domain&#39;, &#39;cell_type&#39;
+    var: &#39;feature_types&#39;
+    uns: &#39;spectral_eigenvalue&#39;
+    obsm: &#39;X_spectral&#39;, &#39;X_umap&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -955,10 +1055,42 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell_type
+CD14 Mono         2554
+CD4 Naive         1382
+CD8 Naive         1354
+CD4 TCM           1113
+CD16 Mono          442
+NK                 403
+CD8 TEM_1          322
+CD8 TEM_2          315
+Intermediate B     300
+Memory B           298
+CD4 TEM            286
+cDC                180
+Treg               157
+gdT                143
+MAIT               130
+Naive B            125
+pDC                 98
+HSPC                17
+Plasma              12
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>domain
+scATAC-seq    9631
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -984,6 +1116,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cp </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/h5ad/PBMC10k.h5ad </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/PBMC/&#39;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
@@ -1053,6 +1190,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 9631 × 606219
+    obs: &#39;n_fragment&#39;, &#39;frac_dup&#39;, &#39;frac_mito&#39;, &#39;tsse&#39;, &#39;cell_type&#39;, &#39;umap_0&#39;, &#39;umap_1&#39;
+    uns: &#39;reference_sequences&#39;
+    obsm: &#39;X_spectral&#39;, &#39;X_umap&#39;, &#39;fragment_paired&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1085,6 +1230,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/019d260f3ab7ea1759019eca989aae052c17f79784f6042bfbc24bfa5662c306.png" src="../_images/019d260f3ab7ea1759019eca989aae052c17f79784f6042bfbc24bfa5662c306.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1114,11 +1262,28 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;CD4 Naive&#39;: &#39;Th-Naive&#39;,
+ &#39;CD4 TCM&#39;: &#39;Th-Mem&#39;,
+ &#39;CD4 TEM&#39;: &#39;Th-Mem&#39;,
+ &#39;CD8 Naive&#39;: &#39;Tc-Naive&#39;,
+ &#39;CD8 TEM_1&#39;: &#39;Tc-Mem&#39;,
+ &#39;CD8 TEM_2&#39;: &#39;Tc-Mem&#39;,
+ &#39;Naive B&#39;: &#39;B-Naive&#39;,
+ &#39;Memory B&#39;: &#39;B-Mem&#39;}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">meta_atac</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">meta_atac</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">legmap</span><span class="o">.</span><span class="n">keys</span><span class="p">())]</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5195
 </pre></div>
 </div>
 </div>
@@ -1142,6 +1307,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1157,6 +1324,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1165,6 +1334,8 @@
 <span class="c1"># marker_peaks = snap.tl.marker_regions(peak_mat, groupby=&#39;group&#39;, pvalue=0.05)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -1180,12 +1351,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># snap.tl.macs3(data, groupby=&#39;cell_type&#39;, n_jobs=32, selections=set(count.index[count&gt;50]))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -1274,6 +1449,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81178
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1975 2568
+80693
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5674 4804
+67233
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>808 160
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1296,6 +1487,22 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">selp_naive</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">selp_mem</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
     <span class="n">write_peak</span><span class="p">(</span><span class="n">diff_peaks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp_naive</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;PMD_ATAC/peak/</span><span class="si">{</span><span class="n">legtmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">_diff.bed&#39;</span><span class="p">)</span>
     <span class="n">write_peak</span><span class="p">(</span><span class="n">diff_peaks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp_mem</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;PMD_ATAC/peak/</span><span class="si">{</span><span class="n">legtmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">_diff.bed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>72833
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2084 2813
+73240
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6015 4981
+59079
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1040 224
 </pre></div>
 </div>
 </div>
@@ -1396,6 +1603,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;PMD_ATAC/peak/all&#39;] [&#39;PMD_ATAC/bigwig/Th-Naive&#39;, &#39;PMD_ATAC/bigwig/Th-Mem&#39;, &#39;PMD_ATAC/bigwig/Tc-Naive&#39;, &#39;PMD_ATAC/bigwig/Tc-Mem&#39;, &#39;PMD_ATAC/bigwig/B-Naive&#39;, &#39;PMD_ATAC/bigwig/B-Mem&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1422,6 +1634,28 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9785789
+9785789
+9785789
+9785789
+9785789
+9785789
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PMD_ATAC/peak/all-PMD_ATAC/bigwig/Tc-Naive finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PMD_ATAC/peak/all-PMD_ATAC/bigwig/Th-Mem finished
+PMD_ATAC/peak/all-PMD_ATAC/bigwig/Th-Naive finished
+PMD_ATAC/peak/all-PMD_ATAC/bigwig/B-Mem finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PMD_ATAC/peak/all-PMD_ATAC/bigwig/B-Naive finished
+PMD_ATAC/peak/all-PMD_ATAC/bigwig/Tc-Mem finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1437,6 +1671,133 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0_0</th>
+      <td>100</td>
+      <td>2</td>
+      <td>1.94327</td>
+      <td>0.019433</td>
+      <td>0.971635</td>
+    </tr>
+    <tr>
+      <th>0_1</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0_2</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0_3</th>
+      <td>100</td>
+      <td>2</td>
+      <td>1.94340</td>
+      <td>0.019434</td>
+      <td>0.971698</td>
+    </tr>
+    <tr>
+      <th>0_4</th>
+      <td>100</td>
+      <td>3</td>
+      <td>2.98507</td>
+      <td>0.029851</td>
+      <td>0.995025</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>63996_95</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>63996_96</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>63996_97</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>63996_98</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>63996_99</th>
+      <td>100</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>9821500 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1473,6 +1834,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PMD_ATAC/peak/all Th-Naive
+PMD_ATAC/peak/all Th-Mem
+PMD_ATAC/peak/all Tc-Naive
+PMD_ATAC/peak/all Tc-Mem
+PMD_ATAC/peak/all B-Naive
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1484,6 +1854,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>470000
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1492,6 +1867,11 @@
 <span class="c1">#                   mc_group=f&#39;PMD_ATAC/bigwig/{group_name}-{mc_ct}&#39;,</span>
 <span class="c1">#                   window_size=5000, window=50, split=1, min_split_size=1</span>
 <span class="c1">#                  )</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>471064
 </pre></div>
 </div>
 </div>
@@ -1522,6 +1902,50 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15958
+15958
+80800
+80800
+195637
+195637
+252399
+252399
+471064
+471064
+561560
+561560
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>B-Memory-Mem finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>B-Memory-Naive finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>B-Naive-Mem finished
+B-Naive-Naive finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Th-Naive-Naive finished
+Th-Naive-Mem finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Th-Memory-Naive finished
+Th-Memory-Mem finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tc-Memory-Naive finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tc-Memory-Mem finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tc-Naive-Naive finished
+Tc-Naive-Mem finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1539,6 +1963,133 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>500</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>500</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>500</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>500</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>500</td>
+      <td>1</td>
+      <td>0.941176</td>
+      <td>0.001882</td>
+      <td>0.941176</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>5043495</th>
+      <td>500</td>
+      <td>2</td>
+      <td>2.000000</td>
+      <td>0.004000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>5043496</th>
+      <td>500</td>
+      <td>39</td>
+      <td>30.061000</td>
+      <td>0.060122</td>
+      <td>0.770796</td>
+    </tr>
+    <tr>
+      <th>5043497</th>
+      <td>500</td>
+      <td>50</td>
+      <td>44.231100</td>
+      <td>0.088462</td>
+      <td>0.884621</td>
+    </tr>
+    <tr>
+      <th>5043498</th>
+      <td>500</td>
+      <td>12</td>
+      <td>8.873960</td>
+      <td>0.017748</td>
+      <td>0.739496</td>
+    </tr>
+    <tr>
+      <th>5043499</th>
+      <td>500</td>
+      <td>10</td>
+      <td>4.884340</td>
+      <td>0.009769</td>
+      <td>0.488434</td>
+    </tr>
+  </tbody>
+</table>
+<p>7610100 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1568,6 +2119,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/1edaa833c162368060d73bd724cdb00ffd789a87148dd57185aff153b3bc4b0d.png" src="../_images/1edaa833c162368060d73bd724cdb00ffd789a87148dd57185aff153b3bc4b0d.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1595,6 +2149,23 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05101337448559671
+0.05199588477366255
+0.04701957650819018
+0.04782660807031562
+0.05421665174574754
+0.05127484333034915
+0.05720425531914894
+0.05429574468085106
+0.051175
+0.05474999999999999
+0.051582278481012656
+0.052784810126582274
+</pre></div>
+</div>
+<img alt="../_images/3f979ba02c3d66ad92a8f2fe2659b071f3c9b87b8151b8779b20a02b0a166780.png" src="../_images/3f979ba02c3d66ad92a8f2fe2659b071f3c9b87b8151b8779b20a02b0a166780.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1625,6 +2196,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0030413469844661287
+0.004191436180272648
+0.0022424811508761923
+0.002781310544019588
+0.009644561578460003
+0.004713654818719282
+0.009291731059898443
+0.004710612570691031
+0.005940594059405941
+0.011856435643564357
+0.010715628524877804
+0.0171700714375235
+</pre></div>
+</div>
+<img alt="../_images/9027a6d2e829f505fa5cbe18de46aa0aaf074961b5fd6bc8c2654b545cccdb47.png" src="../_images/9027a6d2e829f505fa5cbe18de46aa0aaf074961b5fd6bc8c2654b545cccdb47.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1636,6 +2224,11 @@
         <span class="n">bed_new</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">xx</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">tmp</span><span class="o">+</span><span class="mi">500</span><span class="p">])</span>
         
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bed_new</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>58700
 </pre></div>
 </div>
 </div>
@@ -1655,6 +2248,133 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>500</td>
+      <td>4</td>
+      <td>3.19909</td>
+      <td>0.006398</td>
+      <td>0.799773</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>500</td>
+      <td>5</td>
+      <td>3.16751</td>
+      <td>0.006335</td>
+      <td>0.633503</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>500</td>
+      <td>3</td>
+      <td>2.45725</td>
+      <td>0.004914</td>
+      <td>0.819082</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>500</td>
+      <td>11</td>
+      <td>8.78545</td>
+      <td>0.017571</td>
+      <td>0.798677</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>500</td>
+      <td>5</td>
+      <td>3.33242</td>
+      <td>0.006665</td>
+      <td>0.666485</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>58695</th>
+      <td>500</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>58696</th>
+      <td>500</td>
+      <td>1</td>
+      <td>0.02439</td>
+      <td>0.000049</td>
+      <td>0.024390</td>
+    </tr>
+    <tr>
+      <th>58697</th>
+      <td>500</td>
+      <td>0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>58698</th>
+      <td>500</td>
+      <td>9</td>
+      <td>8.41453</td>
+      <td>0.016829</td>
+      <td>0.934947</td>
+    </tr>
+    <tr>
+      <th>58699</th>
+      <td>500</td>
+      <td>1</td>
+      <td>0.91000</td>
+      <td>0.001820</td>
+      <td>0.910000</td>
+    </tr>
+  </tbody>
+</table>
+<p>58700 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1683,6 +2403,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d4f5be6f68648b1d15249fcdc8866360ab812dcd4d8cbb8c6be1c591acd5bdb9.png" src="../_images/d4f5be6f68648b1d15249fcdc8866360ab812dcd4d8cbb8c6be1c591acd5bdb9.png" />
 </div>
 </div>
 </section>

@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="decay-domain">
 <h1>3. Decay domain<a class="headerlink" href="#decay-domain" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -605,6 +601,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>View of AnnData object with n_obs × n_vars = 35 × 115009
+    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -646,6 +648,46 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;Endo-Lym&#39;),
+ Text(1, 0, &#39;Endo-Ves&#39;),
+ Text(2, 0, &#39;Epi-Aci&#39;),
+ Text(3, 0, &#39;Epi-AdrCtx&#39;),
+ Text(4, 0, &#39;Epi-Alv&#39;),
+ Text(5, 0, &#39;Epi-BrstBasal&#39;),
+ Text(6, 0, &#39;Epi-Duc&#39;),
+ Text(7, 0, &#39;Epi-Endcri&#39;),
+ Text(8, 0, &#39;Epi-Ent&#39;),
+ Text(9, 0, &#39;Epi-Gas&#39;),
+ Text(10, 0, &#39;Epi-Krt_Lum&#39;),
+ Text(11, 0, &#39;Epi-TPB&#39;),
+ Text(12, 0, &#39;Fibro-Adr&#39;),
+ Text(13, 0, &#39;Fibro-Brst&#39;),
+ Text(14, 0, &#39;Fibro-EndN&#39;),
+ Text(15, 0, &#39;Fibro-EpiN&#39;),
+ Text(16, 0, &#39;Fibro-GI&#39;),
+ Text(17, 0, &#39;Fibro-HT&#39;),
+ Text(18, 0, &#39;Fibro-Mus&#39;),
+ Text(19, 0, &#39;Fibro-Myo&#39;),
+ Text(20, 0, &#39;Fibro-Sk&#39;),
+ Text(21, 0, &#39;Glia-Astro&#39;),
+ Text(22, 0, &#39;Glia-Oligo&#39;),
+ Text(23, 0, &#39;Hema-B&#39;),
+ Text(24, 0, &#39;Hema-Mast&#39;),
+ Text(25, 0, &#39;Hema-Myeloid&#39;),
+ Text(26, 0, &#39;Hema-NK&#39;),
+ Text(27, 0, &#39;Hema-Tmem&#39;),
+ Text(28, 0, &#39;Hema-Tnaive&#39;),
+ Text(29, 0, &#39;Mus-Crd&#39;),
+ Text(30, 0, &#39;Mus-Skl&#39;),
+ Text(31, 0, &#39;Neu-Exc&#39;),
+ Text(32, 0, &#39;Neu-Inh&#39;),
+ Text(33, 0, &#39;Neu-Schw&#39;),
+ Text(34, 0, &#39;SmMus_Peri&#39;)]
+</pre></div>
+</div>
+<img alt="../_images/61ef9a3164088b5c46a03530165b9bdfe424a421c5d02f63cca40c32249dc1c5.png" src="../_images/61ef9a3164088b5c46a03530165b9bdfe424a421c5d02f63cca40c32249dc1c5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -704,6 +746,45 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34 finished
+c32 finished
+c30 finished
+c33 finished
+c29 finished
+c31 finished
+c26 finished
+c27 finished
+c22 finished
+c25 finished
+c28 finished
+c24 finished
+c20 finished
+c23 finished
+c15 finished
+c13 finished
+c18 finished
+c11 finished
+c14 finished
+c19 finished
+c17 finished
+c9 finished
+c16 finished
+c10 finished
+c21 finished
+c5 finished
+c12 finished
+c2 finished
+c8 finished
+c7 finished
+c6 finished
+c3 finished
+c4 finished
+c1 finished
+c0 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -736,6 +817,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c0c3256cf07ffce74f0d8a37cc73f68c541c56bb93ee8f121bf6b0c4f7bb96b2.png" src="../_images/c0c3256cf07ffce74f0d8a37cc73f68c541c56bb93ee8f121bf6b0c4f7bb96b2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -789,6 +873,45 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
+c3 finished
+c22 finished
+c9 finished
+c20 finished
+c25 finished
+c30 finished
+c13 finished
+c8 finished
+c4 finished
+c18 finished
+c2 finished
+c29 finished
+c17 finished
+c19 finished
+c28 finished
+c6 finished
+c11 finished
+c32 finished
+c34 finished
+c23 finished
+c31 finished
+c14 finished
+c7 finished
+c24 finished
+c0 finished
+c27 finished
+c1 finished
+c15 finished
+c26 finished
+c5 finished
+c10 finished
+c16 finished
+c21 finished
+c12 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -834,6 +957,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6b17f82d70141ad3c3e546c5d022d1e540936ccb93e04d50021232f9f608b9be.png" src="../_images/6b17f82d70141ad3c3e546c5d022d1e540936ccb93e04d50021232f9f608b9be.png" />
 </div>
 </div>
 </section>

@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mch-mcg-scale">
 <h1>5. MCH mCG scale<a class="headerlink" href="#mch-mcg-scale" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -670,6 +666,54 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+C
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+G
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+T
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -684,6 +728,9 @@
     
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d23334904fa486caa98a3a56e55a1c7df1854c064ed8ef65f9d036bd57b233fd.png" src="../_images/d23334904fa486caa98a3a56e55a1c7df1854c064ed8ef65f9d036bd57b233fd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -700,6 +747,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/00c203d91761c5ca086d5c0b99b7daae9bd41258e68c9f5664e0354bf41709d2.png" src="../_images/00c203d91761c5ca086d5c0b99b7daae9bd41258e68c9f5664e0354bf41709d2.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,6 +765,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4ed7a8822df4a35b83909cc25c06849bf997c448d7e6b26e07c5d1b3d5e9ebf9.png" src="../_images/4ed7a8822df4a35b83909cc25c06849bf997c448d7e6b26e07c5d1b3d5e9ebf9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,6 +782,9 @@
     
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bc9c75863a1446bc8bc098bf97bda484bab1fccdc9f8f8831a0f4f2b54a77b67.png" src="../_images/bc9c75863a1446bc8bc098bf97bda484bab1fccdc9f8f8831a0f4f2b54a77b67.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -746,6 +802,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/a857b9fca12e74aa74d167f92efb566bcc39989dfe40fd5af2095775f80ac0f7.png" src="../_images/a857b9fca12e74aa74d167f92efb566bcc39989dfe40fd5af2095775f80ac0f7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -755,6 +814,11 @@
 <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">//</span> <span class="mi">48</span>
 <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span> <span class="o">//</span> <span class="n">chunk_size</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28760 48
 </pre></div>
 </div>
 </div>
@@ -815,6 +879,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -837,6 +903,95 @@
             <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">context</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chunk</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
         
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk13 finished
+chunk12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk21 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk16 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk8 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
+chunk5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk9 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk14 finished
+chunk3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk22 finished
+chunk23 finished
+chunk7 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk10 finished
+chunk20 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk11 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk26 finished
+chunk48 finished
+chunk24 finished
+chunk25 finished
+chunk27 finished
+chunk38 finished
+chunk29 finished
+chunk31 finished
+chunk28 finished
+chunk36 finished
+chunk30 finished
+chunk33 finished
+chunk34 finished
+chunk32 finished
+chunk42 finished
+chunk40 finished
+chunk37 finished
+chunk35 finished
+chunk44 finished
+chunk39 finished
+chunk46 finished
+chunk47 finished
+chunk43 finished
+chunk45 finished
+chunk41 finished
 </pre></div>
 </div>
 </div>
@@ -888,6 +1043,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4681fa6891f2eb6c7ea94386cffbec6b60cf7a7b80f2826e4ee88265ee7cefb7.png" src="../_images/4681fa6891f2eb6c7ea94386cffbec6b60cf7a7b80f2826e4ee88265ee7cefb7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -917,6 +1075,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">plot/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_autocorr_res_context.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b11785b5d19938ace814fad04a24f5076f9cb0c5f5192c38670a37f4d1510ae5.png" src="../_images/b11785b5d19938ace814fad04a24f5076f9cb0c5f5192c38670a37f4d1510ae5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -957,6 +1118,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c7d9c3771ee5bb19a0d94706dad3b1aebb80665202c4e7d05ae3ab69ea5f3024.png" src="../_images/c7d9c3771ee5bb19a0d94706dad3b1aebb80665202c4e7d05ae3ab69ea5f3024.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -981,6 +1145,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">plot/autocorr_100kb_res</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s1">b_L1_context_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/31f7ffa0385a90e65593cd3f075c61e20d6cfcdb433221c477cbf7880a10965f.png" src="../_images/31f7ffa0385a90e65593cd3f075c61e20d6cfcdb433221c477cbf7880a10965f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1013,6 +1180,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/a8c8677b30e51672245e4ebf4bc61ad45972d315b02bed6af492e78265cd5fe4.png" src="../_images/a8c8677b30e51672245e4ebf4bc61ad45972d315b02bed6af492e78265cd5fe4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1026,6 +1196,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scRNA/pseudobulk/L1/L1.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">expr</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(49501, 33)
 </pre></div>
 </div>
 </div>
@@ -1055,6 +1230,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55733 48
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1067,6 +1247,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">center</span><span class="o">-</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span><span class="o">+</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1 -47527 152473
 </pre></div>
 </div>
 </div>
@@ -1126,6 +1311,93 @@
     <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mC_geneslop100kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk3 finished
+chunk16 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk20 finished
+chunk13 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk23 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk11 finished
+chunk12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk21 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk22 finished
+chunk5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk9 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk14 finished
+chunk10 finished
+chunk4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk7 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk8 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk6 finished
+chunk18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk25 finished
+chunk48 finished
+chunk24 finished
+chunk34 finished
+chunk32 finished
+chunk26 finished
+chunk29 finished
+chunk37 finished
+chunk28 finished
+chunk30 finished
+chunk35 finished
+chunk27 finished
+chunk33 finished
+chunk39 finished
+chunk40 finished
+chunk36 finished
+chunk41 finished
+chunk31 finished
+chunk38 finished
+chunk43 finished
+chunk42 finished
+chunk44 finished
+chunk45 finished
+chunk46 finished
+chunk47 finished
 </pre></div>
 </div>
 </div>
@@ -1192,6 +1464,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/1aa5f03f30c4f3f1541428b90707cb82acb4efba5b5aab01cd12e011c7c4aaa5.png" src="../_images/1aa5f03f30c4f3f1541428b90707cb82acb4efba5b5aab01cd12e011c7c4aaa5.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1218,6 +1493,11 @@
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">plot/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_autocorr_context_res.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(400, 55733)
 </pre></div>
 </div>
 </div>

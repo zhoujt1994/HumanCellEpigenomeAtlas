@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="colon-mct-mc-donor">
 <h1>11. Colon mct mc donor<a class="headerlink" href="#colon-mct-mc-donor" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -607,6 +603,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5968
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -616,6 +617,485 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42669 chrom5k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
+</pre></div>
+</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 7GB
+Dimensions:                    (cell: 5968, chrom5k: 575010)
+Coordinates:
+  * cell                       (cell) &lt;U22 525kB &#x27;pt4_TrCo_P16-2-C18-G4&#x27; ... ...
+  * chrom5k                    (chrom5k) &lt;U11 25MB &#x27;chr1_0&#x27; ... &#x27;chr9_27678&#x27;
+    chrom5k_chrom              (chrom5k) &lt;U5 12MB &#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chr9&#x27;
+    chrom5k_end                (chrom5k) int64 5MB ...
+    chrom5k_start              (chrom5k) int64 5MB ...
+Data variables:
+    chrom5k_da_CGN-hypo-score  (cell, chrom5k) float16 7GB dask.array&lt;chunksize=(7, 77210), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom5k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-97035292-8fe6-49da-a040-eea74a595386' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-97035292-8fe6-49da-a040-eea74a595386' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 5968</li><li><span class='xr-has-index'>chrom5k</span>: 575010</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-cc2a9abb-f4a1-4ed4-a867-f7c6b8d2dec3' class='xr-section-summary-in' type='checkbox'  checked><label for='section-cc2a9abb-f4a1-4ed4-a867-f7c6b8d2dec3' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U22</div><div class='xr-var-preview xr-preview'>&#x27;pt4_TrCo_P16-2-C18-G4&#x27; ... &#x27;pt4...</div><input id='attrs-70ca3eb5-6acd-44a0-b6a5-a85e9ed6c143' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-70ca3eb5-6acd-44a0-b6a5-a85e9ed6c143' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ff69cae7-3e60-4674-b32d-8388e6fd3765' class='xr-var-data-in' type='checkbox'><label for='data-ff69cae7-3e60-4674-b32d-8388e6fd3765' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;pt4_TrCo_P16-2-C18-G4&#x27;, &#x27;pt4_TrCo_P16-2-C18-F16&#x27;,
+       &#x27;pt4_TrCo_P16-2-C18-O16&#x27;, ..., &#x27;pt4_TrCo_P10-1-E21-B1&#x27;,
+       &#x27;pt4_TrCo_P10-1-E21-L1&#x27;, &#x27;pt4_TrCo_P10-1-E21-N14&#x27;], dtype=&#x27;&lt;U22&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom5k</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chr9_27678&#x27;</div><input id='attrs-72f4a460-763f-45a2-a44a-6b71da61f8fb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-72f4a460-763f-45a2-a44a-6b71da61f8fb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9c29989c-da2d-4f49-827b-8278bd25ae80' class='xr-var-data-in' type='checkbox'><label for='data-9c29989c-da2d-4f49-827b-8278bd25ae80' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;,
+       &#x27;chr9_27678&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_chrom</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>&#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chr9&#x27; &#x27;chr9&#x27;</div><input id='attrs-7d0fbfb9-0ab9-42e0-a7b1-da3adc325566' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7d0fbfb9-0ab9-42e0-a7b1-da3adc325566' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1bb32b65-86d7-4262-b600-4c119ac09b39' class='xr-var-data-in' type='checkbox'><label for='data-1bb32b65-86d7-4262-b600-4c119ac09b39' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1&#x27;, &#x27;chr1&#x27;, &#x27;chr1&#x27;, ..., &#x27;chr9&#x27;, &#x27;chr9&#x27;, &#x27;chr9&#x27;], dtype=&#x27;&lt;U5&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_end</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0f264cca-8f6e-4b9b-a420-e1f0c3ce46bd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0f264cca-8f6e-4b9b-a420-e1f0c3ce46bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2963f51a-850d-40b1-9721-12c8bbc051b8' class='xr-var-data-in' type='checkbox'><label for='data-2963f51a-850d-40b1-9721-12c8bbc051b8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[575010 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_start</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-81233d6f-6c9a-4e4f-8cf9-67a32a93d938' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-81233d6f-6c9a-4e4f-8cf9-67a32a93d938' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2b0f1ac9-edc6-47df-82c0-e0037922aebd' class='xr-var-data-in' type='checkbox'><label for='data-2b0f1ac9-edc6-47df-82c0-e0037922aebd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[575010 values with dtype=int64]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-531028dd-8131-4333-9a97-37b999f20064' class='xr-section-summary-in' type='checkbox'  checked><label for='section-531028dd-8131-4333-9a97-37b999f20064' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_da_CGN-hypo-score</span></div><div class='xr-var-dims'>(cell, chrom5k)</div><div class='xr-var-dtype'>float16</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(7, 77210), meta=np.ndarray&gt;</div><input id='attrs-fd9bc587-0376-4459-8fd2-2d98c78135e3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fd9bc587-0376-4459-8fd2-2d98c78135e3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-95238e40-be41-491a-ba5f-a8b5c94bb332' class='xr-var-data-in' type='checkbox'><label for='data-95238e40-be41-491a-ba5f-a8b5c94bb332' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 6.39 GiB </td>
+                        <td> 1.03 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (5968, 575010) </td>
+                        <td> (7, 77210) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 6824 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float16 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="1" x2="120" y2="1" />
+  <line x1="0" y1="2" x2="120" y2="2" />
+  <line x1="0" y1="4" x2="120" y2="4" />
+  <line x1="0" y1="5" x2="120" y2="5" />
+  <line x1="0" y1="6" x2="120" y2="6" />
+  <line x1="0" y1="8" x2="120" y2="8" />
+  <line x1="0" y1="9" x2="120" y2="9" />
+  <line x1="0" y1="10" x2="120" y2="10" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="13" x2="120" y2="13" />
+  <line x1="0" y1="14" x2="120" y2="14" />
+  <line x1="0" y1="16" x2="120" y2="16" />
+  <line x1="0" y1="17" x2="120" y2="17" />
+  <line x1="0" y1="18" x2="120" y2="18" />
+  <line x1="0" y1="20" x2="120" y2="20" />
+  <line x1="0" y1="21" x2="120" y2="21" />
+  <line x1="0" y1="22" x2="120" y2="22" />
+  <line x1="0" y1="24" x2="120" y2="24" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.59158580008192 0.0,25.59158580008192" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.591586" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.795793" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,12.795793)">5968</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-b1d152d1-4c57-4236-843c-75128fa0d55e' class='xr-section-summary-in' type='checkbox'  ><label for='section-b1d152d1-4c57-4236-843c-75128fa0d55e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-437fd37c-ca4b-419d-bb09-3008ea545acb' class='xr-index-data-in' type='checkbox'/><label for='index-437fd37c-ca4b-419d-bb09-3008ea545acb' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;pt4_TrCo_P16-2-C18-G4&#x27;, &#x27;pt4_TrCo_P16-2-C18-F16&#x27;,
+       &#x27;pt4_TrCo_P16-2-C18-O16&#x27;, &#x27;pt4_TrCo_P16-2-C18-K3&#x27;,
+       &#x27;pt4_TrCo_P16-2-C18-F3&#x27;, &#x27;pt4_TrCo_P16-2-C18-H4&#x27;,
+       &#x27;pt4_TrCo_P16-2-C18-G16&#x27;, &#x27;pt4_TrCo_P16-2-C18-O15&#x27;,
+       &#x27;pt4_TrCo_P16-2-C18-B3&#x27;, &#x27;pt4_TrCo_P16-2-C18-D4&#x27;,
+       ...
+       &#x27;pt4_TrCo_P10-1-E21-D1&#x27;, &#x27;pt4_TrCo_P10-1-E21-G13&#x27;,
+       &#x27;pt4_TrCo_P10-1-E21-D14&#x27;, &#x27;pt4_TrCo_P10-1-E21-N1&#x27;,
+       &#x27;pt4_TrCo_P10-1-E21-M14&#x27;, &#x27;pt4_TrCo_P10-1-E21-N13&#x27;,
+       &#x27;pt4_TrCo_P10-1-E21-H1&#x27;, &#x27;pt4_TrCo_P10-1-E21-B1&#x27;,
+       &#x27;pt4_TrCo_P10-1-E21-L1&#x27;, &#x27;pt4_TrCo_P10-1-E21-N14&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=5968))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom5k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-92a2e325-983c-4234-b053-d3070844cadd' class='xr-index-data-in' type='checkbox'/><label for='index-92a2e325-983c-4234-b053-d3070844cadd' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chr9_27669&#x27;, &#x27;chr9_27670&#x27;, &#x27;chr9_27671&#x27;, &#x27;chr9_27672&#x27;, &#x27;chr9_27673&#x27;,
+       &#x27;chr9_27674&#x27;, &#x27;chr9_27675&#x27;, &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;, &#x27;chr9_27678&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom5k&#x27;, length=575010))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c93b0b34-2080-4a77-abd0-366f548c3ffb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c93b0b34-2080-4a77-abd0-366f548c3ffb' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom5k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -624,6 +1104,15 @@
 <span class="n">filter_regions</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_cell</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">remove_black_list_region</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">)</span>
 <span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading chunk 0-5968/5968
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>528745 regions remained.
+18678 regions removed due to overlapping (bedtools intersect -f 0.2) with black list regions.
 </pre></div>
 </div>
 </div>
@@ -644,6 +1133,11 @@
 <span class="n">obsm_key</span> <span class="o">=</span> <span class="s1">&#39;X_lsi&#39;</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm_name</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">)</span>
 <span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">raw_key</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 components passed P cutoff of 0.1.
 </pre></div>
 </div>
 </div>
@@ -670,6 +1164,8 @@
 <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">key_added</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_leiden&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -711,6 +1207,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8dd792213e05b4477d8b06a73fbf3c4ae0b574505c1a4e3b7e9e1521c5fdf99c.png" src="../_images/8dd792213e05b4477d8b06a73fbf3c4ae0b574505c1a4e3b7e9e1521c5fdf99c.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,6 +1228,341 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster</th>
+      <th>subtype</th>
+      <th>majortype</th>
+      <th>FinalmCReads</th>
+      <th>mCHFrac</th>
+      <th>mCGFrac</th>
+      <th>CisLongContact</th>
+      <th>Cis/Trans</th>
+      <th>Short/Long</th>
+      <th>Donor</th>
+      <th>...</th>
+      <th>L2_5kCG_tsne_0</th>
+      <th>L2_5kCG_tsne_1</th>
+      <th>L2_100k3C_tsne_0</th>
+      <th>L2_100k3C_tsne_1</th>
+      <th>Tissue_joint_tsne_0</th>
+      <th>Tissue_joint_tsne_1</th>
+      <th>Tissue_5kCG_tsne_0</th>
+      <th>Tissue_5kCG_tsne_1</th>
+      <th>Tissue_100k3C_tsne_0</th>
+      <th>Tissue_100k3C_tsne_1</th>
+    </tr>
+    <tr>
+      <th>cell</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>TrCo_A9HOW_Plate1-6-G12-A24</th>
+      <td>c21-c1</td>
+      <td>c21-b0</td>
+      <td>c21</td>
+      <td>2659544</td>
+      <td>0.010988</td>
+      <td>0.774266</td>
+      <td>254759</td>
+      <td>1.139963</td>
+      <td>-0.351935</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>25.624958</td>
+      <td>3.941422</td>
+      <td>-2.742399</td>
+      <td>9.719993</td>
+      <td>27.421096</td>
+      <td>28.685944</td>
+      <td>45.425038</td>
+      <td>2.278493</td>
+      <td>2.168321</td>
+      <td>30.184624</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9HOW_Plate2-5-N22-I10</th>
+      <td>c21-c1</td>
+      <td>c21-b0</td>
+      <td>c21</td>
+      <td>1226764</td>
+      <td>0.011274</td>
+      <td>0.737958</td>
+      <td>117485</td>
+      <td>1.292749</td>
+      <td>-0.289111</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>25.788890</td>
+      <td>-0.706697</td>
+      <td>-0.938969</td>
+      <td>19.760522</td>
+      <td>27.516706</td>
+      <td>29.040235</td>
+      <td>45.967408</td>
+      <td>2.401296</td>
+      <td>2.606676</td>
+      <td>30.427102</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9HOW_Plate4-1-C18-E1</th>
+      <td>c21-c1</td>
+      <td>c21-b0</td>
+      <td>c21</td>
+      <td>2102640</td>
+      <td>0.009389</td>
+      <td>0.752453</td>
+      <td>206938</td>
+      <td>1.275513</td>
+      <td>-0.020122</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>25.363439</td>
+      <td>3.111327</td>
+      <td>1.643228</td>
+      <td>6.603093</td>
+      <td>27.230831</td>
+      <td>28.491698</td>
+      <td>45.394065</td>
+      <td>2.344305</td>
+      <td>1.035777</td>
+      <td>29.981787</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9HOW_Plate4-5-A11-O10</th>
+      <td>c21-c1</td>
+      <td>c21-b0</td>
+      <td>c21</td>
+      <td>1638393</td>
+      <td>0.011846</td>
+      <td>0.762101</td>
+      <td>136359</td>
+      <td>1.099536</td>
+      <td>-0.149476</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>27.582609</td>
+      <td>-11.841487</td>
+      <td>-2.136189</td>
+      <td>18.331474</td>
+      <td>27.458227</td>
+      <td>28.873199</td>
+      <td>45.801312</td>
+      <td>2.615741</td>
+      <td>1.914748</td>
+      <td>30.483753</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9HOW_Plate5-1-E6-C2</th>
+      <td>c21-c1</td>
+      <td>c21-b0</td>
+      <td>c21</td>
+      <td>1673394</td>
+      <td>0.009544</td>
+      <td>0.734140</td>
+      <td>160699</td>
+      <td>1.222445</td>
+      <td>0.060156</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>23.482146</td>
+      <td>1.865734</td>
+      <td>0.113866</td>
+      <td>5.951356</td>
+      <td>27.236113</td>
+      <td>28.304750</td>
+      <td>45.634441</td>
+      <td>2.370927</td>
+      <td>0.538565</td>
+      <td>29.808609</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9VP4_Plate4-2-B4-G4</th>
+      <td>c28-c6</td>
+      <td>c28-b0</td>
+      <td>c28</td>
+      <td>2120838</td>
+      <td>0.008646</td>
+      <td>0.666970</td>
+      <td>209244</td>
+      <td>0.797941</td>
+      <td>-0.740200</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>17.555380</td>
+      <td>-0.433491</td>
+      <td>-19.254808</td>
+      <td>4.320374</td>
+      <td>7.662408</td>
+      <td>47.254423</td>
+      <td>33.868149</td>
+      <td>-22.436025</td>
+      <td>-5.451874</td>
+      <td>31.985306</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9VP4_Plate4-6-C19-A24</th>
+      <td>c28-c6</td>
+      <td>c28-b0</td>
+      <td>c28</td>
+      <td>3299271</td>
+      <td>0.009060</td>
+      <td>0.699752</td>
+      <td>332199</td>
+      <td>1.120303</td>
+      <td>-0.553636</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>16.861077</td>
+      <td>-1.124382</td>
+      <td>-12.387314</td>
+      <td>6.830737</td>
+      <td>7.189614</td>
+      <td>47.116155</td>
+      <td>33.085391</td>
+      <td>-23.200122</td>
+      <td>-4.226496</td>
+      <td>31.835236</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9VP4_Plate5-3-E10-D18</th>
+      <td>c28-c6</td>
+      <td>c28-b0</td>
+      <td>c28</td>
+      <td>1997761</td>
+      <td>0.010990</td>
+      <td>0.730792</td>
+      <td>221836</td>
+      <td>1.097058</td>
+      <td>-0.366444</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>0.960841</td>
+      <td>-20.549915</td>
+      <td>-21.548914</td>
+      <td>3.294188</td>
+      <td>8.257962</td>
+      <td>47.708467</td>
+      <td>34.733543</td>
+      <td>-22.863765</td>
+      <td>-4.248699</td>
+      <td>30.505151</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9VP4_Plate6-3-I21-I18</th>
+      <td>c28-c1</td>
+      <td>c28-b0</td>
+      <td>c28</td>
+      <td>1786188</td>
+      <td>0.009415</td>
+      <td>0.691134</td>
+      <td>196487</td>
+      <td>1.085743</td>
+      <td>-0.615569</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>18.265215</td>
+      <td>-0.705616</td>
+      <td>4.977182</td>
+      <td>4.832401</td>
+      <td>5.198322</td>
+      <td>43.044352</td>
+      <td>33.584956</td>
+      <td>-23.173919</td>
+      <td>-6.237661</td>
+      <td>37.078888</td>
+    </tr>
+    <tr>
+      <th>TrCo_A9VP4_Plate7-4-C16-P19</th>
+      <td>c28-c6</td>
+      <td>c28-b0</td>
+      <td>c28</td>
+      <td>2207199</td>
+      <td>0.008411</td>
+      <td>0.705627</td>
+      <td>214476</td>
+      <td>1.028460</td>
+      <td>-0.712993</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>19.781343</td>
+      <td>1.391979</td>
+      <td>-16.337214</td>
+      <td>2.580555</td>
+      <td>7.605299</td>
+      <td>47.816683</td>
+      <td>33.095198</td>
+      <td>-23.524780</td>
+      <td>-3.932595</td>
+      <td>30.458165</td>
+    </tr>
+  </tbody>
+</table>
+<p>5836 rows × 29 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -738,6 +1572,486 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42659 chrom5k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
+</pre></div>
+</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 7GB
+Dimensions:                    (cell: 5836, chrom5k: 575010)
+Coordinates:
+  * cell                       (cell) &lt;U27 630kB &#x27;TrCo_A9HOW_Plate1-1-H22-A1&#x27;...
+  * chrom5k                    (chrom5k) &lt;U11 25MB &#x27;chr1_0&#x27; ... &#x27;chr9_27678&#x27;
+    chrom5k_chrom              (chrom5k) &lt;U5 12MB &#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chr9&#x27;
+    chrom5k_end                (chrom5k) int64 5MB ...
+    chrom5k_start              (chrom5k) int64 5MB ...
+Data variables:
+    chrom5k_da_CGN-hypo-score  (cell, chrom5k) float16 7GB dask.array&lt;chunksize=(7, 77209), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom5k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-910bb064-627e-438b-a31d-6a336e073dc1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-910bb064-627e-438b-a31d-6a336e073dc1' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 5836</li><li><span class='xr-has-index'>chrom5k</span>: 575010</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-5cea075c-9b00-4414-9838-ec538d2ec1aa' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5cea075c-9b00-4414-9838-ec538d2ec1aa' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U27</div><div class='xr-var-preview xr-preview'>&#x27;TrCo_A9HOW_Plate1-1-H22-A1&#x27; ......</div><input id='attrs-fa9d5663-ce8b-4624-9507-4065d88efb82' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fa9d5663-ce8b-4624-9507-4065d88efb82' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-04f63b59-edd6-4360-900a-45c375e60de4' class='xr-var-data-in' type='checkbox'><label for='data-04f63b59-edd6-4360-900a-45c375e60de4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;TrCo_A9HOW_Plate1-1-H22-A1&#x27;, &#x27;TrCo_A9HOW_Plate1-1-H22-A13&#x27;,
+       &#x27;TrCo_A9HOW_Plate1-1-H22-A14&#x27;, ..., &#x27;TrCo_A9VP4_Plate8-6-J5-P12&#x27;,
+       &#x27;TrCo_A9VP4_Plate8-6-J5-P23&#x27;, &#x27;TrCo_A9VP4_Plate8-6-J5-P24&#x27;],
+      dtype=&#x27;&lt;U27&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom5k</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chr9_27678&#x27;</div><input id='attrs-53c5a472-5f46-465a-808e-7dea19cdd029' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-53c5a472-5f46-465a-808e-7dea19cdd029' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-68261fd9-a964-4ddd-8ca7-73208ced5521' class='xr-var-data-in' type='checkbox'><label for='data-68261fd9-a964-4ddd-8ca7-73208ced5521' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;,
+       &#x27;chr9_27678&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_chrom</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>&#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chr9&#x27; &#x27;chr9&#x27;</div><input id='attrs-88bb3cff-abd6-4edb-b45c-3f3ea6934e83' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-88bb3cff-abd6-4edb-b45c-3f3ea6934e83' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b257c64c-8f48-4928-ad8c-cb4f4a6ad1e7' class='xr-var-data-in' type='checkbox'><label for='data-b257c64c-8f48-4928-ad8c-cb4f4a6ad1e7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1&#x27;, &#x27;chr1&#x27;, &#x27;chr1&#x27;, ..., &#x27;chr9&#x27;, &#x27;chr9&#x27;, &#x27;chr9&#x27;], dtype=&#x27;&lt;U5&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_end</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b653d10e-2e87-422e-86d6-4ce7744295cb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b653d10e-2e87-422e-86d6-4ce7744295cb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ab231b90-e23c-4f76-86ca-27f3c522a3fd' class='xr-var-data-in' type='checkbox'><label for='data-ab231b90-e23c-4f76-86ca-27f3c522a3fd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[575010 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_start</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-9f64802c-c3da-4af6-a783-02fabd9f9905' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9f64802c-c3da-4af6-a783-02fabd9f9905' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e14f5282-b4e9-4970-96db-4a6534dde46f' class='xr-var-data-in' type='checkbox'><label for='data-e14f5282-b4e9-4970-96db-4a6534dde46f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[575010 values with dtype=int64]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b33ea26e-bf2f-4732-b0d4-d713d9fd8d4e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b33ea26e-bf2f-4732-b0d4-d713d9fd8d4e' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_da_CGN-hypo-score</span></div><div class='xr-var-dims'>(cell, chrom5k)</div><div class='xr-var-dtype'>float16</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(7, 77209), meta=np.ndarray&gt;</div><input id='attrs-4b9d8330-2b56-4c20-8ff6-2b8d931adeda' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4b9d8330-2b56-4c20-8ff6-2b8d931adeda' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f03fd5d6-c642-4e18-a3f5-74273d0e3afa' class='xr-var-data-in' type='checkbox'><label for='data-f03fd5d6-c642-4e18-a3f5-74273d0e3afa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 6.25 GiB </td>
+                        <td> 1.03 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (5836, 575010) </td>
+                        <td> (7, 77209) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 6672 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float16 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="1" x2="120" y2="1" />
+  <line x1="0" y1="2" x2="120" y2="2" />
+  <line x1="0" y1="4" x2="120" y2="4" />
+  <line x1="0" y1="5" x2="120" y2="5" />
+  <line x1="0" y1="6" x2="120" y2="6" />
+  <line x1="0" y1="8" x2="120" y2="8" />
+  <line x1="0" y1="9" x2="120" y2="9" />
+  <line x1="0" y1="10" x2="120" y2="10" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="13" x2="120" y2="13" />
+  <line x1="0" y1="14" x2="120" y2="14" />
+  <line x1="0" y1="16" x2="120" y2="16" />
+  <line x1="0" y1="17" x2="120" y2="17" />
+  <line x1="0" y1="18" x2="120" y2="18" />
+  <line x1="0" y1="20" x2="120" y2="20" />
+  <line x1="0" y1="21" x2="120" y2="21" />
+  <line x1="0" y1="22" x2="120" y2="22" />
+  <line x1="0" y1="24" x2="120" y2="24" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.483754627811543 0.0,25.483754627811543" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.483755" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.741877" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,12.741877)">5836</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-15bdce89-12c8-4ba5-987e-395308d8ffc6' class='xr-section-summary-in' type='checkbox'  ><label for='section-15bdce89-12c8-4ba5-987e-395308d8ffc6' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d017052e-89a2-41e3-b714-cfa0b394dd05' class='xr-index-data-in' type='checkbox'/><label for='index-d017052e-89a2-41e3-b714-cfa0b394dd05' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;TrCo_A9HOW_Plate1-1-H22-A1&#x27;, &#x27;TrCo_A9HOW_Plate1-1-H22-A13&#x27;,
+       &#x27;TrCo_A9HOW_Plate1-1-H22-A14&#x27;, &#x27;TrCo_A9HOW_Plate1-1-H22-A2&#x27;,
+       &#x27;TrCo_A9HOW_Plate1-1-H22-B1&#x27;, &#x27;TrCo_A9HOW_Plate1-1-H22-B13&#x27;,
+       &#x27;TrCo_A9HOW_Plate1-1-H22-B14&#x27;, &#x27;TrCo_A9HOW_Plate1-1-H22-B2&#x27;,
+       &#x27;TrCo_A9HOW_Plate1-1-H22-C1&#x27;, &#x27;TrCo_A9HOW_Plate1-1-H22-C14&#x27;,
+       ...
+       &#x27;TrCo_A9VP4_Plate8-6-J5-N12&#x27;, &#x27;TrCo_A9VP4_Plate8-6-J5-N23&#x27;,
+       &#x27;TrCo_A9VP4_Plate8-6-J5-N24&#x27;, &#x27;TrCo_A9VP4_Plate8-6-J5-O11&#x27;,
+       &#x27;TrCo_A9VP4_Plate8-6-J5-O12&#x27;, &#x27;TrCo_A9VP4_Plate8-6-J5-O23&#x27;,
+       &#x27;TrCo_A9VP4_Plate8-6-J5-O24&#x27;, &#x27;TrCo_A9VP4_Plate8-6-J5-P12&#x27;,
+       &#x27;TrCo_A9VP4_Plate8-6-J5-P23&#x27;, &#x27;TrCo_A9VP4_Plate8-6-J5-P24&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=5836))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom5k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-71b9846e-1d82-4300-81c2-6fe23da4c8ae' class='xr-index-data-in' type='checkbox'/><label for='index-71b9846e-1d82-4300-81c2-6fe23da4c8ae' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chr9_27669&#x27;, &#x27;chr9_27670&#x27;, &#x27;chr9_27671&#x27;, &#x27;chr9_27672&#x27;, &#x27;chr9_27673&#x27;,
+       &#x27;chr9_27674&#x27;, &#x27;chr9_27675&#x27;, &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;, &#x27;chr9_27678&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom5k&#x27;, length=575010))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-094d06dd-f9d3-4719-bf9d-d29fd9e6c7ab' class='xr-section-summary-in' type='checkbox'  checked><label for='section-094d06dd-f9d3-4719-bf9d-d29fd9e6c7ab' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom5k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -746,6 +2060,15 @@
 <span class="n">filter_regions</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_cell</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">remove_black_list_region</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">)</span>
 <span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">tissue</span><span class="si">}</span><span class="s1">/5kCG.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading chunk 0-5836/5836
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>517638 regions remained.
+11555 regions removed due to overlapping (bedtools intersect -f 0.2) with black list regions.
 </pre></div>
 </div>
 </div>
@@ -758,6 +2081,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5968, 510067) (5836, 506083)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,6 +2093,13 @@
 <span class="n">adata1</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata1</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="c1"># adata1.obs[&#39;Donor&#39;] = adata1.obs[&#39;Donor&#39;].replace({&#39;JFINP&#39;: &#39;PT-1LVAN&#39;, &#39;IOBHV&#39;: &#39;PT-1LGRB&#39;})</span>
 <span class="n">adata1</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+PT-1LVAN    5968
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -864,6 +2199,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 components passed P cutoff of 0.05.
+Find anchors across datasets.
+Get scale1 and scale2 from scale_list
+dataset 0 scale: False
+dataset 1 scale: False
+Run LSI-CCA
+Find Anchors using k=30
+Score Anchors
+Identified 4896 anchors between datasets 0 and 1.
+Merge datasets
+[[0], [1]]
+Initialize
+Find nearest anchors. k_weight:  100
+Normalize graph
+Transform data
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -920,6 +2274,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">tissue</span><span class="si">}</span><span class="s1">_mCT_m3C_integration_seurat.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2765bec66776d6d95fb5bed53c789653beb9c1851583baf791a91cc7e44d3600.png" src="../_images/2765bec66776d6d95fb5bed53c789653beb9c1851583baf791a91cc7e44d3600.png" />
 </div>
 </div>
 </section>

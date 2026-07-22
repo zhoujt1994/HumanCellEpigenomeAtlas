@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ntbschw-clustering">
 <h1>9. NTbSchw clustering<a class="headerlink" href="#ntbschw-clustering" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -619,11 +615,353 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster</th>
+      <th>subtype</th>
+      <th>majortype</th>
+      <th>FinalmCReads</th>
+      <th>mCHFrac</th>
+      <th>mCGFrac</th>
+      <th>CisLongContact</th>
+      <th>Cis/Trans</th>
+      <th>Short/Long</th>
+      <th>Donor</th>
+      <th>...</th>
+      <th>L2_5kCG_tsne_0</th>
+      <th>L2_5kCG_tsne_1</th>
+      <th>L2_100k3C_tsne_0</th>
+      <th>L2_100k3C_tsne_1</th>
+      <th>Tissue_joint_tsne_0</th>
+      <th>Tissue_joint_tsne_1</th>
+      <th>Tissue_5kCG_tsne_0</th>
+      <th>Tissue_5kCG_tsne_1</th>
+      <th>Tissue_100k3C_tsne_0</th>
+      <th>Tissue_100k3C_tsne_1</th>
+    </tr>
+    <tr>
+      <th>cell</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NTb_CHLWU_AR_Plate1-1-I3-B2</th>
+      <td>c21-c3</td>
+      <td>c21-b5</td>
+      <td>c21</td>
+      <td>1554716</td>
+      <td>0.007381</td>
+      <td>0.727240</td>
+      <td>154397</td>
+      <td>1.289608</td>
+      <td>-0.383234</td>
+      <td>PT-1K2DA</td>
+      <td>...</td>
+      <td>-10.514181</td>
+      <td>12.343171</td>
+      <td>17.819316</td>
+      <td>-18.739797</td>
+      <td>-39.623387</td>
+      <td>7.912620</td>
+      <td>-4.414800</td>
+      <td>-32.522220</td>
+      <td>-44.545427</td>
+      <td>2.041701</td>
+    </tr>
+    <tr>
+      <th>NTb_CHLWU_AR_Plate1-1-I3-F2</th>
+      <td>c21-c5</td>
+      <td>c21-b3</td>
+      <td>c21</td>
+      <td>2231495</td>
+      <td>0.011227</td>
+      <td>0.729513</td>
+      <td>267962</td>
+      <td>1.273850</td>
+      <td>0.128648</td>
+      <td>PT-1K2DA</td>
+      <td>...</td>
+      <td>-0.184659</td>
+      <td>32.027971</td>
+      <td>21.650159</td>
+      <td>-8.777290</td>
+      <td>-49.522031</td>
+      <td>-1.710600</td>
+      <td>-19.119974</td>
+      <td>-28.286739</td>
+      <td>-52.312057</td>
+      <td>-0.043847</td>
+    </tr>
+    <tr>
+      <th>NTb_CHLWU_AR_Plate1-1-I3-G14</th>
+      <td>c21-c0</td>
+      <td>c21-b1</td>
+      <td>c21</td>
+      <td>2282630</td>
+      <td>0.008443</td>
+      <td>0.722778</td>
+      <td>210707</td>
+      <td>1.604140</td>
+      <td>0.243156</td>
+      <td>PT-1K2DA</td>
+      <td>...</td>
+      <td>-13.267741</td>
+      <td>-9.778685</td>
+      <td>-7.208920</td>
+      <td>-1.801101</td>
+      <td>-12.298031</td>
+      <td>0.007083</td>
+      <td>6.028070</td>
+      <td>-42.515712</td>
+      <td>-6.078356</td>
+      <td>2.013117</td>
+    </tr>
+    <tr>
+      <th>NTb_CHLWU_AR_Plate1-1-I3-I13</th>
+      <td>c21-c4</td>
+      <td>c21-b1</td>
+      <td>c21</td>
+      <td>1110369</td>
+      <td>0.008089</td>
+      <td>0.717764</td>
+      <td>136353</td>
+      <td>1.275352</td>
+      <td>-0.486772</td>
+      <td>PT-1K2DA</td>
+      <td>...</td>
+      <td>-20.508083</td>
+      <td>6.391878</td>
+      <td>-26.419979</td>
+      <td>-13.019473</td>
+      <td>-9.125324</td>
+      <td>-9.040014</td>
+      <td>0.730829</td>
+      <td>-29.495481</td>
+      <td>-2.891170</td>
+      <td>-5.010457</td>
+    </tr>
+    <tr>
+      <th>NTb_CHLWU_AR_Plate1-1-I3-K14</th>
+      <td>c21-c4</td>
+      <td>c21-b1</td>
+      <td>c21</td>
+      <td>846133</td>
+      <td>0.009191</td>
+      <td>0.728464</td>
+      <td>100089</td>
+      <td>1.609743</td>
+      <td>-0.067908</td>
+      <td>PT-1K2DA</td>
+      <td>...</td>
+      <td>-19.100343</td>
+      <td>6.469448</td>
+      <td>-18.004086</td>
+      <td>-6.341208</td>
+      <td>-9.337982</td>
+      <td>-9.169121</td>
+      <td>0.874726</td>
+      <td>-29.416353</td>
+      <td>-4.899614</td>
+      <td>0.896848</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>NTb_CP2V6_AR_Plate5-6-K20-N11</th>
+      <td>c21-c0</td>
+      <td>c21-b1</td>
+      <td>c21</td>
+      <td>2368976</td>
+      <td>0.008810</td>
+      <td>0.698749</td>
+      <td>325381</td>
+      <td>1.676297</td>
+      <td>-0.161839</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>-19.148612</td>
+      <td>-20.397205</td>
+      <td>-16.537869</td>
+      <td>-17.948196</td>
+      <td>-10.698324</td>
+      <td>-3.108803</td>
+      <td>9.416930</td>
+      <td>-35.455564</td>
+      <td>-6.260006</td>
+      <td>-2.356157</td>
+    </tr>
+    <tr>
+      <th>NTb_CP2V6_AR_Plate5-6-K20-N12</th>
+      <td>c21-c0</td>
+      <td>c21-b1</td>
+      <td>c21</td>
+      <td>3013673</td>
+      <td>0.008572</td>
+      <td>0.700292</td>
+      <td>361911</td>
+      <td>1.214927</td>
+      <td>-0.549802</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>-16.578828</td>
+      <td>-17.603045</td>
+      <td>-15.281900</td>
+      <td>-11.591328</td>
+      <td>-13.656758</td>
+      <td>0.568107</td>
+      <td>8.928493</td>
+      <td>-40.784161</td>
+      <td>-13.274812</td>
+      <td>-2.333679</td>
+    </tr>
+    <tr>
+      <th>NTb_CP2V6_AR_Plate5-6-K20-O11</th>
+      <td>c21-c3</td>
+      <td>c21-b5</td>
+      <td>c21</td>
+      <td>4428756</td>
+      <td>0.020022</td>
+      <td>0.700295</td>
+      <td>434073</td>
+      <td>0.792755</td>
+      <td>-0.984167</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>-10.691921</td>
+      <td>-4.998123</td>
+      <td>13.647474</td>
+      <td>-18.610188</td>
+      <td>-37.450745</td>
+      <td>2.572304</td>
+      <td>-7.864439</td>
+      <td>-38.392911</td>
+      <td>-47.040155</td>
+      <td>-3.104275</td>
+    </tr>
+    <tr>
+      <th>RAA_STL003_AR_Plate5-1-B11-I1</th>
+      <td>c21-c5</td>
+      <td>c21-b3</td>
+      <td>c21</td>
+      <td>2396385</td>
+      <td>0.006856</td>
+      <td>0.724813</td>
+      <td>246763</td>
+      <td>1.777908</td>
+      <td>0.448635</td>
+      <td>STL003</td>
+      <td>...</td>
+      <td>-1.580734</td>
+      <td>21.760622</td>
+      <td>23.204927</td>
+      <td>-13.818942</td>
+      <td>50.751346</td>
+      <td>0.274680</td>
+      <td>-54.875812</td>
+      <td>8.797518</td>
+      <td>-10.112806</td>
+      <td>9.154293</td>
+    </tr>
+    <tr>
+      <th>Sk_JF1O1_AR_Plate4-3-F6-L17</th>
+      <td>c21-c4</td>
+      <td>c21-b1</td>
+      <td>c21</td>
+      <td>1749945</td>
+      <td>0.006137</td>
+      <td>0.708477</td>
+      <td>236827</td>
+      <td>1.750074</td>
+      <td>-0.402178</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>-18.813967</td>
+      <td>-1.901816</td>
+      <td>-24.922942</td>
+      <td>-13.542853</td>
+      <td>-49.633482</td>
+      <td>4.354539</td>
+      <td>43.412788</td>
+      <td>7.847560</td>
+      <td>-17.991703</td>
+      <td>7.565787</td>
+    </tr>
+  </tbody>
+</table>
+<p>900 rows × 29 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rawdir</span><span class="si">}</span><span class="s1">5kCG.h5ad&#39;</span><span class="p">)</span>
 <span class="n">mcad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 1544 × 575010
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;
+    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;
 </pre></div>
 </div>
 </div>
@@ -637,11 +975,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>900
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_regions</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_cell</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">remove_black_list_region</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>256421 regions remained.
+4911 regions removed due to overlapping (bedtools intersect -f 0.2) with black list regions.
 </pre></div>
 </div>
 </div>
@@ -669,6 +1018,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 components passed P cutoff of 0.05.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -691,10 +1045,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;PT-1K2DA&#39;, &#39;PT-1LVAN&#39;, &#39;STL003&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+PT-1LVAN    505
+PT-1K2DA    393
+STL003        2
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -720,6 +1088,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}</span><span class="s1">NTb-*/mCG_5kb_seurat_anchor_*.hdf&#39;</span><span class="p">)])</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 </pre></div>
 </div>
 </div>
@@ -754,6 +1127,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="p">[[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">,</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x1_donor  x2_donor
+PT-1K2DA  PT-1LVAN    1195
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -820,6 +1200,19 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alignments: [[[1], [0]], [[1, 0], [2]]]
+Merge datasets
+[[1], [0]]
+Initialize
+Find nearest anchors. k_weight:  100
+Normalize graph
+Transform data
+[[1, 0], [2]]
+Initialize
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -851,6 +1244,32 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1
+chr2
+chr3
+chr4
+chr5
+chr6
+chr7
+chr8
+chr9
+chr10
+chr11
+chr12
+chr13
+chr14
+chr15
+chr16
+chr17
+chr18
+chr19
+chr20
+chr21
+chr22
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -876,6 +1295,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 components passed P cutoff of 0.05.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -892,10 +1316,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;PT-1K2DA&#39;, &#39;PT-1LVAN&#39;, &#39;STL003&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+PT-1LVAN    505
+PT-1K2DA    393
+STL003        2
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -921,6 +1359,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}</span><span class="s1">NTb-*/HiC_100kb_seurat_anchor_*.hdf&#39;</span><span class="p">)])</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -955,6 +1398,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="p">[[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">,</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x1_donor  x2_donor
+PT-1K2DA  PT-1LVAN    1050
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1014,6 +1464,19 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alignments: [[[1], [0]], [[1, 0], [2]]]
+Merge datasets
+[[1], [0]]
+Initialize
+Find nearest anchors. k_weight:  100
+Normalize graph
+Transform data
+[[1, 0], [2]]
+Initialize
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1029,11 +1492,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 900 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    obsm: &#39;100k3C_pca&#39;, &#39;X_pca&#39;, &#39;100k3C_pc10_seuratL2&#39;, &#39;X_tsne&#39;, &#39;100k3C_pc10_seuratL2_tsne&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">)</span>
 <span class="n">mcad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 900 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    obsm: &#39;100k3C_pca&#39;, &#39;X_pca&#39;, &#39;100k3C_pc10_seuratL2&#39;, &#39;X_tsne&#39;, &#39;100k3C_pc10_seuratL2_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -1182,6 +1659,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/d26755bd5e15dcb3f9c92182d35a8bac1f8909eb78b63e82ca1238d1e433ad41.png" src="../_images/d26755bd5e15dcb3f9c92182d35a8bac1f8909eb78b63e82ca1238d1e433ad41.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1247,10 +1727,26 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/75d5c68ac1756549a78708fcdaad3798e1d040f2292047c6d98b749aaa7ddecb.png" src="../_images/75d5c68ac1756549a78708fcdaad3798e1d040f2292047c6d98b749aaa7ddecb.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cluster
+c21-c0    335
+c21-c3    239
+c21-c4    154
+c21-c5    119
+c21-c7     48
+c21-c6      1
+c21-c1      1
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1315,11 +1811,57 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 5 - 8 clusters, mean 6.5, std 0.60
+Summarizing multiple clustering results
+3812 cells assigned to 10 raw clusters
+161 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+10 non-outlier labels
+Balanced accuracy on the training set: 0.974
+Balanced accuracy on the hold-out set: 0.906
+Stop iteration because current accuracy 0.906 &gt; target accuracy 0.850.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.904
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 8 - 11 clusters, mean 9.7, std 0.67
+Summarizing multiple clustering results
+3557 cells assigned to 17 raw clusters
+416 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+17 non-outlier labels
+Balanced accuracy on the training set: 0.954
+Balanced accuracy on the hold-out set: 0.897
+Stop iteration because current accuracy 0.897 &gt; target accuracy 0.850.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.914
 </pre></div>
 </div>
 </div>
@@ -1413,6 +1955,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4c0a573175b1324a17949a7a265da7806ac5195243d082e208187c72edb90431.png" src="../_images/4c0a573175b1324a17949a7a265da7806ac5195243d082e208187c72edb90431.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1493,6 +2038,58 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_3c</th>
+      <th>3c0</th>
+      <th>3c1</th>
+      <th>3c2</th>
+    </tr>
+    <tr>
+      <th>leiden_group_mc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mc0</th>
+      <td>137</td>
+      <td>200</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <th>mc1</th>
+      <td>1</td>
+      <td>1260</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <th>mc2</th>
+      <td>1</td>
+      <td>281</td>
+      <td>1824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1500,10 +2097,49 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5kCG_u7_leiden_init
+c1     511
+c0     503
+c2     419
+c3     386
+c4     333
+c5     261
+c6     231
+c7     227
+c8     212
+c11    153
+c9     143
+c14    130
+c10    123
+c12    112
+c13     98
+c15     75
+c16     56
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata_3c.obs[f&#39;100k3C_pc{npc_3c}_leiden_init&#39;].value_counts()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100k3C_pc10_leiden_init
+c0    1177
+c1     640
+c2     492
+c3     424
+c4     347
+c5     248
+c6     211
+c7     152
+c9     143
+c8     139
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1555,10 +2191,85 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A2</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B13</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B14</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-O24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P11</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P12</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P23</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+  </tbody>
+</table>
+<p>93550 rows × 1 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allc/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/gale/netapp/entex/ENTEx/allc_CGN/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
 <span class="c1"># adata.obs[&#39;allcpath&#39;] = allc_table.loc[adata.obs.index, 1]</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gs://ecker-zhoujt-analysis/ENTEx/tissue/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/impute/10K/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.cool&#39;</span>
 </pre></div>
@@ -1573,6 +2284,40 @@
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">count</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">])]</span>
 <span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/allclist_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/coollist_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;coolpath&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/frame.py:3902,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3900</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3901</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3902</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">3904</span> <span class="c1"># take() does not accept boolean indexers</span>
+<span class="g g-Whitespace">   </span><span class="mi">3905</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:6114,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6111</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6112</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6114</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6116</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6117</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">6118</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:6175,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6173</span>     <span class="k">if</span> <span class="n">use_interval_msg</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6174</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6175</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6177</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">6178</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &quot;None of [Index([&#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;allcpath&#39;, &#39;coolpath&#39;], dtype=&#39;object&#39;)] are in the [columns]&quot;
 </pre></div>
 </div>
 </div>
@@ -1662,10 +2407,46 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 3973 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;leiden_init_mc&#39;, &#39;leiden_init_3c&#39;, &#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;group_mc_3c&#39;
+    obsm: &#39;5kCG100k3C_u7pc10&#39;, &#39;5kCG100k3C_u7pc10_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">)[</span><span class="s1">&#39;Cis/Trans&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group_mc_3c
+mc0-3c0    1.298418
+mc0-3c1    1.079613
+mc0-3c2    1.153688
+mc1-3c0    1.335362
+mc1-3c1    1.136933
+mc1-3c2    1.153178
+mc2-3c0    1.146449
+mc2-3c1    1.073968
+mc2-3c2    1.167972
+Name: Cis/Trans, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp3c</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mc1-3c1&#39;, &#39;mc2-3c1&#39;, &#39;mc0-3c1&#39;, &#39;mc0-3c0&#39;, &#39;mc0-3c2&#39;, &#39;mc1-3c2&#39;,
+       &#39;mc2-3c2&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -1708,10 +2489,67 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_mc</th>
+      <th>mc0</th>
+      <th>mc1</th>
+      <th>mc2</th>
+    </tr>
+    <tr>
+      <th>celltype</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Fast</th>
+      <td>207.0</td>
+      <td>1305.0</td>
+      <td>171.0</td>
+    </tr>
+    <tr>
+      <th>Slow</th>
+      <td>161.0</td>
+      <td>58.0</td>
+      <td>1935.0</td>
+    </tr>
+    <tr>
+      <th>Stl</th>
+      <td>135.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">99</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.689325341 , 0.7784430472])
 </pre></div>
 </div>
 </div>
@@ -1723,6 +2561,58 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_3c</th>
+      <th>3c0</th>
+      <th>3c1</th>
+      <th>3c2</th>
+    </tr>
+    <tr>
+      <th>leiden_group_mc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mc0</th>
+      <td>137</td>
+      <td>200</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <th>mc1</th>
+      <td>1</td>
+      <td>1260</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <th>mc2</th>
+      <td>1</td>
+      <td>281</td>
+      <td>1824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1779,6 +2669,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/mC_3C_embed_group_mCG.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cad15047ce1b3ed970053e7ee9f968e06a6c9d423d3da7362eeb8f3acfc5f2a8.png" src="../_images/cad15047ce1b3ed970053e7ee9f968e06a6c9d423d3da7362eeb8f3acfc5f2a8.png" />
 </div>
 </div>
 </section>

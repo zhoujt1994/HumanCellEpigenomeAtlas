@@ -537,14 +537,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dmr-overlap-atac">
 <h1>5. DMR overlap ATAC<a class="headerlink" href="#dmr-overlap-atac" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -616,6 +612,256 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>L1_abbr</th>
+      <th>L1_annot</th>
+      <th>color</th>
+    </tr>
+    <tr>
+      <th>L1</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c33</th>
+      <td>Endo Lym</td>
+      <td>Endo Lymphatic</td>
+      <td>#dd7f87</td>
+    </tr>
+    <tr>
+      <th>c3</th>
+      <td>Endo Vsc</td>
+      <td>Endo Vascular</td>
+      <td>#c43f52</td>
+    </tr>
+    <tr>
+      <th>c22</th>
+      <td>Epi Aci</td>
+      <td>Epi Acinar</td>
+      <td>#d33d33</td>
+    </tr>
+    <tr>
+      <th>c9</th>
+      <td>Epi AdrCtx</td>
+      <td>Epi Adrenal</td>
+      <td>#e37a5b</td>
+    </tr>
+    <tr>
+      <th>c20</th>
+      <td>Epi Alv</td>
+      <td>Epi Alveolar</td>
+      <td>#a44b29</td>
+    </tr>
+    <tr>
+      <th>c25</th>
+      <td>Epi BrstBasal</td>
+      <td>Epi Breast Basal</td>
+      <td>#e0742b</td>
+    </tr>
+    <tr>
+      <th>c30</th>
+      <td>Epi Duc</td>
+      <td>Epi Ductal</td>
+      <td>#d99d6c</td>
+    </tr>
+    <tr>
+      <th>c13</th>
+      <td>Epi Endcri</td>
+      <td>Epi Endocrine</td>
+      <td>#91652d</td>
+    </tr>
+    <tr>
+      <th>c8</th>
+      <td>Epi Ent</td>
+      <td>Epi Enteric</td>
+      <td>#d9a138</td>
+    </tr>
+    <tr>
+      <th>c4</th>
+      <td>Epi Gas</td>
+      <td>Epi Gastric</td>
+      <td>#9f892f</td>
+    </tr>
+    <tr>
+      <th>c18</th>
+      <td>Epi Krt/Lum</td>
+      <td>Epi Keratinous/Luminal</td>
+      <td>#aeb268</td>
+    </tr>
+    <tr>
+      <th>c2</th>
+      <td>Epi TPB</td>
+      <td>Epi Trophoblast</td>
+      <td>#a9b836</td>
+    </tr>
+    <tr>
+      <th>c29</th>
+      <td>Fibro Adr</td>
+      <td>Fibro Adrenal</td>
+      <td>#63711c</td>
+    </tr>
+    <tr>
+      <th>c17</th>
+      <td>Fibro Brst</td>
+      <td>Fibro Breast</td>
+      <td>#627037</td>
+    </tr>
+    <tr>
+      <th>c19</th>
+      <td>Fibro EndN</td>
+      <td>Fibro Endoneurial</td>
+      <td>#579232</td>
+    </tr>
+    <tr>
+      <th>c28</th>
+      <td>Fibro EpiN</td>
+      <td>Fibro Epineurial</td>
+      <td>#65bc3f</td>
+    </tr>
+    <tr>
+      <th>c6</th>
+      <td>Fibro GI</td>
+      <td>Fibro Gastrointestinal</td>
+      <td>#3f8146</td>
+    </tr>
+    <tr>
+      <th>c11</th>
+      <td>Fibro HT</td>
+      <td>Fibro Heart</td>
+      <td>#53c067</td>
+    </tr>
+    <tr>
+      <th>c32</th>
+      <td>Fibro Mus</td>
+      <td>Fibro Muscular</td>
+      <td>#6fb685</td>
+    </tr>
+    <tr>
+      <th>c34</th>
+      <td>Fibro Myo</td>
+      <td>Myofibroblast</td>
+      <td>#46cb97</td>
+    </tr>
+    <tr>
+      <th>c23</th>
+      <td>Fibro Sk</td>
+      <td>Fibro Skin</td>
+      <td>#2b7f63</td>
+    </tr>
+    <tr>
+      <th>c31</th>
+      <td>Glia Astro</td>
+      <td>Glia Astrocyte</td>
+      <td>#41bfbf</td>
+    </tr>
+    <tr>
+      <th>c14</th>
+      <td>Glia Oligo</td>
+      <td>Glia Oligodendrocyte</td>
+      <td>#4aa5d4</td>
+    </tr>
+    <tr>
+      <th>c35</th>
+      <td>Hema Bmem</td>
+      <td>Hema Bmem</td>
+      <td>#7199df</td>
+    </tr>
+    <tr>
+      <th>c36</th>
+      <td>Hema Bnaive</td>
+      <td>Hema Bnaive</td>
+      <td>#7199df</td>
+    </tr>
+    <tr>
+      <th>c24</th>
+      <td>Hema Mast</td>
+      <td>Hema Mast</td>
+      <td>#5366a9</td>
+    </tr>
+    <tr>
+      <th>c0</th>
+      <td>Hema Myeloid</td>
+      <td>Hema Myeloid</td>
+      <td>#657ce4</td>
+    </tr>
+    <tr>
+      <th>c27</th>
+      <td>Hema NK</td>
+      <td>Hema NK</td>
+      <td>#695dd8</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>Hema Tmem</td>
+      <td>Hema Tmem</td>
+      <td>#b58edb</td>
+    </tr>
+    <tr>
+      <th>c15</th>
+      <td>Hema Tnaive</td>
+      <td>Hema Tnaive</td>
+      <td>#7c4fa5</td>
+    </tr>
+    <tr>
+      <th>c26</th>
+      <td>Mus Crd</td>
+      <td>Mus Cardiac</td>
+      <td>#af5ad1</td>
+    </tr>
+    <tr>
+      <th>c5</th>
+      <td>Mus Skl</td>
+      <td>Mus Skeletal</td>
+      <td>#e36aca</td>
+    </tr>
+    <tr>
+      <th>c10</th>
+      <td>Neu Exc</td>
+      <td>Neu Excitatory</td>
+      <td>#cc81b4</td>
+    </tr>
+    <tr>
+      <th>c16</th>
+      <td>Neu Inh</td>
+      <td>Neu Inhibitory</td>
+      <td>#ad398b</td>
+    </tr>
+    <tr>
+      <th>c21</th>
+      <td>Neu Schw</td>
+      <td>Neu Schwann</td>
+      <td>#984866</td>
+    </tr>
+    <tr>
+      <th>c12</th>
+      <td>Perivascular</td>
+      <td>Perivascular</td>
+      <td>#e04986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,6 +1019,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29 200k 0.3606406789296271
+29 2 0.3538057251769432
+29 3 0.36412662315437117
+29 4 0.36740759585985305
+29 5 0.3652033871236393
+33 200k 0.362400393684324
+33 2 0.35561321721976136
+33 3 0.3623365849443766
+33 4 0.3640549062141253
+33 5 0.36122637588881557
+34 200k 0.36024487500765734
+34 2 0.3529495105003455
+34 3 0.35860515305018825
+34 4 0.35951852178234067
+34 5 0.35637267783423493
+35 200k 0.34558520085707023
+35 2 0.338780777891285
+35 3 0.34577074818703935
+35 4 0.34762261781638704
+35 5 0.3452655798722721
+36 200k 0.3545375584687107
+36 2 0.3464095780283118
+36 3 0.35237530246100535
+36 4 0.3523529490715954
+36 5 0.3485526278113351
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -824,6 +1099,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29 200k [0.43689546 0.28438589] 0.36064067892962715
+29 2 [0.46036367 0.24724778] 0.35380572517694325
+29 3 [0.39308048 0.33517276] 0.3641266231543711
+29 4 [0.34337673 0.39143846] 0.36740759585985305
+29 5 [0.30539538 0.42501139] 0.36520338712363926
+33 200k [0.44564709 0.29659435] 0.3711207232348482
+33 2 [0.46478348 0.26442072] 0.36460210040139146
+33 3 [0.39894382 0.34977619] 0.3743600053594835
+33 4 [0.35029219 0.40360704] 0.3769496121523349
+33 5 [0.31291015 0.43502382] 0.3739669839977497
+34 200k [0.44121099 0.29757855] 0.36939477087840444
+34 2 [0.45864868 0.26675154] 0.36270011231573235
+34 3 [0.39369995 0.3512967 ] 0.37249832639604225
+34 4 [0.34559888 0.40434741] 0.37497314379187774
+34 5 [0.3087619  0.43531972] 0.3720408095011153
+35 200k [0.43386115 0.29520238] 0.3645317680017794
+35 2 [0.45006415 0.2659226 ] 0.3579933764106791
+35 3 [0.38766361 0.35067534] 0.3691694743486163
+35 4 [0.34104055 0.4039748 ] 0.3725076754546914
+35 5 [0.30518517 0.43510429] 0.37014472997574144
+36 200k [0.44900347 0.29876453] 0.3738839958039851
+36 2 [0.46365962 0.27057619] 0.3671179044362818
+36 3 [0.40116991 0.35488664] 0.37802827633356395
+36 4 [0.35408668 0.40699913] 0.3805429014116014
+36 5 [0.31797445 0.43748985] 0.37773214891057844
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,6 +1166,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.456524
+1    0.236295
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/7ea8a9bd030a16c72e738c696ee5cba27e068f16e02b3637b8845d829050ad27.png" src="../_images/7ea8a9bd030a16c72e738c696ee5cba27e068f16e02b3637b8845d829050ad27.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -899,6 +1211,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.432626
+1    0.276449
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/44e1914298957092d6dd49cef02dd26f4e9e7ff9ec700c6a21568c521699f67b.png" src="../_images/44e1914298957092d6dd49cef02dd26f4e9e7ff9ec700c6a21568c521699f67b.png" />
+</div>
 </div>
 </section>
 <section id="majortype-subtype-dmr">
@@ -924,6 +1244,11 @@
     <span class="n">dmr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dmr_chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_start&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dmr_dir</span><span class="si">}</span><span class="s1">.bed&#39;</span><span class="p">,</span> 
                                                           <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1
 </pre></div>
 </div>
 </div>
@@ -969,6 +1294,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 0.31058102104961993
+3 0.30832214681105363
+4 0.30752804889324087
+5 0.3069854353047824
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -976,6 +1309,252 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+    <tr>
+      <th>L1</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c33</th>
+      <td>0.114060</td>
+      <td>0.164537</td>
+      <td>0.200753</td>
+      <td>0.205927</td>
+    </tr>
+    <tr>
+      <th>c3</th>
+      <td>0.455693</td>
+      <td>0.419652</td>
+      <td>0.399344</td>
+      <td>0.386600</td>
+    </tr>
+    <tr>
+      <th>c9</th>
+      <td>0.286331</td>
+      <td>0.336829</td>
+      <td>0.369311</td>
+      <td>0.381978</td>
+    </tr>
+    <tr>
+      <th>c20</th>
+      <td>0.393355</td>
+      <td>0.380683</td>
+      <td>0.379201</td>
+      <td>0.380853</td>
+    </tr>
+    <tr>
+      <th>c13</th>
+      <td>0.392044</td>
+      <td>0.379391</td>
+      <td>0.378364</td>
+      <td>0.383078</td>
+    </tr>
+    <tr>
+      <th>c8</th>
+      <td>0.338811</td>
+      <td>0.349020</td>
+      <td>0.352978</td>
+      <td>0.356694</td>
+    </tr>
+    <tr>
+      <th>c4</th>
+      <td>0.307144</td>
+      <td>0.339933</td>
+      <td>0.359140</td>
+      <td>0.373745</td>
+    </tr>
+    <tr>
+      <th>c18</th>
+      <td>0.536640</td>
+      <td>0.509706</td>
+      <td>0.487533</td>
+      <td>0.470079</td>
+    </tr>
+    <tr>
+      <th>c29</th>
+      <td>0.358836</td>
+      <td>0.338881</td>
+      <td>0.326925</td>
+      <td>0.323891</td>
+    </tr>
+    <tr>
+      <th>c17</th>
+      <td>0.151184</td>
+      <td>0.151651</td>
+      <td>0.152184</td>
+      <td>0.151243</td>
+    </tr>
+    <tr>
+      <th>c19</th>
+      <td>0.319589</td>
+      <td>0.299101</td>
+      <td>0.290428</td>
+      <td>0.288618</td>
+    </tr>
+    <tr>
+      <th>c28</th>
+      <td>0.227987</td>
+      <td>0.231847</td>
+      <td>0.232292</td>
+      <td>0.232612</td>
+    </tr>
+    <tr>
+      <th>c6</th>
+      <td>0.436926</td>
+      <td>0.391632</td>
+      <td>0.360089</td>
+      <td>0.341422</td>
+    </tr>
+    <tr>
+      <th>c11</th>
+      <td>0.227247</td>
+      <td>0.250968</td>
+      <td>0.265233</td>
+      <td>0.278134</td>
+    </tr>
+    <tr>
+      <th>c32</th>
+      <td>0.143509</td>
+      <td>0.144072</td>
+      <td>0.153425</td>
+      <td>0.159183</td>
+    </tr>
+    <tr>
+      <th>c34</th>
+      <td>0.324715</td>
+      <td>0.346875</td>
+      <td>0.361661</td>
+      <td>0.372625</td>
+    </tr>
+    <tr>
+      <th>c23</th>
+      <td>0.342883</td>
+      <td>0.320904</td>
+      <td>0.311195</td>
+      <td>0.309020</td>
+    </tr>
+    <tr>
+      <th>c14</th>
+      <td>0.288117</td>
+      <td>0.260183</td>
+      <td>0.248019</td>
+      <td>0.244133</td>
+    </tr>
+    <tr>
+      <th>c35</th>
+      <td>0.147412</td>
+      <td>0.214182</td>
+      <td>0.241045</td>
+      <td>0.248849</td>
+    </tr>
+    <tr>
+      <th>c24</th>
+      <td>0.188921</td>
+      <td>0.241372</td>
+      <td>0.258643</td>
+      <td>0.262864</td>
+    </tr>
+    <tr>
+      <th>c0</th>
+      <td>0.462880</td>
+      <td>0.434611</td>
+      <td>0.410311</td>
+      <td>0.393933</td>
+    </tr>
+    <tr>
+      <th>c27</th>
+      <td>0.217433</td>
+      <td>0.246420</td>
+      <td>0.259205</td>
+      <td>0.270797</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>0.304070</td>
+      <td>0.314485</td>
+      <td>0.319790</td>
+      <td>0.324625</td>
+    </tr>
+    <tr>
+      <th>c15</th>
+      <td>0.143941</td>
+      <td>0.157468</td>
+      <td>0.176897</td>
+      <td>0.189481</td>
+    </tr>
+    <tr>
+      <th>c26</th>
+      <td>0.291064</td>
+      <td>0.297277</td>
+      <td>0.303986</td>
+      <td>0.313825</td>
+    </tr>
+    <tr>
+      <th>c5</th>
+      <td>0.326118</td>
+      <td>0.318292</td>
+      <td>0.322831</td>
+      <td>0.330987</td>
+    </tr>
+    <tr>
+      <th>c10</th>
+      <td>0.501871</td>
+      <td>0.433550</td>
+      <td>0.381949</td>
+      <td>0.344218</td>
+    </tr>
+    <tr>
+      <th>c16</th>
+      <td>0.442334</td>
+      <td>0.387329</td>
+      <td>0.349972</td>
+      <td>0.320195</td>
+    </tr>
+    <tr>
+      <th>c21</th>
+      <td>0.266859</td>
+      <td>0.239852</td>
+      <td>0.232143</td>
+      <td>0.228996</td>
+    </tr>
+    <tr>
+      <th>c12</th>
+      <td>0.379454</td>
+      <td>0.348959</td>
+      <td>0.340993</td>
+      <td>0.340958</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1019,6 +1598,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 [0.56061392 0.24037499] 0.4004944569398159
+3 [0.51165822 0.29719615] 0.40442718383499665
+4 [0.47580783 0.32850543] 0.40215662624114124
+5 [0.44904737 0.34522641] 0.3971368912731903
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1054,6 +1641,14 @@
 <span class="c1"># fig.savefig(&#39;DMR/merged_DMR_ATACpeak_overlap_bar.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.475808
+1    0.328505
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/f5202aa596ef58e909a2edcade72323afad39078efea6bfcee39a530478d88ac.png" src="../_images/f5202aa596ef58e909a2edcade72323afad39078efea6bfcee39a530478d88ac.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1093,6 +1688,14 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;DMR/merged_DMR_ATACpeak_overlap_bar.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.459485
+1    0.351252
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/ae3803ec1e4c695c3abce19787220af45e3c3ece3a984915b0a79a763b54781f.png" src="../_images/ae3803ec1e4c695c3abce19787220af45e3c3ece3a984915b0a79a763b54781f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1134,6 +1737,14 @@
 <span class="c1"># fig.savefig(&#39;DMR/merged_DMR_ATACpeak_overlap_bar_cap.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.475808
+1    0.328505
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/781fd4048d0cd61e8df92f9cf8cdffa2248d0d54fbdf61a98f5ddc7a5c117a9f.png" src="../_images/781fd4048d0cd61e8df92f9cf8cdffa2248d0d54fbdf61a98f5ddc7a5c117a9f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1181,6 +1792,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.459485
+1    0.351252
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/416722338ddfef452351a3a4ea51e0d212c7711d0e0b368c84db8a8674dc0f7a.png" src="../_images/416722338ddfef452351a3a4ea51e0d212c7711d0e0b368c84db8a8674dc0f7a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1217,6 +1836,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.475808
+1    0.328505
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/5bb5b1447c6bddaa7f4109dd73a29f59135deaa18e38fcbf9caee4f25be3c6a1.png" src="../_images/5bb5b1447c6bddaa7f4109dd73a29f59135deaa18e38fcbf9caee4f25be3c6a1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1252,6 +1879,14 @@
 <span class="c1"># fig.savefig(&#39;spatial_peak_snatac_overlap_bar.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.469589
+1    0.329223
+dtype: float64
+</pre></div>
+</div>
+<img alt="../_images/be661eed5a7812a43066122bc659a156e5ab33dd2da4309ae803b7a302a7ac0a.png" src="../_images/be661eed5a7812a43066122bc659a156e5ab33dd2da4309ae803b7a302a7ac0a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1275,10 +1910,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.6311684844079701, 0.7604275278128093, 0.9658500739799212, 0.545340671933618]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">736554</span><span class="o">/</span><span class="mi">808971</span><span class="p">,</span> <span class="mi">861108</span><span class="o">/</span><span class="mi">1361892</span><span class="p">,</span> <span class="mi">743285</span><span class="o">/</span><span class="mi">808971</span><span class="p">,</span> <span class="mi">878599</span><span class="o">/</span><span class="mi">1420472</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.9104825760132316,
+ 0.6322880228388155,
+ 0.9188030226052603,
+ 0.6185260955513379]
 </pre></div>
 </div>
 </div>
@@ -1309,6 +1957,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6185260955513379 0.9188030226052603
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1321,6 +1974,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">DMR_ATACpeak_overlap_venn.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2b6687d2b83ef0aae6789e10915c40f1bb2bbe1739db6957392e9f2c841ad9db.png" src="../_images/2b6687d2b83ef0aae6789e10915c40f1bb2bbe1739db6957392e9f2c841ad9db.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1353,10 +2009,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9658500739799212 0.545340671933618
+0.9544419398296641 0.5693517206203291
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1364566</span><span class="o">-</span><span class="mi">776918</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>587648
 </pre></div>
 </div>
 </div>
@@ -1373,6 +2040,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/6c55eb3532c48c2aa946c5e623c6f52494b3006c085af6239d311ddc1877d65f.png" src="../_images/6c55eb3532c48c2aa946c5e623c6f52494b3006c085af6239d311ddc1877d65f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1386,6 +2056,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmr_file_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">DMR/majortype-subtype/*_dmr/dmr.bed&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dmr_file_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31
 </pre></div>
 </div>
 </div>
@@ -1424,6 +2099,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/746000ffce76442320f34427d0ddb4fe6b57a3134aacbdc4c47b142c28a4c709.png" src="../_images/746000ffce76442320f34427d0ddb4fe6b57a3134aacbdc4c47b142c28a4c709.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1446,6 +2124,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/16929da6a84e64f7cdc4f637cfb836e8d101102ad09ac300a1dcc2dd7ff8028a.png" src="../_images/16929da6a84e64f7cdc4f637cfb836e8d101102ad09ac300a1dcc2dd7ff8028a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1526,6 +2207,47 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/flank_bed/cCREs_distal2k&#39;] [&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c0&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c1&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c10&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c11&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c12&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c13&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c14&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c15&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c16&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c17&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c18&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c19&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c2&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c20&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c21&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c22&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c23&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c24&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c25&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c26&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c27&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c28&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c29&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c3&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c30&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c31&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c32&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c33&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c34&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c35&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c36&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c4&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c5&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c6&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c7&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c8&#39;
+ &#39;/large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/c9&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1552,6 +2274,75 @@
         <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
         
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c1 finished
+cCREs_distal2k-c11 finished
+cCREs_distal2k-c10 finished
+cCREs_distal2k-c12 finished
+cCREs_distal2k-c0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c13 finished
+cCREs_distal2k-c15 finished
+cCREs_distal2k-c16 finished
+cCREs_distal2k-c14 finished
+cCREs_distal2k-c17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c20 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c2 finished
+cCREs_distal2k-c21 finished
+cCREs_distal2k-c19 finished
+cCREs_distal2k-c18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c22 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c23 finished
+cCREs_distal2k-c25 finished
+cCREs_distal2k-c24 finished
+cCREs_distal2k-c26 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c30 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c28 finished
+cCREs_distal2k-c3 finished
+cCREs_distal2k-c29 finished
+cCREs_distal2k-c27 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c35 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c33 finished
+cCREs_distal2k-c34 finished
+cCREs_distal2k-c31 finished
+cCREs_distal2k-c32 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c36 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c5 finished
+cCREs_distal2k-c7 finished
+cCREs_distal2k-c4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c8 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cCREs_distal2k-c9 finished
 </pre></div>
 </div>
 </div>
@@ -1615,6 +2406,47 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0-cCREs_distal2k finished
+c1-cCREs_distal2k finished
+c10-cCREs_distal2k finished
+c11-cCREs_distal2k finished
+c14-cCREs_distal2k finished
+c15-cCREs_distal2k finished
+c12-cCREs_distal2k finished
+c13-cCREs_distal2k finished
+c16-cCREs_distal2k finished
+c17-cCREs_distal2k finished
+c18-cCREs_distal2k finished
+c19-cCREs_distal2k finished
+c2-cCREs_distal2k finished
+c20-cCREs_distal2k finished
+c21-cCREs_distal2k finished
+c22-cCREs_distal2k finished
+c25-cCREs_distal2k finished
+c24-cCREs_distal2k finished
+c23-cCREs_distal2k finished
+c26-cCREs_distal2k finished
+c27-cCREs_distal2k finished
+c28-cCREs_distal2k finished
+c29-cCREs_distal2k finished
+c3-cCREs_distal2k finished
+c31-cCREs_distal2k finished
+c30-cCREs_distal2k finished
+c32-cCREs_distal2k finished
+c33-cCREs_distal2k finished
+c35-cCREs_distal2k finished
+c34-cCREs_distal2k finished
+c36-cCREs_distal2k finished
+c4-cCREs_distal2k finished
+c5-cCREs_distal2k finished
+c6-cCREs_distal2k finished
+c7-cCREs_distal2k finished
+c8-cCREs_distal2k finished
+c9-cCREs_distal2k finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1646,10 +2478,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ratio</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">ratio</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6500593099546428
 </pre></div>
 </div>
 </div>
@@ -1661,6 +2503,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     0.750
+1       NaN
+2     1.000
+3     0.625
+4     0.625
+      ...  
+95      NaN
+96      NaN
+97      NaN
+98      NaN
+99      NaN
+Name: 0, Length: 100, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1668,6 +2526,317 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>521614</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-3.049771</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-3.049771</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>521613</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>354975</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>354976</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>270676</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>579322</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>579299</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>312759</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>618351</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>618352</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>149778 rows × 100 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1691,6 +2860,12 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues_r&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7fa4aea17a30&gt;
+</pre></div>
+</div>
+<img alt="../_images/70a16d2ba4fa4fd30974185fa732c2aafd66310a12bff246a46ad25ff6f9ed3d.png" src="../_images/70a16d2ba4fa4fd30974185fa732c2aafd66310a12bff246a46ad25ff6f9ed3d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1721,6 +2896,46 @@
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">data</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cCREs_distal2k.split</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">.slop</span><span class="si">{</span><span class="n">ws</span><span class="si">}</span><span class="s1">b.</span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s1">b.celltype.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
+c3
+c22
+c9
+c20
+c25
+c30
+c13
+c8
+c4
+c18
+c2
+c29
+c17
+c19
+c28
+c6
+c11
+c32
+c34
+c23
+c31
+c14
+c35
+c36
+c24
+c0
+c27
+c1
+c15
+c26
+c5
+c10
+c16
+c21
+c12
 </pre></div>
 </div>
 </div>
@@ -1756,6 +2971,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cCREs_distal2k_flankCG.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ec37a782a906a8ce198f41d8f84f2cfed201ae604aa2bfcb68868ea988dcc171.png" src="../_images/ec37a782a906a8ce198f41d8f84f2cfed201ae604aa2bfcb68868ea988dcc171.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1793,6 +3011,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/e0aacf04fa84240b75700725c32ea8d4cb89834ee23023b0ef64b111b47e48df.png" src="../_images/e0aacf04fa84240b75700725c32ea8d4cb89834ee23023b0ef64b111b47e48df.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1818,6 +3039,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0ac2d05d3ad47f14a4d5ade774266676bbda825d6b17f21204731a606022b393.png" src="../_images/0ac2d05d3ad47f14a4d5ade774266676bbda825d6b17f21204731a606022b393.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1825,6 +3049,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg  width="110" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#37a055;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#aedea7;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1850,6 +3076,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/03eee5eb425f326f4493014c4e010b698c16267586fb1c408327023564b9f911.png" src="../_images/03eee5eb425f326f4493014c4e010b698c16267586fb1c408327023564b9f911.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1857,12 +3086,298 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>L1_abbr</th>
+      <th>L1_annot</th>
+      <th>color</th>
+    </tr>
+    <tr>
+      <th>L1</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c33</th>
+      <td>Endo Lym</td>
+      <td>Endo Lymphatic</td>
+      <td>#dd7f87</td>
+    </tr>
+    <tr>
+      <th>c3</th>
+      <td>Endo Vsc</td>
+      <td>Endo Vascular</td>
+      <td>#c43f52</td>
+    </tr>
+    <tr>
+      <th>c22</th>
+      <td>Epi Aci</td>
+      <td>Epi Acinar</td>
+      <td>#d33d33</td>
+    </tr>
+    <tr>
+      <th>c9</th>
+      <td>Epi AdrCtx</td>
+      <td>Epi Adrenal</td>
+      <td>#e37a5b</td>
+    </tr>
+    <tr>
+      <th>c20</th>
+      <td>Epi Alv</td>
+      <td>Epi Alveolar</td>
+      <td>#a44b29</td>
+    </tr>
+    <tr>
+      <th>c25</th>
+      <td>Epi BrstBasal</td>
+      <td>Epi Breast Basal</td>
+      <td>#e0742b</td>
+    </tr>
+    <tr>
+      <th>c30</th>
+      <td>Epi Duc</td>
+      <td>Epi Ductal</td>
+      <td>#d99d6c</td>
+    </tr>
+    <tr>
+      <th>c13</th>
+      <td>Epi Endcri</td>
+      <td>Epi Endocrine</td>
+      <td>#91652d</td>
+    </tr>
+    <tr>
+      <th>c8</th>
+      <td>Epi Ent</td>
+      <td>Epi Enteric</td>
+      <td>#d9a138</td>
+    </tr>
+    <tr>
+      <th>c4</th>
+      <td>Epi Gas</td>
+      <td>Epi Gastric</td>
+      <td>#9f892f</td>
+    </tr>
+    <tr>
+      <th>c18</th>
+      <td>Epi Krt/Lum</td>
+      <td>Epi Keratinous/Luminal</td>
+      <td>#aeb268</td>
+    </tr>
+    <tr>
+      <th>c2</th>
+      <td>Epi TPB</td>
+      <td>Epi Trophoblast</td>
+      <td>#a9b836</td>
+    </tr>
+    <tr>
+      <th>c29</th>
+      <td>Fibro Adr</td>
+      <td>Fibro Adrenal</td>
+      <td>#63711c</td>
+    </tr>
+    <tr>
+      <th>c17</th>
+      <td>Fibro Brst</td>
+      <td>Fibro Breast</td>
+      <td>#627037</td>
+    </tr>
+    <tr>
+      <th>c19</th>
+      <td>Fibro EndN</td>
+      <td>Fibro Endoneurial</td>
+      <td>#579232</td>
+    </tr>
+    <tr>
+      <th>c28</th>
+      <td>Fibro EpiN</td>
+      <td>Fibro Epineurial</td>
+      <td>#65bc3f</td>
+    </tr>
+    <tr>
+      <th>c6</th>
+      <td>Fibro GI</td>
+      <td>Fibro Gastrointestinal</td>
+      <td>#3f8146</td>
+    </tr>
+    <tr>
+      <th>c11</th>
+      <td>Fibro HT</td>
+      <td>Fibro Heart</td>
+      <td>#53c067</td>
+    </tr>
+    <tr>
+      <th>c32</th>
+      <td>Fibro Mus</td>
+      <td>Fibro Muscular</td>
+      <td>#6fb685</td>
+    </tr>
+    <tr>
+      <th>c34</th>
+      <td>Fibro Myo</td>
+      <td>Myofibroblast</td>
+      <td>#46cb97</td>
+    </tr>
+    <tr>
+      <th>c23</th>
+      <td>Fibro Sk</td>
+      <td>Fibro Skin</td>
+      <td>#2b7f63</td>
+    </tr>
+    <tr>
+      <th>c31</th>
+      <td>Glia Astro</td>
+      <td>Glia Astrocyte</td>
+      <td>#41bfbf</td>
+    </tr>
+    <tr>
+      <th>c14</th>
+      <td>Glia Oligo</td>
+      <td>Glia Oligodendrocyte</td>
+      <td>#4aa5d4</td>
+    </tr>
+    <tr>
+      <th>c35</th>
+      <td>Hema Bmem</td>
+      <td>Hema Bmem</td>
+      <td>#7199df</td>
+    </tr>
+    <tr>
+      <th>c36</th>
+      <td>Hema Bnaive</td>
+      <td>Hema Bnaive</td>
+      <td>#7199df</td>
+    </tr>
+    <tr>
+      <th>c24</th>
+      <td>Hema Mast</td>
+      <td>Hema Mast</td>
+      <td>#5366a9</td>
+    </tr>
+    <tr>
+      <th>c0</th>
+      <td>Hema Myeloid</td>
+      <td>Hema Myeloid</td>
+      <td>#657ce4</td>
+    </tr>
+    <tr>
+      <th>c27</th>
+      <td>Hema NK</td>
+      <td>Hema NK</td>
+      <td>#695dd8</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>Hema Tmem</td>
+      <td>Hema Tmem</td>
+      <td>#b58edb</td>
+    </tr>
+    <tr>
+      <th>c15</th>
+      <td>Hema Tnaive</td>
+      <td>Hema Tnaive</td>
+      <td>#7c4fa5</td>
+    </tr>
+    <tr>
+      <th>c26</th>
+      <td>Mus Crd</td>
+      <td>Mus Cardiac</td>
+      <td>#af5ad1</td>
+    </tr>
+    <tr>
+      <th>c5</th>
+      <td>Mus Skl</td>
+      <td>Mus Skeletal</td>
+      <td>#e36aca</td>
+    </tr>
+    <tr>
+      <th>c10</th>
+      <td>Neu Exc</td>
+      <td>Neu Excitatory</td>
+      <td>#cc81b4</td>
+    </tr>
+    <tr>
+      <th>c16</th>
+      <td>Neu Inh</td>
+      <td>Neu Inhibitory</td>
+      <td>#ad398b</td>
+    </tr>
+    <tr>
+      <th>c21</th>
+      <td>Neu Schw</td>
+      <td>Neu Schwann</td>
+      <td>#984866</td>
+    </tr>
+    <tr>
+      <th>c12</th>
+      <td>Perivascular</td>
+      <td>Perivascular</td>
+      <td>#e04986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">data1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">data2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">data2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 <span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
 <span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L1
+Endo Lym        0.250786
+Hema Tnaive     0.311011
+Fibro Mus       0.312988
+Hema B          0.320220
+Fibro Brst      0.324616
+Hema Mast       0.405830
+Hema NK         0.459330
+Fibro HT        0.478001
+Fibro EpiN      0.478022
+Neu Schw        0.551852
+Glia Oligo      0.597265
+Epi AdrCtx      0.598031
+Mus Crd         0.599420
+Hema Tmem       0.626191
+Epi Gas         0.639262
+Fibro EndN      0.657354
+Mus Skl         0.671234
+Fibro Myo       0.672361
+Epi Ent         0.699627
+Fibro Sk        0.702737
+Fibro Adr       0.735557
+Perivascular    0.773570
+Epi Endcri      0.804643
+Epi Alv         0.807723
+Fibro GI        0.883188
+Neu Inh         0.897943
+Endo Vsc        0.918978
+Hema Myeloid    0.938118
+Neu Exc         1.015273
+Epi Krt/Lum     1.080235
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1874,6 +3389,527 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 2GB
+Dimensions:     (DMR: 1361892, count_type: 2, subtype: 206)
+Coordinates:
+  * DMR         (DMR) &lt;U11 60MB &#x27;DMR_0&#x27; &#x27;DMR_1&#x27; ... &#x27;DMR_1361890&#x27; &#x27;DMR_1361891&#x27;
+    DMR_chrom   (DMR) &lt;U5 27MB ...
+    DMR_end     (DMR) int64 11MB ...
+    DMR_start   (DMR) int64 11MB ...
+  * count_type  (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+    mc_type     &lt;U3 12B &#x27;CGN&#x27;
+  * subtype     (subtype) &lt;U7 6kB &#x27;c0-b0&#x27; &#x27;c0-b1&#x27; &#x27;c0-b10&#x27; ... &#x27;c9-b0&#x27; &#x27;c9-b1&#x27;
+Data variables:
+    DMR_da      (subtype, DMR, count_type) uint32 2GB dask.array&lt;chunksize=(1, 170237, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  subtype
+    var_dim:  DMR</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-c3930e9b-0eeb-40ae-9743-c968fc6c7f64' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c3930e9b-0eeb-40ae-9743-c968fc6c7f64' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>DMR</span>: 1361892</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>subtype</span>: 206</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-5591bffc-94ca-4158-9e70-ec05c7ae76e9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5591bffc-94ca-4158-9e70-ec05c7ae76e9' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>DMR</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;DMR_0&#x27; &#x27;DMR_1&#x27; ... &#x27;DMR_1361891&#x27;</div><input id='attrs-960b107a-f179-44e7-807a-00e0a8e81581' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-960b107a-f179-44e7-807a-00e0a8e81581' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c4bc7f4c-860c-4321-9209-bd8532cefd1d' class='xr-var-data-in' type='checkbox'><label for='data-c4bc7f4c-860c-4321-9209-bd8532cefd1d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;DMR_0&#x27;, &#x27;DMR_1&#x27;, &#x27;DMR_2&#x27;, ..., &#x27;DMR_1361889&#x27;, &#x27;DMR_1361890&#x27;,
+       &#x27;DMR_1361891&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_chrom</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b5018a63-0e43-4587-8c98-00bb90ef1724' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b5018a63-0e43-4587-8c98-00bb90ef1724' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-96e435fb-f73a-4717-89d1-99e143c28a22' class='xr-var-data-in' type='checkbox'><label for='data-96e435fb-f73a-4717-89d1-99e143c28a22' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[1361892 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_end</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b3da2bea-295c-439f-a608-84ed5d3027b9' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b3da2bea-295c-439f-a608-84ed5d3027b9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4f5e0bce-b6dc-4ac8-b337-740d5e9f1cee' class='xr-var-data-in' type='checkbox'><label for='data-4f5e0bce-b6dc-4ac8-b337-740d5e9f1cee' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[1361892 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_start</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f60707e8-72a5-4258-ac12-7139ef38c7f8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f60707e8-72a5-4258-ac12-7139ef38c7f8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e773e5d5-c065-4155-8dfb-f95c9f4b5997' class='xr-var-data-in' type='checkbox'><label for='data-e773e5d5-c065-4155-8dfb-f95c9f4b5997' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[1361892 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-ded60414-83f1-41a8-947f-58aaeda4ff7f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ded60414-83f1-41a8-947f-58aaeda4ff7f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b72b6d25-a198-4dc3-9f98-20dc9aa25934' class='xr-var-data-in' type='checkbox'><label for='data-b72b6d25-a198-4dc3-9f98-20dc9aa25934' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27;</div><input id='attrs-95a1616b-532f-4552-b075-d18f6936e6f1' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-95a1616b-532f-4552-b075-d18f6936e6f1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9e1981ed-5ca4-415b-bec7-7fcbb878d16c' class='xr-var-data-in' type='checkbox'><label for='data-9e1981ed-5ca4-415b-bec7-7fcbb878d16c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CGN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>subtype</span></div><div class='xr-var-dims'>(subtype)</div><div class='xr-var-dtype'>&lt;U7</div><div class='xr-var-preview xr-preview'>&#x27;c0-b0&#x27; &#x27;c0-b1&#x27; ... &#x27;c9-b0&#x27; &#x27;c9-b1&#x27;</div><input id='attrs-2f7852ba-4156-4cf3-8c3b-6a58cb1e90ef' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2f7852ba-4156-4cf3-8c3b-6a58cb1e90ef' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-01bf090c-ab28-45aa-a682-7f0d4744dc09' class='xr-var-data-in' type='checkbox'><label for='data-01bf090c-ab28-45aa-a682-7f0d4744dc09' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0-b0&#x27;, &#x27;c0-b1&#x27;, &#x27;c0-b10&#x27;, ..., &#x27;c8-b5&#x27;, &#x27;c9-b0&#x27;, &#x27;c9-b1&#x27;], dtype=&#x27;&lt;U7&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7a1147fd-08e9-4fd6-9940-7bb03e09ca34' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7a1147fd-08e9-4fd6-9940-7bb03e09ca34' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>DMR_da</span></div><div class='xr-var-dims'>(subtype, DMR, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 170237, 1), meta=np.ndarray&gt;</div><input id='attrs-187e558a-3dc5-4b46-b999-688a8585e6ba' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-187e558a-3dc5-4b46-b999-688a8585e6ba' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6d541c9e-cac7-4d53-80b7-fec2a0af4310' class='xr-var-data-in' type='checkbox'><label for='data-6d541c9e-cac7-4d53-80b7-fec2a0af4310' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 2.09 GiB </td>
+                        <td> 664.99 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (206, 1361892, 2) </td>
+                        <td> (1, 170237, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 3296 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> uint32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="100" height="184" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="15" x2="24" y2="29" />
+  <line x1="10" y1="30" x2="24" y2="44" />
+  <line x1="10" y1="45" x2="24" y2="59" />
+  <line x1="10" y1="60" x2="24" y2="74" />
+  <line x1="10" y1="75" x2="24" y2="89" />
+  <line x1="10" y1="90" x2="24" y2="104" />
+  <line x1="10" y1="105" x2="24" y2="119" />
+  <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="10" y2="120" />
+  <line x1="11" y1="1" x2="11" y2="121" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="16" y1="6" x2="16" y2="126" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="18" y1="8" x2="18" y2="128" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="21" y1="11" x2="21" y2="131" />
+  <line x1="22" y1="12" x2="22" y2="132" />
+  <line x1="23" y1="13" x2="23" y2="133" />
+  <line x1="24" y1="14" x2="24" y2="134" />
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="35" y2="0" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="36" y2="0" />
+  <line x1="11" y1="1" x2="36" y2="1" />
+  <line x1="12" y1="2" x2="37" y2="2" />
+  <line x1="13" y1="3" x2="38" y2="3" />
+  <line x1="13" y1="3" x2="39" y2="3" />
+  <line x1="14" y1="4" x2="40" y2="4" />
+  <line x1="15" y1="5" x2="40" y2="5" />
+  <line x1="16" y1="6" x2="41" y2="6" />
+  <line x1="17" y1="7" x2="42" y2="7" />
+  <line x1="17" y1="7" x2="43" y2="7" />
+  <line x1="18" y1="8" x2="44" y2="8" />
+  <line x1="19" y1="9" x2="44" y2="9" />
+  <line x1="20" y1="10" x2="45" y2="10" />
+  <line x1="20" y1="10" x2="46" y2="10" />
+  <line x1="21" y1="11" x2="47" y2="11" />
+  <line x1="22" y1="12" x2="47" y2="12" />
+  <line x1="23" y1="13" x2="48" y2="13" />
+  <line x1="24" y1="14" x2="49" y2="14" />
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="22" y1="0" x2="37" y2="14" />
+  <line x1="35" y1="0" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 35.41261651458248,0.0 50.36121446433688,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="29" x2="50" y2="29" />
+  <line x1="24" y1="44" x2="50" y2="44" />
+  <line x1="24" y1="59" x2="50" y2="59" />
+  <line x1="24" y1="74" x2="50" y2="74" />
+  <line x1="24" y1="89" x2="50" y2="89" />
+  <line x1="24" y1="104" x2="50" y2="104" />
+  <line x1="24" y1="119" x2="50" y2="119" />
+  <line x1="24" y1="134" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+  <line x1="37" y1="14" x2="37" y2="134" />
+  <line x1="50" y1="14" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 50.36121446433688,14.948597949754403 50.36121446433688,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="37.654906" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="70.361214" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,70.361214,74.948598)">1361892</text>
+  <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">206</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-9e9693c2-5009-4c90-bc05-952be2f09c49' class='xr-section-summary-in' type='checkbox'  ><label for='section-9e9693c2-5009-4c90-bc05-952be2f09c49' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>DMR</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-113ce01f-ac76-42f9-afda-834ccc582e57' class='xr-index-data-in' type='checkbox'/><label for='index-113ce01f-ac76-42f9-afda-834ccc582e57' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;DMR_0&#x27;, &#x27;DMR_1&#x27;, &#x27;DMR_2&#x27;, &#x27;DMR_3&#x27;, &#x27;DMR_4&#x27;, &#x27;DMR_5&#x27;, &#x27;DMR_6&#x27;, &#x27;DMR_7&#x27;,
+       &#x27;DMR_8&#x27;, &#x27;DMR_9&#x27;,
+       ...
+       &#x27;DMR_1361882&#x27;, &#x27;DMR_1361883&#x27;, &#x27;DMR_1361884&#x27;, &#x27;DMR_1361885&#x27;,
+       &#x27;DMR_1361886&#x27;, &#x27;DMR_1361887&#x27;, &#x27;DMR_1361888&#x27;, &#x27;DMR_1361889&#x27;,
+       &#x27;DMR_1361890&#x27;, &#x27;DMR_1361891&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;DMR&#x27;, length=1361892))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c620bc40-bf39-4256-84d7-f745b17cd614' class='xr-index-data-in' type='checkbox'/><label for='index-c620bc40-bf39-4256-84d7-f745b17cd614' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>subtype</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2b7c278c-3ac5-4c9b-bd08-ea34e19290df' class='xr-index-data-in' type='checkbox'/><label for='index-2b7c278c-3ac5-4c9b-bd08-ea34e19290df' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0-b0&#x27;, &#x27;c0-b1&#x27;, &#x27;c0-b10&#x27;, &#x27;c0-b11&#x27;, &#x27;c0-b12&#x27;, &#x27;c0-b13&#x27;, &#x27;c0-b14&#x27;,
+       &#x27;c0-b15&#x27;, &#x27;c0-b16&#x27;, &#x27;c0-b2&#x27;,
+       ...
+       &#x27;c7-b3&#x27;, &#x27;c7-b4&#x27;, &#x27;c8-b0&#x27;, &#x27;c8-b1&#x27;, &#x27;c8-b2&#x27;, &#x27;c8-b3&#x27;, &#x27;c8-b4&#x27;, &#x27;c8-b5&#x27;,
+       &#x27;c9-b0&#x27;, &#x27;c9-b1&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;subtype&#x27;, length=206))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4ad4235e-d6b8-42d0-9fd1-ae4d74b973b8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4ad4235e-d6b8-42d0-9fd1-ae4d74b973b8' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>subtype</dd><dt><span>var_dim :</span></dt><dd>DMR</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1881,6 +3917,11 @@
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
     <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9900 DMR features removed due to overlapping (bedtools intersect -f 0.5) with black list regions.
 </pre></div>
 </div>
 </div>
@@ -1912,6 +3953,529 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 887MB
+Dimensions:     (DMR: 1351992, count_type: 2, L1: 36)
+Coordinates:
+  * DMR         (DMR) &lt;U11 59MB &#x27;DMR_52&#x27; &#x27;DMR_53&#x27; ... &#x27;DMR_1361885&#x27;
+    DMR_chrom   (DMR) &lt;U5 27MB &#x27;chr1&#x27; &#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chr22&#x27; &#x27;chr22&#x27; &#x27;chr22&#x27;
+    DMR_end     (DMR) int64 11MB 793572 794581 795465 ... 50785603 50786603
+    DMR_start   (DMR) int64 11MB 793542 794251 794991 ... 50785440 50786557
+  * count_type  (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+    mc_type     &lt;U3 12B &#x27;CGN&#x27;
+  * L1          (L1) object 288B &#x27;c0&#x27; &#x27;c1&#x27; &#x27;c10&#x27; &#x27;c11&#x27; ... &#x27;c5&#x27; &#x27;c6&#x27; &#x27;c8&#x27; &#x27;c9&#x27;
+Data variables:
+    DMR_da      (L1, DMR, count_type) float64 779MB dask.array&lt;chunksize=(1, 169087, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  L1
+    var_dim:  DMR</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-e44ead56-2688-4b74-a440-8a709f6ac92c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-e44ead56-2688-4b74-a440-8a709f6ac92c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>DMR</span>: 1351992</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>L1</span>: 36</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-4c80de66-777c-438c-9a31-be62dfeb3625' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4c80de66-777c-438c-9a31-be62dfeb3625' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>DMR</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;DMR_52&#x27; &#x27;DMR_53&#x27; ... &#x27;DMR_1361885&#x27;</div><input id='attrs-1a573395-8bf3-4af1-a7e4-7c65dd42a880' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1a573395-8bf3-4af1-a7e4-7c65dd42a880' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e47d50b7-6d60-4aa8-8d61-f70dbe28bbc5' class='xr-var-data-in' type='checkbox'><label for='data-e47d50b7-6d60-4aa8-8d61-f70dbe28bbc5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;DMR_52&#x27;, &#x27;DMR_53&#x27;, &#x27;DMR_54&#x27;, ..., &#x27;DMR_1361883&#x27;, &#x27;DMR_1361884&#x27;,
+       &#x27;DMR_1361885&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_chrom</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>&#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chr22&#x27; &#x27;chr22&#x27;</div><input id='attrs-4499f2f0-8949-4eb5-a71b-efce563bf50d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4499f2f0-8949-4eb5-a71b-efce563bf50d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e1aaf097-53fa-417a-8fe7-c45f47eb4e38' class='xr-var-data-in' type='checkbox'><label for='data-e1aaf097-53fa-417a-8fe7-c45f47eb4e38' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1&#x27;, &#x27;chr1&#x27;, &#x27;chr1&#x27;, ..., &#x27;chr22&#x27;, &#x27;chr22&#x27;, &#x27;chr22&#x27;], dtype=&#x27;&lt;U5&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_end</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>793572 794581 ... 50785603 50786603</div><input id='attrs-d2aa171d-784d-44a2-b6ea-2eb405737712' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d2aa171d-784d-44a2-b6ea-2eb405737712' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7cb7b122-7fe8-4b5a-9a8b-a3dd32221321' class='xr-var-data-in' type='checkbox'><label for='data-7cb7b122-7fe8-4b5a-9a8b-a3dd32221321' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  793572,   794581,   795465, ..., 50784916, 50785603, 50786603])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_start</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>793542 794251 ... 50785440 50786557</div><input id='attrs-6e6c8d54-5385-4e56-92d8-5ccb7a2a5c8f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6e6c8d54-5385-4e56-92d8-5ccb7a2a5c8f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e5ff66e-9914-403d-a907-a0c9a4fc0263' class='xr-var-data-in' type='checkbox'><label for='data-8e5ff66e-9914-403d-a907-a0c9a4fc0263' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  793542,   794251,   794991, ..., 50784654, 50785440, 50786557])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-d22320d4-8e6f-40ba-ad63-7d435cff98e5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d22320d4-8e6f-40ba-ad63-7d435cff98e5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-66ca81d3-e210-43d1-a5a7-fba415bb5d3b' class='xr-var-data-in' type='checkbox'><label for='data-66ca81d3-e210-43d1-a5a7-fba415bb5d3b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27;</div><input id='attrs-2bb213ac-583e-47c5-af37-bb22c159ce26' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2bb213ac-583e-47c5-af37-bb22c159ce26' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f5d276fe-f842-4d3a-b6ed-750ae8d740b2' class='xr-var-data-in' type='checkbox'><label for='data-f5d276fe-f842-4d3a-b6ed-750ae8d740b2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CGN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>L1</span></div><div class='xr-var-dims'>(L1)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;c0&#x27; &#x27;c1&#x27; &#x27;c10&#x27; ... &#x27;c6&#x27; &#x27;c8&#x27; &#x27;c9&#x27;</div><input id='attrs-4fba3327-7d2e-4edd-8d39-c78f0eb677f4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4fba3327-7d2e-4edd-8d39-c78f0eb677f4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-793feab7-e1de-427b-8939-82f7bcdb5632' class='xr-var-data-in' type='checkbox'><label for='data-793feab7-e1de-427b-8939-82f7bcdb5632' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0&#x27;, &#x27;c1&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;,
+       &#x27;c18&#x27;, &#x27;c19&#x27;, &#x27;c2&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;,
+       &#x27;c27&#x27;, &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c3&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c35&#x27;,
+       &#x27;c36&#x27;, &#x27;c4&#x27;, &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;], dtype=object)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3e8b25b1-badf-4f22-ba9f-9a7df3f7bf79' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3e8b25b1-badf-4f22-ba9f-9a7df3f7bf79' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>DMR_da</span></div><div class='xr-var-dims'>(L1, DMR, count_type)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 169087, 1), meta=np.ndarray&gt;</div><input id='attrs-08a35d31-950c-4f44-ae6b-505669ccf4b4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-08a35d31-950c-4f44-ae6b-505669ccf4b4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cdffb02d-f5e1-45fa-a087-cca9fbbdc8d8' class='xr-var-data-in' type='checkbox'><label for='data-cdffb02d-f5e1-45fa-a087-cca9fbbdc8d8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 742.67 MiB </td>
+                        <td> 1.30 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (36, 1351992, 2) </td>
+                        <td> (1, 169901, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 576 chunks in 100 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="100" height="184" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="15" x2="24" y2="29" />
+  <line x1="10" y1="30" x2="24" y2="44" />
+  <line x1="10" y1="45" x2="24" y2="59" />
+  <line x1="10" y1="60" x2="24" y2="74" />
+  <line x1="10" y1="75" x2="24" y2="89" />
+  <line x1="10" y1="90" x2="24" y2="105" />
+  <line x1="10" y1="105" x2="24" y2="120" />
+  <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="10" y2="120" />
+  <line x1="11" y1="1" x2="11" y2="121" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="16" y1="6" x2="16" y2="126" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="18" y1="8" x2="18" y2="128" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="21" y1="11" x2="21" y2="131" />
+  <line x1="22" y1="12" x2="22" y2="132" />
+  <line x1="23" y1="13" x2="23" y2="133" />
+  <line x1="24" y1="14" x2="24" y2="134" />
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="35" y2="0" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="35" y2="0" />
+  <line x1="11" y1="1" x2="36" y2="1" />
+  <line x1="12" y1="2" x2="37" y2="2" />
+  <line x1="12" y1="2" x2="38" y2="2" />
+  <line x1="13" y1="3" x2="39" y2="3" />
+  <line x1="14" y1="4" x2="39" y2="4" />
+  <line x1="15" y1="5" x2="40" y2="5" />
+  <line x1="16" y1="6" x2="41" y2="6" />
+  <line x1="17" y1="7" x2="42" y2="7" />
+  <line x1="17" y1="7" x2="42" y2="7" />
+  <line x1="18" y1="8" x2="43" y2="8" />
+  <line x1="19" y1="9" x2="44" y2="9" />
+  <line x1="19" y1="9" x2="45" y2="9" />
+  <line x1="20" y1="10" x2="46" y2="10" />
+  <line x1="21" y1="11" x2="47" y2="11" />
+  <line x1="22" y1="12" x2="47" y2="12" />
+  <line x1="23" y1="13" x2="48" y2="13" />
+  <line x1="24" y1="14" x2="49" y2="14" />
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="22" y1="0" x2="37" y2="14" />
+  <line x1="35" y1="0" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 35.41261651458248,0.0 50.36121446433688,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="29" x2="50" y2="29" />
+  <line x1="24" y1="44" x2="50" y2="44" />
+  <line x1="24" y1="59" x2="50" y2="59" />
+  <line x1="24" y1="74" x2="50" y2="74" />
+  <line x1="24" y1="89" x2="50" y2="89" />
+  <line x1="24" y1="105" x2="50" y2="105" />
+  <line x1="24" y1="120" x2="50" y2="120" />
+  <line x1="24" y1="134" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+  <line x1="37" y1="14" x2="37" y2="134" />
+  <line x1="50" y1="14" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 50.36121446433688,14.948597949754403 50.36121446433688,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="37.654906" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="70.361214" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,70.361214,74.948598)">1351992</text>
+  <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">36</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-29b01596-74a7-491a-945f-691359ea39e5' class='xr-section-summary-in' type='checkbox'  ><label for='section-29b01596-74a7-491a-945f-691359ea39e5' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>DMR</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8069c059-4c91-4eea-81e8-0e393e8881c0' class='xr-index-data-in' type='checkbox'/><label for='index-8069c059-4c91-4eea-81e8-0e393e8881c0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;DMR_52&#x27;, &#x27;DMR_53&#x27;, &#x27;DMR_54&#x27;, &#x27;DMR_55&#x27;, &#x27;DMR_56&#x27;, &#x27;DMR_57&#x27;, &#x27;DMR_58&#x27;,
+       &#x27;DMR_59&#x27;, &#x27;DMR_60&#x27;, &#x27;DMR_61&#x27;,
+       ...
+       &#x27;DMR_1361876&#x27;, &#x27;DMR_1361877&#x27;, &#x27;DMR_1361878&#x27;, &#x27;DMR_1361879&#x27;,
+       &#x27;DMR_1361880&#x27;, &#x27;DMR_1361881&#x27;, &#x27;DMR_1361882&#x27;, &#x27;DMR_1361883&#x27;,
+       &#x27;DMR_1361884&#x27;, &#x27;DMR_1361885&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;DMR&#x27;, length=1351992))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-5f619f40-742f-4278-b4da-9f0132eef042' class='xr-index-data-in' type='checkbox'/><label for='index-5f619f40-742f-4278-b4da-9f0132eef042' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>L1</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8b3d60dc-1a4a-4817-9e87-2f98f3e38b4f' class='xr-index-data-in' type='checkbox'/><label for='index-8b3d60dc-1a4a-4817-9e87-2f98f3e38b4f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0&#x27;, &#x27;c1&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;,
+       &#x27;c18&#x27;, &#x27;c19&#x27;, &#x27;c2&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;,
+       &#x27;c27&#x27;, &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c3&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c35&#x27;,
+       &#x27;c36&#x27;, &#x27;c4&#x27;, &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;L1&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e0a00a58-cbfc-4945-b947-5fd771eaefae' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e0a00a58-cbfc-4945-b947-5fd771eaefae' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>L1</dd><dt><span>var_dim :</span></dt><dd>DMR</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1943,6 +4507,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(36, 1351992)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1959,6 +4528,11 @@
 <span class="n">selp</span> <span class="o">=</span> <span class="n">selp</span><span class="p">[</span><span class="n">selp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
 <span class="n">selp</span> <span class="o">=</span> <span class="n">dmr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>493633
 </pre></div>
 </div>
 </div>
@@ -1990,27 +4564,10 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">nc</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">],</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">]):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nc</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;color&#39;</span><span class="p">],</span> 
-           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;L1_abbr&#39;</span><span class="p">],</span> 
-                   <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">nc</span><span class="o">*</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;1-corr&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;DMR not overlapped with peaks&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/dendrogram_majortype_nonpeakdmr.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating a temporary cluster...done:
+socket cluster with 32 nodes on host ‘localhost’
+Multiscale bootstrap... Done.
 </pre></div>
 </div>
 </div>
@@ -2037,6 +4594,36 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/dendrogram_majortype_nonpeakdmr.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1b8e7fea464c20b24f46fd2ee4150c02dadb57fb9e40ed1f5756649f2849b798.png" src="../_images/1b8e7fea464c20b24f46fd2ee4150c02dadb57fb9e40ed1f5756649f2849b798.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">nc</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">],</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nc</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;color&#39;</span><span class="p">],</span> 
+           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;L1_abbr&#39;</span><span class="p">],</span> 
+                   <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">nc</span><span class="o">*</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;1-corr&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;DMR not overlapped with peaks&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/dendrogram_majortype_nonpeakdmr.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b446a54d2b65d8b57be20b272af09aecb25eacc930e85d18a9a2ca40cbc9f4fc.png" src="../_images/b446a54d2b65d8b57be20b272af09aecb25eacc930e85d18a9a2ca40cbc9f4fc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2046,6 +4633,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0042807e0111c77677fa7870c0e3bee43bb639130d0db03a634156d86e487fe4.png" src="../_images/0042807e0111c77677fa7870c0e3bee43bb639130d0db03a634156d86e487fe4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2053,6 +4643,9 @@
                     <span class="n">xticklabels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4cb3e55f0a4bc4f56b55454374ee992d31f755e4ddaf5a5e5c83a17529f1074a.png" src="../_images/4cb3e55f0a4bc4f56b55454374ee992d31f755e4ddaf5a5e5c83a17529f1074a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2063,6 +4656,11 @@
 <span class="n">selp</span> <span class="o">=</span> <span class="n">selp</span><span class="p">[</span><span class="n">selp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
 <span class="n">selp</span> <span class="o">=</span> <span class="n">dmr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DMR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>858359
 </pre></div>
 </div>
 </div>
@@ -2094,27 +4692,10 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">nc</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">],</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">]):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nc</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;color&#39;</span><span class="p">],</span> 
-           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;L1_abbr&#39;</span><span class="p">],</span> 
-                   <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">nc</span><span class="o">*</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">])</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;1-corr&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;DMR overlapped with peaks&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/dendrogram_majortype_peakdmr.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating a temporary cluster...done:
+socket cluster with 32 nodes on host ‘localhost’
+Multiscale bootstrap... Done.
 </pre></div>
 </div>
 </div>
@@ -2141,6 +4722,36 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/dendrogram_majortype_peakdmr.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5b517ee6223506843edea349606405edf3c98673dce1780b63f0db3ca5e8f48f.png" src="../_images/5b517ee6223506843edea349606405edf3c98673dce1780b63f0db3ca5e8f48f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">nc</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">],</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nc</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;color&#39;</span><span class="p">],</span> 
+           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nc</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="s1">&#39;L1_abbr&#39;</span><span class="p">],</span> 
+                   <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">nc</span><span class="o">*</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;1-corr&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;DMR overlapped with peaks&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/dendrogram_majortype_peakdmr.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4944050d0b973e68663ce4cffc561c59a99e04dd3d6bb9f995aa6c08a1b7919a.png" src="../_images/4944050d0b973e68663ce4cffc561c59a99e04dd3d6bb9f995aa6c08a1b7919a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2149,6 +4760,9 @@
                     <span class="n">xticklabels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e8e2493f3706db985a958ba46ec1bfdce393b3f2550e04478f450cfcf49fd12d.png" src="../_images/e8e2493f3706db985a958ba46ec1bfdce393b3f2550e04478f450cfcf49fd12d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2159,6 +4773,9 @@
 <span class="n">corder</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="p">]</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7b81e781bc90f44df72a7ccd6cc59780b44afb47e5479cbcfb1746c628b141e7.png" src="../_images/7b81e781bc90f44df72a7ccd6cc59780b44afb47e5479cbcfb1746c628b141e7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2181,6 +4798,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/528fb20d159392a85c152a410952a151506275224907c842833751880c93357f.png" src="../_images/528fb20d159392a85c152a410952a151506275224907c842833751880c93357f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2200,6 +4820,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;DMR/L1_peakdmr_nonpeakdmr_corr_scatter.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f343d5f4443a31ffb3f0f2eb6b4d654596366bf46aafc5035ba9ab6db4a1eec0.png" src="../_images/f343d5f4443a31ffb3f0f2eb6b4d654596366bf46aafc5035ba9ab6db4a1eec0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2233,10 +4856,57 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample
+c35      3159
+c15     20388
+c36     23341
+c16     29953
+c27     30138
+c24     34991
+c0      36923
+c26     54564
+c31     54727
+c34     56811
+c25     57480
+c30     57870
+c14     67515
+c33     72921
+c29     74228
+c8      77027
+c20     78025
+c10     81274
+c13     86136
+c21     99793
+c6     104223
+c18    105536
+c12    106571
+c5     121415
+c4     125623
+c23    126901
+c28    132033
+c11    135614
+c32    150824
+c19    171767
+c1     217248
+c9     237776
+c17    250172
+c3     261594
+c22    336548
+c2     579978
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">dmr_state</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">dmr_state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9985370187602208
 </pre></div>
 </div>
 </div>
@@ -2248,6 +4918,527 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 2GB
+Dimensions:     (DMR: 1361892, count_type: 2, subtype: 206)
+Coordinates:
+  * DMR         (DMR) &lt;U11 60MB &#x27;DMR_0&#x27; &#x27;DMR_1&#x27; ... &#x27;DMR_1361890&#x27; &#x27;DMR_1361891&#x27;
+    DMR_chrom   (DMR) &lt;U5 27MB ...
+    DMR_end     (DMR) int64 11MB ...
+    DMR_start   (DMR) int64 11MB ...
+  * count_type  (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+    mc_type     &lt;U3 12B &#x27;CGN&#x27;
+  * subtype     (subtype) &lt;U7 6kB &#x27;c0-b0&#x27; &#x27;c0-b1&#x27; &#x27;c0-b10&#x27; ... &#x27;c9-b0&#x27; &#x27;c9-b1&#x27;
+Data variables:
+    DMR_da      (subtype, DMR, count_type) uint32 2GB dask.array&lt;chunksize=(1, 170237, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  subtype
+    var_dim:  DMR</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-8aa64c37-7157-4b4b-aad2-a132b576ee71' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8aa64c37-7157-4b4b-aad2-a132b576ee71' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>DMR</span>: 1361892</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>subtype</span>: 206</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-1c181add-1a89-40d2-8700-0952be0cfa48' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1c181add-1a89-40d2-8700-0952be0cfa48' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>DMR</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;DMR_0&#x27; &#x27;DMR_1&#x27; ... &#x27;DMR_1361891&#x27;</div><input id='attrs-a2b09671-ca19-4232-af57-3632ce227320' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a2b09671-ca19-4232-af57-3632ce227320' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-03bc145f-db6e-4e48-96d5-1f8b2aaca714' class='xr-var-data-in' type='checkbox'><label for='data-03bc145f-db6e-4e48-96d5-1f8b2aaca714' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;DMR_0&#x27;, &#x27;DMR_1&#x27;, &#x27;DMR_2&#x27;, ..., &#x27;DMR_1361889&#x27;, &#x27;DMR_1361890&#x27;,
+       &#x27;DMR_1361891&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_chrom</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-5bc8e0eb-1bdc-450f-a3f1-ec775646a9ec' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5bc8e0eb-1bdc-450f-a3f1-ec775646a9ec' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e1f9961-2572-4c8b-9f50-b140a17811c3' class='xr-var-data-in' type='checkbox'><label for='data-8e1f9961-2572-4c8b-9f50-b140a17811c3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[1361892 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_end</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-20298f2f-41ce-46a9-aa51-368384fcc0d5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-20298f2f-41ce-46a9-aa51-368384fcc0d5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e9ee5a10-c9c9-4a62-a261-225f7e051735' class='xr-var-data-in' type='checkbox'><label for='data-e9ee5a10-c9c9-4a62-a261-225f7e051735' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[1361892 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DMR_start</span></div><div class='xr-var-dims'>(DMR)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-80490836-7dae-4043-9176-8c81ea668da4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-80490836-7dae-4043-9176-8c81ea668da4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d37606dc-ae9e-4a31-866d-b7cf9629d78e' class='xr-var-data-in' type='checkbox'><label for='data-d37606dc-ae9e-4a31-866d-b7cf9629d78e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[1361892 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-c2dc35b7-fe55-47b5-a236-c6ddd99175b4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c2dc35b7-fe55-47b5-a236-c6ddd99175b4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b49f73b-a609-4ca9-b7dd-acd6b2daeb81' class='xr-var-data-in' type='checkbox'><label for='data-1b49f73b-a609-4ca9-b7dd-acd6b2daeb81' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27;</div><input id='attrs-c1f99f83-b4bb-4e4e-a2fb-9afc3889f3a8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c1f99f83-b4bb-4e4e-a2fb-9afc3889f3a8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-84474fe3-a2a9-4a57-82cf-304c2fff7e5c' class='xr-var-data-in' type='checkbox'><label for='data-84474fe3-a2a9-4a57-82cf-304c2fff7e5c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CGN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>subtype</span></div><div class='xr-var-dims'>(subtype)</div><div class='xr-var-dtype'>&lt;U7</div><div class='xr-var-preview xr-preview'>&#x27;c0-b0&#x27; &#x27;c0-b1&#x27; ... &#x27;c9-b0&#x27; &#x27;c9-b1&#x27;</div><input id='attrs-00731a0a-d32e-4628-bd22-4b6735756157' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-00731a0a-d32e-4628-bd22-4b6735756157' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c46bebd2-25f9-4cad-ba32-49984e1f98d3' class='xr-var-data-in' type='checkbox'><label for='data-c46bebd2-25f9-4cad-ba32-49984e1f98d3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0-b0&#x27;, &#x27;c0-b1&#x27;, &#x27;c0-b10&#x27;, ..., &#x27;c8-b5&#x27;, &#x27;c9-b0&#x27;, &#x27;c9-b1&#x27;], dtype=&#x27;&lt;U7&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-178428c7-3ffe-4240-9aac-a4110788cc57' class='xr-section-summary-in' type='checkbox'  checked><label for='section-178428c7-3ffe-4240-9aac-a4110788cc57' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>DMR_da</span></div><div class='xr-var-dims'>(subtype, DMR, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 170237, 1), meta=np.ndarray&gt;</div><input id='attrs-a328f17c-e2c2-4535-adf2-f0c5713531a5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a328f17c-e2c2-4535-adf2-f0c5713531a5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5f974b2b-e93e-4b16-b997-faccc6489c43' class='xr-var-data-in' type='checkbox'><label for='data-5f974b2b-e93e-4b16-b997-faccc6489c43' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 2.09 GiB </td>
+                        <td> 664.99 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (206, 1361892, 2) </td>
+                        <td> (1, 170237, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 3296 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> uint32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="100" height="184" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="15" x2="24" y2="29" />
+  <line x1="10" y1="30" x2="24" y2="44" />
+  <line x1="10" y1="45" x2="24" y2="59" />
+  <line x1="10" y1="60" x2="24" y2="74" />
+  <line x1="10" y1="75" x2="24" y2="89" />
+  <line x1="10" y1="90" x2="24" y2="104" />
+  <line x1="10" y1="105" x2="24" y2="119" />
+  <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="10" y2="120" />
+  <line x1="11" y1="1" x2="11" y2="121" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="16" y1="6" x2="16" y2="126" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="18" y1="8" x2="18" y2="128" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="21" y1="11" x2="21" y2="131" />
+  <line x1="22" y1="12" x2="22" y2="132" />
+  <line x1="23" y1="13" x2="23" y2="133" />
+  <line x1="24" y1="14" x2="24" y2="134" />
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="35" y2="0" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="36" y2="0" />
+  <line x1="11" y1="1" x2="36" y2="1" />
+  <line x1="12" y1="2" x2="37" y2="2" />
+  <line x1="13" y1="3" x2="38" y2="3" />
+  <line x1="13" y1="3" x2="39" y2="3" />
+  <line x1="14" y1="4" x2="40" y2="4" />
+  <line x1="15" y1="5" x2="40" y2="5" />
+  <line x1="16" y1="6" x2="41" y2="6" />
+  <line x1="17" y1="7" x2="42" y2="7" />
+  <line x1="17" y1="7" x2="43" y2="7" />
+  <line x1="18" y1="8" x2="44" y2="8" />
+  <line x1="19" y1="9" x2="44" y2="9" />
+  <line x1="20" y1="10" x2="45" y2="10" />
+  <line x1="20" y1="10" x2="46" y2="10" />
+  <line x1="21" y1="11" x2="47" y2="11" />
+  <line x1="22" y1="12" x2="47" y2="12" />
+  <line x1="23" y1="13" x2="48" y2="13" />
+  <line x1="24" y1="14" x2="49" y2="14" />
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="22" y1="0" x2="37" y2="14" />
+  <line x1="35" y1="0" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 35.41261651458248,0.0 50.36121446433688,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="29" x2="50" y2="29" />
+  <line x1="24" y1="44" x2="50" y2="44" />
+  <line x1="24" y1="59" x2="50" y2="59" />
+  <line x1="24" y1="74" x2="50" y2="74" />
+  <line x1="24" y1="89" x2="50" y2="89" />
+  <line x1="24" y1="104" x2="50" y2="104" />
+  <line x1="24" y1="119" x2="50" y2="119" />
+  <line x1="24" y1="134" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+  <line x1="37" y1="14" x2="37" y2="134" />
+  <line x1="50" y1="14" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 50.36121446433688,14.948597949754403 50.36121446433688,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="37.654906" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="70.361214" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,70.361214,74.948598)">1361892</text>
+  <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">206</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-a6188751-5cf8-4291-adec-7b34b1828ec3' class='xr-section-summary-in' type='checkbox'  ><label for='section-a6188751-5cf8-4291-adec-7b34b1828ec3' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>DMR</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2cad3fa7-c09e-4b94-b38a-d92296b9867c' class='xr-index-data-in' type='checkbox'/><label for='index-2cad3fa7-c09e-4b94-b38a-d92296b9867c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;DMR_0&#x27;, &#x27;DMR_1&#x27;, &#x27;DMR_2&#x27;, &#x27;DMR_3&#x27;, &#x27;DMR_4&#x27;, &#x27;DMR_5&#x27;, &#x27;DMR_6&#x27;, &#x27;DMR_7&#x27;,
+       &#x27;DMR_8&#x27;, &#x27;DMR_9&#x27;,
+       ...
+       &#x27;DMR_1361882&#x27;, &#x27;DMR_1361883&#x27;, &#x27;DMR_1361884&#x27;, &#x27;DMR_1361885&#x27;,
+       &#x27;DMR_1361886&#x27;, &#x27;DMR_1361887&#x27;, &#x27;DMR_1361888&#x27;, &#x27;DMR_1361889&#x27;,
+       &#x27;DMR_1361890&#x27;, &#x27;DMR_1361891&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;DMR&#x27;, length=1361892))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-dbe8ab6b-d00b-4a0a-b4e7-f15a18daa77b' class='xr-index-data-in' type='checkbox'/><label for='index-dbe8ab6b-d00b-4a0a-b4e7-f15a18daa77b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>subtype</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-dfae0323-c2ae-4908-8643-1b25826d1336' class='xr-index-data-in' type='checkbox'/><label for='index-dfae0323-c2ae-4908-8643-1b25826d1336' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0-b0&#x27;, &#x27;c0-b1&#x27;, &#x27;c0-b10&#x27;, &#x27;c0-b11&#x27;, &#x27;c0-b12&#x27;, &#x27;c0-b13&#x27;, &#x27;c0-b14&#x27;,
+       &#x27;c0-b15&#x27;, &#x27;c0-b16&#x27;, &#x27;c0-b2&#x27;,
+       ...
+       &#x27;c7-b3&#x27;, &#x27;c7-b4&#x27;, &#x27;c8-b0&#x27;, &#x27;c8-b1&#x27;, &#x27;c8-b2&#x27;, &#x27;c8-b3&#x27;, &#x27;c8-b4&#x27;, &#x27;c8-b5&#x27;,
+       &#x27;c9-b0&#x27;, &#x27;c9-b1&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;subtype&#x27;, length=206))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8f78e285-53c4-4999-a18d-e71816066aab' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8f78e285-53c4-4999-a18d-e71816066aab' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>subtype</dd><dt><span>var_dim :</span></dt><dd>DMR</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2255,6 +5446,11 @@
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
     <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9900 DMR features removed due to overlapping (bedtools intersect -f 0.5) with black list regions.
 </pre></div>
 </div>
 </div>
@@ -2296,6 +5492,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f14f5e027d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/2e3cb0f03aeec81da35077acd07cf621a76f2a8ef6e721dc0929d1b3dfcaa594.png" src="../_images/2e3cb0f03aeec81da35077acd07cf621a76f2a8ef6e721dc0929d1b3dfcaa594.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2304,6 +5506,120 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DMR_chrom</th>
+      <th>DMR_start</th>
+      <th>DMR_end</th>
+      <th>mc_type</th>
+    </tr>
+    <tr>
+      <th>DMR</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>DMR_31</th>
+      <td>chr1</td>
+      <td>793542</td>
+      <td>793572</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_32</th>
+      <td>chr1</td>
+      <td>794507</td>
+      <td>794569</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_33</th>
+      <td>chr1</td>
+      <td>794991</td>
+      <td>795167</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_34</th>
+      <td>chr1</td>
+      <td>795376</td>
+      <td>795465</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_35</th>
+      <td>chr1</td>
+      <td>796359</td>
+      <td>796448</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>DMR_1345262</th>
+      <td>chr22</td>
+      <td>50779573</td>
+      <td>50779595</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_1345263</th>
+      <td>chr22</td>
+      <td>50780316</td>
+      <td>50780462</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_1345264</th>
+      <td>chr22</td>
+      <td>50781166</td>
+      <td>50781301</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_1345265</th>
+      <td>chr22</td>
+      <td>50785568</td>
+      <td>50785603</td>
+      <td>CGN</td>
+    </tr>
+    <tr>
+      <th>DMR_1345266</th>
+      <td>chr22</td>
+      <td>50786557</td>
+      <td>50786603</td>
+      <td>CGN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1338760 rows × 4 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2358,6 +5674,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/ec893d1f5c0e2323e1d47bfbc95d4b058dc43458189b89cfc92f5d3cec2f9099.png" src="../_images/ec893d1f5c0e2323e1d47bfbc95d4b058dc43458189b89cfc92f5d3cec2f9099.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2371,6 +5690,12 @@
               <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7fc9e4883850&gt;
+</pre></div>
+</div>
+<img alt="../_images/fcc6ec11f898f120328dcc9dd2efbb2a00cd98f5760d9209e2a196a727abfcf0.png" src="../_images/fcc6ec11f898f120328dcc9dd2efbb2a00cd98f5760d9209e2a196a727abfcf0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2393,6 +5718,40 @@
         <span class="n">dmr_tmp</span><span class="p">[[</span><span class="s1">&#39;dmr_chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">DMR/majortype-subtype/hypo/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_hypo.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span>
     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
+c3
+c9
+c20
+c13
+c8
+c4
+c18
+c2
+c29
+c17
+c19
+c28
+c6
+c11
+c32
+c34
+c23
+c14
+c7
+c24
+c0
+c27
+c1
+c15
+c26
+c5
+c10
+c16
+c21
 </pre></div>
 </div>
 </div>

@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mch-distribution">
 <h1>2. MCH distribution<a class="headerlink" href="#mch-distribution" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -621,6 +617,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;,
+       &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;,
+       &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;,
+       &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;,
+       &#39;cluster&#39;, &#39;Short/Long&#39;, &#39;mcg_L2&#39;, &#39;hic_L2&#39;, &#39;L2_final&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -649,6 +655,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/1aab6254092bb349ecc9ae6ca069efc86deb96daafd40f830ed9e93c82c82221.png" src="../_images/1aab6254092bb349ecc9ae6ca069efc86deb96daafd40f830ed9e93c82c82221.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -669,6 +678,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2b9a86967c1be3fcf6122159fe8a320a140646abbbebe51d3b70efd9e187064b.png" src="../_images/2b9a86967c1be3fcf6122159fe8a320a140646abbbebe51d3b70efd9e187064b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -730,6 +742,57 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">meta</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">L1_list</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                <span class="c1"># order=pd.Series(L1_list).str.replace(&#39;-&#39;, &#39; &#39;).str.replace(&#39;_&#39;, &#39;/&#39;)[idx]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>               <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/seaborn/categorical.py:1754,</span> in <span class="ni">violinplot</span><span class="nt">(data, x, y, hue, order, hue_order, orient, color, palette, saturation, fill, inner, split, width, dodge, gap, linewidth, linecolor, cut, gridsize, bw_method, bw_adjust, density_norm, common_norm, hue_norm, formatter, log_scale, native_scale, legend, scale, scale_hue, bw, inner_kws, ax, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> <span class="n">palette</span><span class="p">,</span> <span class="n">hue_order</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">_hue_backcompat</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span> <span class="n">hue_order</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1753</span> <span class="n">saturation</span> <span class="o">=</span> <span class="n">saturation</span> <span class="k">if</span> <span class="n">fill</span> <span class="k">else</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1754</span> <span class="n">p</span><span class="o">.</span><span class="n">map_hue</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">hue_order</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">hue_norm</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="n">saturation</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1755</span> <span class="n">color</span> <span class="o">=</span> <span class="n">_default_color</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1756</span>     <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">,</span> <span class="n">hue</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1757</span>     <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;fc&quot;</span><span class="p">,</span> <span class="s2">&quot;facecolor&quot;</span><span class="p">]},</span>
+<span class="g g-Whitespace">   </span><span class="mi">1758</span>     <span class="n">saturation</span><span class="o">=</span><span class="n">saturation</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1759</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1760</span> <span class="n">linecolor</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">_complement_color</span><span class="p">(</span><span class="n">linecolor</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">_hue_map</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/seaborn/_base.py:838,</span> in <span class="ni">VectorPlotter.map_hue</span><span class="nt">(self, palette, order, norm, saturation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">837</span> <span class="k">def</span><span class="w"> </span><span class="nf">map_hue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">838</span>     <span class="n">mapping</span> <span class="o">=</span> <span class="n">HueMapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">saturation</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_hue_map</span> <span class="o">=</span> <span class="n">mapping</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/seaborn/_base.py:150,</span> in <span class="ni">HueMapping.__init__</span><span class="nt">(self, plotter, palette, order, norm, saturation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span> <span class="k">elif</span> <span class="n">map_type</span> <span class="o">==</span> <span class="s2">&quot;categorical&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>     <span class="n">cmap</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">150</span>     <span class="n">levels</span><span class="p">,</span> <span class="n">lookup_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">categorical_mapping</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>         <span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="c1"># --- Option 3: datetime mapping</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span> 
+<span class="g g-Whitespace">    </span><span class="mi">156</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>     <span class="c1"># TODO this needs actual implementation</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>     <span class="n">cmap</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/seaborn/_base.py:234,</span> in <span class="ni">HueMapping.categorical_mapping</span><span class="nt">(self, data, palette, order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">missing</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>         <span class="n">err</span> <span class="o">=</span> <span class="s2">&quot;The palette dictionary is missing keys: </span><span class="si">{}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">234</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">missing</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="n">lookup_table</span> <span class="o">=</span> <span class="n">palette</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: The palette dictionary is missing keys: {&#39;c23&#39;, &#39;c18&#39;, &#39;c27&#39;, &#39;c26&#39;, &#39;c6&#39;, &#39;c13&#39;, &#39;c31&#39;, &#39;c28&#39;, &#39;c9&#39;, &#39;c14&#39;, &#39;c33&#39;, &#39;c17&#39;, &#39;c30&#39;, &#39;c3&#39;, &#39;c11&#39;, &#39;c4&#39;, &#39;c12&#39;, &#39;c20&#39;, &#39;c16&#39;, &#39;c2&#39;, &#39;c19&#39;, &#39;c22&#39;, &#39;c1&#39;, &#39;c34&#39;, &#39;c15&#39;, &#39;c25&#39;, &#39;c8&#39;, &#39;c0&#39;, &#39;c32&#39;, &#39;c5&#39;, &#39;c24&#39;, &#39;c29&#39;, &#39;c7&#39;, &#39;c10&#39;, &#39;c21&#39;}
+</pre></div>
+</div>
+<img alt="../_images/0a943d24421d5a48682222fd543705de45ceb2acc72ade5ca4aeae27428a6d62.png" src="../_images/0a943d24421d5a48682222fd543705de45ceb2acc72ade5ca4aeae27428a6d62.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -746,6 +809,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;mCH_distribution/L1_cellglobalCH_box.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9afb7026a5b9c63e987d879c19b85731b90c291bd4052faf8177e602316e4f8b.png" src="../_images/9afb7026a5b9c63e987d879c19b85731b90c291bd4052faf8177e602316e4f8b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -777,10 +843,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/63d5e57fc9b8fcc7d1c41e268300e11a40e4c1b68d10c5c22e43bb4bfca4a95d.png" src="../_images/63d5e57fc9b8fcc7d1c41e268300e11a40e4c1b68d10c5c22e43bb4bfca4a95d.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mch</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">)[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span><span class="p">,</span> <span class="n">spearmanr</span>
 </pre></div>
 </div>
 </div>
@@ -802,10 +878,46 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;ERO1A&#39;, &#39;AC105020.1&#39;, &#39;AL590327.1&#39;, &#39;CCDC9&#39;, &#39;FO681492.1&#39;, &#39;PGGHG&#39;,
+       &#39;FAAP100&#39;, &#39;SIK1&#39;, &#39;SCGB1D2&#39;, &#39;PKN3&#39;, &#39;DDX42&#39;, &#39;AC003101.2&#39;, &#39;NKILA&#39;,
+       &#39;AC006027.1&#39;, &#39;SNIP1&#39;, &#39;TSG101&#39;, &#39;AL590226.2&#39;, &#39;NRM&#39;, &#39;AC093788.1&#39;,
+       &#39;CASP4&#39;, &#39;SDCBP2&#39;, &#39;AC010329.1&#39;, &#39;KRTDAP&#39;, &#39;EVA1A&#39;, &#39;MBD2&#39;, &#39;TACSTD2&#39;,
+       &#39;PRKD2&#39;, &#39;TLR5&#39;, &#39;MRE11&#39;, &#39;HNRNPH1&#39;, &#39;STT3A&#39;, &#39;CWC25&#39;, &#39;SRP54&#39;, &#39;OCLN&#39;,
+       &#39;MARF1&#39;, &#39;SLC12A9&#39;, &#39;TRIB3&#39;, &#39;SH3TC1&#39;, &#39;TM4SF1&#39;, &#39;IRX1&#39;, &#39;TRIM27&#39;,
+       &#39;AF178030.1&#39;, &#39;GALK1&#39;, &#39;KLK11&#39;, &#39;LINC01238&#39;, &#39;IQCN&#39;, &#39;LSG1&#39;, &#39;RHBDF2&#39;,
+       &#39;EIF3B&#39;, &#39;AP002956.1&#39;, &#39;MICALL1&#39;, &#39;SRP68&#39;, &#39;AL135999.1&#39;, &#39;WDR45B&#39;,
+       &#39;CGB7&#39;, &#39;TEPSIN&#39;, &#39;SAP30BP&#39;, &#39;DUSP4&#39;, &#39;NCBP3&#39;, &#39;JAG1&#39;, &#39;CMTM7&#39;, &#39;SYT8&#39;,
+       &#39;NSMCE4A&#39;, &#39;FRMD8&#39;, &#39;ZNF267&#39;, &#39;KRT7&#39;, &#39;FAM86C1&#39;, &#39;CD44&#39;, &#39;TNIP1&#39;,
+       &#39;AL590235.1&#39;, &#39;ANXA5&#39;, &#39;EXOC3&#39;, &#39;C15orf39&#39;, &#39;EHD4&#39;, &#39;C20orf204&#39;,
+       &#39;AL118508.1&#39;, &#39;NEDD1&#39;, &#39;PPCDC&#39;, &#39;LINC02066&#39;, &#39;AL135937.1&#39;, &#39;MPZL2&#39;,
+       &#39;AC108134.2&#39;, &#39;ACLY&#39;, &#39;KLF6&#39;, &#39;SIK1B&#39;, &#39;SLC12A7&#39;, &#39;AC138207.7&#39;,
+       &#39;DIPK1B&#39;, &#39;CPSF1&#39;, &#39;STC1&#39;, &#39;AC006486.1&#39;, &#39;NUDT17&#39;, &#39;NRBP1&#39;, &#39;LINC00960&#39;,
+       &#39;PARP12&#39;, &#39;EIF5B&#39;, &#39;FAM234B&#39;, &#39;SPINT1-AS1&#39;, &#39;RELB&#39;, &#39;ELMO3&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scorr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERO1A        -0.738920
+AC105020.1   -0.727342
+AL590327.1   -0.726895
+CCDC9        -0.723596
+FO681492.1   -0.723469
+                ...   
+PPIAP33       0.564673
+NaN           0.565852
+TMEM132E      0.570378
+OR6T1         0.573648
+CDK5R1        0.587567
+Length: 43003, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -822,6 +934,25 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pcorr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;NCBP3&#39;, &#39;ERO1A&#39;, &#39;ELOA&#39;, &#39;CASP4&#39;, &#39;NKAPD1&#39;, &#39;PABPN1&#39;, &#39;SELENOF&#39;,
+       &#39;MESD&#39;, &#39;KYAT3&#39;, &#39;EBLN3P&#39;, &#39;NEPRO&#39;, &#39;MRE11&#39;, &#39;GCN1&#39;, &#39;RETREG3&#39;, &#39;TOX4&#39;,
+       &#39;RXYLT1&#39;, &#39;MMP24OS&#39;, &#39;PPP4R3A&#39;, &#39;SRPRA&#39;, &#39;NSD3&#39;, &#39;STN1&#39;, &#39;AC026470.1&#39;,
+       &#39;BMI1&#39;, &#39;MMUT&#39;, &#39;LUC7L2&#39;, &#39;PPP4R3B&#39;, &#39;WAPL&#39;, &#39;KHDC4&#39;, &#39;TUT7&#39;, &#39;ODR4&#39;,
+       &#39;EEF1AKNMT&#39;, &#39;FAAP100&#39;, &#39;MARF1&#39;, &#39;SINHCAF&#39;, &#39;MAIP1&#39;, &#39;OGA&#39;, &#39;TEPSIN&#39;,
+       &#39;ENTR1&#39;, &#39;ATP5F1C&#39;, &#39;JPT2&#39;, &#39;REX1BD&#39;, &#39;KMT5A&#39;, &#39;RTF2&#39;, &#39;NAXD&#39;, &#39;WASHC4&#39;,
+       &#39;SEM1&#39;, &#39;AC007950.1&#39;, &#39;NORAD&#39;, &#39;WASHC3&#39;, &#39;SELENOS&#39;, &#39;ZUP1&#39;, &#39;ELOC&#39;,
+       &#39;TASOR&#39;, &#39;RO60&#39;, &#39;QTRT2&#39;, &#39;YJU2&#39;, &#39;NUP58&#39;, &#39;TENT4A&#39;, &#39;AL021368.2&#39;,
+       &#39;INTS14&#39;, &#39;ILF3-DT&#39;, &#39;SNU13&#39;, &#39;CNOT9&#39;, &#39;TENT4B&#39;, &#39;MFSD14B&#39;, &#39;ATP5MC2&#39;,
+       &#39;VIRMA&#39;, &#39;NDUFAF8&#39;, &#39;TRMO&#39;, &#39;UFD1&#39;, &#39;WASHC2A&#39;, &#39;SP100&#39;, &#39;THAP12&#39;,
+       &#39;TTLL3&#39;, &#39;AC008755.1&#39;, &#39;TRIR&#39;, &#39;BUD23&#39;, &#39;PUM3&#39;, &#39;PTCD1&#39;, &#39;AC124319.1&#39;,
+       &#39;SERF2&#39;, &#39;RCC1L&#39;, &#39;EIF3A&#39;, &#39;WASHC2C&#39;, &#39;FBH1&#39;, &#39;CIAO3&#39;, &#39;GCC1&#39;, &#39;PLPP5&#39;,
+       &#39;WASHC5&#39;, &#39;CCDC32&#39;, &#39;CSKMT&#39;, &#39;KMT5B&#39;, &#39;DMAC2L&#39;, &#39;KXD1&#39;, &#39;HEXD&#39;, &#39;ERBIN&#39;,
+       &#39;CARNMT1&#39;, &#39;ATP5ME&#39;, &#39;TAF7&#39;, &#39;ZNF28&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -906,6 +1037,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9841b4ce4336f0b9d8342998a4ca77e9d6bf8f0fc8d82b3d858f1fb39449aefb.png" src="../_images/9841b4ce4336f0b9d8342998a4ca77e9d6bf8f0fc8d82b3d858f1fb39449aefb.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -916,6 +1050,13 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=-0.2150882924663751, pvalue=0.22933354294278532)
+SignificanceResult(statistic=-0.33165857412054467, pvalue=0.05935789236717364)
+</pre></div>
+</div>
+<img alt="../_images/6a8a99492af4eb89110a00ab7ace74b2cb5bf729327a82b3d3da52958b339dba.png" src="../_images/6a8a99492af4eb89110a00ab7ace74b2cb5bf729327a82b3d3da52958b339dba.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -928,6 +1069,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PearsonRResult(statistic=0.7514451487585886, pvalue=4.6656049118370794e-07)
+SignificanceResult(statistic=0.6708333607987632, pvalue=1.934954274095001e-05)
+</pre></div>
+</div>
+<img alt="../_images/4616805de14925b33d7890e8534a58b18ca2c14070d324849d28ea47fefa4c2d.png" src="../_images/4616805de14925b33d7890e8534a58b18ca2c14070d324849d28ea47fefa4c2d.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -938,6 +1086,13 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SignificanceResult(statistic=-0.6514037433155081, pvalue=4.029420796773783e-05)
+PearsonRResult(statistic=-0.1518061385950914, pvalue=0.39903931926901504)
+</pre></div>
+</div>
+<img alt="../_images/979cf6efdbaaa653c744ccaf0abc02656b8d1494f0aaab813c04f2e8d36055bc.png" src="../_images/979cf6efdbaaa653c744ccaf0abc02656b8d1494f0aaab813c04f2e8d36055bc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -976,6 +1131,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f93d6487ac0&gt;
+</pre></div>
+</div>
+<img alt="../_images/10ce82fa1f6bfc31a6aae3f58f1fb72daa4630d3509c3d3b42ba8e20d43f30a1.png" src="../_images/10ce82fa1f6bfc31a6aae3f58f1fb72daa4630d3509c3d3b42ba8e20d43f30a1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -994,6 +1155,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b56534218a273665fc2b075ef1b703548c0d1672030afe7e381719cd2c5c39f9.png" src="../_images/b56534218a273665fc2b075ef1b703548c0d1672030afe7e381719cd2c5c39f9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1016,6 +1180,546 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 93GB
+Dimensions:        (cell: 940, chrom1k: 3088298, count_type: 2, mc_type: 4)
+Coordinates:
+  * cell           (cell) &lt;U16 60kB &#x27;c0-c0-PT-1JKYN&#x27; ... &#x27;c9-c9-STL003&#x27;
+  * chrom1k        (chrom1k) &lt;U12 148MB &#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;
+    chrom1k_chrom  (chrom1k) &lt;U5 62MB ...
+    chrom1k_end    (chrom1k) int64 25MB ...
+    chrom1k_start  (chrom1k) int64 25MB ...
+  * count_type     (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+  * mc_type        (mc_type) &lt;U3 48B &#x27;CAN&#x27; &#x27;CCN&#x27; &#x27;CGN&#x27; &#x27;CTN&#x27;
+Data variables:
+    chrom1k_da     (cell, chrom1k, mc_type, count_type) uint32 93GB dask.array&lt;chunksize=(1, 386038, 1, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom1k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-6bc7142c-24a9-48fd-bc2a-377b1e638a3f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-6bc7142c-24a9-48fd-bc2a-377b1e638a3f' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 940</li><li><span class='xr-has-index'>chrom1k</span>: 3088298</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>mc_type</span>: 4</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-1c74340d-6d8e-4ba6-bef5-199eb3afc7d0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1c74340d-6d8e-4ba6-bef5-199eb3afc7d0' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U16</div><div class='xr-var-preview xr-preview'>&#x27;c0-c0-PT-1JKYN&#x27; ... &#x27;c9-c9-STL003&#x27;</div><input id='attrs-c9c5b6c5-e8a8-42a3-b19f-56c5282ef054' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c9c5b6c5-e8a8-42a3-b19f-56c5282ef054' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-21183fbe-5b15-4787-af9a-a82fab60e86b' class='xr-var-data-in' type='checkbox'><label for='data-21183fbe-5b15-4787-af9a-a82fab60e86b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0-c0-PT-1JKYN&#x27;, &#x27;c0-c0-PT-1K2DA&#x27;, &#x27;c0-c0-PT-1LGRB&#x27;, ...,
+       &#x27;c9-c8-STL003&#x27;, &#x27;c9-c9-PT-1K2DA&#x27;, &#x27;c9-c9-STL003&#x27;], dtype=&#x27;&lt;U16&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom1k</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U12</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;</div><input id='attrs-6f17078c-04a0-4dce-91e7-62ad91081ff7' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6f17078c-04a0-4dce-91e7-62ad91081ff7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f6e26a4b-7fdb-42ae-8e71-166fe0e88538' class='xr-var-data-in' type='checkbox'><label for='data-f6e26a4b-7fdb-42ae-8e71-166fe0e88538' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;,
+       &#x27;chrY_57227&#x27;], dtype=&#x27;&lt;U12&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_chrom</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-1db9ed90-a123-40ca-aa54-ed4231d415b9' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1db9ed90-a123-40ca-aa54-ed4231d415b9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-73adc940-ae96-40d9-a028-d30ad23a7c16' class='xr-var-data-in' type='checkbox'><label for='data-73adc940-ae96-40d9-a028-d30ad23a7c16' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088298 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_end</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-b5c2cea2-0ee0-4172-91f2-47b862e88b21' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b5c2cea2-0ee0-4172-91f2-47b862e88b21' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9ca8c371-807d-46bc-a91f-1fd207688813' class='xr-var-data-in' type='checkbox'><label for='data-9ca8c371-807d-46bc-a91f-1fd207688813' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088298 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_start</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-986c36ae-9d41-4ad3-b4ba-6e5227b5683b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-986c36ae-9d41-4ad3-b4ba-6e5227b5683b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-95fcf589-3832-4d01-9eaf-8a231912e53d' class='xr-var-data-in' type='checkbox'><label for='data-95fcf589-3832-4d01-9eaf-8a231912e53d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088298 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-7f64564b-09e2-4484-81a9-84239b173f01' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7f64564b-09e2-4484-81a9-84239b173f01' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4f980008-189a-45eb-b889-f6fcf1993a23' class='xr-var-data-in' type='checkbox'><label for='data-4f980008-189a-45eb-b889-f6fcf1993a23' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>mc_type</span></div><div class='xr-var-dims'>(mc_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CAN&#x27; &#x27;CCN&#x27; &#x27;CGN&#x27; &#x27;CTN&#x27;</div><input id='attrs-abc0c57d-7fc4-46db-afc4-aa2f2ab44d1b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-abc0c57d-7fc4-46db-afc4-aa2f2ab44d1b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e8ce6832-64d7-4171-a740-7aca1b13e25c' class='xr-var-data-in' type='checkbox'><label for='data-e8ce6832-64d7-4171-a740-7aca1b13e25c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;CAN&#x27;, &#x27;CCN&#x27;, &#x27;CGN&#x27;, &#x27;CTN&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-2bf80ede-bb9b-415a-a136-5fb2c6dac31f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-2bf80ede-bb9b-415a-a136-5fb2c6dac31f' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_da</span></div><div class='xr-var-dims'>(cell, chrom1k, mc_type, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 386038, 1, 1), meta=np.ndarray&gt;</div><input id='attrs-3ed23c59-66e3-42df-8729-421fd74df365' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3ed23c59-66e3-42df-8729-421fd74df365' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-414eb972-da93-4479-8102-dcaddfff174b' class='xr-var-data-in' type='checkbox'><label for='data-414eb972-da93-4479-8102-dcaddfff174b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 86.52 GiB </td>
+                        <td> 1.47 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (940, 3088298, 4, 2) </td>
+                        <td> (1, 386038, 1, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 60160 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> uint32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="336" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="25" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="0" y1="0" x2="0" y2="25" />
+  <line x1="1" y1="0" x2="1" y2="25" />
+  <line x1="2" y1="0" x2="2" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="4" y1="0" x2="4" y2="25" />
+  <line x1="5" y1="0" x2="5" y2="25" />
+  <line x1="6" y1="0" x2="6" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="8" y1="0" x2="8" y2="25" />
+  <line x1="9" y1="0" x2="9" y2="25" />
+  <line x1="10" y1="0" x2="10" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="12" y1="0" x2="12" y2="25" />
+  <line x1="13" y1="0" x2="13" y2="25" />
+  <line x1="14" y1="0" x2="14" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="17" y1="0" x2="17" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="19" y1="0" x2="19" y2="25" />
+  <line x1="19" y1="0" x2="19" y2="25" />
+  <line x1="20" y1="0" x2="20" y2="25" />
+  <line x1="21" y1="0" x2="21" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="23" y1="0" x2="23" y2="25" />
+  <line x1="23" y1="0" x2="23" y2="25" />
+  <line x1="24" y1="0" x2="24" y2="25" />
+  <line x1="25" y1="0" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 25.412616514582485,0.0 25.412616514582485,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="12.706308" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >940</text>
+  <text x="45.412617" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,45.412617,12.706308)">1</text>
+
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="95" y1="6" x2="165" y2="76" />
+  <line x1="95" y1="12" x2="165" y2="83" />
+  <line x1="95" y1="19" x2="165" y2="89" />
+  <line x1="95" y1="25" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="95" y2="25" style="stroke-width:2" />
+  <line x1="103" y1="8" x2="103" y2="34" />
+  <line x1="112" y1="17" x2="112" y2="43" />
+  <line x1="121" y1="26" x2="121" y2="51" />
+  <line x1="130" y1="35" x2="130" y2="60" />
+  <line x1="139" y1="44" x2="139" y2="69" />
+  <line x1="147" y1="52" x2="147" y2="78" />
+  <line x1="156" y1="61" x2="156" y2="87" />
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 165.58823529411765,70.58823529411765 165.58823529411765,96.00085180870013 95.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="103" y1="8" x2="129" y2="8" />
+  <line x1="112" y1="17" x2="138" y2="17" />
+  <line x1="121" y1="26" x2="146" y2="26" />
+  <line x1="130" y1="35" x2="155" y2="35" />
+  <line x1="139" y1="44" x2="164" y2="44" />
+  <line x1="147" y1="52" x2="173" y2="52" />
+  <line x1="156" y1="61" x2="182" y2="61" />
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="107" y1="0" x2="178" y2="70" />
+  <line x1="120" y1="0" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 120.41261651458248,0.0 191.00085180870013,70.58823529411765 165.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+  <line x1="165" y1="76" x2="191" y2="76" />
+  <line x1="165" y1="83" x2="191" y2="83" />
+  <line x1="165" y1="89" x2="191" y2="89" />
+  <line x1="165" y1="96" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+  <line x1="178" y1="70" x2="178" y2="96" />
+  <line x1="191" y1="70" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="165.58823529411765,70.58823529411765 191.00085180870013,70.58823529411765 191.00085180870013,96.00085180870013 165.58823529411765,96.00085180870013" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="178.294544" y="116.000852" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="211.000852" y="83.294544" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,211.000852,83.294544)">4</text>
+  <text x="120.294118" y="80.706734" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,120.294118,80.706734)">3088298</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-0776251d-dbd8-4f5a-a129-56dff3f6347e' class='xr-section-summary-in' type='checkbox'  ><label for='section-0776251d-dbd8-4f5a-a129-56dff3f6347e' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-b02c7bfa-eaad-4e02-9041-d88ddc4f9468' class='xr-index-data-in' type='checkbox'/><label for='index-b02c7bfa-eaad-4e02-9041-d88ddc4f9468' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0-c0-PT-1JKYN&#x27;, &#x27;c0-c0-PT-1K2DA&#x27;, &#x27;c0-c0-PT-1LGRB&#x27;, &#x27;c0-c0-PT-1LVAN&#x27;,
+       &#x27;c0-c0-STL003&#x27;, &#x27;c0-c1-Other&#x27;, &#x27;c0-c1-PT-1LGRB&#x27;, &#x27;c0-c1-PT-1LVAN&#x27;,
+       &#x27;c0-c1-STL003&#x27;, &#x27;c0-c10-Other&#x27;,
+       ...
+       &#x27;c9-c5-PT-1K2DA&#x27;, &#x27;c9-c5-STL003&#x27;, &#x27;c9-c6-PT-1K2DA&#x27;, &#x27;c9-c6-STL003&#x27;,
+       &#x27;c9-c7-PT-1K2DA&#x27;, &#x27;c9-c7-STL003&#x27;, &#x27;c9-c8-PT-1K2DA&#x27;, &#x27;c9-c8-STL003&#x27;,
+       &#x27;c9-c9-PT-1K2DA&#x27;, &#x27;c9-c9-STL003&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=940))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom1k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-817a0998-2e12-4964-a1f9-6938c27309c0' class='xr-index-data-in' type='checkbox'/><label for='index-817a0998-2e12-4964-a1f9-6938c27309c0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chrY_57218&#x27;, &#x27;chrY_57219&#x27;, &#x27;chrY_57220&#x27;, &#x27;chrY_57221&#x27;, &#x27;chrY_57222&#x27;,
+       &#x27;chrY_57223&#x27;, &#x27;chrY_57224&#x27;, &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;, &#x27;chrY_57227&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom1k&#x27;, length=3088298))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0976b159-bbeb-48e0-bb1c-2d8025c50381' class='xr-index-data-in' type='checkbox'/><label for='index-0976b159-bbeb-48e0-bb1c-2d8025c50381' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>mc_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-59d8323b-4121-4cd1-b0f2-66e8d98c669a' class='xr-index-data-in' type='checkbox'/><label for='index-59d8323b-4121-4cd1-b0f2-66e8d98c669a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;CAN&#x27;, &#x27;CCN&#x27;, &#x27;CGN&#x27;, &#x27;CTN&#x27;], dtype=&#x27;object&#x27;, name=&#x27;mc_type&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3ecf3042-49a6-4d5b-bb5a-db8e69bb448c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3ecf3042-49a6-4d5b-bb5a-db8e69bb448c' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom1k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1048,6 +1752,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/6ada435195c4f20c341bfb4550fd339c3348b5c60d14112cb9791c92a827f05d.png" src="../_images/6ada435195c4f20c341bfb4550fd339c3348b5c60d14112cb9791c92a827f05d.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1067,6 +1777,12 @@
 
 <span class="n">exclude_chromosome</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">,</span> <span class="s1">&#39;chrL&#39;</span><span class="p">]</span>
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52872 chrom1k features removed due to overlapping (bedtools intersect -f 0.5) with black list regions.
+159777 chrom1k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
 </pre></div>
 </div>
 </div>
@@ -1114,6 +1830,12 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/b3de70b4b62e64501d774ab2c9aa41b3b7f7cf2458a3adc800fe764a03a64f9b.png" src="../_images/b3de70b4b62e64501d774ab2c9aa41b3b7f7cf2458a3adc800fe764a03a64f9b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1206,6 +1928,9 @@
     <span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">xx</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e46ffb239c2c29325ec04c59f5549223bf45bc11b14c0c667fe1fb27003a5365.png" src="../_images/e46ffb239c2c29325ec04c59f5549223bf45bc11b14c0c667fe1fb27003a5365.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1484,6 +2209,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9d7304027499e9b896a312ee9e173b5d4f6a3b5c39b941ef670d8108ca70dbc4.png" src="../_images/9d7304027499e9b896a312ee9e173b5d4f6a3b5c39b941ef670d8108ca70dbc4.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1550,6 +2278,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/ef90467eb4a83627a00fa1b36f656ecbf7e7849d1277c8300c9a6e59f132b3a0.png" src="../_images/ef90467eb4a83627a00fa1b36f656ecbf7e7849d1277c8300c9a6e59f132b3a0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1569,6 +2300,9 @@
 <span class="c1"># fig.savefig(f&#39;mCH_distribution/L1_mCcontext_corr_res50k.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ea3e2bd4fcb8b83bd22c4172d932fdb66be32f4898b647b70ff72df7c722e1d8.png" src="../_images/ea3e2bd4fcb8b83bd22c4172d932fdb66be32f4898b647b70ff72df7c722e1d8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1595,6 +2329,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCH_distribution/L1_mCcontext_corr_res50k_grouped.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6446727f898dd4bc1ae0449cbd65df4cf1b6329c92b423caf9b0fc45918738aa.png" src="../_images/6446727f898dd4bc1ae0449cbd65df4cf1b6329c92b423caf9b0fc45918738aa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1631,12 +2368,27 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cc69b427dbf82ff266ae1b682378056aad1f1f4854e5faa8fd97de2086f4b5f0.png" src="../_images/cc69b427dbf82ff266ae1b682378056aad1f1f4854e5faa8fd97de2086f4b5f0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rorder</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">rorder</span><span class="p">]</span>
 <span class="n">rorder</span> <span class="o">=</span> <span class="n">rorder</span><span class="p">[</span><span class="n">rorder</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
 <span class="n">rorder</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Epi Gas&#39;, &#39;Hema B&#39;, &#39;Hema Tmem&#39;, &#39;Hema NK&#39;, &#39;Epi Alv&#39;, &#39;Epi Ent&#39;,
+       &#39;Epi Krt/Lum&#39;, &#39;Glia Oligo&#39;, &#39;Mus Crd&#39;, &#39;Glia Astro&#39;, &#39;Mus Skl&#39;,
+       &#39;Epi Endcri&#39;, &#39;Fibro Brst&#39;, &#39;Endo Vsc&#39;, &#39;Epi Aci&#39;, &#39;Epi AdrCtx&#39;,
+       &#39;Hema Myeloid&#39;, &#39;Hema Mast&#39;, &#39;Hema Tnaive&#39;, &#39;Fibro Mus&#39;, &#39;Endo Lym&#39;,
+       &#39;Fibro Myo&#39;, &#39;Fibro GI&#39;, &#39;Fibro HT&#39;, &#39;Neu Schw&#39;, &#39;Fibro Adr&#39;, &#39;Epi Duc&#39;,
+       &#39;Epi BrstBasal&#39;, &#39;Fibro Sk&#39;, &#39;Perivascular&#39;, &#39;Epi TPB&#39;, &#39;Neu Exc&#39;,
+       &#39;Neu Inh&#39;],
+      dtype=&#39;object&#39;, name=&#39;L1_abbr&#39;)
 </pre></div>
 </div>
 </div>
@@ -1656,6 +2408,198 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ENSG00000148773</th>
+      <th>ENSG00000169057</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Glia Oligo</th>
+      <td>0.000000</td>
+      <td>4.084800</td>
+    </tr>
+    <tr>
+      <th>Glia Astro</th>
+      <td>0.000000</td>
+      <td>3.909978</td>
+    </tr>
+    <tr>
+      <th>Fibro Sk</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Mus Skl</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Fibro Mus</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Neu Exc</th>
+      <td>0.025779</td>
+      <td>3.726631</td>
+    </tr>
+    <tr>
+      <th>Neu Inh</th>
+      <td>0.033940</td>
+      <td>3.853428</td>
+    </tr>
+    <tr>
+      <th>Epi BrstBasal</th>
+      <td>0.094635</td>
+      <td>3.951848</td>
+    </tr>
+    <tr>
+      <th>Mus Crd</th>
+      <td>0.235423</td>
+      <td>5.071039</td>
+    </tr>
+    <tr>
+      <th>Fibro Brst</th>
+      <td>0.255602</td>
+      <td>4.483278</td>
+    </tr>
+    <tr>
+      <th>Fibro HT</th>
+      <td>0.471807</td>
+      <td>5.061506</td>
+    </tr>
+    <tr>
+      <th>Epi Aci</th>
+      <td>0.484369</td>
+      <td>4.423770</td>
+    </tr>
+    <tr>
+      <th>Epi AdrCtx</th>
+      <td>0.532674</td>
+      <td>4.487154</td>
+    </tr>
+    <tr>
+      <th>Epi Endcri</th>
+      <td>0.552820</td>
+      <td>4.615109</td>
+    </tr>
+    <tr>
+      <th>Perivascular</th>
+      <td>0.612850</td>
+      <td>4.816367</td>
+    </tr>
+    <tr>
+      <th>Fibro Myo</th>
+      <td>0.666318</td>
+      <td>3.082583</td>
+    </tr>
+    <tr>
+      <th>Epi Duc</th>
+      <td>0.701626</td>
+      <td>4.783900</td>
+    </tr>
+    <tr>
+      <th>Endo Vsc</th>
+      <td>0.768363</td>
+      <td>4.661057</td>
+    </tr>
+    <tr>
+      <th>Neu Schw</th>
+      <td>0.964160</td>
+      <td>4.504500</td>
+    </tr>
+    <tr>
+      <th>Fibro Adr</th>
+      <td>0.982481</td>
+      <td>4.961387</td>
+    </tr>
+    <tr>
+      <th>Hema Tnaive</th>
+      <td>1.085657</td>
+      <td>3.974897</td>
+    </tr>
+    <tr>
+      <th>Hema Mast</th>
+      <td>1.135399</td>
+      <td>4.938932</td>
+    </tr>
+    <tr>
+      <th>Epi Alv</th>
+      <td>1.246431</td>
+      <td>4.274445</td>
+    </tr>
+    <tr>
+      <th>Fibro GI</th>
+      <td>1.308829</td>
+      <td>3.925933</td>
+    </tr>
+    <tr>
+      <th>Endo Lym</th>
+      <td>1.702469</td>
+      <td>4.144449</td>
+    </tr>
+    <tr>
+      <th>Epi TPB</th>
+      <td>1.959691</td>
+      <td>3.591075</td>
+    </tr>
+    <tr>
+      <th>Epi Krt/Lum</th>
+      <td>2.186711</td>
+      <td>3.144146</td>
+    </tr>
+    <tr>
+      <th>Hema Myeloid</th>
+      <td>2.215862</td>
+      <td>4.237477</td>
+    </tr>
+    <tr>
+      <th>Hema B</th>
+      <td>2.363608</td>
+      <td>4.800878</td>
+    </tr>
+    <tr>
+      <th>Hema Tmem</th>
+      <td>2.840582</td>
+      <td>4.688213</td>
+    </tr>
+    <tr>
+      <th>Epi Gas</th>
+      <td>3.051971</td>
+      <td>3.181086</td>
+    </tr>
+    <tr>
+      <th>Hema NK</th>
+      <td>3.431730</td>
+      <td>4.720770</td>
+    </tr>
+    <tr>
+      <th>Epi Ent</th>
+      <td>3.622835</td>
+      <td>4.447084</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1667,6 +2611,12 @@
                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7fca12788d90&gt;
+</pre></div>
+</div>
+<img alt="../_images/27e332a35a4a351b6fe49896297f3352b9b394c314767829c86ed37fa490a255.png" src="../_images/27e332a35a4a351b6fe49896297f3352b9b394c314767829c86ed37fa490a255.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1683,6 +2633,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DNMT1 0 1 2.5714285714285716 0.01012799054939065
+DNMT1 1 3 -2.309401076758503 0.02092133533779403
+DNMT3A 0 1 -2.0 0.04550026389635839
+DNMT3A 0 3 -2.834978968421365 0.0045828702593285866
+DNMT3A 0 4 -2.04939015319192 0.04042397933690852
+DNMT3L 0 4 -2.04939015319192 0.04042397933690852
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1694,6 +2654,12 @@
         <span class="n">s</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="mf">0.05</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DNMT1 1 -2.3804761428476167 0.017290280592906253
+DNMT3A 0 -3.126610767803046 0.0017683387540660498
 </pre></div>
 </div>
 </div>
@@ -1717,6 +2683,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/591e219eba905cce25fbc81dfb9f0f332661c15100a6f6f3a1934bd506997a7a.png" src="../_images/591e219eba905cce25fbc81dfb9f0f332661c15100a6f6f3a1934bd506997a7a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1732,6 +2701,9 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4c50c0f90537cba3b1c0898689d9ce972c5b10222392b0bf6beabb948d0fd5fa.png" src="../_images/4c50c0f90537cba3b1c0898689d9ce972c5b10222392b0bf6beabb948d0fd5fa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1768,6 +2740,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/b6ad6e991de84f167ef907090f12b245ca60657ac5567babbcf1080ef6f16ef1.png" src="../_images/b6ad6e991de84f167ef907090f12b245ca60657ac5567babbcf1080ef6f16ef1.png" />
+<img alt="../_images/da2cde582a49f63b6542ba3d171292219de5301af29e5f96cf205f915219cb22.png" src="../_images/da2cde582a49f63b6542ba3d171292219de5301af29e5f96cf205f915219cb22.png" />
+<img alt="../_images/e0e6055b9545b3ec7efb3ec65bb937ba47b84713577f25bfceccc4f592a9a33c.png" src="../_images/e0e6055b9545b3ec7efb3ec65bb937ba47b84713577f25bfceccc4f592a9a33c.png" />
+<img alt="../_images/5812668de433b18e1ae74ee86d173f3161f213e93dfb6995ed912aa925ab2f19.png" src="../_images/5812668de433b18e1ae74ee86d173f3161f213e93dfb6995ed912aa925ab2f19.png" />
+<img alt="../_images/9c40bd4e663020e82d00b0cb0348f56ad94b286414793e6b7539b6c8f6a6aa45.png" src="../_images/9c40bd4e663020e82d00b0cb0348f56ad94b286414793e6b7539b6c8f6a6aa45.png" />
+<img alt="../_images/074e481bdc92c366fc857a2f8e9a4096f57db1aef8d5c9a62f3bf5cccc8625b1.png" src="../_images/074e481bdc92c366fc857a2f8e9a4096f57db1aef8d5c9a62f3bf5cccc8625b1.png" />
+<img alt="../_images/9deafbdd3cc3e8e01bfaea029969431c57fc7650f16d73da774ac20ff0b3bd81.png" src="../_images/9deafbdd3cc3e8e01bfaea029969431c57fc7650f16d73da774ac20ff0b3bd81.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1781,6 +2762,24 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0064a74993a3686feab4dfd28d2614aedd572eab3e664042f98acf46f9117f75.png" src="../_images/0064a74993a3686feab4dfd28d2614aedd572eab3e664042f98acf46f9117f75.png" />
+<img alt="../_images/9e388134c6a887fcaf9bc5f74c516986d9f5f30e77a739dda52fa78fd7b8ad44.png" src="../_images/9e388134c6a887fcaf9bc5f74c516986d9f5f30e77a739dda52fa78fd7b8ad44.png" />
+<img alt="../_images/78d77b2b5ea3f72f44006739f784cab9d947bab5b292aca06186aa75aac28b3f.png" src="../_images/78d77b2b5ea3f72f44006739f784cab9d947bab5b292aca06186aa75aac28b3f.png" />
+<img alt="../_images/90852987c681f5824ae2c7a646200ffa075de635168f3e3c341a7729964aff00.png" src="../_images/90852987c681f5824ae2c7a646200ffa075de635168f3e3c341a7729964aff00.png" />
+<img alt="../_images/7d2f3ed774eea588dca2240a8a866aa46f88f6ae77579cd5305c5d173a91a815.png" src="../_images/7d2f3ed774eea588dca2240a8a866aa46f88f6ae77579cd5305c5d173a91a815.png" />
+<img alt="../_images/9514c11caee65b04057827a40b0a8fd7b302b1a7743b67cb4aaf62c9b05251da.png" src="../_images/9514c11caee65b04057827a40b0a8fd7b302b1a7743b67cb4aaf62c9b05251da.png" />
+<img alt="../_images/3ba786a3551660c21f70a5bbe15512c8f6c4c9ad8f26031b8e1c5cb30af097f2.png" src="../_images/3ba786a3551660c21f70a5bbe15512c8f6c4c9ad8f26031b8e1c5cb30af097f2.png" />
+<img alt="../_images/1742e51543364a1144ec7c03cb02835c7ff35a98eaac03404d3f9d1087981c27.png" src="../_images/1742e51543364a1144ec7c03cb02835c7ff35a98eaac03404d3f9d1087981c27.png" />
+<img alt="../_images/f200c29a2d3816bb59b750522d8d5b84b1efdc662bc33b350e2e48d815e9b85a.png" src="../_images/f200c29a2d3816bb59b750522d8d5b84b1efdc662bc33b350e2e48d815e9b85a.png" />
+<img alt="../_images/8f9cfa35586c97c2848bb014f776ca06aae36ca2fa185881eb1dcd7b8dc45642.png" src="../_images/8f9cfa35586c97c2848bb014f776ca06aae36ca2fa185881eb1dcd7b8dc45642.png" />
+<img alt="../_images/3fff5e33232e85236898bdf9258fb409fd716718886649dbd2b24de7db772343.png" src="../_images/3fff5e33232e85236898bdf9258fb409fd716718886649dbd2b24de7db772343.png" />
+<img alt="../_images/6fd5189874e6442604f29e285db7dae2752b9a43c65d48d07088472ab58c852c.png" src="../_images/6fd5189874e6442604f29e285db7dae2752b9a43c65d48d07088472ab58c852c.png" />
+<img alt="../_images/28c7fdcceddc9c070b5c302f87b6e4a6687c7dfff4d2e5402d99a469db7764f7.png" src="../_images/28c7fdcceddc9c070b5c302f87b6e4a6687c7dfff4d2e5402d99a469db7764f7.png" />
+<img alt="../_images/687db1780faeb0a4bb31bd4ed0ed0fd6a889a43ba7f9c5d162adf7b66ee69b3f.png" src="../_images/687db1780faeb0a4bb31bd4ed0ed0fd6a889a43ba7f9c5d162adf7b66ee69b3f.png" />
+<img alt="../_images/c63c8ab7670049010a371dfe83cf464aa5ca855bbed90edf6cec9da52a3d12d1.png" src="../_images/c63c8ab7670049010a371dfe83cf464aa5ca855bbed90edf6cec9da52a3d12d1.png" />
+<img alt="../_images/c18a3d16f11da613beb5bdad981e27d1c037d9ec09e451d867032f1eb5c7e186.png" src="../_images/c18a3d16f11da613beb5bdad981e27d1c037d9ec09e451d867032f1eb5c7e186.png" />
 </div>
 </div>
 </section>

@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="diffcomp-majortype">
 <h1>5. Diffcomp majortype<a class="headerlink" href="#diffcomp-majortype" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -596,6 +592,317 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom</th>
+      <th>start</th>
+      <th>end</th>
+      <th>raw_binfilter</th>
+      <th>c6</th>
+      <th>c3</th>
+      <th>c8</th>
+      <th>c20</th>
+      <th>c4</th>
+      <th>c9</th>
+      <th>...</th>
+      <th>c5</th>
+      <th>c12</th>
+      <th>c27</th>
+      <th>c21</th>
+      <th>c10</th>
+      <th>c7</th>
+      <th>c15</th>
+      <th>c24</th>
+      <th>c0</th>
+      <th>c1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chr1</td>
+      <td>0</td>
+      <td>100000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>chr1</td>
+      <td>100000</td>
+      <td>200000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>chr1</td>
+      <td>200000</td>
+      <td>300000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>chr1</td>
+      <td>300000</td>
+      <td>400000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>chr1</td>
+      <td>400000</td>
+      <td>500000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>28755</th>
+      <td>chr22</td>
+      <td>50400000</td>
+      <td>50500000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>28756</th>
+      <td>chr22</td>
+      <td>50500000</td>
+      <td>50600000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>28757</th>
+      <td>chr22</td>
+      <td>50600000</td>
+      <td>50700000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>28758</th>
+      <td>chr22</td>
+      <td>50700000</td>
+      <td>50800000</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>28759</th>
+      <td>chr22</td>
+      <td>50800000</td>
+      <td>50818468</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>28760 rows × 39 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -604,6 +911,11 @@
 <span class="n">comp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">comp</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">comp</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">comp</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">comp</span><span class="p">[</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(24478, 39)
 </pre></div>
 </div>
 </div>
@@ -618,6 +930,101 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom</th>
+      <th>start</th>
+      <th>end</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1-19</th>
+      <td>chr1</td>
+      <td>1900000</td>
+      <td>2000000</td>
+    </tr>
+    <tr>
+      <th>chr1-20</th>
+      <td>chr1</td>
+      <td>2000000</td>
+      <td>2100000</td>
+    </tr>
+    <tr>
+      <th>chr1-21</th>
+      <td>chr1</td>
+      <td>2100000</td>
+      <td>2200000</td>
+    </tr>
+    <tr>
+      <th>chr1-28</th>
+      <td>chr1</td>
+      <td>2800000</td>
+      <td>2900000</td>
+    </tr>
+    <tr>
+      <th>chr1-29</th>
+      <td>chr1</td>
+      <td>2900000</td>
+      <td>3000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr22-499</th>
+      <td>chr22</td>
+      <td>49900000</td>
+      <td>50000000</td>
+    </tr>
+    <tr>
+      <th>chr22-500</th>
+      <td>chr22</td>
+      <td>50000000</td>
+      <td>50100000</td>
+    </tr>
+    <tr>
+      <th>chr22-501</th>
+      <td>chr22</td>
+      <td>50100000</td>
+      <td>50200000</td>
+    </tr>
+    <tr>
+      <th>chr22-502</th>
+      <td>chr22</td>
+      <td>50200000</td>
+      <td>50300000</td>
+    </tr>
+    <tr>
+      <th>chr22-503</th>
+      <td>chr22</td>
+      <td>50300000</td>
+      <td>50400000</td>
+    </tr>
+  </tbody>
+</table>
+<p>24478 rows × 3 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -667,6 +1074,317 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chr</th>
+      <th>start</th>
+      <th>end</th>
+      <th>c33_100Kb</th>
+      <th>c3_100Kb</th>
+      <th>c22_100Kb</th>
+      <th>c9_100Kb</th>
+      <th>c20_100Kb</th>
+      <th>c25_100Kb</th>
+      <th>c30_100Kb</th>
+      <th>...</th>
+      <th>c26</th>
+      <th>c5</th>
+      <th>c10</th>
+      <th>c16</th>
+      <th>c21</th>
+      <th>c12</th>
+      <th>sample_maha</th>
+      <th>pval</th>
+      <th>padj</th>
+      <th>dist_clust</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1_19</th>
+      <td>chr1</td>
+      <td>1900000</td>
+      <td>2000000</td>
+      <td>1.50038</td>
+      <td>1.49736</td>
+      <td>1.52027</td>
+      <td>1.49891</td>
+      <td>1.48175</td>
+      <td>1.46884</td>
+      <td>1.46135</td>
+      <td>...</td>
+      <td>1.48175</td>
+      <td>1.42890</td>
+      <td>1.43182</td>
+      <td>1.46672</td>
+      <td>1.47424</td>
+      <td>1.48702</td>
+      <td>0.113575</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr1_20</th>
+      <td>chr1</td>
+      <td>2000000</td>
+      <td>2100000</td>
+      <td>1.51140</td>
+      <td>1.47234</td>
+      <td>1.50257</td>
+      <td>1.51268</td>
+      <td>1.49106</td>
+      <td>1.49177</td>
+      <td>1.46055</td>
+      <td>...</td>
+      <td>1.43866</td>
+      <td>1.32034</td>
+      <td>1.42587</td>
+      <td>1.48495</td>
+      <td>1.43344</td>
+      <td>1.47234</td>
+      <td>2.330744</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr1_21</th>
+      <td>chr1</td>
+      <td>2100000</td>
+      <td>2200000</td>
+      <td>1.50591</td>
+      <td>1.48251</td>
+      <td>1.48841</td>
+      <td>1.50414</td>
+      <td>1.49891</td>
+      <td>1.50038</td>
+      <td>1.43629</td>
+      <td>...</td>
+      <td>1.44790</td>
+      <td>1.34475</td>
+      <td>1.43149</td>
+      <td>1.49057</td>
+      <td>1.49644</td>
+      <td>1.47640</td>
+      <td>1.324412</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr1_28</th>
+      <td>chr1</td>
+      <td>2800000</td>
+      <td>2900000</td>
+      <td>1.08871</td>
+      <td>1.10611</td>
+      <td>1.10611</td>
+      <td>0.80636</td>
+      <td>1.20194</td>
+      <td>0.87901</td>
+      <td>1.26623</td>
+      <td>...</td>
+      <td>0.76426</td>
+      <td>0.55477</td>
+      <td>1.41301</td>
+      <td>1.39158</td>
+      <td>1.35039</td>
+      <td>0.66988</td>
+      <td>1063.448956</td>
+      <td>2.391130e-201</td>
+      <td>3.589261e-201</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr1_29</th>
+      <td>chr1</td>
+      <td>2900000</td>
+      <td>3000000</td>
+      <td>1.11019</td>
+      <td>1.10823</td>
+      <td>1.18195</td>
+      <td>0.82589</td>
+      <td>1.27755</td>
+      <td>0.92879</td>
+      <td>1.35686</td>
+      <td>...</td>
+      <td>0.85469</td>
+      <td>0.68270</td>
+      <td>1.41102</td>
+      <td>1.40569</td>
+      <td>1.40481</td>
+      <td>0.70998</td>
+      <td>792.510638</td>
+      <td>1.490513e-144</td>
+      <td>2.159118e-144</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr9_1369</th>
+      <td>chr9</td>
+      <td>136900000</td>
+      <td>137000000</td>
+      <td>1.47252</td>
+      <td>1.43490</td>
+      <td>1.37531</td>
+      <td>1.46030</td>
+      <td>1.33106</td>
+      <td>1.42084</td>
+      <td>1.30180</td>
+      <td>...</td>
+      <td>1.49570</td>
+      <td>1.50316</td>
+      <td>1.41170</td>
+      <td>1.38070</td>
+      <td>1.45482</td>
+      <td>1.50113</td>
+      <td>0.089320</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr9_1370</th>
+      <td>chr9</td>
+      <td>137000000</td>
+      <td>137100000</td>
+      <td>1.47449</td>
+      <td>1.45027</td>
+      <td>1.39156</td>
+      <td>1.48431</td>
+      <td>1.38244</td>
+      <td>1.43194</td>
+      <td>1.31692</td>
+      <td>...</td>
+      <td>1.51918</td>
+      <td>1.50610</td>
+      <td>1.39156</td>
+      <td>1.36098</td>
+      <td>1.46968</td>
+      <td>1.51490</td>
+      <td>0.374852</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr9_1371</th>
+      <td>chr9</td>
+      <td>137100000</td>
+      <td>137200000</td>
+      <td>1.43963</td>
+      <td>1.46818</td>
+      <td>1.40489</td>
+      <td>1.46420</td>
+      <td>1.44661</td>
+      <td>1.45596</td>
+      <td>1.25562</td>
+      <td>...</td>
+      <td>1.53675</td>
+      <td>1.47531</td>
+      <td>1.37945</td>
+      <td>1.37142</td>
+      <td>1.47155</td>
+      <td>1.51201</td>
+      <td>4.112428</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr9_1372</th>
+      <td>chr9</td>
+      <td>137200000</td>
+      <td>137300000</td>
+      <td>1.46120</td>
+      <td>1.46734</td>
+      <td>1.39504</td>
+      <td>1.44155</td>
+      <td>1.47975</td>
+      <td>1.47449</td>
+      <td>1.25122</td>
+      <td>...</td>
+      <td>1.55724</td>
+      <td>1.46217</td>
+      <td>1.42338</td>
+      <td>1.41617</td>
+      <td>1.46030</td>
+      <td>1.51380</td>
+      <td>6.803561</td>
+      <td>9.999999e-01</td>
+      <td>1.000000e+00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>chr9_1376</th>
+      <td>chr9</td>
+      <td>137600000</td>
+      <td>137700000</td>
+      <td>1.40155</td>
+      <td>1.50396</td>
+      <td>1.49953</td>
+      <td>1.30708</td>
+      <td>1.49953</td>
+      <td>1.40312</td>
+      <td>1.34952</td>
+      <td>...</td>
+      <td>1.45596</td>
+      <td>1.55857</td>
+      <td>1.11903</td>
+      <td>1.21528</td>
+      <td>1.34674</td>
+      <td>1.42453</td>
+      <td>665.821998</td>
+      <td>2.996008e-118</td>
+      <td>4.255573e-118</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>24478 rows × 77 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -705,6 +1423,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24478
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,6 +1449,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>768
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -741,6 +1469,9 @@
                     <span class="n">xticklabels</span><span class="o">=</span><span class="n">comp</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8819781fb944a1170abbc27710bed392fdc403d06615360e144cc6f78ac23ba2.png" src="../_images/8819781fb944a1170abbc27710bed392fdc403d06615360e144cc6f78ac23ba2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -767,6 +1498,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cac0bfb01fd56877165fcde1fa6ab65edde5dd9ced288c971189ce49d0f83f58.png" src="../_images/cac0bfb01fd56877165fcde1fa6ab65edde5dd9ced288c971189ce49d0f83f58.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -790,6 +1524,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.012191405136921468
+0.0054554775680507915
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -797,6 +1537,8 @@
 <span class="n">binall</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">binall</span><span class="p">[</span><span class="s1">&#39;logPadj&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;logPadj&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -808,6 +1550,209 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chr</th>
+      <th>start</th>
+      <th>end</th>
+      <th>sample_maha</th>
+      <th>pval</th>
+      <th>padj</th>
+      <th>mCG_corr</th>
+      <th>mCH_corr</th>
+      <th>logPadj</th>
+      <th>mCG_std</th>
+      <th>mCH_std</th>
+      <th>comp_std</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1_19</th>
+      <td>chr1</td>
+      <td>1900000</td>
+      <td>2000000</td>
+      <td>0.113575</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>0.309247</td>
+      <td>0.377767</td>
+      <td>-0.000000</td>
+      <td>0.055201</td>
+      <td>0.009646</td>
+      <td>0.028466</td>
+    </tr>
+    <tr>
+      <th>chr1_20</th>
+      <td>chr1</td>
+      <td>2000000</td>
+      <td>2100000</td>
+      <td>2.330744</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>0.069742</td>
+      <td>0.238222</td>
+      <td>-0.000000</td>
+      <td>0.048166</td>
+      <td>0.007169</td>
+      <td>0.041597</td>
+    </tr>
+    <tr>
+      <th>chr1_21</th>
+      <td>chr1</td>
+      <td>2100000</td>
+      <td>2200000</td>
+      <td>1.324412</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>0.120032</td>
+      <td>0.077852</td>
+      <td>-0.000000</td>
+      <td>0.054712</td>
+      <td>0.003443</td>
+      <td>0.034441</td>
+    </tr>
+    <tr>
+      <th>chr1_28</th>
+      <td>chr1</td>
+      <td>2800000</td>
+      <td>2900000</td>
+      <td>1063.448956</td>
+      <td>2.391130e-201</td>
+      <td>3.589261e-201</td>
+      <td>-0.012764</td>
+      <td>0.167616</td>
+      <td>200.444995</td>
+      <td>0.123017</td>
+      <td>0.010848</td>
+      <td>0.283836</td>
+    </tr>
+    <tr>
+      <th>chr1_29</th>
+      <td>chr1</td>
+      <td>2900000</td>
+      <td>3000000</td>
+      <td>792.510638</td>
+      <td>1.490513e-144</td>
+      <td>2.159118e-144</td>
+      <td>-0.071177</td>
+      <td>0.179299</td>
+      <td>143.665724</td>
+      <td>0.129803</td>
+      <td>0.012099</td>
+      <td>0.266026</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr9_1369</th>
+      <td>chr9</td>
+      <td>136900000</td>
+      <td>137000000</td>
+      <td>0.089320</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>0.054787</td>
+      <td>-0.253586</td>
+      <td>-0.000000</td>
+      <td>0.034190</td>
+      <td>0.006216</td>
+      <td>0.069177</td>
+    </tr>
+    <tr>
+      <th>chr9_1370</th>
+      <td>chr9</td>
+      <td>137000000</td>
+      <td>137100000</td>
+      <td>0.374852</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>0.044765</td>
+      <td>-0.207306</td>
+      <td>-0.000000</td>
+      <td>0.034865</td>
+      <td>0.005395</td>
+      <td>0.077893</td>
+    </tr>
+    <tr>
+      <th>chr9_1371</th>
+      <td>chr9</td>
+      <td>137100000</td>
+      <td>137200000</td>
+      <td>4.112428</td>
+      <td>1.000000e+00</td>
+      <td>1.000000e+00</td>
+      <td>-0.020589</td>
+      <td>-0.193968</td>
+      <td>-0.000000</td>
+      <td>0.042190</td>
+      <td>0.002387</td>
+      <td>0.098444</td>
+    </tr>
+    <tr>
+      <th>chr9_1372</th>
+      <td>chr9</td>
+      <td>137200000</td>
+      <td>137300000</td>
+      <td>6.803561</td>
+      <td>9.999999e-01</td>
+      <td>1.000000e+00</td>
+      <td>-0.006165</td>
+      <td>-0.171149</td>
+      <td>-0.000000</td>
+      <td>0.049978</td>
+      <td>0.004447</td>
+      <td>0.103546</td>
+    </tr>
+    <tr>
+      <th>chr9_1376</th>
+      <td>chr9</td>
+      <td>137600000</td>
+      <td>137700000</td>
+      <td>665.821998</td>
+      <td>2.996008e-118</td>
+      <td>4.255573e-118</td>
+      <td>-0.005210</td>
+      <td>0.099970</td>
+      <td>117.371042</td>
+      <td>0.032057</td>
+      <td>0.005158</td>
+      <td>0.235895</td>
+    </tr>
+  </tbody>
+</table>
+<p>24478 rows × 12 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -827,10 +1772,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/3a7eb9d981a1d0726b53c3e1b14906a0d90b900660c7ffcd0ad2bb32512f3be6.png" src="../_images/3a7eb9d981a1d0726b53c3e1b14906a0d90b900660c7ffcd0ad2bb32512f3be6.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">binall</span><span class="p">[</span><span class="s1">&#39;sample_maha&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>768
 </pre></div>
 </div>
 </div>
@@ -845,6 +1798,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;logPadj&#39;, ylabel=&#39;sample_maha&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/cc5429a56219682e482b7e27108d71345dbf7df16e30c365c93e4017776c1335.png" src="../_images/cc5429a56219682e482b7e27108d71345dbf7df16e30c365c93e4017776c1335.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -858,6 +1817,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7f1bea016c20&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f1bea016e30&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f1bea2fa050&gt;]
+</pre></div>
+</div>
+<img alt="../_images/bd15ecfbe81739efd60d3b81e24b0230bb1f239f9ed59cd0734dd10970cc0ae7.png" src="../_images/bd15ecfbe81739efd60d3b81e24b0230bb1f239f9ed59cd0734dd10970cc0ae7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -870,6 +1837,14 @@
 <span class="c1"># plt.savefig(f&#39;majortype_{group_name}_diffcomp_statscorr.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7f1bea28aa10&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f1bea28a9e0&gt;,
+ &lt;matplotlib.axis.XTick at 0x7f1be9baf4c0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/7d8f413e7c854fb4d4341370c64d2225547f8299281dc87f6562ad50ffaa30a7.png" src="../_images/7d8f413e7c854fb4d4341370c64d2225547f8299281dc87f6562ad50ffaa30a7.png" />
 </div>
 </div>
 </section>

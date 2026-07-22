@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mcg-distribution">
 <h1>1. MCG distribution<a class="headerlink" href="#mcg-distribution" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -596,6 +592,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;,
+       &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;,
+       &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;,
+       &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;,
+       &#39;cluster&#39;, &#39;Short/Long&#39;, &#39;mcg_L2&#39;, &#39;hic_L2&#39;, &#39;L2_final&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -619,6 +625,48 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L1
+c2     0.588047
+c35    0.626935
+c22    0.673768
+c17    0.691413
+c19    0.693769
+c1     0.698092
+c4     0.711920
+c3     0.712255
+c9     0.713150
+c32    0.715011
+c28    0.715188
+c23    0.717301
+c11    0.719771
+c21    0.722778
+c5     0.729060
+c13    0.729830
+c12    0.733715
+c18    0.733815
+c20    0.734460
+c6     0.735536
+c33    0.738423
+c30    0.746282
+c29    0.748670
+c8     0.751361
+c34    0.751656
+c14    0.760122
+c26    0.762705
+c25    0.765780
+c31    0.773338
+c0     0.776169
+c24    0.776419
+c10    0.777363
+c27    0.782516
+c36    0.805974
+c15    0.805996
+c16    0.812916
+Name: mCGFrac, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -639,6 +687,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/aaaba4b01abd5187433a415a7d829da0bf0f1dbaea5a0abd37fc918aa85b30a0.png" src="../_images/aaaba4b01abd5187433a415a7d829da0bf0f1dbaea5a0abd37fc918aa85b30a0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -656,6 +707,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/46f3d08633daee1167f8465764fa4116d5f9bdbc6a3743e602a66cfcf7a5a910.png" src="../_images/46f3d08633daee1167f8465764fa4116d5f9bdbc6a3743e602a66cfcf7a5a910.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -683,6 +737,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/bd81a26bc46c0b6ed336f486b10f31e0ff12454a5a1a96ec45669d2cb0042f1e.png" src="../_images/bd81a26bc46c0b6ed336f486b10f31e0ff12454a5a1a96ec45669d2cb0042f1e.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -699,6 +756,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;mCG_distribution/L1_cellglobalCG_box.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/149ee1531e6c1c7ba44d8d9425284be213bdb411814c18e07732069701485d23.png" src="../_images/149ee1531e6c1c7ba44d8d9425284be213bdb411814c18e07732069701485d23.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -736,6 +796,12 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;cell_ave&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;cell_ave&#39;)
+</pre></div>
+</div>
+<img alt="../_images/c8f7d16e16cfe0854ddd978d69505c331fc26bcbf0dbf5e1a14e7985b6c98014.png" src="../_images/c8f7d16e16cfe0854ddd978d69505c331fc26bcbf0dbf5e1a14e7985b6c98014.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -850,6 +916,19 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Epi TPB&#39;, &#39;Hema Bmem&#39;, &#39;Epi Aci&#39;, &#39;Fibro Brst&#39;, &#39;Fibro EndN&#39;,
+       &#39;Hema Tmem&#39;, &#39;Epi Gas&#39;, &#39;Endo Vsc&#39;, &#39;Epi AdrCtx&#39;, &#39;Fibro Mus&#39;,
+       &#39;Fibro EpiN&#39;, &#39;Fibro Sk&#39;, &#39;Fibro HT&#39;, &#39;Neu Schw&#39;, &#39;Mus Skl&#39;,
+       &#39;Epi Endcri&#39;, &#39;Perivascular&#39;, &#39;Epi Krt/Lum&#39;, &#39;Epi Alv&#39;, &#39;Fibro GI&#39;,
+       &#39;Endo Lym&#39;, &#39;Epi Duc&#39;, &#39;Fibro Adr&#39;, &#39;Epi Ent&#39;, &#39;Fibro Myo&#39;,
+       &#39;Glia Oligo&#39;, &#39;Mus Crd&#39;, &#39;Epi BrstBasal&#39;, &#39;Glia Astro&#39;, &#39;Hema Myeloid&#39;,
+       &#39;Hema Mast&#39;, &#39;Neu Exc&#39;, &#39;Hema NK&#39;, &#39;Hema Bnaive&#39;, &#39;Hema Tnaive&#39;,
+       &#39;Neu Inh&#39;],
+      dtype=&#39;object&#39;, name=&#39;L1&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -860,10 +939,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/69bdcdf90db9cf01fbd46c76b95d0b4cba9d1e39da25586d437775d7fa0e4373.png" src="../_images/69bdcdf90db9cf01fbd46c76b95d0b4cba9d1e39da25586d437775d7fa0e4373.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">corder</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c35&#39;, &#39;c2&#39;, &#39;c9&#39;, &#39;c3&#39;, &#39;c1&#39;, &#39;c22&#39;, &#39;c26&#39;, &#39;c20&#39;, &#39;c30&#39;, &#39;c33&#39;, &#39;c8&#39;,
+       &#39;c34&#39;, &#39;c32&#39;, &#39;c19&#39;, &#39;c17&#39;, &#39;c4&#39;, &#39;c23&#39;, &#39;c28&#39;, &#39;c21&#39;, &#39;c12&#39;, &#39;c6&#39;,
+       &#39;c11&#39;, &#39;c13&#39;, &#39;c5&#39;, &#39;c29&#39;, &#39;c18&#39;, &#39;c10&#39;, &#39;c31&#39;, &#39;c14&#39;, &#39;c25&#39;, &#39;c27&#39;,
+       &#39;c24&#39;, &#39;c0&#39;, &#39;c15&#39;, &#39;c36&#39;, &#39;c16&#39;],
+      dtype=&#39;object&#39;, name=&#39;L1&#39;)
 </pre></div>
 </div>
 </div>
@@ -883,6 +974,18 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg_order</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Epi TPB&#39;, &#39;Hema Bmem&#39;, &#39;Epi Aci&#39;, &#39;Hema Tmem&#39;, &#39;Endo Vsc&#39;,
+       &#39;Epi AdrCtx&#39;, &#39;Fibro Brst&#39;, &#39;Fibro Mus&#39;, &#39;Fibro EndN&#39;, &#39;Epi Gas&#39;,
+       &#39;Fibro Sk&#39;, &#39;Fibro EpiN&#39;, &#39;Neu Schw&#39;, &#39;Perivascular&#39;, &#39;Fibro GI&#39;,
+       &#39;Fibro HT&#39;, &#39;Epi Endcri&#39;, &#39;Mus Skl&#39;, &#39;Fibro Adr&#39;, &#39;Epi Krt/Lum&#39;,
+       &#39;Mus Crd&#39;, &#39;Epi Alv&#39;, &#39;Epi Duc&#39;, &#39;Endo Lym&#39;, &#39;Epi Ent&#39;, &#39;Fibro Myo&#39;,
+       &#39;Neu Exc&#39;, &#39;Glia Astro&#39;, &#39;Glia Oligo&#39;, &#39;Epi BrstBasal&#39;, &#39;Hema NK&#39;,
+       &#39;Hema Mast&#39;, &#39;Hema Myeloid&#39;, &#39;Hema Tnaive&#39;, &#39;Hema Bnaive&#39;, &#39;Neu Inh&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -914,6 +1017,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/7656d504b63f61288c84f5a60def9dcac8b40e9fcd18ac5d4db88ff5b626359d.png" src="../_images/7656d504b63f61288c84f5a60def9dcac8b40e9fcd18ac5d4db88ff5b626359d.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -933,6 +1039,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b7d75431318b2b8599f96d6e84667d6b5ddef375110154697707b678662f330.png" src="../_images/8b7d75431318b2b8599f96d6e84667d6b5ddef375110154697707b678662f330.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -940,6 +1049,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg  width="550" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#eaf7e6;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#d8f0d2;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#c1e6ba;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#a4da9e;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#84cc83;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#62bb6d;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#3fa85b;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#289049;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#107a37;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="495" y="0" width="55" height="55" style="fill:#006227;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -960,6 +1071,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;mCG_distribution/L1_siteCG_multires_hist.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6a8f83981b4eaae449e5cf18dd121be6bcf99a2c502ea5a5ad9dffc1a51b30c1.png" src="../_images/6a8f83981b4eaae449e5cf18dd121be6bcf99a2c502ea5a5ad9dffc1a51b30c1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1018,6 +1132,144 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530541433338049
+c2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530693135262965
+c35
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530225418383862
+c22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530934222673176
+c1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531112183594335
+c3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530857000083285
+c9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531338603689249
+c17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531255217551007
+c32
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530899789196531
+c19
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.953108342217484
+c4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530916488794023
+c23
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531564150266545
+c28
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.953147266923904
+c21
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531644409640361
+c12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.953124739813165
+c6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531528529779258
+c11
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531081971039622
+c13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530478924811717
+c5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531071419633099
+c29
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530676892297433
+c18
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531287790964363
+c26
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531190043210598
+c20
+0.953137005980022
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c30
+0.9531547638939946
+c33
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530427686363333
+c8
+0.9531782919815421
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34
+0.9531857824721572
+c10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531672395955011
+c31
+0.9530909030334327
+c14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531347740143623
+c25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9531257816538545
+c27
+0.9530533268836217
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c24
+0.9530517212705804
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
+0.9530675690317634
+c15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.953186943422052
+c36
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9530476111064787
+c16
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1069,6 +1321,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/bd5988242d361711c17b99c7e76a9cad58da6d32e01b6dcf7543b82181755081.png" src="../_images/bd5988242d361711c17b99c7e76a9cad58da6d32e01b6dcf7543b82181755081.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1087,10 +1342,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/593608785b69104bddd30a4f7148ebd0cbe21df37e31f7d9eb99759c1767aadb.png" src="../_images/593608785b69104bddd30a4f7148ebd0cbe21df37e31f7d9eb99759c1767aadb.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">//</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>180000
 </pre></div>
 </div>
 </div>
@@ -1122,6 +1385,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0360235420fe94ca8136d5ec018a01d962a181188d67443a25ef08db10d69169.png" src="../_images/0360235420fe94ca8136d5ec018a01d962a181188d67443a25ef08db10d69169.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1173,6 +1439,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7fc0b753af20&gt;
+</pre></div>
+</div>
+<img alt="../_images/e829c8e881753e15422836cd598ae2356b2cb04ba4dcf92d8f59cff2f3aa281a.png" src="../_images/e829c8e881753e15422836cd598ae2356b2cb04ba4dcf92d8f59cff2f3aa281a.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1194,12 +1466,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0b578ee23c17199179314a96deed2578ab00a196d05210cf4080f8538d4c524f.png" src="../_images/0b578ee23c17199179314a96deed2578ab00a196d05210cf4080f8538d4c524f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">result</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f381e2a7c40&gt;
+</pre></div>
+</div>
+<img alt="../_images/0ad969ed4426b148f15113c0d109b301534a6606b0c6994cd61934c8decb21a2.png" src="../_images/0ad969ed4426b148f15113c0d109b301534a6606b0c6994cd61934c8decb21a2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1208,10 +1489,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22026.465794806718
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp2</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32768.0
 </pre></div>
 </div>
 </div>
@@ -1238,6 +1529,13 @@
 <span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7fbf1296b100&gt;
+</pre></div>
+</div>
+<img alt="../_images/bb67eec96f44d6bb04688f4c61c4eb1d973028cc94bdcb30c077a67cb7577180.png" src="../_images/bb67eec96f44d6bb04688f4c61c4eb1d973028cc94bdcb30c077a67cb7577180.png" />
+<img alt="../_images/56aa3fe5bcccb0a79133f42fe1d5ecb74293a663781212fd0e6818a9395925d0.png" src="../_images/56aa3fe5bcccb0a79133f42fe1d5ecb74293a663781212fd0e6818a9395925d0.png" />
 </div>
 </div>
 </section>

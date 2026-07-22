@@ -522,14 +522,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="decay-compartment">
 <h1>2. Decay compartment<a class="headerlink" href="#decay-compartment" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map, run order, and data inputs. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>).</p>
+<p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="c1"># All absolute paths below resolve from these two roots; the working directory</span>
-<span class="c1"># is the original analysis/ folder, and repro_guard prevents any existing file</span>
-<span class="c1"># from being overwritten when you re-run this notebook. See the book&#39;s</span>
-<span class="c1"># &#39;Reproduction guide&#39; chapter for details.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
 <span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
@@ -615,6 +611,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cd4b2a32ffbbdfd7b047632147bc41c62c048bd4887b1e60576c87dbc25876a8.png" src="../_images/cd4b2a32ffbbdfd7b047632147bc41c62c048bd4887b1e60576c87dbc25876a8.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,6 +631,9 @@
     <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">compall</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">binfilter</span><span class="p">,</span> <span class="n">xx</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cdb73809396f755ba4fce3d3fa9c8b4992f200e9bc115a0deae7bf57d5b298de.png" src="../_images/cdb73809396f755ba4fce3d3fa9c8b4992f200e9bc115a0deae7bf57d5b298de.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -689,6 +691,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[538.,  96.,  26., ...,   0.,   0.,   0.],
+        [540.,  58.,  19., ...,   0.,   0.,   0.],
+        [539.,  61.,  13., ...,   0.,   0.,   0.],
+        ...,
+        [ 62.,  62.,  41., ...,   0.,   0.,   0.],
+        [ 23.,  52.,  25., ...,   0.,   0.,   0.],
+        [ 31.,  31.,  25., ...,   0.,   0.,   0.]]),
+ array([[ 0.,  1.,  0., ...,  9.,  5., 13.],
+        [ 0.,  0.,  0., ...,  2., 13.,  9.],
+        [ 0.,  0.,  0., ..., 10.,  3.,  1.],
+        ...,
+        [ 0.,  0.,  0., ...,  0.,  0.,  0.],
+        [ 0.,  0.,  0., ...,  0.,  0.,  0.],
+        [ 0.,  0.,  0., ...,  0.,  0.,  0.]]))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,6 +735,45 @@
     <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;decay_compartment/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_histdiff_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">,</span> <span class="n">histdiff</span><span class="p">)</span>
     <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;decay_compartment/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_histsum_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">,</span> <span class="n">histsum</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
+c3 finished
+c22 finished
+c9 finished
+c20 finished
+c25 finished
+c30 finished
+c13 finished
+c8 finished
+c4 finished
+c18 finished
+c2 finished
+c29 finished
+c17 finished
+c19 finished
+c28 finished
+c6 finished
+c11 finished
+c32 finished
+c34 finished
+c23 finished
+c31 finished
+c14 finished
+c7 finished
+c24 finished
+c0 finished
+c27 finished
+c1 finished
+c15 finished
+c26 finished
+c5 finished
+c10 finished
+c16 finished
+c21 finished
+c12 finished
 </pre></div>
 </div>
 </div>
@@ -796,6 +855,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Comp Score Sum&#39;)
+</pre></div>
+</div>
+<img alt="../_images/575612299b9a7aaa17cba57145658398115280110e7dba006b87ff116f307bd3.png" src="../_images/575612299b9a7aaa17cba57145658398115280110e7dba006b87ff116f307bd3.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -818,6 +883,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;decay_compartment/compdiff_dist_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fd2e5e7fa920486df93666146a65eb600fc06e5be704066e4c9f5b88c6641005.png" src="../_images/fd2e5e7fa920486df93666146a65eb600fc06e5be704066e4c9f5b88c6641005.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -850,6 +918,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8622f09faff99f6b5dbe69a6b6d051d009ccb084fcdf297dae7dd4a5b9816c2f.png" src="../_images/8622f09faff99f6b5dbe69a6b6d051d009ccb084fcdf297dae7dd4a5b9816c2f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -872,6 +943,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;decay_compartment/compsum_dist_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b16a145a746c8950a198f572dd4a28a461948b1387cfa8f8ad289450c2f3bc77.png" src="../_images/b16a145a746c8950a198f572dd4a28a461948b1387cfa8f8ad289450c2f3bc77.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -924,6 +998,9 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;decay_compartment/compsum_shortlong_lineplot.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/df39468824cafd217a0a760afab47912010147a302d015d7cbc0e12adb13f6f6.png" src="../_images/df39468824cafd217a0a760afab47912010147a302d015d7cbc0e12adb13f6f6.png" />
 </div>
 </div>
 </section>
