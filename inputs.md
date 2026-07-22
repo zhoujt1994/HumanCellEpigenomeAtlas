@@ -1,0 +1,882 @@
+# Required input files (per notebook)
+
+For each notebook this lists the files it **reads**, with two flags to help you decide what must be (re)computed versus what already exists:
+
+- **`RAW`** — the filename is not written by any notebook in this collection, so it is a *raw external input* you must supply (single-cell allc/cool, references, external datasets, hand-made metadata).
+
+- **`DERIVED`** — the same filename is written by some notebook here, so it is a *pipeline intermediate*. You either already have it or it is produced by an earlier (pipeline) notebook — see the run-order notes in each figure chapter.
+
+Path expressions keep their original variables (`{indir}`=`{ENTEX_ROOT}/`, `{outdir}`, `{cooldir}`, …). Paths built purely from variables or inside shell (`!`/`os.system`) cells may not appear — notably the `bedtools`/`awk` steps and `pysam` tabix allc reads.
+
+```{admonition} Please review
+:class: tip
+Mark each `RAW` file as *have* or *need to compute*. The `DERIVED` files are produced by the pipelines in this repo, so they mostly reduce to their own `RAW` inputs.
+```
+
+
+## Fig1
+
+### 01.clustering_summary.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}clustering/merged/L1/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}clustering/tissue/L1/{t}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ctname}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ctname}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ctname}/5kCG_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{outdir}5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | contacts (cool) | `f'{cooldir}{ct}/{ct}.Q.cool'` |
+| ☐ | RAW | joint summary obj | `f'{outdir}5kCG100k3C_summary.tsv.gz'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}tissuecolor.tsv'` |
+| ☐ | RAW | raw embedding (LSI) | `f'{indir}clustering/merged/L1/5kCG_lsi.h5ad'` |
+| ☐ | RAW | raw embedding (LSI) | `f'{indir}clustering/tissue/L1/{t}/mCG_5kb_lsi.h5ad'` |
+| ☐ | RAW | raw embedding (PCA) | `f'{indir}clustering/merged/L1/100k3C_pca.h5ad'` |
+| ☐ | RAW | raw embedding (PCA) | `f'{indir}clustering/tissue/L1/{t}/HiC_100kb_pca.h5ad'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+
+### 02.m3c_blacklist.ipynb
+_No explicit file reads detected (reads via variables or shell cells)._
+
+### 03.method_clustering.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | ext: CEMBA | `f'{indir}CEMBA.mC.Metadata.csv.gz'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{indir}CEMBA.snmC.mcds'` |
+| ☐ | RAW | metadata | `f'{outdir}cell_{meta.shape[0]}_100kCG.h5ad'` |
+| ☐ | RAW | metadata | `f'{outdir}cell_{meta.shape[0]}_5kCG.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}AIT21_SubClassColor.csv'` |
+
+### 04.method_anchor.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | embedding h5ad | `f'{indir}5kCG100k3C_embed.h5ad'` |
+| ☐ | RAW | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | raw embedding (LSI) | `f'{indir}clustering/tissue/L1/{g}/mCG_5kb_lsi.h5ad'` |
+| ☐ | RAW | raw embedding (LSI) | `f'{indir}mCG_5kb_lsi.h5ad'` |
+| ☐ | RAW | raw embedding (PCA) | `f'{indir}HiC_100kb_pca.h5ad'` |
+
+### 05.modality_contribution.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG_embed.h5ad'` |
+
+### 06.downsample_clustering.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `f'{outdir}cell_dsgroup0_{i}_5kCG.h5ad'` |
+| · | DERIVED | other | `f'{outdir}cell_dsgroup{i}_5kCG.h5ad'` |
+| ☐ | RAW | embedding h5ad | `f'{outdir}cell_dsgroup{i+1}_{j}_5kCG_embed.h5ad'` |
+| ☐ | RAW | ext: CEMBA | `f'{indir}CEMBA.mC.Metadata.csv.gz'` |
+| ☐ | RAW | other | `f'{outdir}cell_301626_5kCG.h5ad'` |
+| ☐ | RAW | other | `f'{outdir}cell_dsgroup0_5kCG.h5ad'` |
+
+### 07.dendrogram_annot.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}L1/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{l1_name}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2_hiconly/{l1_name}/100k3C_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{indir}5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | metadata: color | `f'{indir}../../L1color.tsv'` |
+| · | DERIVED | other | `f'dendro_annot/All_{method_dist}_{method_hclust}.dendro'` |
+| · | DERIVED | table | `f'{indir}L2final_celltype_L2both_new.tsv'` |
+| ☐ | RAW | table | `f'{indir}celltype_annot.tsv'` |
+| ☐ | RAW | table | `f'{indir}npc.tsv'` |
+
+### 08.L2both_per_celltype.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}../tissue/L1/{xx}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{l1_name}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{indir}5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | metadata: color | `f'{indir}../../L1color.tsv'` |
+| · | DERIVED | other | `f'{outdir}celltype_L2any/{ct_name}_mergeboth_rocpr80.hdf'` |
+| · | DERIVED | table | `f'{indir}L2final_celltype_L2both_new.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}../../tissuecolor.tsv'` |
+| ☐ | RAW | table | `f'{indir}L2final_celltype_L2both_old.tsv'` |
+| ☐ | RAW | table | `f'{indir}celltype_annot.tsv'` |
+| ☐ | RAW | table | `f'{indir}celltype_annot_old.tsv'` |
+| ☐ | RAW | table | `f'{indir}npc.tsv'` |
+
+### 09.pairwise_prediction.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2_hiconly/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{indir}5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | other | `f'{outdir}{ct}_merge3c_rocpr.npy'` |
+| · | DERIVED | other | `f'{outdir}{ct}_mergeany_rocpr.npy'` |
+| · | DERIVED | other | `f'{outdir}{ct}_mergeboth_rocpr80.npy'` |
+| · | DERIVED | other | `f'{outdir}{ct}_mergemc_rocpr.npy'` |
+| · | DERIVED | other | `f'{outdir}{ct}_{mode}.npz'` |
+| ☐ | RAW | other | `'coolpath'` |
+| ☐ | RAW | other | `f'{indir}L2_hiconly/{ct}/mergehic_rocpr.npy'` |
+| ☐ | RAW | other | `f'{indir}merged_cool_impute/coollist_L2any.txt'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_mergeany.npy'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `'/large_storage/zhoulab/zhoujt/project/ENTEx/allclist.tsv'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `'allcpath'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/allclist_L2any.txt'` |
+| ☐ | RAW | table | `f'{indir}npc.tsv'` |
+
+### 10.compare_bulkmc.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | ext: Loyfer2023 | `f'{bulk_dir}Loyfer2023_1kb.hdf'` |
+| · | DERIVED | ext: Loyfer2023 | `f'{outdir}cosine_subtype_Loyfer.hdf'` |
+| · | DERIVED | ext: Schultz2015 | `f'{bulk_dir}Schultz2015_1kb_hg38.hdf'` |
+| · | DERIVED | ext: Schultz2015 | `f'{bulk_dir}cosine_Schultz2015.hdf'` |
+| · | DERIVED | ext: Schultz2015 | `f'{outdir}cosine_subtype_Schultz.hdf'` |
+| ☐ | RAW | ext: Loyfer2023 | `f'{bulk_dir}cosine_Loyfer2023.hdf'` |
+| ☐ | RAW | ext: Schultz2015 | `f'{bulk_dir}Schultz2015_1kb.hdf'` |
+| ☐ | RAW | ext: Schultz2015 | `f'{bulk_dir}cosine_L2any_Schultz.hdf'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{bulk_dir}Loyfer2023_1kb.mcds'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{bulk_dir}Schultz2015_1kb.mcds'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | ref: CpG | `'/home/zhoujt/software/wgbs_tools/references/hg38/CpG.bed.gz'` |
+| ☐ | RAW | reference | `'/large_experiments/zhoulab/ref/hg38/fasta/hg38.fa'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/subtype1k.mcds'` |
+
+### 11.compare_bulkhic.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | ext: ENCODE | `f'compare_bulkhic/Ecorr_subtype_ENCODE.hdf'` |
+| · | DERIVED | loop calls | `f'{hic_dir}../loop_Q.hdf'` |
+| ☐ | RAW | loop calls | `f'{hic_dir}../loop_E.hdf'` |
+| ☐ | RAW | loop calls | `f'{hic_dir}../merged_loop.fdr.hdf'` |
+| ☐ | RAW | loop calls | `f'{hic_dir}../merged_loop_norm.feather'` |
+| ☐ | RAW | loop calls | `f'{hic_dir}../merged_loop_raw.feather'` |
+| ☐ | RAW | loop calls | `f'{loop_dir}merged_loop_subtype.bedpe'` |
+| ☐ | RAW | metadata | `f'{hic_dir}metadata.tsv'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+
+### 12.L2any_L2both_diffloop.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | contacts (cool) | `f'{coolpath[ct]}/{ct}.{matrix}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{coolpath[ct]}/{ct}.{matrix}2.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{outdir}L2any_L2both_diffloop/{group_name}/{matrix}pv.cool'` |
+| ☐ | RAW | loop calls | `'/ref/blacklist/hg38_bismark_loop_blacklist.bed'` |
+| ☐ | RAW | loop calls | `f'{coolpath[ct]}/{ct}.loop.bedpe'` |
+| ☐ | RAW | metadata | `f'{indir}clustering/merged/group_meta.tsv'` |
+| ☐ | RAW | other | `f'{outdir}coollist_L2any.txt'` |
+
+
+## Fig2
+
+### 01.mCG_distribution.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | other | `f'mCG_distribution/multires/{ct}.npy'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | table | `f'{indir}clustering/merged/L2final_celltype_L2both_new.tsv'` |
+
+### 02.PMD_hetero.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | other | `f'mCG_distribution/multires/{ct}.npy'` |
+| · | DERIVED | other | `f'{outdir}{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD/10kb/merged_10kb_kmeans4raw.hdf'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD/10kb/{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{outdir}{pmd_ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'mCG_distribution/multires/{ct}_{bed}_hist.npy'` |
+| ☐ | RAW | other | `f'{outdir}{data_ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | table | `f'{indir}clustering/merged/L2final_celltype_L2both_new.tsv'` |
+
+### 03.PMD_RNA.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | PMD/methyl-compartment | `f'{indir}analysis/PMD/{pmd_file}.pmd.gene50.txt'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{indir}analysis/PMD/{pmd_file}.pmd.tss.txt'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{outdir}flank_bed/tss_{pmd_ct}_3state.txt'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | expression | `f'{outdir}{group_name}/bulkexpr_{study}.hdf'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}flank_bed/{peak_ct}.split{split}.slop{ws}b.{w}b.{bw_ct}.CGN-Merge.hdf'` |
+| ☐ | RAW | other | `f'{outdir}{group_name}/design_{study}.hdf'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+
+### 04.DMR_stats.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | DMR | `f'{outdir}tss_{mode}dmr_dist_{s}.hdf'` |
+| · | DERIVED | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/subtype_globalCG.csv.gz'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/majortype-subtype/{ct}_dmr'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/majortype-subtype/{mt}_dmr'` |
+| ☐ | RAW | DMR | `f'{outdir}{ct}_{mode}dmr_center.bed'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}subtype_dmr.mcds'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/subtype1k.mcds'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/Teichmann2022/Myeloid.h5ad'` |
+
+### 05.DMR_overlap_ATAC.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | DMR | `f'{outdir}overlap_atac/majortype_36groups/L1_merged_dmr.hdf'` |
+| ☐ | RAW | ATAC | `f'{out_dir}/dms{ndms}_atac_count.txt'` |
+| ☐ | RAW | ATAC | `f'{out_dir}/dms{ndms}_merged_atac_count.txt'` |
+| ☐ | RAW | ATAC | `f'{out_dir}/dms{ndms}_merged_atac_count_new.txt'` |
+| ☐ | RAW | ATAC | `f'{out_dir}/top200k_atac_count.txt'` |
+| ☐ | RAW | ATAC | `f'{out_dir}dms{ndms}_atac_count.txt'` |
+| ☐ | RAW | ATAC | `f'{out_dir}top200k_atac_count.txt'` |
+| ☐ | RAW | ATAC | `f'{outdir}overlap_atac/atac_count.txt'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/majortype-subtype/{ct}_dmr'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/majortype-subtype/{mt}_dmr'` |
+| ☐ | RAW | DMR | `f'{out_dir}/dms{ndms}_dmr_count.txt'` |
+| ☐ | RAW | DMR | `f'{out_dir}/dms{ndms}_merged_dmr_count.txt'` |
+| ☐ | RAW | DMR | `f'{out_dir}/dms{ndms}_merged_dmr_count_new.txt'` |
+| ☐ | RAW | DMR | `f'{out_dir}/top200k_dmr_count.txt'` |
+| ☐ | RAW | DMR | `f'{out_dir}dms{ndms}_dmr_count.txt'` |
+| ☐ | RAW | DMR | `f'{out_dir}top200k_dmr_count.txt'` |
+| ☐ | RAW | DMR | `f'{outdir}overlap_atac/dmr_count.txt'` |
+| ☐ | RAW | DMR | `f'{outdir}overlap_atac/majortype_36groups/merged_dmr_nonpeak.bed'` |
+| ☐ | RAW | DMR | `f'{outdir}overlap_atac/majortype_36groups/merged_dmr_peak.bed'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}overlap_atac/majortype_36groups/subtype_dmr.mcds'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}flank_bed/cCREs_distal2k.split{split}.slop{ws}b.{w}b.{bw_ct}.CGN-Merge.hdf'` |
+| ☐ | RAW | other | `f'{peak_dir}cCREs_distal2k_104celltype.npz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/atac2majortype.tsv'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/cCREs.bed.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/celltypes.txt.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/peak/peaklist.txt'` |
+
+### 06.DMR_motif.ipynb
+_No explicit file reads detected (reads via variables or shell cells)._
+
+### 07.TE_mCG.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `f'{outdir}L1_{var_dim}_mCG.hdf'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}L1_repeat.mcds'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `'/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/TE_mCG/goodcov.raw.LINE.h5ad'` |
+
+### 08.PMD_calling_insulation.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | metadata | `f'{indir}clustering/merged/group_meta.tsv'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/cluster_donor.mcds'` |
+
+### 09.PMD_cell-by-site.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}clustering/merged/L2_hiconly/Epi-TPB/100k3C_embed.h5ad'` |
+| ☐ | RAW | other | `f'{indir}clustering/merged/L2_hiconly/Epi-TPB/mergehic_rocpr.npy'` |
+| ☐ | RAW | reference | `'/large_storage/zhoulab/ref/hg38/fasta/hg38.altseq.bed'` |
+
+### 10.PMD_donor.ipynb
+_No explicit file reads detected (reads via variables or shell cells)._
+
+### 11.PMD_Hema-Tmem.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | expression | `f'{outdir}bulkexpr_{study}.hdf'` |
+| · | DERIVED | other | `f'{outdir}DEG_Th-Mem_Tc-Mem_stats.hdf'` |
+| · | DERIVED | other | `f'{outdir}design_{study}.hdf'` |
+| ☐ | RAW | DMR | `f'{outdir}celltype_dmr.closest_tss.txt'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}{group_name}_dmr.mcds'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/{group}/{study}/{group}_{study}.h5ad'` |
+| ☐ | RAW | table | `f'{peak_ct}.split0.slop25kb.500b.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | table | `f'{peak_ct}.split1.slop250kb.5kb.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | table | `f'{peak_ct}.split50.slop25kb.500b.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+
+### 12.PMD_Epi-TPB.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | expression | `f'{outdir}bulkexpr_{study}.hdf'` |
+| · | DERIVED | other | `f'{outdir}DEG_SCT_VCT_stats.hdf'` |
+| · | DERIVED | other | `f'{outdir}design_{study}.hdf'` |
+| ☐ | RAW | DMR | `f'{outdir}celltype_dmr.closest_tss.txt'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}{group_name}_dmr.mcds'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/{group}/{study}/{group}_{study}_ds.h5ad'` |
+| ☐ | RAW | table | `f'{peak_ct}.split0.slop25kb.500b.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | table | `f'{peak_ct}.split1.slop250kb.5kb.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | table | `f'{peak_ct}.split50.slop25kb.500b.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+
+### 13.PMD_histone.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | PMD/methyl-compartment | `f'{pmddir}tissue13_kmeans3_mccomp.hdf'` |
+| · | DERIVED | ext: histone | `f'{outdir}histone_10kb.hdf'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}B_10kb_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}LG_10kb_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | ext: ENCODE | `'/large_storage/zhoulab/resource/ENCODE/histone/metadata.tsv'` |
+| ☐ | RAW | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}diff_10k/{hist}/{group_name}.stats.hdf'` |
+
+### 14.PMD_DMR.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}clustering/merged/L2_hiconly/Epi-TPB/100k3C_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| ☐ | RAW | DMR | `f'{peak_ct}/dmr.bed'` |
+| ☐ | RAW | DMR | `f'{peak_ct}/dmr.split0.slop25kb.500b.{bw_list[0].split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | DMR | `f'{peak_ct}/dmr.split0.slop25kb.500b.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | DMR | `f'{peak_ct}/dmr.split1.slop250kb.5kb.{mc_ct.split("/")[-1]}.CGN-Merge.tsv'` |
+| ☐ | RAW | other | `f'{indir}clustering/merged/L2_hiconly/Epi-TPB/mergehic_rocpr.npy'` |
+
+### 15.PMD_ATAC.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}clustering/tissue/L1/PBMC/5kCG100k3C_embed.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `'/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_ATAC/peak/Hema-Tmem.pmd.slop25k.500bp.Th-Mem.CGN-Merge.tsv'` |
+| ☐ | RAW | PMD/methyl-compartment | `'/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_ATAC/peak/Th-Memory.slop25k.500bp.Th-Mem.CGN-Merge.tsv'` |
+| ☐ | RAW | PMD/methyl-compartment | `'/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD_ATAC/peak/Th-Memory_diff.slop25k.500bp.Th-Mem.CGN-Merge.tsv'` |
+| ☐ | RAW | PMD/methyl-compartment | `'PMD_ATAC/peak/Hema-Tmem.pmd.slop25k.bed'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD_ATAC/peak/{group_name}-{peak_ct}_diff.slop25k.500b.{group_name}-{mc_ct}.CGN-Merge.tsv'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD_ATAC/peak/{group_name}-{peak_ct}_diff.split1.slop250kb.5kb.{group_name}-{mc_ct}.CGN-Merge.tsv'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{indir}clustering/merged/L1pre/merge_5kCG_echo_entex_immune.h5ad'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_peak_3state.txt'` |
+| ☐ | RAW | other | `f'{tssdir}tss_{ct}_3state.txt'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/PBMC/PBMC10k.h5ad'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/atac2majortype.tsv'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/cCREs.bed.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/celltypes.txt.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/peak/peaklist.txt'` |
+
+### 16.peak_mCG_motif.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/subtype_globalCG.csv.gz'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{peakdir}peak_majortype_CGN.mcds'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}HOCOMOCOv11_core_motif_list.txt'` |
+| ☐ | RAW | other | `f'{peakdir}{ct}.bed'` |
+| ☐ | RAW | reference | `'/large_storage/zhoulab/ref/aertslab_motif_colleciton/motifs.txt'` |
+| ☐ | RAW | reference | `'/large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl'` |
+| ☐ | RAW | reference | `'/large_storage/zhoulab/ref/yin_2017_motif_type.csv'` |
+
+### 17.geneCG_expr_corr.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | expression | `'geneCG_expr_corr/PBMC_NaiveMem_gene_mCG.hdf'` |
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `'PMD_ATAC/gene/bulkexpr_Hao2021.hdf'` |
+| ☐ | RAW | PMD/methyl-compartment | `'PMD_ATAC/gene/design_Hao2021.hdf'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD_ATAC/gene/allgene.split50.slop250kb.5kb.{ct}.CGN-Merge.tsv'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{indir}mcds/Pool_CZDA_PBMC.mcds'` |
+| ☐ | RAW | other | `f'{indir}clustering/merged/L1pre/merge_5kCG_echo_entex_immune.h5ad'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+
+### 18.DMR_loop_sLDSC.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `'ldsc/sumstats_list_75.txt'` |
+
+
+## Fig3
+
+### 01.global_mCH.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}clustering/merged/L1/5kCG100k3C_embed.h5ad'` |
+| ☐ | RAW | lambda control | `f'{indir}merged/ALL_lambda.csv.gz'` |
+| ☐ | RAW | raw embedding (LSI) | `f'{outdir}clustering/merged/L1pre/5kCG_lsi.h5ad'` |
+
+### 02.mCH_distribution.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | other | `'mCH_distribution/cluster420_chrom1k_mCH.hdf'` |
+| · | DERIVED | other | `f'mCH_distribution/multires/{ct}_corr_{num2str(res)}.npy'` |
+| · | DERIVED | other | `f'mCH_distribution/multires/{ct}_hist.npy'` |
+| · | DERIVED | table | `'mCH_distribution/cluster420_global_mCH.tsv.gz'` |
+| ☐ | RAW | metadata | `f'{indir}clustering/merged/group_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'mCH_distribution/multires/{ct.replace(" ","-").replace("/","_")}_corr_{num2str(res)}.npy'` |
+| ☐ | RAW | other | `f'mCH_distribution/multires/{ctname}_corr_{num2str(res)}.npy'` |
+| ☐ | RAW | other | `f'mCH_distribution/multires/{ct}_corr_{num2str(reslist[-1])}.npy'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/cluster_donor.mcds'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/pseudobulk/L1/L1.hdf'` |
+
+### 03.mC_context_lambda.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | lambda control | `'mC_context/L2any-donor_lambda_context.hdf'` |
+| · | DERIVED | other | `'mC_context/L2any-donor_context.hdf'` |
+| · | DERIVED | other | `'mC_context/L2any_mCA_025_top2_rawratio.hdf'` |
+| ☐ | RAW | lambda control | `'mC_context/cell_93350_lambda_context_cov.tsv.gz'` |
+| ☐ | RAW | lambda control | `'mC_context/cell_93350_lambda_context_mc.tsv.gz'` |
+| ☐ | RAW | metadata | `f'{indir}clustering/merged/group_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/cluster_donor.mcds'` |
+
+### 04.mCH_mCG_corr.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_1kb.hdf'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_highCA_lowCG.stats.txt'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_highCA_lowCG/knownResults.txt'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_highCA_lowCG_vs_lowCA_lowCG/knownResults.txt'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_lowCA_lowCG.stats.txt'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_lowCA_lowCG_vs_highCA_lowCG/knownResults.txt'` |
+
+### 05.mCH_mCG_scale.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}{ct}_mC_100kb.hdf'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/pseudobulk/L1/L1.hdf'` |
+
+### 06.mCH_mCG_comp.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `f'{outdir}{ct}_CH_CGcomp.hdf'` |
+| · | DERIVED | table | `f'{outdir}CH_CGcomp_vmax.tsv'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{mcdir}{ct}_1kb.hdf'` |
+
+### 07.mCH_clustering.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| ☐ | RAW | embedding h5ad | `f'{outdir}L1/{xx}/100kCH_embed.h5ad'` |
+| ☐ | RAW | embedding h5ad | `f'{outdir}tissue/{xx}/100kCH_embed.h5ad'` |
+| ☐ | RAW | metadata | `f'{outdir}cell_{meta.shape[0]}_100kCH.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}tissuecolor.tsv'` |
+| ☐ | RAW | other | `f'{outdir}cell_86689_100kCH.h5ad'` |
+| ☐ | RAW | table | `f'{indir}clustering/merged/L2final_celltype_L2both_new.tsv'` |
+
+### 08.mCH_hetero.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `f'mCH_distribution/multires/{ct}_hist.npy'` |
+| · | DERIVED | other | `f'{outdir}{ct}_10kb_hist.h5ad'` |
+| · | DERIVED | other | `f'{outdir}{ct}_{binres_str}b_{posres_str}b_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD/10kb/{ct}_{binres_str}b_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD/10kb/merged_10kb_kmeans4raw.hdf'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'PMD/10kb/{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{outdir}{pmd_ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{outdir}{binres_str}b/{ct}_{binres_str}b_{posres_str}b_hist.h5ad'` |
+| ☐ | RAW | other | `f'{outdir}{data_ct}_10kb_hist.h5ad'` |
+
+### 09.mCH_geneflank.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `f'{bed_dir}{ct}.CHN-both.hdf'` |
+| · | DERIVED | other | `f'{outdir}{peak_ct}.split{split}.slop{ws}b.{w}b.hdf'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{bed_dir}{bed}.bed'` |
+| ☐ | RAW | other | `f'{outdir}cCREs_distal25k.bed'` |
+| ☐ | RAW | other | `f'{outdir}cCREs_distal2k.bed'` |
+| ☐ | RAW | other | `f'{outdir}cCREs_distal2k.split{split}.slop{ws}b.{w}b.{bw_ct}.CHN-both.hdf'` |
+| ☐ | RAW | other | `f'{outdir}gene.split{split}.slop{dist}b.{ws}b.{ct}.{context}.hdf'` |
+| ☐ | RAW | other | `f'{outdir}tss.split{split}.slop{dist}b.{ws}b.{ct}.{context}.hdf'` |
+| ☐ | RAW | other | `f'{outdir}{peak_ct}.bed'` |
+| ☐ | RAW | other | `f'{outdir}{peak_ct}.split{split}.slop{ws}b.{w}b.{ct}.CHN-both.hdf'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/atac2majortype.tsv'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/cCREs.bed.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/celltypes.txt.gz'` |
+| ☐ | RAW | scATAC peaks | `f'{indir}scATAC/peak/peaklist.txt'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/pseudobulk/L1/L1.hdf'` |
+| ☐ | RAW | table | `f'{bed_dir}{ct}.{bed}.CHN-both.tsv'` |
+
+### 10.mCH_geneplot.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | other | `f'{outdir}L1/{group_name}/geneCH_pseudo.h5ad'` |
+| ☐ | RAW | embedding h5ad | `f'{outdir}L1/{group_name}/100kCH_embed.h5ad'` |
+| ☐ | RAW | table | `f'{indir}clustering/merged/L2final_celltype_L2both_new.tsv'` |
+
+
+## Fig4
+
+### 01.decay.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| ☐ | RAW | compartment score | `f'{indir}compartment_majortype/saddle_impute_mergerawpca.npy'` |
+| ☐ | RAW | compartment score | `f'{indir}compartment_majortype/saddle_raw_mergerawpca.npy'` |
+| ☐ | RAW | ext: CEMBA | `f'{cemba.CEMBA_SNM3C_CELL_TYPE_ANNOTATION_PATH}/CEMBA.snm3C.Annotations.zarr/'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{indir}cell_*_decay.hdf5'` |
+| ☐ | RAW | other | `f'{outdir}decay/cell_*_decay.hdf5'` |
+
+### 02.decay_compartment.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | compartment score | `f'decay_compartment/{ct}_histdiff_{mode}.npy'` |
+| · | DERIVED | compartment score | `f'decay_compartment/{ct}_histsum_{mode}.npy'` |
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| ☐ | RAW | compartment score | `f'{indir}analysis/compartment/L1/comp.{mode}.hdf'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+
+### 03.decay_domain.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | domain/boundary | `f'decay_domain/{ct}_histdomain_{mode}.npy'` |
+| · | DERIVED | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'` |
+| · | DERIVED | metadata: color | `'/large_storage/zhoulab/zhoujt/project/ENTEx/L1color.tsv'` |
+| ☐ | RAW | domain/boundary | `f'domain/L1_{mode}.boundary.h5ad'` |
+| ☐ | RAW | other | `f'{indir}merged_cool_raw/L1/{ct}.mcool::resolutions/25000'` |
+
+### 04.compartment.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | metadata: color | `'/large_storage/zhoulab/zhoujt/project/ENTEx/L1color.tsv'` |
+| · | DERIVED | other | `f'{outdir}merged_comp.hdf'` |
+| ☐ | RAW | contacts (cool) | `f'{indir_impute}merged.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{indir}{ct}/{ct}.Q.cool'` |
+| ☐ | RAW | other | `f'{indir_raw}merged.mcool::resolutions/100000'` |
+| ☐ | RAW | other | `f'{indir}{ct}/{ct}/{ct}.raw.mcool::resolutions/100000'` |
+| ☐ | RAW | reference | `'/large_storage/zhoulab/ref/hg38/hg38.100kbin.CpG.txt'` |
+
+### 05.diffcomp_majortype.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `f'{indir}analysis/mCG_distribution/L1_chrom100k_mCG.hdf'` |
+| · | DERIVED | other | `f'{indir}analysis/mCH_distribution/L1_chrom100k_mCH.hdf'` |
+| · | DERIVED | other | `f'{outdir}bin_stats.hdf'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{compdir}L1/comp.impute.hdf'` |
+| ☐ | RAW | other | `f'{compdir}L1/comp.{mode}.hdf'` |
+| ☐ | RAW | other | `f'{outdir}DifferentialResult/fdr_result/differential.intra_sample_combined.pcQnm.bedGraph'` |
+
+### 06.domainloop_stats.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | contacts (cool) | `'/large_storage/zhoulab/zhoujt/project/ENTEx/merged_cool_impute/25K/L1/c7-b1.Q.cool'` |
+| ☐ | RAW | domain/boundary | `f'{indir}analysis/domain/L1_impute.boundary.h5ad'` |
+| ☐ | RAW | domain/boundary | `f'{indir}analysis/domain/L1_raw.boundary.h5ad'` |
+| ☐ | RAW | loop calls | `f'{indir}loop/majortype/c1/c1.loop.bedpe'` |
+| ☐ | RAW | loop calls | `f'{indir}loop/majortype/{ct}/{ct}.loop.bedpe'` |
+| ☐ | RAW | loop calls | `f'{indir}loop/majortype/{ct}/{ct}.loop_summit.bedpe'` |
+| ☐ | RAW | loop calls | `f'{indir}loop/subtype/subtype-loop-path.csv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+
+### 07.diffloop_majortype.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | loop calls | `f'{outdir}loop_Q.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}loop_T.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}merged_loop.hdf'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}/{ct}/{ct}.{matrix}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}/{ct}/{ct}.{matrix}2.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}{ct}/{ct}.Q.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}{ct}/{ct}.{matrix}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}{ct}/{ct}.{m}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{outdir}majortype_{matrix}pv.cool'` |
+| ☐ | RAW | loop calls | `f'/large_storage/zhoulab/ref/blacklist/hg38_bismark_loop_blacklist.bed'` |
+| ☐ | RAW | loop calls | `f'{loopdir}/{ct}/{ct}.loop.bedpe'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+
+### 08.diffloop_subtype.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | loop calls | `'/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/diff_loop/all/merged_loop.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}loop_Q.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}loop_T.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}merged_loop.hdf'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}/{ct}/{ct}.{matrix}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}/{ct}/{ct}.{matrix}2.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}{ct}/{ct}.{matrix}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{loopdir}{ct}/{ct}.{m}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{outdir}subtype_{matrix}pv.cool'` |
+| ☐ | RAW | loop calls | `f'/large_storage/zhoulab/ref/blacklist/hg38_bismark_loop_blacklist.bed'` |
+| ☐ | RAW | loop calls | `f'{loopdir}/{ct}/{ct}.loop.bedpe'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | other | `'/'` |
+
+### 09.loop_rna.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | expression | `f'{outdir}bulkexpr_{study}.hdf'` |
+| · | DERIVED | loop calls | `f'{loopdir}merged_loop.hdf'` |
+| · | DERIVED | other | `f'{outdir}DEG/DEG_{leg[i]}_{leg[j]}_stats.hdf'` |
+| · | DERIVED | other | `f'{outdir}design_{study}.hdf'` |
+| ☐ | RAW | contacts (cool) | `f'{cooldir}{ct}/{ct}.Q.cool'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_Q.hdf'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_T.hdf'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | other | `f'{indir}hg38.main.10kbin.TSS.slop2k.txt'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+| ☐ | RAW | scRNA/expr | `f'{indir}scRNA/{group}/{study}/{group}_{study}.h5ad'` |
+
+### 10.loop_comp.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | loop calls | `f'{loopdir}merged_loop.hdf'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_Q.hdf'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_T.hdf'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{compdir}DifferentialResult/fdr_result/differential.intra_sample_combined.pcQnm.bedGraph'` |
+| ☐ | RAW | other | `f'{compdir}bin_stats.hdf'` |
+
+
+## Fig5
+
+### 01.genome_mCG_compartment.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | other | `'mCG_distribution/L1_chrom100k_mCG.hdf'` |
+| · | DERIVED | other | `'mCH_distribution/L1_chrom100k_mCH.hdf'` |
+| · | DERIVED | table | `'mCG_distribution/L1_global_mCG.tsv.gz'` |
+| ☐ | RAW | compartment score | `f'compartment/L1/comp.{mode}.hdf'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/subtype1k.mcds'` |
+
+### 02.comp_pmd.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}merged_kmeans4_onehot.hdf'` |
+| ☐ | RAW | PMD/methyl-compartment | `f'{pmddir}{ct}_10kb_hist.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{compdir}DifferentialResult/fdr_result/differential.intra_sample_combined.pcQnm.bedGraph'` |
+| ☐ | RAW | other | `f'{compdir}bin_stats.hdf'` |
+
+### 03.mCoverCompboundary.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | domain/boundary | `'domain/domain_impute_compbound.joblib'` |
+| · | DERIVED | domain/boundary | `'domain/domain_impute_compbound_flankmcg.joblib'` |
+| · | DERIVED | domain/boundary | `'domain/domain_impute_compbound_flankmch.joblib'` |
+| · | DERIVED | other | `'mCG_distribution/L1_chrom5k_mCG.hdf'` |
+| · | DERIVED | other | `'mCH_distribution/L1_chrom5k_mCH.hdf'` |
+| ☐ | RAW | compartment score | `'compartment/L1/comp.impute.qnorm.hdf'` |
+| ☐ | RAW | domain/boundary | `'domain/L1_impute.boundary.h5ad'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/subtype1k.mcds'` |
+
+### 04.mCoverDomainboundary.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | domain/boundary | `'domain/domain_bound_diff0.joblib'` |
+| · | DERIVED | other | `'mCG_distribution/L1_chrom5k_mCG.hdf'` |
+| · | DERIVED | other | `'mCH_distribution/L1_chrom5k_mCH.hdf'` |
+| · | DERIVED | table | `'mCG_distribution/L1_global_mCG.tsv.gz'` |
+| ☐ | RAW | domain/boundary | `'domain/L1_raw.boundary.h5ad'` |
+| ☐ | RAW | metadata | `f'{indir}clustering/merged/group_meta.tsv'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `f'{indir}merged_allc/cluster_donor.mcds'` |
+
+### 05.loop_dmr_enrichment.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | loop calls | `f'{outdir}loop_subtype_dmr.txt'` |
+| ☐ | RAW | loop calls | `f'{outdir}loop_summit_subtype_dmr.txt'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+
+### 06.loop_dmr_motif.ipynb
+_No explicit file reads detected (reads via variables or shell cells)._
+
+### 07.L2any_L2both.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{indir}clustering/merged/L2/{l1name}/5kCG100k3C_embed.h5ad'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/L1-L2both/c2_dmr'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/L2any_L2bothratio.txt'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/L2both-L2any/{l2b}_dmr'` |
+| ☐ | RAW | DMR | `f'{indir}DMR/L2both_L2anyratio.txt'` |
+| ☐ | RAW | loop calls | `f'{tmpdir}loop_Q.hdf'` |
+| ☐ | RAW | loop calls | `f'{tmpdir}merged_loop.hdf'` |
+| ☐ | RAW | metadata | `f'{indir}clustering/merged/group_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | other | `f'{indir}clustering/merged/L2_hiconly/{l1name}/mergehic_rocpr.npy'` |
+| ☐ | RAW | other | `f'{indir}clustering/merged/L2_hiconly/{l1name}/mergemcg_rocpr.npy'` |
+
+
+## Fig6
+
+### 01.MusSkl_clustering.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `'Mus-Skl/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG_embed.h5ad'` |
+| · | DERIVED | other | `f'{outdir}{ct}_mergeany_rocpr.npy'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `'/large_storage/zhoulab/zhoujt/project/ENTEx/allclist.tsv'` |
+| ☐ | RAW | table | `f'{indir}npc.tsv'` |
+
+### 02.MusSkl_donor_clustering.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `'Mus-Skl/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `'Mus-Skl/5kCG100k3C_embed_new.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'Mus-Skl/{mode}_{xx}_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{indir}L2/{ct}/5kCG_embed.h5ad'` |
+| ☐ | RAW | other | `f'{indir}embedding/SkGcn/{chrom}.npz'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `'/large_storage/zhoulab/zhoujt/project/ENTEx/allclist.tsv'` |
+| ☐ | RAW | table | `f'{indir}embedding/SkGcn/cell_table.tsv'` |
+| ☐ | RAW | table | `f'{indir}npc.tsv'` |
+
+### 03.MusSkl_diffloop.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | loop calls | `f'{outdir}loop_Q.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}loop_T.hdf'` |
+| · | DERIVED | loop calls | `f'{outdir}merged_loop.hdf'` |
+| ☐ | RAW | contacts (cool) | `f'{indir}{ct}.{matrix}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{indir}{ct}.{matrix}2.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{indir}{ct}.{m}.cool'` |
+| ☐ | RAW | contacts (cool) | `f'{outdir}mc3c_3group_{matrix}pv.cool'` |
+| ☐ | RAW | loop calls | `'/large_storage/zhoulab/ref/blacklist/hg38_bismark_loop_blacklist.bed'` |
+| ☐ | RAW | loop calls | `f'{indir}{ct}.loop.bedpe'` |
+
+### 04.MusSkl_diff.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | DMR | `'Mus-Skl/cell_3971_DMR_8group_mCG.hdf'` |
+| · | DERIVED | embedding h5ad | `'Mus-Skl/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | loop calls | `f'{ct}/{ct}_mc3c_diffloop/loop_Q.hdf'` |
+| · | DERIVED | loop calls | `f'{ct}/{ct}_mc3c_diffloop/merged_loop.hdf'` |
+| ☐ | RAW | DMR | `'Mus-Skl/SklMus-mc_dmr'` |
+| ☐ | RAW | DMR | `f'{ct}/hg38.main.10kbin.dmr.txt'` |
+| ☐ | RAW | DMR | `f'{ct}/{ct}_mc3c_dmr'` |
+| ☐ | RAW | contacts (cool) | `f'{cooldir}{ct}.Q.cool'` |
+| ☐ | RAW | loop calls | `f'{ct}/{ct}_mc3c_diffloop/loop_T.hdf'` |
+| ☐ | RAW | mC matrix (mcds) | `'Mus-Skl/Mus-Skl_DMR.mcds'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+
+### 05.MusSkl_diff_3group.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | DMR | `'Mus-Skl/cell_3971_DMR_8group_mCG.hdf'` |
+| · | DERIVED | loop calls | `f'{loopdir}merged_loop.hdf'` |
+| ☐ | RAW | DMR | `'Mus-Skl/SklMus-mc_dmr'` |
+| ☐ | RAW | DMR | `f'{ct}/hg38.main.10kbin.dmr.3group_{version}.txt'` |
+| ☐ | RAW | contacts (cool) | `f'{cooldir}{ct}.Q.cool'` |
+| ☐ | RAW | embedding h5ad | `f'{outdir}5kCG100k3C_embed.h5ad'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_Q.hdf'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_T.hdf'` |
+| ☐ | RAW | mC matrix (mcds) | `'Mus-Skl/Mus-Skl_DMR.mcds'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}/DMR_3group_{version}group.mcds'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+
+### 06.MusSkl_diff_7group.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | DMR | `'Mus-Skl/cell_3971_DMR_8group_mCG.hdf'` |
+| · | DERIVED | loop calls | `f'{loopdir}merged_loop.hdf'` |
+| ☐ | RAW | DMR | `'Mus-Skl/SklMus-mc_dmr'` |
+| ☐ | RAW | DMR | `f'{outdir}hg38.main.10kbin.dmr.7group_{version}.txt'` |
+| ☐ | RAW | contacts (cool) | `f'{cooldir}{ct}.Q.cool'` |
+| ☐ | RAW | embedding h5ad | `f'{outdir}5kCG100k3C_embed.h5ad'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_Q.hdf'` |
+| ☐ | RAW | loop calls | `f'{loopdir}loop_T.hdf'` |
+| ☐ | RAW | mC matrix (mcds) | `'Mus-Skl/Mus-Skl_DMR.mcds'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{outdir}/DMR_3group_{version}group.mcds'` |
+| ☐ | RAW | ref: gencode | `'/large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'` |
+
+### 07.Epi-TPB.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ct}/5kCG_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{outdir}5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | DMR | `f'{outdir}donor3ccluster_dmr'` |
+| ☐ | RAW | DMR | `f'{outdir}donor3ccluster_dmr_mccomp.bed'` |
+| ☐ | RAW | DMR | `f'{outdir}mccluster_dmr'` |
+| ☐ | RAW | DMR | `f'{outdir}mccluster_dmr_mccomp.bed'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | table | `f'{outdir}npc.tsv'` |
+
+### 08.Epi-Gas.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ct}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{outdir}L2/{ct}/5kCG_embed.h5ad'` |
+| · | DERIVED | joint summary obj | `f'{outdir}5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | table | `f'{outdir}npc.tsv'` |
+
+### 09.NTbSchw_clustering.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `'Mus-Skl/5kCG100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{group_name}/100k3C_embed.h5ad'` |
+| · | DERIVED | embedding h5ad | `f'{group_name}/5kCG_embed.h5ad'` |
+| · | DERIVED | other | `f'{group_name}/{group_name}_3cdist.csv'` |
+| · | DERIVED | other | `f'{group_name}/{group_name}_mcdist.csv'` |
+| ☐ | RAW | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | other | `f'{rawdir}5kCG.h5ad'` |
+| ☐ | RAW | other | `f'{rawdir}raw/{chrom}.npz'` |
+| ☐ | RAW | sc/pseudobulk mC (allc) | `'/large_storage/zhoulab/zhoujt/project/ENTEx/allclist.tsv'` |
+
+### 10.colon_mct.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| ☐ | RAW | mC matrix (mcds) | `f'{mct_dir}entex_2.mcds'` |
+| ☐ | RAW | scRNA/expr | `f'{mct_dir}entex_2_rna.h5ad'` |
+
+### 11.colon_mct_mc_donor.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}5kCG_embed.h5ad'` |
+| · | DERIVED | other | `f'{indir}clustering/tissue/L1/{tissue}/5kCG.h5ad'` |
+| · | DERIVED | other | `f'{outdir}5kCG.h5ad'` |
+| · | DERIVED | other | `f'{outdir}{tissue}_mCT_m3C_{donor}_merged.h5ad'` |
+| ☐ | RAW | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{m3c_dir}*{tissue}*.mcds'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{mct_dir}entex_2.mcds'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | scRNA/expr | `f'{mct_dir}entex_2_rna.h5ad'` |
+
+### 12.stomach_mct.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}5kCG_embed.h5ad'` |
+| · | DERIVED | expression | `f'{outdir}DEG/diff_expr_group.txt'` |
+| · | DERIVED | expression | `f'{outdir}mc_cluster_expr.hdf'` |
+| · | DERIVED | other | `f'{outdir}mCT_raw.h5ad'` |
+| ☐ | RAW | other | `f'{outdir}DEG/results/{group_name}_stats.hdf'` |
+| ☐ | RAW | other | `f'{rna_dir}Stomach_Nowicki-Osuch2023_ds.h5ad'` |
+| ☐ | RAW | scRNA/expr | `f'{mct_dir}entex_1_rna.h5ad'` |
+
+### 13.stomach_mct_mc.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}5kCG_embed.h5ad'` |
+| · | DERIVED | other | `f'{indir}clustering/tissue/L1/ST/5kCG.h5ad'` |
+| · | DERIVED | other | `f'{outdir}5kCG.h5ad'` |
+| ☐ | RAW | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{m3c_dir}*ST*.mcds'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{mct_dir}entex_1.mcds'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | scRNA/expr | `f'{mct_dir}entex_1_rna.h5ad'` |
+
+### 14.stomach_mct_mc_donor.ipynb
+| have? | kind | category | path expression |
+|---|---|---|---|
+| · | DERIVED | embedding h5ad | `f'{outdir}5kCG_embed.h5ad'` |
+| · | DERIVED | other | `f'{indir}clustering/tissue/L1/ST/5kCG.h5ad'` |
+| · | DERIVED | other | `f'{outdir}5kCG.h5ad'` |
+| · | DERIVED | other | `f'{outdir}ST_mCT_m3C_{donor}_merged.h5ad'` |
+| ☐ | RAW | joint summary obj | `f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{m3c_dir}*ST*.mcds'` |
+| ☐ | RAW | mC matrix (mcds) | `f'{mct_dir}entex_1.mcds'` |
+| ☐ | RAW | metadata | `f'{indir}subtype_meta.tsv'` |
+| ☐ | RAW | metadata: color | `f'{indir}L1color.tsv'` |
+| ☐ | RAW | scRNA/expr | `f'{mct_dir}entex_1_rna.h5ad'` |

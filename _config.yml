@@ -1,0 +1,48 @@
+# Jupyter Book configuration
+# Build with:  jupyter-book build .
+title: "Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation"
+author: "Zhou et al."
+logo: ""
+copyright: "2025"
+only_build_toc_files: true
+
+# --------------------------------------------------------------------------- #
+# Execution
+# --------------------------------------------------------------------------- #
+# The analysis notebooks depend on tens of TB of intermediate data and two
+# different conda environments, so the book is NOT executed at build time.
+# It renders the code and the reference figure panels; readers reproduce
+# panels locally after obtaining the data (see the "Data availability" and
+# "Reproduction guide" chapters).
+execute:
+  execute_notebooks: "off"
+
+# --------------------------------------------------------------------------- #
+# HTML
+# --------------------------------------------------------------------------- #
+html:
+  home_page_in_navbar: true
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: false
+
+repository:
+  url: https://github.com/zhoujt1994/HumanCellEpigenomeAtlas
+  branch: main
+
+# --------------------------------------------------------------------------- #
+# Parsing / rendering
+# --------------------------------------------------------------------------- #
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - linkify
+    - substitution
+
+sphinx:
+  config:
+    html_show_copyright: false
+    nb_execution_mode: "off"
+    # allow large notebooks and long output blocks
+    nb_output_stderr: "remove"
