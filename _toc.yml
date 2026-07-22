@@ -1,0 +1,106 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Getting started
+    chapters:
+      - file: setup
+      - file: data
+      - file: reproduce
+      - file: inputs
+      - file: fig2/00.demo_fig2A
+      - file: gaps
+  - caption: "Fig. 1 — Single-cell atlas of methylation & 3D genome"
+    chapters:
+      - file: fig1/fig1
+        sections:
+          - file: fig1/01.clustering_summary
+          - file: fig1/02.m3c_blacklist
+          - file: fig1/03.method_clustering
+          - file: fig1/04.method_anchor
+          - file: fig1/05.modality_contribution
+          - file: fig1/06.downsample_clustering
+          - file: fig1/07.dendrogram_annot
+          - file: fig1/08.L2both_per_celltype
+          - file: fig1/09.pairwise_prediction
+          - file: fig1/10.compare_bulkmc
+          - file: fig1/11.compare_bulkhic
+          - file: fig1/12.L2any_L2both_diffloop
+  - caption: "Fig. 2 — CG methylation across cell types"
+    chapters:
+      - file: fig2/fig2
+        sections:
+          - file: fig2/01.mCG_distribution
+          - file: fig2/02.PMD_hetero
+          - file: fig2/03.PMD_RNA
+          - file: fig2/04.DMR_stats
+          - file: fig2/05.DMR_overlap_ATAC
+          - file: fig2/06.DMR_motif
+          - file: fig2/07.TE_mCG
+          - file: fig2/08.PMD_calling_insulation
+          - file: fig2/09.PMD_cell-by-site
+          - file: fig2/10.PMD_donor
+          - file: fig2/11.PMD_Hema-Tmem
+          - file: fig2/12.PMD_Epi-TPB
+          - file: fig2/13.PMD_histone
+          - file: fig2/14.PMD_DMR
+          - file: fig2/15.PMD_ATAC
+          - file: fig2/16.peak_mCG_motif
+          - file: fig2/17.geneCG_expr_corr
+          - file: fig2/18.DMR_loop_sLDSC
+  - caption: "Fig. 3 — Non-CG methylation across cell types"
+    chapters:
+      - file: fig3/fig3
+        sections:
+          - file: fig3/01.global_mCH
+          - file: fig3/02.mCH_distribution
+          - file: fig3/03.mC_context_lambda
+          - file: fig3/04.mCH_mCG_corr
+          - file: fig3/05.mCH_mCG_scale
+          - file: fig3/06.mCH_mCG_comp
+          - file: fig3/07.mCH_clustering
+          - file: fig3/08.mCH_hetero
+          - file: fig3/09.mCH_geneflank
+          - file: fig3/10.mCH_geneplot
+  - caption: "Fig. 4 — Chromatin contacts across cell types"
+    chapters:
+      - file: fig4/fig4
+        sections:
+          - file: fig4/01.decay
+          - file: fig4/02.decay_compartment
+          - file: fig4/03.decay_domain
+          - file: fig4/04.compartment
+          - file: fig4/05.diffcomp_majortype
+          - file: fig4/06.domainloop_stats
+          - file: fig4/07.diffloop_majortype
+          - file: fig4/08.diffloop_subtype
+          - file: fig4/09.loop_rna
+          - file: fig4/10.loop_comp
+  - caption: "Fig. 5 — DNA methylation vs 3D genome"
+    chapters:
+      - file: fig5/fig5
+        sections:
+          - file: fig5/01.genome_mCG_compartment
+          - file: fig5/02.comp_pmd
+          - file: fig5/03.mCoverCompboundary
+          - file: fig5/04.mCoverDomainboundary
+          - file: fig5/05.loop_dmr_enrichment
+          - file: fig5/06.loop_dmr_motif
+          - file: fig5/07.L2any_L2both
+  - caption: "Fig. 6 — Discrepant methylation- vs contact-defined types"
+    chapters:
+      - file: fig6/fig6
+        sections:
+          - file: fig6/01.MusSkl_clustering
+          - file: fig6/02.MusSkl_donor_clustering
+          - file: fig6/03.MusSkl_diffloop
+          - file: fig6/04.MusSkl_diff
+          - file: fig6/05.MusSkl_diff_3group
+          - file: fig6/06.MusSkl_diff_7group
+          - file: fig6/07.Epi-TPB
+          - file: fig6/08.Epi-Gas
+          - file: fig6/09.NTbSchw_clustering
+          - file: fig6/10.colon_mct
+          - file: fig6/11.colon_mct_mc_donor
+          - file: fig6/12.stomach_mct
+          - file: fig6/13.stomach_mct_mc
+          - file: fig6/14.stomach_mct_mc_donor
