@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation &#8212; Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Environment &amp; build" href="setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Environment &amp; build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data availability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reproduce.html">Reproduction guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputs.html">Required input files (per notebook)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaps.html">Coverage &amp; gaps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fig1/fig1.html">Fig. 1 — Single-cell atlas of DNA methylation and 3D genome structure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fig1/01.clustering_summary.html">1. Clustering summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/02.m3c_blacklist.html">2. M3c blacklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/03.method_clustering.html">3. Method clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/04.method_anchor.html">4. Method anchor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/05.modality_contribution.html">5. Modality contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/06.downsample_clustering.html">6. Downsample clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/07.dendrogram_annot.html">7. Dendrogram annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/08.L2both_per_celltype.html">8. L2both per celltype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/09.pairwise_prediction.html">9. Pairwise prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/10.compare_bulkmc.html">10. Compare bulkmc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/11.compare_bulkhic.html">11. Compare bulkhic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig1/12.L2any_L2both_diffloop.html">12. L2any L2both diffloop</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 2 — CG methylation across cell types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fig2/fig2.html">Fig. 2 — CG methylation across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fig2/01.mCG_distribution.html">1. MCG distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/02.PMD_hetero.html">2. PMD hetero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/03.PMD_RNA.html">3. PMD RNA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/04.DMR_stats.html">4. DMR stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/05.DMR_overlap_ATAC.html">5. DMR overlap ATAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/06.DMR_motif.html">6. DMR motif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/07.TE_mCG.html">7. TE mCG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/08.PMD_calling_insulation.html">8. PMD calling insulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/09.PMD_cell-by-site.html">9. PMD cell by site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/10.PMD_donor.html">10. PMD donor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/11.PMD_Hema-Tmem.html">11. PMD Hema Tmem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/12.PMD_Epi-TPB.html">12. PMD Epi TPB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/13.PMD_histone.html">13. PMD histone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/14.PMD_DMR.html">14. PMD DMR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/15.PMD_ATAC.html">15. PMD ATAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/16.peak_mCG_motif.html">16. Peak mCG motif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/17.geneCG_expr_corr.html">17. GeneCG expr corr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig2/18.DMR_loop_sLDSC.html">18. DMR loop sLDSC</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 3 — Non-CG methylation across cell types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fig3/fig3.html">Fig. 3 — Non-CG methylation across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fig3/01.global_mCH.html">1. Global mCH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/02.mCH_distribution.html">2. MCH distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/03.mC_context_lambda.html">3. MC context lambda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/04.mCH_mCG_corr.html">4. MCH mCG corr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/05.mCH_mCG_scale.html">5. MCH mCG scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/06.mCH_mCG_comp.html">6. MCH mCG comp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/07.mCH_clustering.html">7. MCH clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/08.mCH_hetero.html">8. MCH hetero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/09.mCH_geneflank.html">9. MCH geneflank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig3/10.mCH_geneplot.html">10. MCH geneplot</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 4 — Chromatin contacts across cell types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fig4/fig4.html">Fig. 4 — Chromatin contacts across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fig4/01.decay.html">1. Decay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/02.decay_compartment.html">2. Decay compartment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/03.decay_domain.html">3. Decay domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/04.compartment.html">4. Compartment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/05.diffcomp_majortype.html">5. Diffcomp majortype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/06.domainloop_stats.html">6. Domainloop stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/07.diffloop_majortype.html">7. Diffloop majortype</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="fig4/08.diffloop_subtype.html">8. Diffloop subtype</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="fig4/09.loop_rna.html">9. Loop rna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig4/10.loop_comp.html">10. Loop comp</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 5 — DNA methylation vs 3D genome</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fig5/fig5.html">Fig. 5 — Comparison of DNA methylation and 3D genome structure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fig5/01.genome_mCG_compartment.html">1. Genome mCG compartment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig5/02.comp_pmd.html">2. Comp pmd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig5/03.mCoverCompboundary.html">3. MCoverCompboundary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig5/04.mCoverDomainboundary.html">4. MCoverDomainboundary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 6 — Discrepant methylation- vs contact-defined types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fig6/fig6.html">Fig. 6 — Discrepant methylation- vs contact-defined cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fig6/01.MusSkl_clustering.html">1. MusSkl clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/02.MusSkl_donor_clustering.html">2. MusSkl donor clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/03.MusSkl_diffloop.html">3. MusSkl diffloop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/04.MusSkl_diff.html">4. MusSkl diff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/05.MusSkl_diff_3group.html">5. MusSkl diff 3group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/06.MusSkl_diff_7group.html">6. MusSkl diff 7group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/07.Epi-TPB.html">7. Epi TPB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/08.Epi-Gas.html">8. Epi Gas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/09.NTbSchw_clustering.html">9. NTbSchw clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/10.colon_mct.html">10. Colon mct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/11.colon_mct_mc_donor.html">11. Colon mct mc donor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/12.stomach_mct.html">12. Stomach mct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/13.stomach_mct_mc.html">13. Stomach mct mc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fig6/14.stomach_mct_mc_donor.html">14. Stomach mct mc donor</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zhoujt1994/HumanCellEpigenomeAtlas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zhoujt1994/HumanCellEpigenomeAtlas/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-this-book-is-organized">How this book is organized</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">Before you start</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="human-body-single-cell-atlas-of-3d-genome-organization-and-dna-methylation">
+<h1>Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation<a class="headerlink" href="#human-body-single-cell-atlas-of-3d-genome-organization-and-dna-methylation" title="Link to this heading">#</a></h1>
+<p>This Jupyter Book documents the analysis code that reproduces every figure in
+<strong>“Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation”</strong>
+(Zhou, Wu, Liu, et al.).</p>
+<blockquote>
+<div><p><strong>Abstract.</strong> Higher-order chromatin structure and DNA methylation are critical
+for gene regulation, but how these vary across the human body remains unclear.
+We performed multi-omic profiling of 3D genome structure and DNA methylation for
+<strong>86,689 single nuclei across 16 human tissues</strong>, identifying <strong>35 major and 206
+cell subtypes</strong>. We revealed extensive changes in CG and non-CG methylation across
+almost all cell types and characterized 3D chromatin structure at an unprecedented
+cellular resolution. Extensive discrepancies exist between cell types delineated by
+DNA methylation and genome structure, indicating that the role of distinct
+epigenomic features in maintaining cell identity may vary by lineage.</p>
+</div></blockquote>
+<section id="how-this-book-is-organized">
+<h2>How this book is organized<a class="headerlink" href="#how-this-book-is-organized" title="Link to this heading">#</a></h2>
+<p>Each chapter corresponds to one main figure of the paper (Fig. 1–6) and bundles the
+associated Extended Data / Supplementary figures (Fig. S1–S32). Within a chapter you
+will find:</p>
+<ul class="simple">
+<li><p>a short <strong>overview</strong> of the biology and the analysis;</p></li>
+<li><p>an embedded <strong>reference image</strong> of the published figure so you can see the target;</p></li>
+<li><p>a <strong>panel → notebook → cell</strong> table telling you exactly which notebook (and roughly
+which cells) produce each panel;</p></li>
+<li><p>the <strong>notebooks themselves</strong>, lightly edited so paths are configurable and so that
+re-running them can never overwrite your existing data (see below).</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>Main figure</p></th>
+<th class="head"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="fig1/fig1.html"><span class="std std-doc">Fig. 1</span></a></p></td>
+<td><p>Single-cell atlas</p></td>
+<td><p>Joint mCG + 3D-genome clustering, cell-type annotation, benchmarking</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="fig2/fig2.html"><span class="std std-doc">Fig. 2</span></a></p></td>
+<td><p>CG methylation</p></td>
+<td><p>PMDs / methylation compartments, DMRs, ATAC overlap, TF motifs</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="fig3/fig3.html"><span class="std std-doc">Fig. 3</span></a></p></td>
+<td><p>Non-CG methylation</p></td>
+<td><p>Global mCH, trinucleotide context, gene-body mCH, mCH subtypes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="fig4/fig4.html"><span class="std std-doc">Fig. 4</span></a></p></td>
+<td><p>Chromatin contacts</p></td>
+<td><p>Contact decay, compartments, domains, differential loops</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="fig5/fig5.html"><span class="std std-doc">Fig. 5</span></a></p></td>
+<td><p>mCG vs 3D genome</p></td>
+<td><p>Compartment/methylation correlation, DMRs at loops</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="fig6/fig6.html"><span class="std std-doc">Fig. 6</span></a></p></td>
+<td><p>Discrepant cell types</p></td>
+<td><p>mCG- vs contact-defined subtypes across tissues</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="before-you-start">
+<h2>Before you start<a class="headerlink" href="#before-you-start" title="Link to this heading">#</a></h2>
+<p>Read these three chapters first — they explain the compute environment, where to get
+the data, and how the reproduction safeguards work:</p>
+<ul class="simple">
+<li><p><strong><a class="reference internal" href="setup.html"><span class="std std-doc">Environment &amp; build</span></a></strong> — conda environments and how to build the book.</p></li>
+<li><p><strong><a class="reference internal" href="data.html"><span class="std std-doc">Data availability</span></a></strong> — where every input dataset lives.</p></li>
+<li><p><strong><a class="reference internal" href="reproduce.html"><span class="std std-doc">Reproduction guide</span></a></strong> — the path convention and the no-overwrite
+write guard that protects your files when you re-run a notebook.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Reproducibility, honestly</p>
+<p>These notebooks were <strong>cleaned from the original working analysis</strong>. Cells were
+sometimes run out of order or selectively during the study, and a few panels were
+finished in Illustrator. Where a panel has no producing code we say so explicitly in
+the per-chapter gap notes. If a cleaned notebook looks wrong, the original (messier)
+notebook it was derived from lives under
+<code class="docutils literal notranslate"><span class="pre">/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/</span></code> (see the mapping in each
+chapter).</p>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Environment &amp; build</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-this-book-is-organized">How this book is organized</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">Before you start</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zhou et al.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
