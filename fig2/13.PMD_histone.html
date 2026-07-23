@@ -631,18 +631,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;AG+PT-1K2DA&#39;, &#39;AG+STL003&#39;, &#39;B+PT-1LGRB&#39;, &#39;B+PT-1LVAN&#39;,
-       &#39;EG+PT-1JKYN&#39;, &#39;EG+PT-1LGRB&#39;, &#39;LG+PT-1JKYN&#39;, &#39;LG+PT-1LVAN&#39;,
-       &#39;LV+PT-1LGRB&#39;, &#39;LV+STL003&#39;, &#39;M1C+H1930001&#39;, &#39;M1C+H1930002&#39;,
-       &#39;NTb+PT-1K2DA&#39;, &#39;NTb+PT-1LVAN&#39;, &#39;P+9213&#39;, &#39;P+9216&#39;, &#39;PBMC+11714&#39;,
-       &#39;PBMC+4809&#39;, &#39;PI+HP13049&#39;, &#39;PI+HP16134&#39;, &#39;RAA+PT-1LVAN&#39;,
-       &#39;RAA+STL003&#39;, &#39;SB+PT-1K2DA&#39;, &#39;SB+PT-1LVAN&#39;, &#39;ST+PT-1LGRB&#39;,
-       &#39;ST+PT-1LVAN&#39;, &#39;Sk+PT-1LGRB&#39;, &#39;Sk+PT-1LVAN&#39;, &#39;SkGcn+PT-1K2DA&#39;,
-       &#39;SkGcn+PT-1LVAN&#39;, &#39;TrCo+PT-1LGRB&#39;, &#39;TrCo+PT-1LVAN&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <section id="load-and-plot-tissue-pmd">
 <h3>load and plot tissue PMD<a class="headerlink" href="#load-and-plot-tissue-pmd" title="Link to this heading">#</a></h3>
@@ -712,56 +700,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bulk_meta</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group
-EG+PT-1LVAN       6
-EG+PT-1JKYN       6
-EG+PT-1LGRB       6
-B+PT-1LGRB        6
-RAA+PT-1LVAN      6
-LV+PT-1LVAN       6
-Sk+PT-1JKYN       6
-ST+PT-1LVAN       6
-SB+PT-1K2DA       6
-EG+PT-1K2DA       6
-ST+PT-1JKYN       6
-LG+PT-1LVAN       6
-LG+PT-1K2DA       6
-SkGcn+PT-1K2DA    6
-SkGcn+PT-1JKYN    6
-PI+PT-1K2DA       6
-LG+PT-1JKYN       6
-ST+PT-1LGRB       6
-SB+PT-1JKYN       6
-SkGcn+PT-1LVAN    6
-SB+PT-1LGRB       6
-RAA+PT-1LGRB      6
-NTb+PT-1JKYN      6
-LG+PT-1LGRB       6
-TrCo+PT-1JKYN     6
-PI+PT-1JKYN       6
-NTb+PT-1K2DA      6
-NTb+PT-1LVAN      6
-SkGcn+PT-1LGRB    6
-B+PT-1LVAN        6
-LV+PT-1LGRB       6
-NTb+PT-1LGRB      6
-TrCo+PT-1LGRB     5
-SB+PT-1LVAN       5
-AG+PT-1LVAN       5
-ST+PT-1K2DA       5
-TrCo+PT-1LVAN     5
-AG+PT-1K2DA       5
-TrCo+PT-1K2DA     5
-AG+PT-1JKYN       5
-PI+PT-1LGRB       4
-PI+PT-1LVAN       2
-AG+PT-1LGRB       2
-B+PT-1JKYN        1
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -849,41 +787,10 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Biosample term name
-esophagus muscularis mucosa      24
-tibial nerve                     24
-upper lobe of left lung          24
-gastrocnemius medialis           24
-stomach                          23
-Peyer&#39;s patch                    23
-transverse colon                 21
-body of pancreas                 18
-adrenal gland                    17
-breast epithelium                13
-right atrium auricular region    12
-heart left ventricle             12
-suprapubic skin                   6
-Name: count, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bulk_meta</span><span class="p">[</span><span class="s1">&#39;Experiment target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Experiment target
-H3K4me3-human     43
-H3K27ac-human     43
-H3K4me1-human     41
-H3K9me3-human     39
-H3K36me3-human    39
-H3K27me3-human    36
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -909,30 +816,10 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>H3K9me3-human (259589, 13)
-H3K4me3-human (259589, 13)
-H3K36me3-human (259589, 13)
-H3K27ac-human (259589, 13)
-H3K4me1-human (259589, 13)
-H3K27me3-human (259589, 12)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">bulk_meta</span><span class="p">[</span><span class="s1">&#39;Biosample term name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&quot;Peyer&#39;s patch&quot;, &#39;adrenal gland&#39;, &#39;body of pancreas&#39;,
-       &#39;breast epithelium&#39;, &#39;esophagus muscularis mucosa&#39;,
-       &#39;gastrocnemius medialis&#39;, &#39;heart left ventricle&#39;,
-       &#39;right atrium auricular region&#39;, &#39;stomach&#39;, &#39;suprapubic skin&#39;,
-       &#39;tibial nerve&#39;, &#39;transverse colon&#39;, &#39;upper lobe of left lung&#39;],
-      dtype=object)
 </pre></div>
 </div>
 </div>
@@ -1077,29 +964,10 @@ H3K27me3-human (259589, 12)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Hema Bmem&#39;, &#39;Hema Tmem&#39;, &#39;Epi Breast Basal&#39;, &#39;Hema NK&#39;, &#39;Hema Bnaive&#39;,
-       &#39;Hema Myeloid&#39;, &#39;Hema Mast&#39;, &#39;Hema Tnaive&#39;, &#39;Fibro Epineurial&#39;,
-       &#39;Fibro Muscular&#39;, &#39;Fibro Adrenal&#39;, &#39;Fibro Heart&#39;,
-       &#39;Fibro Gastrointestinal&#39;, &#39;Fibro Endoneurial&#39;, &#39;Fibro Skin&#39;,
-       &#39;Myofibroblast&#39;, &#39;Neu Schwann&#39;, &#39;Endo Vascular&#39;, &#39;Epi Adrenal&#39;,
-       &#39;Epi Trophoblast&#39;, &#39;Epi Acinar&#39;, &#39;Epi Enteric&#39;, &#39;Epi Gastric&#39;,
-       &#39;Epi Endocrine&#39;, &#39;Mus Skeletal&#39;, &#39;Perivascular&#39;, &#39;Fibro Breast&#39;,
-       &#39;Epi Ductal&#39;, &#39;Mus Cardiac&#39;, &#39;Endo Lymphatic&#39;, &#39;Epi Keratinous/Luminal&#39;,
-       &#39;Epi Alveolar&#39;],
-      dtype=&#39;object&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pmd</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">labelpmd</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(274014, 10) (274014, 1)
 </pre></div>
 </div>
 </div>
@@ -1177,11 +1045,6 @@ H3K27me3-human (259589, 12)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.863411718221148
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1190,11 +1053,6 @@ H3K27me3-human (259589, 12)
 <span class="n">selb</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">5000</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5000, 39)
 </pre></div>
 </div>
 </div>
@@ -1211,15 +1069,6 @@ H3K27me3-human (259589, 12)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;esophagus muscularis mucosa&#39;, &#39;breast epithelium&#39;,
-       &#39;body of pancreas&#39;, &#39;heart left ventricle&#39;, &#39;suprapubic skin&#39;,
-       &#39;right atrium auricular region&#39;, &quot;Peyer&#39;s patch&quot;, &#39;stomach&#39;,
-       &#39;gastrocnemius medialis&#39;, &#39;adrenal gland&#39;, &#39;transverse colon&#39;,
-       &#39;upper lobe of left lung&#39;, &#39;tibial nerve&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1232,88 +1081,6 @@ H3K27me3-human (259589, 12)
         <span class="k">if</span> <span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="s1">&#39;padj&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">ct1</span><span class="si">}</span><span class="s1">&quot;, &quot;</span><span class="si">{</span><span class="n">ct2</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">stat_res</span><span class="p">[</span><span class="s1">&#39;padj&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
     
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;esophagus muscularis mucosa&quot;, &quot;breast epithelium&quot; 26104
-&quot;esophagus muscularis mucosa&quot;, &quot;body of pancreas&quot; 51055
-&quot;esophagus muscularis mucosa&quot;, &quot;heart left ventricle&quot; 15160
-&quot;esophagus muscularis mucosa&quot;, &quot;suprapubic skin&quot; 19789
-&quot;esophagus muscularis mucosa&quot;, &quot;right atrium auricular region&quot; 21043
-&quot;esophagus muscularis mucosa&quot;, &quot;Peyer&#39;s patch&quot; 45589
-&quot;esophagus muscularis mucosa&quot;, &quot;stomach&quot; 26570
-&quot;esophagus muscularis mucosa&quot;, &quot;gastrocnemius medialis&quot; 53173
-&quot;esophagus muscularis mucosa&quot;, &quot;adrenal gland&quot; 50080
-&quot;esophagus muscularis mucosa&quot;, &quot;transverse colon&quot; 32401
-&quot;esophagus muscularis mucosa&quot;, &quot;upper lobe of left lung&quot; 36825
-&quot;esophagus muscularis mucosa&quot;, &quot;tibial nerve&quot; 35394
-&quot;breast epithelium&quot;, &quot;body of pancreas&quot; 27185
-&quot;breast epithelium&quot;, &quot;heart left ventricle&quot; 17215
-&quot;breast epithelium&quot;, &quot;suprapubic skin&quot; 2932
-&quot;breast epithelium&quot;, &quot;right atrium auricular region&quot; 20697
-&quot;breast epithelium&quot;, &quot;Peyer&#39;s patch&quot; 21711
-&quot;breast epithelium&quot;, &quot;stomach&quot; 18790
-&quot;breast epithelium&quot;, &quot;gastrocnemius medialis&quot; 54599
-&quot;breast epithelium&quot;, &quot;adrenal gland&quot; 22430
-&quot;breast epithelium&quot;, &quot;transverse colon&quot; 27885
-&quot;breast epithelium&quot;, &quot;upper lobe of left lung&quot; 18473
-&quot;breast epithelium&quot;, &quot;tibial nerve&quot; 17769
-&quot;body of pancreas&quot;, &quot;heart left ventricle&quot; 24967
-&quot;body of pancreas&quot;, &quot;suprapubic skin&quot; 12985
-&quot;body of pancreas&quot;, &quot;right atrium auricular region&quot; 30058
-&quot;body of pancreas&quot;, &quot;Peyer&#39;s patch&quot; 27027
-&quot;body of pancreas&quot;, &quot;stomach&quot; 31962
-&quot;body of pancreas&quot;, &quot;gastrocnemius medialis&quot; 74887
-&quot;body of pancreas&quot;, &quot;adrenal gland&quot; 23870
-&quot;body of pancreas&quot;, &quot;transverse colon&quot; 42493
-&quot;body of pancreas&quot;, &quot;upper lobe of left lung&quot; 30476
-&quot;body of pancreas&quot;, &quot;tibial nerve&quot; 36563
-&quot;heart left ventricle&quot;, &quot;suprapubic skin&quot; 6968
-&quot;heart left ventricle&quot;, &quot;right atrium auricular region&quot; 1850
-&quot;heart left ventricle&quot;, &quot;Peyer&#39;s patch&quot; 18192
-&quot;heart left ventricle&quot;, &quot;stomach&quot; 16084
-&quot;heart left ventricle&quot;, &quot;gastrocnemius medialis&quot; 45360
-&quot;heart left ventricle&quot;, &quot;adrenal gland&quot; 14683
-&quot;heart left ventricle&quot;, &quot;transverse colon&quot; 20545
-&quot;heart left ventricle&quot;, &quot;upper lobe of left lung&quot; 16084
-&quot;heart left ventricle&quot;, &quot;tibial nerve&quot; 14892
-&quot;suprapubic skin&quot;, &quot;right atrium auricular region&quot; 10112
-&quot;suprapubic skin&quot;, &quot;Peyer&#39;s patch&quot; 5752
-&quot;suprapubic skin&quot;, &quot;stomach&quot; 10685
-&quot;suprapubic skin&quot;, &quot;gastrocnemius medialis&quot; 48623
-&quot;suprapubic skin&quot;, &quot;adrenal gland&quot; 5239
-&quot;suprapubic skin&quot;, &quot;transverse colon&quot; 16126
-&quot;suprapubic skin&quot;, &quot;upper lobe of left lung&quot; 5657
-&quot;suprapubic skin&quot;, &quot;tibial nerve&quot; 6262
-&quot;right atrium auricular region&quot;, &quot;Peyer&#39;s patch&quot; 24820
-&quot;right atrium auricular region&quot;, &quot;stomach&quot; 22341
-&quot;right atrium auricular region&quot;, &quot;gastrocnemius medialis&quot; 46863
-&quot;right atrium auricular region&quot;, &quot;adrenal gland&quot; 20480
-&quot;right atrium auricular region&quot;, &quot;transverse colon&quot; 29336
-&quot;right atrium auricular region&quot;, &quot;upper lobe of left lung&quot; 20690
-&quot;right atrium auricular region&quot;, &quot;tibial nerve&quot; 18668
-&quot;Peyer&#39;s patch&quot;, &quot;stomach&quot; 20718
-&quot;Peyer&#39;s patch&quot;, &quot;gastrocnemius medialis&quot; 71065
-&quot;Peyer&#39;s patch&quot;, &quot;adrenal gland&quot; 17622
-&quot;Peyer&#39;s patch&quot;, &quot;transverse colon&quot; 20141
-&quot;Peyer&#39;s patch&quot;, &quot;upper lobe of left lung&quot; 17439
-&quot;Peyer&#39;s patch&quot;, &quot;tibial nerve&quot; 24536
-&quot;stomach&quot;, &quot;gastrocnemius medialis&quot; 63062
-&quot;stomach&quot;, &quot;adrenal gland&quot; 46687
-&quot;stomach&quot;, &quot;transverse colon&quot; 18482
-&quot;stomach&quot;, &quot;upper lobe of left lung&quot; 19631
-&quot;stomach&quot;, &quot;tibial nerve&quot; 30702
-&quot;gastrocnemius medialis&quot;, &quot;adrenal gland&quot; 71152
-&quot;gastrocnemius medialis&quot;, &quot;transverse colon&quot; 67413
-&quot;gastrocnemius medialis&quot;, &quot;upper lobe of left lung&quot; 64449
-&quot;gastrocnemius medialis&quot;, &quot;tibial nerve&quot; 65703
-&quot;adrenal gland&quot;, &quot;transverse colon&quot; 42630
-&quot;adrenal gland&quot;, &quot;upper lobe of left lung&quot; 19733
-&quot;adrenal gland&quot;, &quot;tibial nerve&quot; 21451
-&quot;transverse colon&quot;, &quot;upper lobe of left lung&quot; 32724
-&quot;transverse colon&quot;, &quot;tibial nerve&quot; 39266
-&quot;upper lobe of left lung&quot;, &quot;tibial nerve&quot; 24924
 </pre></div>
 </div>
 </div>
@@ -1343,11 +1110,6 @@ H3K27me3-human (259589, 12)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4897
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1365,39 +1127,10 @@ H3K27me3-human (259589, 12)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>H3K27ac-human 13
-H3K27me3-human 12
-H3K36me3-human 13
-H3K4me1-human 13
-H3K4me3-human 13
-H3K9me3-human 13
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bulk_meta</span><span class="p">[</span><span class="s1">&#39;Biosample term name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Biosample term name
-esophagus muscularis mucosa      24
-tibial nerve                     24
-upper lobe of left lung          24
-gastrocnemius medialis           24
-stomach                          23
-Peyer&#39;s patch                    23
-transverse colon                 21
-body of pancreas                 18
-adrenal gland                    17
-breast epithelium                13
-right atrium auricular region    12
-heart left ventricle             12
-suprapubic skin                   6
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>

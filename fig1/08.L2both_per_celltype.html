@@ -593,8 +593,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -625,13 +623,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
-    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;, &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;, &#39;cluster&#39;, &#39;Short/Long&#39;, &#39;mcg_L2&#39;, &#39;hic_L2&#39;, &#39;L2_final&#39;
-    obsm: &#39;100k3C_pc50_seuratL2_tsne&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;5kCG_u50_seuratL2_tsne&#39;, &#39;X_tsne&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -646,11 +637,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L2_final&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(432,)
 </pre></div>
 </div>
 </div>
@@ -677,23 +663,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L2_final&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L2toct</span><span class="p">)</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>celltype_abbr
-SCT                4753
-ZR/ZF              2622
-Mono               2181
-Slow               2154
-Chief              2072
-                   ... 
-Schw Chrmf Adr       55
-Sebo                 51
-Fibro GI Pb Lng      45
-ET L5                35
-Schw Skn             31
-Name: count, Length: 164, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -782,89 +751,10 @@ Name: count, Length: 164, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ZG finished
-Endo Vsc CapVen finished
-Alpha finished
-LSP finished
-Basal finished
-Endo Vsc CapVnt finished
-Endo Vsc FibroPlct finished
-Fibro Mus AdipoP finished
-Endo Lym Mix finished
-Fibro GI Stm finished
-Capsule finished
-SpBas finished
-AT1 finished
-Neck finished
-LHS finished
-Foveolar finished
-Fibro Adr finished
-Fibro HT Ven finished
-Fibro Sk Pap finished
-Ent Co finished
-Fibro Sk Mes finished
-Fibro Mus finished
-Fibro Sk Ret finished
-Fibro Myo Esp finished
-B Naive finished
-Mast Mix finished
-B Mem finished
-Mac Mix finished
-Mac Esp finished
-AT2 finished
-NK CD16 Bld finished
-Mac Nrv finished
-Fibro GI Esp finished
-NK CD16 Lng finished
-Tnaive CD8 finished
-Tmem Tem CD8 Bld finished
-Epi Duc finished
-Fast finished
-Mono finished
-IT L5 finished
-IT L6 finished
-Fibro HT Atr finished
-LAMP5 finished
-PVALB BC finished
-Mus Crd Atr finished
-Beta finished
-SNCG finished
-B Plasma finished
-Schw Myl finished
-SST finished
-SmMus Mus finished
-SmMus Mix finished
-PeriVen finished
-Schw Non-Myl finished
-VIP finished
-Fibro EpiN finished
-ASC finished
-Mus Crd Ven finished
-Trans Amp finished
-IT L2/3 finished
-Slow finished
-Chief finished
-ODC finished
-Epi BrstBasal finished
-Tnaive CD4 finished
-Epi Aci finished
-Fibro Brst finished
-SCT finished
-Fibro EndN finished
-ZR/ZF finished
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>206
 </pre></div>
 </div>
 </div>
@@ -902,23 +792,6 @@ ZR/ZF finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>celltype_L2_both_abbr
-SCT                     4753
-ZR/ZF                   2622
-Slow                    2154
-Chief                   2072
-Mono 1                  1796
-                        ... 
-SmMus Mus 1               43
-Endo Vsc FibroPlct 2      43
-ET L5                     35
-SmMus Mus 2               34
-Schw Skn                  31
-Name: count, Length: 206, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -938,11 +811,6 @@ Name: count, Length: 206, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span> <span class="k">as</span> <span class="n">ARI</span>
 <span class="n">ARI</span><span class="p">(</span><span class="n">label_old</span><span class="p">,</span><span class="n">label_new</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9996695634778286
 </pre></div>
 </div>
 </div>
@@ -1026,137 +894,6 @@ Name: count, Length: 206, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>celltype_L2_both_abbr</th>
-      <th>L1</th>
-      <th>Tissue</th>
-      <th>L2_final</th>
-      <th>count</th>
-      <th>celltype_L2_both</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Endo Lym Esp</td>
-      <td>c33</td>
-      <td>EG</td>
-      <td>c33-c0</td>
-      <td>118</td>
-      <td>c33-b3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Endo Lym Brs</td>
-      <td>c33</td>
-      <td>B</td>
-      <td>c33-c2</td>
-      <td>74</td>
-      <td>c33-b4</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Endo Lym Skn</td>
-      <td>c33</td>
-      <td>Sk</td>
-      <td>c33-c1</td>
-      <td>59</td>
-      <td>c33-b2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Endo Lym Skn</td>
-      <td>c33</td>
-      <td>B</td>
-      <td>c33-c1</td>
-      <td>38</td>
-      <td>c33-b2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Endo Lym Mix 2</td>
-      <td>c33</td>
-      <td>SB</td>
-      <td>c33-c4</td>
-      <td>26</td>
-      <td>c33-b1</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1201</th>
-      <td>Perivascular SmMus HT</td>
-      <td>c12</td>
-      <td>AG</td>
-      <td>c12-c5</td>
-      <td>1</td>
-      <td>c12-b5</td>
-    </tr>
-    <tr>
-      <th>1202</th>
-      <td>Perivascular PeriAtr</td>
-      <td>c12</td>
-      <td>NTb</td>
-      <td>c12-c2</td>
-      <td>1</td>
-      <td>c12-b4</td>
-    </tr>
-    <tr>
-      <th>1203</th>
-      <td>Perivascular SmMus Mix 2</td>
-      <td>c12</td>
-      <td>LV</td>
-      <td>c12-c7</td>
-      <td>1</td>
-      <td>c12-b1</td>
-    </tr>
-    <tr>
-      <th>1204</th>
-      <td>Perivascular SmMus Mix 2</td>
-      <td>c12</td>
-      <td>PI</td>
-      <td>c12-c7</td>
-      <td>1</td>
-      <td>c12-b1</td>
-    </tr>
-    <tr>
-      <th>1205</th>
-      <td>Perivascular SmMus Mix 2</td>
-      <td>c12</td>
-      <td>SkGcn</td>
-      <td>c12-c7</td>
-      <td>1</td>
-      <td>c12-b1</td>
-    </tr>
-  </tbody>
-</table>
-<p>1206 rows × 6 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1213,34 +950,10 @@ Name: count, Length: 206, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>celltype_L2_both_abbr
-B Plasma           50
-Mono 1             35
-Mast Mix 1         30
-Mac Nrv            24
-B Naive            22
-                   ..
-Endo Vsc Adr        1
-Endo Vsc VenVen     1
-Endo Vsc Brn        1
-SNCG 2              1
-Endo Vsc Plct       1
-Name: count, Length: 206, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_meta</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;celltype_L2_both_abbr&#39;, &#39;L1&#39;, &#39;Tissue&#39;, &#39;L2_final&#39;, &#39;count&#39;,
-       &#39;celltype_L2_both&#39;, &#39;celltype_abbr&#39;, &#39;label&#39;],
-      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>

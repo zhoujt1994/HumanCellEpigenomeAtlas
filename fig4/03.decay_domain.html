@@ -618,12 +618,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>View of AnnData object with n_obs × n_vars = 35 × 115009
-    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -663,45 +657,6 @@
                <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
                <span class="n">palette</span><span class="o">=</span><span class="n">L1meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0, &#39;Endo-Lym&#39;),
- Text(1, 0, &#39;Endo-Ves&#39;),
- Text(2, 0, &#39;Epi-Aci&#39;),
- Text(3, 0, &#39;Epi-AdrCtx&#39;),
- Text(4, 0, &#39;Epi-Alv&#39;),
- Text(5, 0, &#39;Epi-BrstBasal&#39;),
- Text(6, 0, &#39;Epi-Duc&#39;),
- Text(7, 0, &#39;Epi-Endcri&#39;),
- Text(8, 0, &#39;Epi-Ent&#39;),
- Text(9, 0, &#39;Epi-Gas&#39;),
- Text(10, 0, &#39;Epi-Krt_Lum&#39;),
- Text(11, 0, &#39;Epi-TPB&#39;),
- Text(12, 0, &#39;Fibro-Adr&#39;),
- Text(13, 0, &#39;Fibro-Brst&#39;),
- Text(14, 0, &#39;Fibro-EndN&#39;),
- Text(15, 0, &#39;Fibro-EpiN&#39;),
- Text(16, 0, &#39;Fibro-GI&#39;),
- Text(17, 0, &#39;Fibro-HT&#39;),
- Text(18, 0, &#39;Fibro-Mus&#39;),
- Text(19, 0, &#39;Fibro-Myo&#39;),
- Text(20, 0, &#39;Fibro-Sk&#39;),
- Text(21, 0, &#39;Glia-Astro&#39;),
- Text(22, 0, &#39;Glia-Oligo&#39;),
- Text(23, 0, &#39;Hema-B&#39;),
- Text(24, 0, &#39;Hema-Mast&#39;),
- Text(25, 0, &#39;Hema-Myeloid&#39;),
- Text(26, 0, &#39;Hema-NK&#39;),
- Text(27, 0, &#39;Hema-Tmem&#39;),
- Text(28, 0, &#39;Hema-Tnaive&#39;),
- Text(29, 0, &#39;Mus-Crd&#39;),
- Text(30, 0, &#39;Mus-Skl&#39;),
- Text(31, 0, &#39;Neu-Exc&#39;),
- Text(32, 0, &#39;Neu-Inh&#39;),
- Text(33, 0, &#39;Neu-Schw&#39;),
- Text(34, 0, &#39;SmMus_Peri&#39;)]
 </pre></div>
 </div>
 </div>
@@ -759,45 +714,6 @@
         <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">count</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34 finished
-c32 finished
-c30 finished
-c33 finished
-c29 finished
-c31 finished
-c26 finished
-c27 finished
-c22 finished
-c25 finished
-c28 finished
-c24 finished
-c20 finished
-c23 finished
-c15 finished
-c13 finished
-c18 finished
-c11 finished
-c14 finished
-c19 finished
-c17 finished
-c9 finished
-c16 finished
-c10 finished
-c21 finished
-c5 finished
-c12 finished
-c2 finished
-c8 finished
-c7 finished
-c6 finished
-c3 finished
-c4 finished
-c1 finished
-c0 finished
 </pre></div>
 </div>
 </div>
@@ -883,45 +799,6 @@ c0 finished
 
     <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;decay_domain/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_histdomain_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
-c3 finished
-c22 finished
-c9 finished
-c20 finished
-c25 finished
-c30 finished
-c13 finished
-c8 finished
-c4 finished
-c18 finished
-c2 finished
-c29 finished
-c17 finished
-c19 finished
-c28 finished
-c6 finished
-c11 finished
-c32 finished
-c34 finished
-c23 finished
-c31 finished
-c14 finished
-c7 finished
-c24 finished
-c0 finished
-c27 finished
-c1 finished
-c15 finished
-c26 finished
-c5 finished
-c10 finished
-c16 finished
-c21 finished
-c12 finished
 </pre></div>
 </div>
 </div>

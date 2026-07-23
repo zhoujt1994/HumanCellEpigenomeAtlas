@@ -650,16 +650,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;,
-       &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;,
-       &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;,
-       &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;,
-       &#39;cluster&#39;, &#39;Short/Long&#39;, &#39;mcg_L2&#39;, &#39;hic_L2&#39;, &#39;L2_final&#39;],
-      dtype=&#39;object&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -876,20 +866,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1-nonpmd finished
-c22-pmd finished
-c35-nonpmd finished
-c2-pmd finished
-c2-nonpmd finished
-c22-nonpmd finished
-c35-pmd finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1-pmd finished
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,11 +939,6 @@ c35-pmd finished
 <span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span> <span class="o">//</span> <span class="mi">2000</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>287509
 </pre></div>
 </div>
 </div>
@@ -1100,46 +1071,6 @@ c35-pmd finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 275215
-c3 275808
-c22 275635
-c9 275786
-c20 275634
-c25 275608
-c30 275327
-c13 275736
-c8 275791
-c4 275801
-c18 275730
-c2 275815
-c29 275465
-c17 275729
-c19 275729
-c28 275590
-c6 275796
-c11 275783
-c32 275388
-c34 274903
-c23 275667
-c31 275464
-c14 275759
-c35 275772
-c36 275417
-c24 275603
-c0 275824
-c27 275572
-c1 275822
-c15 275722
-c26 275580
-c5 275810
-c10 275777
-c16 275704
-c21 275720
-c12 275767
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1147,18 +1078,6 @@ c12 275767
 <span class="n">model</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;pca_all&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 <span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s1">&#39;pca_all&#39;</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">41</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">model</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;pca_all&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s1">&#39;pca_all&#39;</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;significant_pc_test&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1218,15 +1137,6 @@ c12 275767
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 274014 × 3600
-    obs: &#39;leiden&#39;
-    uns: &#39;leiden&#39;, &#39;neighbors&#39;
-    obsm: &#39;X_pca&#39;, &#39;X_tsne&#39;, &#39;pc20_tsne&#39;, &#39;pca_all&#39;
-    obsp: &#39;connectivities&#39;, &#39;distances&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1234,16 +1144,6 @@ c12 275767
 <span class="n">cluster_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;kmeans</span><span class="si">{</span><span class="n">nc</span><span class="si">}</span><span class="s1">raw&#39;</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">cluster_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">nc</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">labels_</span>
 <span class="n">count</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">cluster_key</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kmeans4raw
-2    149242
-1     99192
-3     14058
-0     11522
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1258,11 +1158,6 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/PMD/10kb/&#39;
 </pre></div>
 </div>
 </div>
@@ -1300,46 +1195,6 @@ Name: count, dtype: int64
         <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c22 finished
-c11 finished
-c13 finished
-c18 finished
-c25 finished
-c30 finished
-c8 finished
-c20 finished
-c6 finished
-c17 finished
-c4 finished
-c3 finished
-c28 finished
-c9 finished
-c2 finished
-c33 finished
-c29 finished
-c19 finished
-c32 finished
-c34 finished
-c23 finished
-c31 finished
-c14 finished
-c35 finished
-c24 finished
-c36 finished
-c27 finished
-c0 finished
-c1 finished
-c15 finished
-c26 finished
-c5 finished
-c16 finished
-c21 finished
-c12 finished
-c10 finished
 </pre></div>
 </div>
 </div>
@@ -1524,14 +1379,6 @@ c10 finished
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(90, 2)
-(5, 2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(86, 2)
-(9, 2)
-</pre></div>
-</div>
 <img alt="../_images/300f0bfeccb27e6ca5e3d56a729cf2becd7ff857e24a5531ff428c660aff97da.png" src="../_images/300f0bfeccb27e6ca5e3d56a729cf2becd7ff857e24a5531ff428c660aff97da.png" />
 </div>
 </div>
@@ -1676,46 +1523,6 @@ c10 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
-c3
-c22
-c9
-c20
-c25
-c30
-c13
-c8
-c4
-c18
-c2
-c29
-c17
-c19
-c28
-c6
-c11
-c32
-c34
-c23
-c31
-c14
-c35
-c36
-c24
-c0
-c27
-c1
-c15
-c26
-c5
-c10
-c16
-c21
-c12
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1800,11 +1607,6 @@ c12
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>259589
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1875,46 +1677,6 @@ c12
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
-c3
-c22
-c9
-c20
-c25
-c30
-c13
-c8
-c4
-c18
-c2
-c29
-c17
-c19
-c28
-c6
-c11
-c32
-c34
-c23
-c31
-c14
-c35
-c36
-c24
-c0
-c27
-c1
-c15
-c26
-c5
-c10
-c16
-c21
-c12
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1951,46 +1713,6 @@ c12
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
-c3 finished
-c22 finished
-c31 finished
-c14 finished
-c29 finished
-c18 finished
-c2 finished
-c20 finished
-c4 finished
-c19 finished
-c9 finished
-c17 finished
-c23 finished
-c34 finished
-c28 finished
-c6 finished
-c11 finished
-c32 finished
-c13 finished
-c8 finished
-c25 finished
-c30 finished
-c35 finished
-c36 finished
-c24 finished
-c0 finished
-c27 finished
-c1 finished
-c15 finished
-c26 finished
-c5 finished
-c10 finished
-c16 finished
-c21 finished
-c12 finished
 </pre></div>
 </div>
 </div>
@@ -2034,46 +1756,6 @@ c12 finished
         <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8 finished
-c3 finished
-c20 finished
-c28 finished
-c9 finished
-c13 finished
-c18 finished
-c25 finished
-c30 finished
-c19 finished
-c6 finished
-c29 finished
-c11 finished
-c22 finished
-c17 finished
-c2 finished
-c32 finished
-c34 finished
-c33 finished
-c4 finished
-c36 finished
-c23 finished
-c24 finished
-c31 finished
-c21 finished
-c35 finished
-c0 finished
-c15 finished
-c12 finished
-c27 finished
-c14 finished
-c16 finished
-c10 finished
-c26 finished
-c5 finished
-c1 finished
 </pre></div>
 </div>
 </div>
@@ -2139,46 +1821,6 @@ c1 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
-c3
-c22
-c9
-c20
-c25
-c30
-c13
-c8
-c4
-c18
-c2
-c29
-c17
-c19
-c28
-c6
-c11
-c32
-c34
-c23
-c31
-c14
-c35
-c36
-c24
-c0
-c27
-c1
-c15
-c26
-c5
-c10
-c16
-c21
-c12
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2215,46 +1857,6 @@ c12
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33 finished
-c3 finished
-c22 finished
-c9 finished
-c2 finished
-c17 finished
-c28 finished
-c32 finished
-c34 finished
-c19 finished
-c29 finished
-c6 finished
-c8 finished
-c11 finished
-c35 finished
-c13 finished
-c23 finished
-c4 finished
-c14 finished
-c30 finished
-c20 finished
-c25 finished
-c18 finished
-c31 finished
-c24 finished
-c36 finished
-c0 finished
-c27 finished
-c1 finished
-c15 finished
-c26 finished
-c5 finished
-c10 finished
-c16 finished
-c21 finished
-c12 finished
 </pre></div>
 </div>
 </div>
@@ -2322,173 +1924,6 @@ c12 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>celltype_L2_both_abbr</th>
-      <th>L1</th>
-      <th>Tissue</th>
-      <th>L2_final</th>
-      <th>count</th>
-      <th>celltype_L2_both</th>
-      <th>celltype_abbr</th>
-      <th>label</th>
-      <th>celltype_L2_both_annot</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Endo Lym Esp</td>
-      <td>c33</td>
-      <td>EG</td>
-      <td>c33-c0</td>
-      <td>118</td>
-      <td>c33-b3</td>
-      <td>Endo Lym Esp</td>
-      <td></td>
-      <td>Endo Lym Esp</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Endo Lym Brs</td>
-      <td>c33</td>
-      <td>B</td>
-      <td>c33-c2</td>
-      <td>74</td>
-      <td>c33-b4</td>
-      <td>Endo Lym Brs</td>
-      <td></td>
-      <td>Endo Lym Brs</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Endo Lym Skn</td>
-      <td>c33</td>
-      <td>Sk</td>
-      <td>c33-c1</td>
-      <td>59</td>
-      <td>c33-b2</td>
-      <td>Endo Lym Skn</td>
-      <td></td>
-      <td>Endo Lym Skn</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Endo Lym Skn</td>
-      <td>c33</td>
-      <td>B</td>
-      <td>c33-c1</td>
-      <td>38</td>
-      <td>c33-b2</td>
-      <td>Endo Lym Skn</td>
-      <td></td>
-      <td>Endo Lym Skn</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Endo Lym Mix 2</td>
-      <td>c33</td>
-      <td>SB</td>
-      <td>c33-c4</td>
-      <td>26</td>
-      <td>c33-b1</td>
-      <td>Endo Lym Mix</td>
-      <td>2</td>
-      <td>Endo Lym Mix 2</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1201</th>
-      <td>SmMus HT</td>
-      <td>c12</td>
-      <td>AG</td>
-      <td>c12-c5</td>
-      <td>1</td>
-      <td>c12-b5</td>
-      <td>SmMus HT</td>
-      <td></td>
-      <td>SmMus HT</td>
-    </tr>
-    <tr>
-      <th>1202</th>
-      <td>PeriAtr</td>
-      <td>c12</td>
-      <td>NTb</td>
-      <td>c12-c2</td>
-      <td>1</td>
-      <td>c12-b4</td>
-      <td>PeriAtr</td>
-      <td></td>
-      <td>PeriAtr</td>
-    </tr>
-    <tr>
-      <th>1203</th>
-      <td>SmMus Mix 2</td>
-      <td>c12</td>
-      <td>LV</td>
-      <td>c12-c7</td>
-      <td>1</td>
-      <td>c12-b1</td>
-      <td>SmMus Mix</td>
-      <td>2</td>
-      <td>SmMus Mix 2</td>
-    </tr>
-    <tr>
-      <th>1204</th>
-      <td>SmMus Mix 2</td>
-      <td>c12</td>
-      <td>PI</td>
-      <td>c12-c7</td>
-      <td>1</td>
-      <td>c12-b1</td>
-      <td>SmMus Mix</td>
-      <td>2</td>
-      <td>SmMus Mix 2</td>
-    </tr>
-    <tr>
-      <th>1205</th>
-      <td>SmMus Mix 2</td>
-      <td>c12</td>
-      <td>SkGcn</td>
-      <td>c12-c7</td>
-      <td>1</td>
-      <td>c12-b1</td>
-      <td>SmMus Mix</td>
-      <td>2</td>
-      <td>SmMus Mix 2</td>
-    </tr>
-  </tbody>
-</table>
-<p>1206 rows × 9 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2620,11 +2055,6 @@ c12 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 50, 100, 500, 1000, 5000, 10000, 50000]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2678,8 +2108,6 @@ c12 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2689,11 +2117,6 @@ c12 finished
         <span class="n">posfilter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">idx</span><span class="o">&gt;=</span><span class="n">xx</span><span class="p">,</span> <span class="n">idx</span><span class="o">&lt;=</span><span class="n">yy</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posfilter</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">posfilter</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.956217987668407
 </pre></div>
 </div>
 </div>

@@ -582,8 +582,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,11 +589,6 @@
 <span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/ldsc/&#39;</span>
 <span class="n">coef_file_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">result/*.loopdmr.*.txt&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coef_file_list</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75
 </pre></div>
 </div>
 </div>
@@ -614,11 +607,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filelist</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">result/*.loopdmr.*.results&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filelist</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2612
 </pre></div>
 </div>
 </div>
@@ -700,11 +688,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.376185826931185e-08
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -712,11 +695,6 @@
 <span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/ldsc/&#39;</span>
 <span class="n">coef_file_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">result/*.dmr.*.txt&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coef_file_list</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>75
 </pre></div>
 </div>
 </div>
@@ -786,9 +764,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101
-</pre></div>
-</div>
 <img alt="../_images/8c1f8c150150f5ebd2d11662324a8cdf014faab62ae2294f038c6acbb31439e2.png" src="../_images/8c1f8c150150f5ebd2d11662324a8cdf014faab62ae2294f038c6acbb31439e2.png" />
 </div>
 </div>
@@ -796,11 +771,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sig</span> <span class="o">=</span> <span class="n">sig1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">sig2</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;460K_&#39;</span><span class="p">,</span> <span class="s1">&#39;460K.&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>149
 </pre></div>
 </div>
 </div>
@@ -837,11 +807,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selp</span> <span class="o">=</span> <span class="n">stats1</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">stats2</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selp</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>149
 </pre></div>
 </div>
 </div>

@@ -682,54 +682,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A
-1
-5
-10
-50
-100
-500
-1000
-5000
-10000
-50000
-C
-1
-5
-10
-50
-100
-500
-1000
-5000
-10000
-50000
-G
-1
-5
-10
-50
-100
-500
-1000
-5000
-10000
-50000
-T
-1
-5
-10
-50
-100
-500
-1000
-5000
-10000
-50000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -739,11 +691,6 @@ T
 <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">//</span> <span class="mi">48</span>
 <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span> <span class="o">//</span> <span class="n">chunk_size</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28760 48
 </pre></div>
 </div>
 </div>
@@ -804,8 +751,6 @@ T
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -828,95 +773,6 @@ T
             <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">context</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chunk</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
         
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk2 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk15 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk13 finished
-chunk12 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk21 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk0 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk16 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk8 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk6 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk18 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
-chunk5 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk9 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk14 finished
-chunk3 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk1 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk22 finished
-chunk23 finished
-chunk7 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk10 finished
-chunk20 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk4 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk11 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk17 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk26 finished
-chunk48 finished
-chunk24 finished
-chunk25 finished
-chunk27 finished
-chunk38 finished
-chunk29 finished
-chunk31 finished
-chunk28 finished
-chunk36 finished
-chunk30 finished
-chunk33 finished
-chunk34 finished
-chunk32 finished
-chunk42 finished
-chunk40 finished
-chunk37 finished
-chunk35 finished
-chunk44 finished
-chunk39 finished
-chunk46 finished
-chunk47 finished
-chunk43 finished
-chunk45 finished
-chunk41 finished
 </pre></div>
 </div>
 </div>
@@ -1055,11 +911,6 @@ chunk41 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(49501, 33)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1086,11 +937,6 @@ chunk41 finished
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55733 48
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1103,11 +949,6 @@ chunk41 finished
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">center</span><span class="o">-</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span><span class="o">+</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1 -47527 152473
 </pre></div>
 </div>
 </div>
@@ -1167,93 +1008,6 @@ chunk41 finished
     <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mC_geneslop100kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
     
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk2 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk3 finished
-chunk16 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk15 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk20 finished
-chunk13 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk23 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk11 finished
-chunk12 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk21 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk22 finished
-chunk5 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk9 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk17 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk14 finished
-chunk10 finished
-chunk4 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk1 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk7 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk8 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk0 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk6 finished
-chunk18 finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk25 finished
-chunk48 finished
-chunk24 finished
-chunk34 finished
-chunk32 finished
-chunk26 finished
-chunk29 finished
-chunk37 finished
-chunk28 finished
-chunk30 finished
-chunk35 finished
-chunk27 finished
-chunk33 finished
-chunk39 finished
-chunk40 finished
-chunk36 finished
-chunk41 finished
-chunk31 finished
-chunk38 finished
-chunk43 finished
-chunk42 finished
-chunk44 finished
-chunk45 finished
-chunk46 finished
-chunk47 finished
 </pre></div>
 </div>
 </div>

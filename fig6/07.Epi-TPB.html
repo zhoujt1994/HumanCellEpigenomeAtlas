@@ -557,11 +557,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -665,13 +660,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5228 × 0
-    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
-    obsm: &#39;5kCG_lsi&#39;, &#39;5kCG_u14_seuratL2&#39;, &#39;5kCG_u14_seuratL2_tsne&#39;, &#39;X_lsi&#39;, &#39;X_tsne&#39;, &#39;5kCG_u14_tsne&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -687,64 +675,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>leiden</th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-    </tr>
-    <tr>
-      <th>Donor</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>9213</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>495.0</td>
-      <td>364.0</td>
-      <td>1103.0</td>
-      <td>736.0</td>
-    </tr>
-    <tr>
-      <th>9216</th>
-      <td>1238.0</td>
-      <td>1289.0</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -758,14 +688,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>celltype_abbr
-SCT    4753
-VCT     475
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -783,16 +705,6 @@ Name: count, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;cell_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;cell_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell_group
-SCT-9213    2571
-SCT-9216    2182
-VCT-9216     346
-VCT-9213     129
-Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -870,11 +782,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/Epi-TPB/&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -892,11 +799,6 @@ Name: count, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seldmr</span> <span class="o">=</span> <span class="p">((</span><span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;SCT-9213&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;VCT-9213&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;SCT-9216&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">dmr_state</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;VCT-9216&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;ndms&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">seldmr</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3534
 </pre></div>
 </div>
 </div>
@@ -931,11 +833,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>96686
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -962,53 +859,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Subtype DMR</th>
-      <th>mCG cluster DMR</th>
-    </tr>
-    <tr>
-      <th>mc_comp</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.076683</td>
-      <td>0.013749</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.136609</td>
-      <td>0.975417</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.786708</td>
-      <td>0.010834</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
