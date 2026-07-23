@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -1549,9 +1550,9 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">rankdata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from scipy.stats import rankdata</span>
 
-<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+<span class="c1"># for ct in L1_meta.index:</span>
     <span class="c1"># mc = pd.read_hdf(f&#39;{outdir}{ct}_1kb.hdf&#39;, key=&#39;mc&#39;)</span>
     <span class="c1"># cov = pd.read_hdf(f&#39;{outdir}{ct}_1kb.hdf&#39;, key=&#39;cov&#39;)</span>
     <span class="c1"># bed = cooler.util.binnify(chrom_sizes, res)</span>
@@ -1570,11 +1571,11 @@ dtype: float64
     <span class="c1"># rank = rankdata(ratiotmp[&#39;CA&#39;])</span>
     <span class="c1"># bed.loc[ratiotmp.index].loc[rank&lt;2000].sort_values([&#39;chrom&#39;,&#39;start&#39;]).to_csv(f&#39;{outdir}{ct}_lowCA_lowCG.bed&#39;, sep=&#39;\t&#39;, header=False, index=False)</span>
     <span class="c1"># bed.loc[ratiotmp.index].loc[rank&gt;(len(rank)-2000)].sort_values([&#39;chrom&#39;,&#39;start&#39;]).to_csv(f&#39;{outdir}{ct}_highCA_lowCG.bed&#39;, sep=&#39;\t&#39;, header=False, index=False)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">thres</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;bedtools intersect -wa -a </span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz -b </span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_highCA_lowCG.bed | cut -f5 | sort | uniq &gt; </span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_highCA_lowCG.genebody.txt&#39;</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;bedtools intersect -wa -a </span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz -b </span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_lowCA_lowCG.bed | cut -f5 | sort | uniq &gt; </span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_lowCA_lowCG.genebody.txt&#39;</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="c1"># print(ct, thres)</span>
+    <span class="c1"># cmd = f&#39;bedtools intersect -wa -a {REF_ROOT}/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz -b {outdir}{ct}_highCA_lowCG.bed | cut -f5 | sort | uniq &gt; {outdir}{ct}_highCA_lowCG.genebody.txt&#39;</span>
+    <span class="c1"># os.system(cmd)</span>
+    <span class="c1"># cmd = f&#39;bedtools intersect -wa -a {REF_ROOT}/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz -b {outdir}{ct}_lowCA_lowCG.bed | cut -f5 | sort | uniq &gt; {outdir}{ct}_lowCA_lowCG.genebody.txt&#39;</span>
+    <span class="c1"># os.system(cmd)</span>
 </pre></div>
 </div>
 </div>
@@ -1708,8 +1709,8 @@ c12 0.2314414565632291
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imprint_bed = pd.read_csv(f&#39;{outdir}ICR.bed&#39;, header=None, sep=&#39;\t&#39;, index_col=None, names=[&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;])</span>
-<span class="c1"># imprint_bed.index = imprint_bed[&#39;chrom&#39;] + &#39;-&#39; + ((imprint_bed[&#39;start&#39;]+imprint_bed[&#39;end&#39;])//2//res).astype(str)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imprint_bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">ICR.bed&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span><span class="s1">&#39;start&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">])</span>
+<span class="n">imprint_bed</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">imprint_bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">((</span><span class="n">imprint_bed</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">imprint_bed</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span><span class="o">//</span><span class="mi">2</span><span class="o">//</span><span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1769,7 +1770,12 @@ c12 0.2314414565632291
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out_idx</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">imprint_bed</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">binnify</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">res</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bed</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">//</span><span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">binfilter</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">out_idx</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">imprint_bed</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_idx</span><span class="p">))</span>
 </pre></div>
 </div>

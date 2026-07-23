@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -571,9 +572,9 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scanpy.external</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sce</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="c1"># from ALLCools.clustering import *</span>
-<span class="c1"># from ALLCools.integration.seurat_class import SeuratIntegration</span>
-<span class="c1"># from ALLCools.plot import *</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.integration.seurat_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeuratIntegration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">TruncatedSVD</span>

@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -776,7 +777,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
-c1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1
 </pre></div>
 </div>
 </div>
@@ -849,7 +852,6 @@ c1
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> 
                          <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()},</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">loopr</span><span class="o">-</span><span class="n">loopl</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">)):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>

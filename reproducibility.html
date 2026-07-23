@@ -64,7 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Coverage &amp; gaps" href="gaps.html" />
+    <link rel="next" title="Not-confidently-reproducible notebooks — to discuss" href="NONCONFIDENT.html" />
     <link rel="prev" title="Panel ↔ output-PDF ↔ notebook map (authoritative)" href="PANEL_MAP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -514,8 +515,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-run-clean-22">✅ Re-run CLEAN (22)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panels-render-but-a-later-cell-blocks-full-re-run-20">⚠ Panels render, but a later cell blocks full re-run (20)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-run-clean-29">✅ Re-run CLEAN (29)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panels-render-fresh-re-run-blocked-later-13">⚠ Panels render; fresh re-run blocked later (13)</a></li>
 </ul>
             </nav>
         </div>
@@ -529,85 +530,17 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reproducibility-status">
 <h1>Reproducibility status<a class="headerlink" href="#reproducibility-status" title="Link to this heading">#</a></h1>
-<p>Notebooks re-executed <strong>fresh, read-only</strong> in the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> env from the shared <code class="docutils literal notranslate"><span class="pre">allc</span></code>/<code class="docutils literal notranslate"><span class="pre">cool</span></code>/<code class="docutils literal notranslate"><span class="pre">loop</span></code>/<code class="docutils literal notranslate"><span class="pre">DMR</span></code> files, after the map-driven cleanup. The book renders each notebook’s <strong>saved</strong> panel outputs, so a re-run blocker on a <em>later</em> cell does not affect the displayed figures — it flags a reproduce-from-scratch gap.</p>
-<p>Two recovered notebooks (<code class="docutils literal notranslate"><span class="pre">fig6/00</span></code> Fig 6A+6D, <code class="docutils literal notranslate"><span class="pre">fig3/10</span></code> Fig 3I+S23B) are freshly executed and CLEAN.</p>
-<section id="re-run-clean-22">
-<h2>✅ Re-run CLEAN (22)<a class="headerlink" href="#re-run-clean-22" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">fig1/02.m3c_blacklist</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/03.method_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/07.dendrogram_annot</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/10.compare_bulkmc</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/11.compare_bulkhic</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/05.DMR_overlap_ATAC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/10.PMD_donor</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/15.PMD_ATAC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/16.peak_mCG_motif</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/18.DMR_loop_sLDSC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/03.mC_context_lambda</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/05.mCH_mCG_scale</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/06.mCH_mCG_comp</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/07.mCH_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/09.mCH_geneflank</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/02.decay_compartment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/07.diffloop_majortype</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/09.loop_rna</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/05.loop_dmr_enrichment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/02.MusSkl_donor_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/07.Epi-TPB</span></code></p>
+<p>Every figure notebook re-executed <strong>fresh, read-only</strong> in the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> env from the shared <code class="docutils literal notranslate"><span class="pre">allc</span></code>/<code class="docutils literal notranslate"><span class="pre">cool</span></code>/<code class="docutils literal notranslate"><span class="pre">loop</span></code>/<code class="docutils literal notranslate"><span class="pre">DMR</span></code> files. The book renders each notebook’s <strong>saved</strong> panel outputs, so panels display even where a fresh re-run stops on a later cell.</p>
+<p><strong>29 of 42 figure notebooks re-run fully CLEAN.</strong> The rest render their panels but stop later on a fresh run — see <a class="reference internal" href="NONCONFIDENT.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">NONCONFIDENT.md</span></code></span></a> for the itemized reasons (missing data / external paths vs deeper code issues).</p>
+<section id="re-run-clean-29">
+<h2>✅ Re-run CLEAN (29)<a class="headerlink" href="#re-run-clean-29" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fig1/01.clustering_summary</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/02.m3c_blacklist</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/03.method_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/07.dendrogram_annot</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/10.compare_bulkmc</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/11.compare_bulkhic</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/03.PMD_RNA</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/04.DMR_stats</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/05.DMR_overlap_ATAC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/10.PMD_donor</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/15.PMD_ATAC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/16.peak_mCG_motif</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/18.DMR_loop_sLDSC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/02.mCH_distribution</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/03.mC_context_lambda</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/05.mCH_mCG_scale</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/06.mCH_mCG_comp</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/07.mCH_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/09.mCH_geneflank</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/02.decay_compartment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/07.diffloop_majortype</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/09.loop_rna</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/10.loop_comp</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/02.comp_pmd</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/03.mCoverCompboundary</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/05.loop_dmr_enrichment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/02.MusSkl_donor_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/07.Epi-TPB</span></code></p>
 </section>
-<section id="panels-render-but-a-later-cell-blocks-full-re-run-20">
-<h2>⚠ Panels render, but a later cell blocks full re-run (20)<a class="headerlink" href="#panels-render-but-a-later-cell-blocks-full-re-run-20" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Notebook</p></th>
-<th class="head"><p>blocker</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/01.clustering_summary</span></code></p></td>
-<td><p>out-of-order var</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/04.method_anchor</span></code></p></td>
-<td><p>missing wnn embedding</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/08.L2both_per_celltype</span></code></p></td>
-<td><p>missing intermediate / other-host path</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/02.PMD_hetero</span></code></p></td>
-<td><p>missing import</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/03.PMD_RNA</span></code></p></td>
-<td><p>shell/magic cell</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/04.DMR_stats</span></code></p></td>
-<td><p>shell/magic cell</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/07.TE_mCG</span></code></p></td>
-<td><p>shell/magic cell</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/13.PMD_histone</span></code></p></td>
-<td><p>c48:KeyError: “None of [Index([(‘t’, ‘i’</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/02.mCH_distribution</span></code></p></td>
-<td><p>stale name in data file</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/04.mCH_mCG_corr</span></code></p></td>
-<td><p>out-of-order var</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/01.decay</span></code></p></td>
-<td><p>missing intermediate / other-host path</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/06.domainloop_stats</span></code></p></td>
-<td><p>missing intermediate / other-host path</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/10.loop_comp</span></code></p></td>
-<td><p>out-of-order var</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/01.genome_mCG_compartment</span></code></p></td>
-<td><p>bed read w/o header</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/02.comp_pmd</span></code></p></td>
-<td><p>out-of-order var</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/03.mCoverCompboundary</span></code></p></td>
-<td><p>bed read w/o header</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/07.L2any_L2both</span></code></p></td>
-<td><p>missing intermediate / other-host path</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/08.pycistarget_loopDMR</span></code></p></td>
-<td><p>missing intermediate / other-host path</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/06.MusSkl_diff_7group</span></code></p></td>
-<td><p>c13:NameError: name ‘leg’ is not defined</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/09.NTbSchw_clustering</span></code></p></td>
-<td><p>c11:NameError: name ‘filter_regions’ is</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Blocker classes: shell/magic cells, out-of-order variables (author ran cells non-linearly), missing intermediates or a coauthor’s hardcoded path, a stale name in a cached data file, and a couple of bed-header reads. Being fixed incrementally.</p>
+<section id="panels-render-fresh-re-run-blocked-later-13">
+<h2>⚠ Panels render; fresh re-run blocked later (13)<a class="headerlink" href="#panels-render-fresh-re-run-blocked-later-13" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fig1/04.method_anchor</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/08.L2both_per_celltype</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/02.PMD_hetero</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/07.TE_mCG</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/13.PMD_histone</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/04.mCH_mCG_corr</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/01.decay</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/06.domainloop_stats</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/01.genome_mCG_compartment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/07.L2any_L2both</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/08.pycistarget_loopDMR</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/06.MusSkl_diff_7group</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/09.NTbSchw_clustering</span></code></p>
+<p>See <code class="docutils literal notranslate"><span class="pre">NONCONFIDENT.md</span></code> for each blocker and which panel (if any) it leaves blank.
+Two recovered notebooks (<code class="docutils literal notranslate"><span class="pre">fig6/00</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/10</span></code>) and <code class="docutils literal notranslate"><span class="pre">fig2/12</span></code> (Fig 6I/6J) render from fresh bakes.</p>
 </section>
 </section>
 
@@ -651,11 +584,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="gaps.html"
+       href="NONCONFIDENT.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Coverage &amp; gaps</p>
+        <p class="prev-next-title">Not-confidently-reproducible notebooks — to discuss</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -677,8 +610,8 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-run-clean-22">✅ Re-run CLEAN (22)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panels-render-but-a-later-cell-blocks-full-re-run-20">⚠ Panels render, but a later cell blocks full re-run (20)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-run-clean-29">✅ Re-run CLEAN (29)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#panels-render-fresh-re-run-blocked-later-13">⚠ Panels render; fresh re-run blocked later (13)</a></li>
 </ul>
   </nav></div>
 

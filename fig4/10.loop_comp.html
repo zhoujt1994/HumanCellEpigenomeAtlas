@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -554,6 +555,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -620,7 +626,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3154101, 9) (3154101, 35) (3154101, 35)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3154101, 12) (3154101, 35) (3154101, 35)
 </pre></div>
 </div>
 </div>
@@ -670,8 +676,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E finished
-T finished
-Q finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q finished
 </pre></div>
 </div>
 </div>
@@ -681,8 +691,6 @@ Q finished
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loopall</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">loopdir</span><span class="si">}</span><span class="s1">merged_loop.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -819,21 +827,6 @@ Q finished
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.random.seed(0)</span>
-<span class="c1"># sel = np.random.choice(np.arange(len(looptmp)), 2000, False)</span>
-
-<span class="c1"># cg = sns.clustermap(looptmp[sel], cmap=&#39;bwr&#39;, vmin=-3, vmax=3, metric=&#39;cosine&#39;, xticklabels=leg.map(L1_annot), yticklabels=[], figsize=(6,6))</span>
-
-<span class="c1"># rorder = cg.dendrogram_row.reordered_ind.copy()</span>
-<span class="c1"># corder = cg.dendrogram_col.reordered_ind.copy()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nc</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">group_palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Set3&#39;</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
 <span class="n">tmp</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">label3c</span><span class="p">,</span> <span class="n">corder</span> <span class="o">=</span> <span class="n">order_row</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">looptmp</span><span class="p">),</span> <span class="n">nc</span><span class="o">=</span><span class="n">nc</span><span class="p">)</span>
@@ -876,7 +869,22 @@ Q finished
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d1e09ab830e4ad0ea1a8a899733387a29107d93d6253f571c8b441bbe5597e16.png" src="../_images/d1e09ab830e4ad0ea1a8a899733387a29107d93d6253f571c8b441bbe5597e16.png" />
+<img alt="../_images/ece14ca1fc6ac40e5ef22891c22733ef18c5f138161b9ee2093a27d621806de5.png" src="../_images/ece14ca1fc6ac40e5ef22891c22733ef18c5f138161b9ee2093a27d621806de5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">looptmp</span><span class="p">)),</span> <span class="mi">2000</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">looptmp</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">leg</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">rorder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">corder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -908,7 +916,7 @@ Q finished
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ad7f6f988580364e55a348528aa69665a5c7cd6dd68e134def96f77f655e9d08.png" src="../_images/ad7f6f988580364e55a348528aa69665a5c7cd6dd68e134def96f77f655e9d08.png" />
+<img alt="../_images/f616ede717987d23aa828e0eeba1258ff37b20115398f0ed27ba3022742bda0e.png" src="../_images/f616ede717987d23aa828e0eeba1258ff37b20115398f0ed27ba3022742bda0e.png" />
 </div>
 </div>
 </section>

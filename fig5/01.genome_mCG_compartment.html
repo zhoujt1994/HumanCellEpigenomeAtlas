@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -1897,9 +1898,27 @@ Attributes:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">]})</span>
 
 <span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
-<span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
-    <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="p">)</span>
+
+<span class="c1"># --- robust black-list removal (inline replacement) ---</span>
+<span class="c1"># MCDS.remove_black_list_region intersects with pybedtools and calls</span>
+<span class="c1"># .to_dataframe().set_index([&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]). In pybedtools&gt;=0.12 an</span>
+<span class="c1"># EMPTY intersect returns a column-less DataFrame, so set_index raises</span>
+<span class="c1"># KeyError(&quot;None of [&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;] ...&quot;) instead of the caught</span>
+<span class="c1"># EmptyDataError. Reproduce the same result robustly by building the feature</span>
+<span class="c1"># bed from the mcds bin coords and dropping bins overlapping the black list.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pybedtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_pbt</span>
+<span class="n">_feat</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_feature_bed</span><span class="p">(</span><span class="n">var_dim</span><span class="o">=</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">_feat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
+<span class="n">_black</span> <span class="o">=</span> <span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+    <span class="n">_feat</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom1k&#39;</span><span class="p">]]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="p">(</span><span class="n">black_list_path</span><span class="p">),</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">_black</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_black</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_drop</span><span class="p">]</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span> <span class="n">_keep</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">_drop</span><span class="p">)</span><span class="si">}</span><span class="s1"> chrom1k features removed due to overlapping black list regions.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No feature overlapping the black list bed file.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3759,9 +3778,27 @@ Attributes:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">1000</span><span class="p">]})</span>
 
 <span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
-<span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
-    <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="p">)</span>
+
+<span class="c1"># --- robust black-list removal (inline replacement) ---</span>
+<span class="c1"># MCDS.remove_black_list_region intersects with pybedtools and calls</span>
+<span class="c1"># .to_dataframe().set_index([&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]). In pybedtools&gt;=0.12 an</span>
+<span class="c1"># EMPTY intersect returns a column-less DataFrame, so set_index raises</span>
+<span class="c1"># KeyError(&quot;None of [&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;] ...&quot;) instead of the caught</span>
+<span class="c1"># EmptyDataError. Reproduce the same result robustly by building the feature</span>
+<span class="c1"># bed from the mcds bin coords and dropping bins overlapping the black list.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pybedtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_pbt</span>
+<span class="n">_feat</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_feature_bed</span><span class="p">(</span><span class="n">var_dim</span><span class="o">=</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">_feat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
+<span class="n">_black</span> <span class="o">=</span> <span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+    <span class="n">_feat</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom1k&#39;</span><span class="p">]]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="p">(</span><span class="n">black_list_path</span><span class="p">),</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">_black</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_black</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_drop</span><span class="p">]</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span> <span class="n">_keep</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">_drop</span><span class="p">)</span><span class="si">}</span><span class="s1"> chrom1k features removed due to overlapping black list regions.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No feature overlapping the black list bed file.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

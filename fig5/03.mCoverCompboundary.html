@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -558,6 +559,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,6 +635,556 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 10GB
+Dimensions:        (cell: 206, chrom1k: 3088347, count_type: 2, mc_type: 2)
+Coordinates:
+  * cell           (cell) &lt;U7 6kB &#x27;c8-b3&#x27; &#x27;c4-b1&#x27; &#x27;c8-b5&#x27; ... &#x27;c14-b3&#x27; &#x27;c32-b0&#x27;
+  * chrom1k        (chrom1k) &lt;U12 148MB &#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;
+    chrom1k_chrom  (chrom1k) &lt;U5 62MB ...
+    chrom1k_end    (chrom1k) int64 25MB ...
+    chrom1k_start  (chrom1k) int64 25MB ...
+  * count_type     (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+  * mc_type        (mc_type) &lt;U3 24B &#x27;CGN&#x27; &#x27;CHN&#x27;
+Data variables:
+    chrom1k_da     (cell, chrom1k, mc_type, count_type) uint32 10GB dask.array&lt;chunksize=(1, 193022, 1, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom1k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-94ff421f-4a29-47e1-8b19-7e9d0653e3ba' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-94ff421f-4a29-47e1-8b19-7e9d0653e3ba' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 206</li><li><span class='xr-has-index'>chrom1k</span>: 3088347</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>mc_type</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-a861f5ac-bbd3-4e37-91f3-63738d1e1908' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a861f5ac-bbd3-4e37-91f3-63738d1e1908' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U7</div><div class='xr-var-preview xr-preview'>&#x27;c8-b3&#x27; &#x27;c4-b1&#x27; ... &#x27;c32-b0&#x27;</div><input id='attrs-e4dd868e-f098-424c-a829-a7af9f168dd2' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e4dd868e-f098-424c-a829-a7af9f168dd2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d505903a-3897-43c5-bdd7-3f6a55ba806b' class='xr-var-data-in' type='checkbox'><label for='data-d505903a-3897-43c5-bdd7-3f6a55ba806b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c8-b3&#x27;, &#x27;c4-b1&#x27;, &#x27;c8-b5&#x27;, ..., &#x27;c6-b8&#x27;, &#x27;c14-b3&#x27;, &#x27;c32-b0&#x27;],
+      dtype=&#x27;&lt;U7&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom1k</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U12</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;</div><input id='attrs-2e2adae8-83dc-4e75-975b-ddd3dcc3ce5a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2e2adae8-83dc-4e75-975b-ddd3dcc3ce5a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7d3c5c89-0d26-4310-87e1-831568cd3cd4' class='xr-var-data-in' type='checkbox'><label for='data-7d3c5c89-0d26-4310-87e1-831568cd3cd4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;,
+       &#x27;chrY_57227&#x27;], dtype=&#x27;&lt;U12&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_chrom</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-bccb8542-d1ce-46cb-bfde-22102522a565' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-bccb8542-d1ce-46cb-bfde-22102522a565' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4f437863-7f4a-40a9-bced-5461f629be40' class='xr-var-data-in' type='checkbox'><label for='data-4f437863-7f4a-40a9-bced-5461f629be40' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088347 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_end</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0a45c678-66c9-48d9-984e-e31180cc4418' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0a45c678-66c9-48d9-984e-e31180cc4418' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b3d84ca2-2058-48ea-88ff-d566eaf890db' class='xr-var-data-in' type='checkbox'><label for='data-b3d84ca2-2058-48ea-88ff-d566eaf890db' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088347 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_start</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f6c0fef4-3e46-4ecd-9297-0349b2c99057' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f6c0fef4-3e46-4ecd-9297-0349b2c99057' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2e987d37-1860-41d9-974f-535d54f7cfbd' class='xr-var-data-in' type='checkbox'><label for='data-2e987d37-1860-41d9-974f-535d54f7cfbd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088347 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-6eb49f9d-d573-4c42-9585-03ef5a5f7025' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6eb49f9d-d573-4c42-9585-03ef5a5f7025' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b9c4ac38-ea67-4a72-8d41-69b2ffe027c7' class='xr-var-data-in' type='checkbox'><label for='data-b9c4ac38-ea67-4a72-8d41-69b2ffe027c7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>mc_type</span></div><div class='xr-var-dims'>(mc_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27; &#x27;CHN&#x27;</div><input id='attrs-2c1914c6-47df-433c-b244-1375d0aae3f6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2c1914c6-47df-433c-b244-1375d0aae3f6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-11376830-3c6a-48de-9175-f7b9f7974f95' class='xr-var-data-in' type='checkbox'><label for='data-11376830-3c6a-48de-9175-f7b9f7974f95' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;CGN&#x27;, &#x27;CHN&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-01eabd71-f31e-422c-98ee-8e125c2b50e7' class='xr-section-summary-in' type='checkbox'  checked><label for='section-01eabd71-f31e-422c-98ee-8e125c2b50e7' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_da</span></div><div class='xr-var-dims'>(cell, chrom1k, mc_type, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 193022, 1, 1), meta=np.ndarray&gt;</div><input id='attrs-bff3a848-e960-4382-8754-45650de5ae4d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-bff3a848-e960-4382-8754-45650de5ae4d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4c59028b-5ba8-411e-80e5-c58b84b3cfd8' class='xr-var-data-in' type='checkbox'><label for='data-4c59028b-5ba8-411e-80e5-c58b84b3cfd8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 9.48 GiB </td>
+                        <td> 753.99 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (206, 3088347, 2, 2) </td>
+                        <td> (1, 193022, 1, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 13184 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> uint32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="336" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="25" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="0" y1="0" x2="0" y2="25" />
+  <line x1="1" y1="0" x2="1" y2="25" />
+  <line x1="2" y1="0" x2="2" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="4" y1="0" x2="4" y2="25" />
+  <line x1="5" y1="0" x2="5" y2="25" />
+  <line x1="6" y1="0" x2="6" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="8" y1="0" x2="8" y2="25" />
+  <line x1="9" y1="0" x2="9" y2="25" />
+  <line x1="10" y1="0" x2="10" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="12" y1="0" x2="12" y2="25" />
+  <line x1="13" y1="0" x2="13" y2="25" />
+  <line x1="14" y1="0" x2="14" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="17" y1="0" x2="17" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="19" y1="0" x2="19" y2="25" />
+  <line x1="20" y1="0" x2="20" y2="25" />
+  <line x1="21" y1="0" x2="21" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="23" y1="0" x2="23" y2="25" />
+  <line x1="24" y1="0" x2="24" y2="25" />
+  <line x1="25" y1="0" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 25.412616514582485,0.0 25.412616514582485,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="12.706308" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >206</text>
+  <text x="45.412617" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,45.412617,12.706308)">1</text>
+
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="95" y1="12" x2="165" y2="83" />
+  <line x1="95" y1="25" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="95" y2="25" style="stroke-width:2" />
+  <line x1="99" y1="4" x2="99" y2="29" />
+  <line x1="103" y1="8" x2="103" y2="34" />
+  <line x1="108" y1="13" x2="108" y2="38" />
+  <line x1="112" y1="17" x2="112" y2="43" />
+  <line x1="117" y1="22" x2="117" y2="47" />
+  <line x1="121" y1="26" x2="121" y2="51" />
+  <line x1="125" y1="30" x2="125" y2="56" />
+  <line x1="130" y1="35" x2="130" y2="60" />
+  <line x1="134" y1="39" x2="134" y2="65" />
+  <line x1="139" y1="44" x2="139" y2="69" />
+  <line x1="143" y1="48" x2="143" y2="73" />
+  <line x1="147" y1="52" x2="147" y2="78" />
+  <line x1="152" y1="57" x2="152" y2="82" />
+  <line x1="156" y1="61" x2="156" y2="87" />
+  <line x1="161" y1="66" x2="161" y2="91" />
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 165.58823529411765,70.58823529411765 165.58823529411765,96.00085180870013 95.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="99" y1="4" x2="124" y2="4" />
+  <line x1="103" y1="8" x2="129" y2="8" />
+  <line x1="108" y1="13" x2="133" y2="13" />
+  <line x1="112" y1="17" x2="138" y2="17" />
+  <line x1="117" y1="22" x2="142" y2="22" />
+  <line x1="121" y1="26" x2="146" y2="26" />
+  <line x1="125" y1="30" x2="151" y2="30" />
+  <line x1="130" y1="35" x2="155" y2="35" />
+  <line x1="134" y1="39" x2="160" y2="39" />
+  <line x1="139" y1="44" x2="164" y2="44" />
+  <line x1="143" y1="48" x2="168" y2="48" />
+  <line x1="147" y1="52" x2="173" y2="52" />
+  <line x1="152" y1="57" x2="177" y2="57" />
+  <line x1="156" y1="61" x2="182" y2="61" />
+  <line x1="161" y1="66" x2="186" y2="66" />
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="107" y1="0" x2="178" y2="70" />
+  <line x1="120" y1="0" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 120.41261651458248,0.0 191.00085180870013,70.58823529411765 165.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+  <line x1="165" y1="83" x2="191" y2="83" />
+  <line x1="165" y1="96" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+  <line x1="178" y1="70" x2="178" y2="96" />
+  <line x1="191" y1="70" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="165.58823529411765,70.58823529411765 191.00085180870013,70.58823529411765 191.00085180870013,96.00085180870013 165.58823529411765,96.00085180870013" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="178.294544" y="116.000852" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="211.000852" y="83.294544" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,211.000852,83.294544)">2</text>
+  <text x="120.294118" y="80.706734" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,120.294118,80.706734)">3088347</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-1a8fdb3c-614e-446a-890b-28e3d8042234' class='xr-section-summary-in' type='checkbox'  ><label for='section-1a8fdb3c-614e-446a-890b-28e3d8042234' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-11f272c7-dae0-41dd-8b39-8abcf2231581' class='xr-index-data-in' type='checkbox'/><label for='index-11f272c7-dae0-41dd-8b39-8abcf2231581' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c8-b3&#x27;, &#x27;c4-b1&#x27;, &#x27;c8-b5&#x27;, &#x27;c8-b2&#x27;, &#x27;c8-b1&#x27;, &#x27;c4-b2&#x27;, &#x27;c4-b3&#x27;, &#x27;c8-b4&#x27;,
+       &#x27;c4-b4&#x27;, &#x27;c8-b0&#x27;,
+       ...
+       &#x27;c15-b2&#x27;, &#x27;c1-b10&#x27;, &#x27;c16-b7&#x27;, &#x27;c18-b0&#x27;, &#x27;c1-b2&#x27;, &#x27;c23-b1&#x27;, &#x27;c13-b1&#x27;,
+       &#x27;c6-b8&#x27;, &#x27;c14-b3&#x27;, &#x27;c32-b0&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=206))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom1k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-25084d7c-13fe-4f59-ae32-0445b327ba99' class='xr-index-data-in' type='checkbox'/><label for='index-25084d7c-13fe-4f59-ae32-0445b327ba99' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chrY_57218&#x27;, &#x27;chrY_57219&#x27;, &#x27;chrY_57220&#x27;, &#x27;chrY_57221&#x27;, &#x27;chrY_57222&#x27;,
+       &#x27;chrY_57223&#x27;, &#x27;chrY_57224&#x27;, &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;, &#x27;chrY_57227&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom1k&#x27;, length=3088347))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8e7c79dc-c21c-4178-9097-7aee6aa54d4a' class='xr-index-data-in' type='checkbox'/><label for='index-8e7c79dc-c21c-4178-9097-7aee6aa54d4a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>mc_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-33490ed8-4765-4897-8480-23ac7ce1e390' class='xr-index-data-in' type='checkbox'/><label for='index-33490ed8-4765-4897-8480-23ac7ce1e390' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;CGN&#x27;, &#x27;CHN&#x27;], dtype=&#x27;object&#x27;, name=&#x27;mc_type&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8c2f00d9-00c8-43e7-950a-168110d9b73f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8c2f00d9-00c8-43e7-950a-168110d9b73f' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom1k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -638,6 +1194,120 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom1k_chrom</th>
+      <th>chrom1k_start</th>
+      <th>chrom1k_end</th>
+      <th>chrom5k</th>
+    </tr>
+    <tr>
+      <th>chrom1k</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1_0</th>
+      <td>chr1</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_1</th>
+      <td>chr1</td>
+      <td>1000</td>
+      <td>2000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_2</th>
+      <td>chr1</td>
+      <td>2000</td>
+      <td>3000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_3</th>
+      <td>chr1</td>
+      <td>3000</td>
+      <td>4000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_4</th>
+      <td>chr1</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chrY_57223</th>
+      <td>chrY</td>
+      <td>57223000</td>
+      <td>57224000</td>
+      <td>chrY_11444</td>
+    </tr>
+    <tr>
+      <th>chrY_57224</th>
+      <td>chrY</td>
+      <td>57224000</td>
+      <td>57225000</td>
+      <td>chrY_11444</td>
+    </tr>
+    <tr>
+      <th>chrY_57225</th>
+      <td>chrY</td>
+      <td>57225000</td>
+      <td>57226000</td>
+      <td>chrY_11445</td>
+    </tr>
+    <tr>
+      <th>chrY_57226</th>
+      <td>chrY</td>
+      <td>57226000</td>
+      <td>57227000</td>
+      <td>chrY_11445</td>
+    </tr>
+    <tr>
+      <th>chrY_57227</th>
+      <td>chrY</td>
+      <td>57227000</td>
+      <td>57227415</td>
+      <td>chrY_11445</td>
+    </tr>
+  </tbody>
+</table>
+<p>3088347 rows × 4 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -656,11 +1326,554 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 2GB
+Dimensions:        (chrom1k: 3088347, count_type: 2, L1: 35)
+Coordinates:
+  * chrom1k        (chrom1k) &lt;U12 148MB &#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;
+    chrom1k_chrom  (chrom1k) &lt;U5 62MB &#x27;chr1&#x27; &#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chrY&#x27; &#x27;chrY&#x27;
+    chrom1k_end    (chrom1k) int64 25MB 1000 2000 3000 ... 57227000 57227415
+    chrom1k_start  (chrom1k) int64 25MB 0 1000 2000 ... 57226000 57227000
+  * count_type     (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+    mc_type        &lt;U3 12B &#x27;CGN&#x27;
+  * L1             (L1) object 280B &#x27;c0&#x27; &#x27;c1&#x27; &#x27;c10&#x27; &#x27;c11&#x27; ... &#x27;c7&#x27; &#x27;c8&#x27; &#x27;c9&#x27;
+Data variables:
+    chrom1k_da     (L1, chrom1k, count_type) float64 2GB dask.array&lt;chunksize=(1, 193022, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  L1
+    var_dim:  chrom1k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-8714c55c-a009-49f8-ae18-29779f083ec8' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8714c55c-a009-49f8-ae18-29779f083ec8' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chrom1k</span>: 3088347</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>L1</span>: 35</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-5f55fd23-a9e3-416b-addc-c8604238becb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5f55fd23-a9e3-416b-addc-c8604238becb' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom1k</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U12</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;</div><input id='attrs-5f61c4f7-31c0-4781-b433-992ea2935f24' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5f61c4f7-31c0-4781-b433-992ea2935f24' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0c22aa6f-d6ff-42bb-9aec-b266ac107134' class='xr-var-data-in' type='checkbox'><label for='data-0c22aa6f-d6ff-42bb-9aec-b266ac107134' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;,
+       &#x27;chrY_57227&#x27;], dtype=&#x27;&lt;U12&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_chrom</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>&#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chrY&#x27; &#x27;chrY&#x27;</div><input id='attrs-bf33d7d9-c5ed-4bae-88b3-403546b1154d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-bf33d7d9-c5ed-4bae-88b3-403546b1154d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-96d4d553-35fa-4d97-ae03-ee23485312e2' class='xr-var-data-in' type='checkbox'><label for='data-96d4d553-35fa-4d97-ae03-ee23485312e2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1&#x27;, &#x27;chr1&#x27;, &#x27;chr1&#x27;, ..., &#x27;chrY&#x27;, &#x27;chrY&#x27;, &#x27;chrY&#x27;], dtype=&#x27;&lt;U5&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_end</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1000 2000 ... 57227000 57227415</div><input id='attrs-365511ed-dbc9-4fb1-90a7-44f3feb93f29' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-365511ed-dbc9-4fb1-90a7-44f3feb93f29' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9e30ef31-40bd-4de8-b2f8-faca7573478f' class='xr-var-data-in' type='checkbox'><label for='data-9e30ef31-40bd-4de8-b2f8-faca7573478f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([    1000,     2000,     3000, ..., 57226000, 57227000, 57227415])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_start</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1000 2000 ... 57226000 57227000</div><input id='attrs-92382fcf-da01-4041-8e71-a532d1d9910e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-92382fcf-da01-4041-8e71-a532d1d9910e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-af44a1b0-41ce-4072-b137-a72c658d0b91' class='xr-var-data-in' type='checkbox'><label for='data-af44a1b0-41ce-4072-b137-a72c658d0b91' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([       0,     1000,     2000, ..., 57225000, 57226000, 57227000])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-4f1d79bf-304c-49e0-9c25-928fd6e69d71' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4f1d79bf-304c-49e0-9c25-928fd6e69d71' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b5682c9e-cf37-4da7-a944-c81af7844c6c' class='xr-var-data-in' type='checkbox'><label for='data-b5682c9e-cf37-4da7-a944-c81af7844c6c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27;</div><input id='attrs-b0fd8086-38c1-4ac2-aa5e-338c539fbd5b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b0fd8086-38c1-4ac2-aa5e-338c539fbd5b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1082b942-6a75-481c-8d58-34667aa7407b' class='xr-var-data-in' type='checkbox'><label for='data-1082b942-6a75-481c-8d58-34667aa7407b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CGN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>L1</span></div><div class='xr-var-dims'>(L1)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;c0&#x27; &#x27;c1&#x27; &#x27;c10&#x27; ... &#x27;c7&#x27; &#x27;c8&#x27; &#x27;c9&#x27;</div><input id='attrs-3810bb5f-0d1a-4578-9938-e93de7cae5fd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3810bb5f-0d1a-4578-9938-e93de7cae5fd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b52d1d5-6e07-4364-9113-c508f6ddd204' class='xr-var-data-in' type='checkbox'><label for='data-1b52d1d5-6e07-4364-9113-c508f6ddd204' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0&#x27;, &#x27;c1&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;,
+       &#x27;c18&#x27;, &#x27;c19&#x27;, &#x27;c2&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;,
+       &#x27;c27&#x27;, &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c3&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c4&#x27;,
+       &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;], dtype=object)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d6d34ede-6f56-4dde-ae74-054e7e99ecfa' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d6d34ede-6f56-4dde-ae74-054e7e99ecfa' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_da</span></div><div class='xr-var-dims'>(L1, chrom1k, count_type)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 193022, 1), meta=np.ndarray&gt;</div><input id='attrs-fcf4f11c-3146-479d-98fc-c89e896bf9ea' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fcf4f11c-3146-479d-98fc-c89e896bf9ea' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-920d3c76-7311-4aa5-ad89-309deb965b4d' class='xr-var-data-in' type='checkbox'><label for='data-920d3c76-7311-4aa5-ad89-309deb965b4d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.61 GiB </td>
+                        <td> 1.47 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (35, 3088347, 2) </td>
+                        <td> (1, 193022, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1120 chunks in 98 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="100" height="184" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="7" x2="24" y2="22" />
+  <line x1="10" y1="15" x2="24" y2="29" />
+  <line x1="10" y1="22" x2="24" y2="37" />
+  <line x1="10" y1="30" x2="24" y2="44" />
+  <line x1="10" y1="37" x2="24" y2="52" />
+  <line x1="10" y1="45" x2="24" y2="59" />
+  <line x1="10" y1="52" x2="24" y2="67" />
+  <line x1="10" y1="60" x2="24" y2="74" />
+  <line x1="10" y1="67" x2="24" y2="82" />
+  <line x1="10" y1="75" x2="24" y2="89" />
+  <line x1="10" y1="82" x2="24" y2="97" />
+  <line x1="10" y1="90" x2="24" y2="104" />
+  <line x1="10" y1="97" x2="24" y2="112" />
+  <line x1="10" y1="105" x2="24" y2="119" />
+  <line x1="10" y1="112" x2="24" y2="127" />
+  <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="10" y2="120" />
+  <line x1="11" y1="1" x2="11" y2="121" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="16" y1="6" x2="16" y2="126" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="18" y1="8" x2="18" y2="128" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="21" y1="11" x2="21" y2="131" />
+  <line x1="22" y1="12" x2="22" y2="132" />
+  <line x1="23" y1="13" x2="23" y2="133" />
+  <line x1="24" y1="14" x2="24" y2="134" />
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="35" y2="0" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="35" y2="0" />
+  <line x1="11" y1="1" x2="36" y2="1" />
+  <line x1="12" y1="2" x2="37" y2="2" />
+  <line x1="12" y1="2" x2="38" y2="2" />
+  <line x1="13" y1="3" x2="39" y2="3" />
+  <line x1="14" y1="4" x2="40" y2="4" />
+  <line x1="15" y1="5" x2="40" y2="5" />
+  <line x1="15" y1="5" x2="41" y2="5" />
+  <line x1="16" y1="6" x2="42" y2="6" />
+  <line x1="17" y1="7" x2="43" y2="7" />
+  <line x1="18" y1="8" x2="43" y2="8" />
+  <line x1="19" y1="9" x2="44" y2="9" />
+  <line x1="19" y1="9" x2="45" y2="9" />
+  <line x1="20" y1="10" x2="46" y2="10" />
+  <line x1="21" y1="11" x2="46" y2="11" />
+  <line x1="22" y1="12" x2="47" y2="12" />
+  <line x1="23" y1="13" x2="48" y2="13" />
+  <line x1="24" y1="14" x2="49" y2="14" />
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="22" y1="0" x2="37" y2="14" />
+  <line x1="35" y1="0" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 35.41261651458248,0.0 50.36121446433688,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="22" x2="50" y2="22" />
+  <line x1="24" y1="29" x2="50" y2="29" />
+  <line x1="24" y1="37" x2="50" y2="37" />
+  <line x1="24" y1="44" x2="50" y2="44" />
+  <line x1="24" y1="52" x2="50" y2="52" />
+  <line x1="24" y1="59" x2="50" y2="59" />
+  <line x1="24" y1="67" x2="50" y2="67" />
+  <line x1="24" y1="74" x2="50" y2="74" />
+  <line x1="24" y1="82" x2="50" y2="82" />
+  <line x1="24" y1="89" x2="50" y2="89" />
+  <line x1="24" y1="97" x2="50" y2="97" />
+  <line x1="24" y1="104" x2="50" y2="104" />
+  <line x1="24" y1="112" x2="50" y2="112" />
+  <line x1="24" y1="119" x2="50" y2="119" />
+  <line x1="24" y1="127" x2="50" y2="127" />
+  <line x1="24" y1="134" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+  <line x1="37" y1="14" x2="37" y2="134" />
+  <line x1="50" y1="14" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 50.36121446433688,14.948597949754403 50.36121446433688,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="37.654906" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="70.361214" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,70.361214,74.948598)">3088347</text>
+  <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">35</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-78a280b7-039a-4a53-81b3-6a996da6b0a3' class='xr-section-summary-in' type='checkbox'  ><label for='section-78a280b7-039a-4a53-81b3-6a996da6b0a3' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chrom1k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-34bbbd50-99db-4c56-ae0f-3112e64eb4dd' class='xr-index-data-in' type='checkbox'/><label for='index-34bbbd50-99db-4c56-ae0f-3112e64eb4dd' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chrY_57218&#x27;, &#x27;chrY_57219&#x27;, &#x27;chrY_57220&#x27;, &#x27;chrY_57221&#x27;, &#x27;chrY_57222&#x27;,
+       &#x27;chrY_57223&#x27;, &#x27;chrY_57224&#x27;, &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;, &#x27;chrY_57227&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom1k&#x27;, length=3088347))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e3ac7caf-3448-49d7-98d6-df7fd3e65759' class='xr-index-data-in' type='checkbox'/><label for='index-e3ac7caf-3448-49d7-98d6-df7fd3e65759' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>L1</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f686b3da-35d3-4f47-8003-42531e141109' class='xr-index-data-in' type='checkbox'/><label for='index-f686b3da-35d3-4f47-8003-42531e141109' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0&#x27;, &#x27;c1&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;,
+       &#x27;c18&#x27;, &#x27;c19&#x27;, &#x27;c2&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;,
+       &#x27;c27&#x27;, &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c3&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c4&#x27;,
+       &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;L1&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5dde38c2-5aec-4fda-843e-0b0c12564d7c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5dde38c2-5aec-4fda-843e-0b0c12564d7c' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>L1</dd><dt><span>var_dim :</span></dt><dd>chrom1k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_chromosome</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">,</span> <span class="s1">&#39;chrL&#39;</span><span class="p">]</span>
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>213335 chrom1k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
 </pre></div>
 </div>
 </div>
@@ -677,9 +1890,32 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">]})</span>
 
 <span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
-<span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
-    <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="p">)</span>
+
+<span class="c1"># --- robust black-list removal (inline replacement) ---</span>
+<span class="c1"># MCDS.remove_black_list_region intersects with pybedtools and calls</span>
+<span class="c1"># .to_dataframe().set_index([&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]). In pybedtools&gt;=0.12 an</span>
+<span class="c1"># EMPTY intersect returns a column-less DataFrame, so set_index raises</span>
+<span class="c1"># KeyError(&quot;None of [&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;] ...&quot;) instead of the caught</span>
+<span class="c1"># EmptyDataError. Reproduce the same result robustly by building the feature</span>
+<span class="c1"># bed from the mcds bin coords and dropping bins overlapping the black list.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pybedtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_pbt</span>
+<span class="n">_feat</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_feature_bed</span><span class="p">(</span><span class="n">var_dim</span><span class="o">=</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">_feat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
+<span class="n">_black</span> <span class="o">=</span> <span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+    <span class="n">_feat</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom1k&#39;</span><span class="p">]]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="p">(</span><span class="n">black_list_path</span><span class="p">),</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">_black</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_black</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_drop</span><span class="p">]</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span> <span class="n">_keep</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">_drop</span><span class="p">)</span><span class="si">}</span><span class="s1"> chrom1k features removed due to overlapping black list regions.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No feature overlapping the black list bed file.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No feature overlapping the black list bed file.
 </pre></div>
 </div>
 </div>
@@ -748,6 +1984,94 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom</th>
+      <th>start</th>
+    </tr>
+    <tr>
+      <th>chrom5k</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr10_10</th>
+      <td>chr10</td>
+      <td>50000</td>
+    </tr>
+    <tr>
+      <th>chr10_100</th>
+      <td>chr10</td>
+      <td>500000</td>
+    </tr>
+    <tr>
+      <th>chr10_1000</th>
+      <td>chr10</td>
+      <td>5000000</td>
+    </tr>
+    <tr>
+      <th>chr10_10000</th>
+      <td>chr10</td>
+      <td>50000000</td>
+    </tr>
+    <tr>
+      <th>chr10_10001</th>
+      <td>chr10</td>
+      <td>50005000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr9_995</th>
+      <td>chr9</td>
+      <td>4975000</td>
+    </tr>
+    <tr>
+      <th>chr9_996</th>
+      <td>chr9</td>
+      <td>4980000</td>
+    </tr>
+    <tr>
+      <th>chr9_997</th>
+      <td>chr9</td>
+      <td>4985000</td>
+    </tr>
+    <tr>
+      <th>chr9_998</th>
+      <td>chr9</td>
+      <td>4990000</td>
+    </tr>
+    <tr>
+      <th>chr9_999</th>
+      <td>chr9</td>
+      <td>4995000</td>
+    </tr>
+  </tbody>
+</table>
+<p>524270 rows × 2 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -896,6 +2220,73 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c28 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c20 finished
+c18 finished
+c33 finished
+c13 finished
+c9 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8 finished
+c19 finished
+c34 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c22 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c29 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c32 finished
+c17 finished
+c11 finished
+c3 finished
+c25 finished
+c30 finished
+c6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c2 finished
+c4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c31 finished
+c24 finished
+c7 finished
+c1 finished
+c14 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c27 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c26 finished
+c0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c21 finished
+c16 finished
+c12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10 finished
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -980,6 +2371,113 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c20
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c30
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c18
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c29
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c19
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c28
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c11
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c32
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c31
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c24
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c27
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c26
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c21
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c12
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1026,6 +2524,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/7a8e118e74b596da9ccc56e4d6166e8e5bfd8758e157583bb3fe856286ac1e08.png" src="../_images/7a8e118e74b596da9ccc56e4d6166e8e5bfd8758e157583bb3fe856286ac1e08.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1070,6 +2571,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/42bb3e9e46dd690cf17b2dd17f9572d09ed788a08be95891e9608cc646b12a6f.png" src="../_images/42bb3e9e46dd690cf17b2dd17f9572d09ed788a08be95891e9608cc646b12a6f.png" />
+<img alt="../_images/9f1f5fd1be7a3f489deef8881f212de8efc4320bd2ee3466d88c418054300779.png" src="../_images/9f1f5fd1be7a3f489deef8881f212de8efc4320bd2ee3466d88c418054300779.png" />
+<img alt="../_images/983aa1b23f6155ff2537152afff4d3f8597f4b0e499b5e2fe29d064249f6711f.png" src="../_images/983aa1b23f6155ff2537152afff4d3f8597f4b0e499b5e2fe29d064249f6711f.png" />
+<img alt="../_images/a8584eb08314be2bcd1ee5b3b16dc2d28e935d89980143e6c9a6c41fd826f622.png" src="../_images/a8584eb08314be2bcd1ee5b3b16dc2d28e935d89980143e6c9a6c41fd826f622.png" />
+<img alt="../_images/a30ba7a7107ffb7a35afdd784095e664ccd258b1f0437fcd97b2233b2bea197b.png" src="../_images/a30ba7a7107ffb7a35afdd784095e664ccd258b1f0437fcd97b2233b2bea197b.png" />
+<img alt="../_images/cc4ab2fda822d64fbee512ac29e79cd668ef8368f01cf85915ce9fa6f56dd34a.png" src="../_images/cc4ab2fda822d64fbee512ac29e79cd668ef8368f01cf85915ce9fa6f56dd34a.png" />
+<img alt="../_images/f3181d95c476295a5b7a24113ae3a77ca636a03ef6e4bfc641b22bd1f00979e4.png" src="../_images/f3181d95c476295a5b7a24113ae3a77ca636a03ef6e4bfc641b22bd1f00979e4.png" />
+<img alt="../_images/28488ab1e0f6ea7aaed203acaa380db3cc49bde0ef95f1387ae79c86dd668208.png" src="../_images/28488ab1e0f6ea7aaed203acaa380db3cc49bde0ef95f1387ae79c86dd668208.png" />
+</div>
 </div>
 </section>
 <section id="get-mch-level">
@@ -1081,6 +2592,556 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 10GB
+Dimensions:        (cell: 206, chrom1k: 3088347, count_type: 2, mc_type: 2)
+Coordinates:
+  * cell           (cell) &lt;U7 6kB &#x27;c8-b3&#x27; &#x27;c4-b1&#x27; &#x27;c8-b5&#x27; ... &#x27;c14-b3&#x27; &#x27;c32-b0&#x27;
+  * chrom1k        (chrom1k) &lt;U12 148MB &#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;
+    chrom1k_chrom  (chrom1k) &lt;U5 62MB ...
+    chrom1k_end    (chrom1k) int64 25MB ...
+    chrom1k_start  (chrom1k) int64 25MB ...
+  * count_type     (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+  * mc_type        (mc_type) &lt;U3 24B &#x27;CGN&#x27; &#x27;CHN&#x27;
+Data variables:
+    chrom1k_da     (cell, chrom1k, mc_type, count_type) uint32 10GB dask.array&lt;chunksize=(1, 193022, 1, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom1k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-58d31e61-806c-466a-8ded-64235e9f83c8' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-58d31e61-806c-466a-8ded-64235e9f83c8' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 206</li><li><span class='xr-has-index'>chrom1k</span>: 3088347</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>mc_type</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-71e0396c-8b23-4339-9b71-92cf28d7caa8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-71e0396c-8b23-4339-9b71-92cf28d7caa8' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U7</div><div class='xr-var-preview xr-preview'>&#x27;c8-b3&#x27; &#x27;c4-b1&#x27; ... &#x27;c32-b0&#x27;</div><input id='attrs-372bf74e-1028-4d50-999c-a47770e962da' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-372bf74e-1028-4d50-999c-a47770e962da' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e9c8816c-d400-4a87-8def-de8d61a0ce5f' class='xr-var-data-in' type='checkbox'><label for='data-e9c8816c-d400-4a87-8def-de8d61a0ce5f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c8-b3&#x27;, &#x27;c4-b1&#x27;, &#x27;c8-b5&#x27;, ..., &#x27;c6-b8&#x27;, &#x27;c14-b3&#x27;, &#x27;c32-b0&#x27;],
+      dtype=&#x27;&lt;U7&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom1k</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U12</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;</div><input id='attrs-4b8109f3-0eb7-4113-994f-cc0c8185baac' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4b8109f3-0eb7-4113-994f-cc0c8185baac' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6168f95a-91f0-415b-a17b-e72aff1c5c44' class='xr-var-data-in' type='checkbox'><label for='data-6168f95a-91f0-415b-a17b-e72aff1c5c44' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;,
+       &#x27;chrY_57227&#x27;], dtype=&#x27;&lt;U12&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_chrom</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f9301d4f-e001-4fc7-9387-6368e05824dc' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f9301d4f-e001-4fc7-9387-6368e05824dc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-47438e84-996c-403a-96c3-06cc6cdb0316' class='xr-var-data-in' type='checkbox'><label for='data-47438e84-996c-403a-96c3-06cc6cdb0316' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088347 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_end</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-afb796ba-12ae-4c8d-aa84-dbc89269c030' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-afb796ba-12ae-4c8d-aa84-dbc89269c030' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-20d1dd55-bc0c-49c3-9ff5-ff8ab7794c0b' class='xr-var-data-in' type='checkbox'><label for='data-20d1dd55-bc0c-49c3-9ff5-ff8ab7794c0b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088347 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_start</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-95d3aefd-7b79-4d6b-84a0-ab1337bda8c8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-95d3aefd-7b79-4d6b-84a0-ab1337bda8c8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-53f04bf0-685c-456b-9578-e14295321c11' class='xr-var-data-in' type='checkbox'><label for='data-53f04bf0-685c-456b-9578-e14295321c11' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088347 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-522ddf8a-1d08-428d-9917-ee19abab0422' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-522ddf8a-1d08-428d-9917-ee19abab0422' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9216d9c3-f5bb-452e-a73c-f3ace83e26a2' class='xr-var-data-in' type='checkbox'><label for='data-9216d9c3-f5bb-452e-a73c-f3ace83e26a2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>mc_type</span></div><div class='xr-var-dims'>(mc_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27; &#x27;CHN&#x27;</div><input id='attrs-fed2c434-b27b-4dfe-acb3-9d70306e9f99' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-fed2c434-b27b-4dfe-acb3-9d70306e9f99' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ff024498-f670-4ed4-8da3-5297b6bcdbbb' class='xr-var-data-in' type='checkbox'><label for='data-ff024498-f670-4ed4-8da3-5297b6bcdbbb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;CGN&#x27;, &#x27;CHN&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8bdccaa4-e97b-4d43-bc91-414af50d25eb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8bdccaa4-e97b-4d43-bc91-414af50d25eb' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_da</span></div><div class='xr-var-dims'>(cell, chrom1k, mc_type, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 193022, 1, 1), meta=np.ndarray&gt;</div><input id='attrs-8f407bd1-ae35-4ed8-b227-940c811f28b6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8f407bd1-ae35-4ed8-b227-940c811f28b6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-89a76444-0cd5-43db-9835-880e928d1094' class='xr-var-data-in' type='checkbox'><label for='data-89a76444-0cd5-43db-9835-880e928d1094' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 9.48 GiB </td>
+                        <td> 753.99 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (206, 3088347, 2, 2) </td>
+                        <td> (1, 193022, 1, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 13184 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> uint32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="336" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="25" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="0" y1="0" x2="0" y2="25" />
+  <line x1="1" y1="0" x2="1" y2="25" />
+  <line x1="2" y1="0" x2="2" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="4" y1="0" x2="4" y2="25" />
+  <line x1="5" y1="0" x2="5" y2="25" />
+  <line x1="6" y1="0" x2="6" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="8" y1="0" x2="8" y2="25" />
+  <line x1="9" y1="0" x2="9" y2="25" />
+  <line x1="10" y1="0" x2="10" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="12" y1="0" x2="12" y2="25" />
+  <line x1="13" y1="0" x2="13" y2="25" />
+  <line x1="14" y1="0" x2="14" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="17" y1="0" x2="17" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="19" y1="0" x2="19" y2="25" />
+  <line x1="20" y1="0" x2="20" y2="25" />
+  <line x1="21" y1="0" x2="21" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="23" y1="0" x2="23" y2="25" />
+  <line x1="24" y1="0" x2="24" y2="25" />
+  <line x1="25" y1="0" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 25.412616514582485,0.0 25.412616514582485,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="12.706308" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >206</text>
+  <text x="45.412617" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,45.412617,12.706308)">1</text>
+
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="95" y1="12" x2="165" y2="83" />
+  <line x1="95" y1="25" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="95" y2="25" style="stroke-width:2" />
+  <line x1="99" y1="4" x2="99" y2="29" />
+  <line x1="103" y1="8" x2="103" y2="34" />
+  <line x1="108" y1="13" x2="108" y2="38" />
+  <line x1="112" y1="17" x2="112" y2="43" />
+  <line x1="117" y1="22" x2="117" y2="47" />
+  <line x1="121" y1="26" x2="121" y2="51" />
+  <line x1="125" y1="30" x2="125" y2="56" />
+  <line x1="130" y1="35" x2="130" y2="60" />
+  <line x1="134" y1="39" x2="134" y2="65" />
+  <line x1="139" y1="44" x2="139" y2="69" />
+  <line x1="143" y1="48" x2="143" y2="73" />
+  <line x1="147" y1="52" x2="147" y2="78" />
+  <line x1="152" y1="57" x2="152" y2="82" />
+  <line x1="156" y1="61" x2="156" y2="87" />
+  <line x1="161" y1="66" x2="161" y2="91" />
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 165.58823529411765,70.58823529411765 165.58823529411765,96.00085180870013 95.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="99" y1="4" x2="124" y2="4" />
+  <line x1="103" y1="8" x2="129" y2="8" />
+  <line x1="108" y1="13" x2="133" y2="13" />
+  <line x1="112" y1="17" x2="138" y2="17" />
+  <line x1="117" y1="22" x2="142" y2="22" />
+  <line x1="121" y1="26" x2="146" y2="26" />
+  <line x1="125" y1="30" x2="151" y2="30" />
+  <line x1="130" y1="35" x2="155" y2="35" />
+  <line x1="134" y1="39" x2="160" y2="39" />
+  <line x1="139" y1="44" x2="164" y2="44" />
+  <line x1="143" y1="48" x2="168" y2="48" />
+  <line x1="147" y1="52" x2="173" y2="52" />
+  <line x1="152" y1="57" x2="177" y2="57" />
+  <line x1="156" y1="61" x2="182" y2="61" />
+  <line x1="161" y1="66" x2="186" y2="66" />
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="107" y1="0" x2="178" y2="70" />
+  <line x1="120" y1="0" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 120.41261651458248,0.0 191.00085180870013,70.58823529411765 165.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+  <line x1="165" y1="83" x2="191" y2="83" />
+  <line x1="165" y1="96" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+  <line x1="178" y1="70" x2="178" y2="96" />
+  <line x1="191" y1="70" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="165.58823529411765,70.58823529411765 191.00085180870013,70.58823529411765 191.00085180870013,96.00085180870013 165.58823529411765,96.00085180870013" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="178.294544" y="116.000852" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="211.000852" y="83.294544" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,211.000852,83.294544)">2</text>
+  <text x="120.294118" y="80.706734" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,120.294118,80.706734)">3088347</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-0a96d520-662f-4653-b39c-f80df4044300' class='xr-section-summary-in' type='checkbox'  ><label for='section-0a96d520-662f-4653-b39c-f80df4044300' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-b8ba387f-682d-4f09-babb-6a52814a2fc9' class='xr-index-data-in' type='checkbox'/><label for='index-b8ba387f-682d-4f09-babb-6a52814a2fc9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c8-b3&#x27;, &#x27;c4-b1&#x27;, &#x27;c8-b5&#x27;, &#x27;c8-b2&#x27;, &#x27;c8-b1&#x27;, &#x27;c4-b2&#x27;, &#x27;c4-b3&#x27;, &#x27;c8-b4&#x27;,
+       &#x27;c4-b4&#x27;, &#x27;c8-b0&#x27;,
+       ...
+       &#x27;c15-b2&#x27;, &#x27;c1-b10&#x27;, &#x27;c16-b7&#x27;, &#x27;c18-b0&#x27;, &#x27;c1-b2&#x27;, &#x27;c23-b1&#x27;, &#x27;c13-b1&#x27;,
+       &#x27;c6-b8&#x27;, &#x27;c14-b3&#x27;, &#x27;c32-b0&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=206))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom1k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0fcc811d-4ce7-49a2-886a-ed77805deb87' class='xr-index-data-in' type='checkbox'/><label for='index-0fcc811d-4ce7-49a2-886a-ed77805deb87' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chrY_57218&#x27;, &#x27;chrY_57219&#x27;, &#x27;chrY_57220&#x27;, &#x27;chrY_57221&#x27;, &#x27;chrY_57222&#x27;,
+       &#x27;chrY_57223&#x27;, &#x27;chrY_57224&#x27;, &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;, &#x27;chrY_57227&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom1k&#x27;, length=3088347))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-da9c9199-944d-4fd7-9b74-dc140bcaf313' class='xr-index-data-in' type='checkbox'/><label for='index-da9c9199-944d-4fd7-9b74-dc140bcaf313' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>mc_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-62015383-5e42-4fbd-a567-bf3de125a17d' class='xr-index-data-in' type='checkbox'/><label for='index-62015383-5e42-4fbd-a567-bf3de125a17d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;CGN&#x27;, &#x27;CHN&#x27;], dtype=&#x27;object&#x27;, name=&#x27;mc_type&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1f6c7ae4-3338-4b7a-8ae9-a60fe73e5f03' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1f6c7ae4-3338-4b7a-8ae9-a60fe73e5f03' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom1k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1090,6 +3151,120 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom1k_chrom</th>
+      <th>chrom1k_start</th>
+      <th>chrom1k_end</th>
+      <th>chrom5k</th>
+    </tr>
+    <tr>
+      <th>chrom1k</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1_0</th>
+      <td>chr1</td>
+      <td>0</td>
+      <td>1000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_1</th>
+      <td>chr1</td>
+      <td>1000</td>
+      <td>2000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_2</th>
+      <td>chr1</td>
+      <td>2000</td>
+      <td>3000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_3</th>
+      <td>chr1</td>
+      <td>3000</td>
+      <td>4000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>chr1_4</th>
+      <td>chr1</td>
+      <td>4000</td>
+      <td>5000</td>
+      <td>chr1_0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chrY_57223</th>
+      <td>chrY</td>
+      <td>57223000</td>
+      <td>57224000</td>
+      <td>chrY_11444</td>
+    </tr>
+    <tr>
+      <th>chrY_57224</th>
+      <td>chrY</td>
+      <td>57224000</td>
+      <td>57225000</td>
+      <td>chrY_11444</td>
+    </tr>
+    <tr>
+      <th>chrY_57225</th>
+      <td>chrY</td>
+      <td>57225000</td>
+      <td>57226000</td>
+      <td>chrY_11445</td>
+    </tr>
+    <tr>
+      <th>chrY_57226</th>
+      <td>chrY</td>
+      <td>57226000</td>
+      <td>57227000</td>
+      <td>chrY_11445</td>
+    </tr>
+    <tr>
+      <th>chrY_57227</th>
+      <td>chrY</td>
+      <td>57227000</td>
+      <td>57227415</td>
+      <td>chrY_11445</td>
+    </tr>
+  </tbody>
+</table>
+<p>3088347 rows × 4 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1108,11 +3283,554 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 2GB
+Dimensions:        (chrom1k: 3088347, count_type: 2, L1: 35)
+Coordinates:
+  * chrom1k        (chrom1k) &lt;U12 148MB &#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;
+    chrom1k_chrom  (chrom1k) &lt;U5 62MB &#x27;chr1&#x27; &#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chrY&#x27; &#x27;chrY&#x27;
+    chrom1k_end    (chrom1k) int64 25MB 1000 2000 3000 ... 57227000 57227415
+    chrom1k_start  (chrom1k) int64 25MB 0 1000 2000 ... 57226000 57227000
+  * count_type     (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+    mc_type        &lt;U3 12B &#x27;CHN&#x27;
+  * L1             (L1) object 280B &#x27;c0&#x27; &#x27;c1&#x27; &#x27;c10&#x27; &#x27;c11&#x27; ... &#x27;c7&#x27; &#x27;c8&#x27; &#x27;c9&#x27;
+Data variables:
+    chrom1k_da     (L1, chrom1k, count_type) float64 2GB dask.array&lt;chunksize=(1, 193022, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  L1
+    var_dim:  chrom1k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-a928c533-3d77-4ae5-91de-9ff9eee007ab' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a928c533-3d77-4ae5-91de-9ff9eee007ab' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>chrom1k</span>: 3088347</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>L1</span>: 35</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-77f36e13-3a78-44b8-86cc-c99cafa4c2c7' class='xr-section-summary-in' type='checkbox'  checked><label for='section-77f36e13-3a78-44b8-86cc-c99cafa4c2c7' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom1k</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U12</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;</div><input id='attrs-7415feaf-4573-4556-a6fe-27c012bf81e5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7415feaf-4573-4556-a6fe-27c012bf81e5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4543bfea-1072-4bfb-92a5-6fe4a531c16b' class='xr-var-data-in' type='checkbox'><label for='data-4543bfea-1072-4bfb-92a5-6fe4a531c16b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;,
+       &#x27;chrY_57227&#x27;], dtype=&#x27;&lt;U12&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_chrom</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>&#x27;chr1&#x27; &#x27;chr1&#x27; ... &#x27;chrY&#x27; &#x27;chrY&#x27;</div><input id='attrs-8919cbf5-7a3e-41d1-ba4a-08befb31e40c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8919cbf5-7a3e-41d1-ba4a-08befb31e40c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2edf3a16-5cae-425f-a98e-bbcfb6a6fd2b' class='xr-var-data-in' type='checkbox'><label for='data-2edf3a16-5cae-425f-a98e-bbcfb6a6fd2b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1&#x27;, &#x27;chr1&#x27;, &#x27;chr1&#x27;, ..., &#x27;chrY&#x27;, &#x27;chrY&#x27;, &#x27;chrY&#x27;], dtype=&#x27;&lt;U5&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_end</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>1000 2000 ... 57227000 57227415</div><input id='attrs-5e307901-c935-4654-b246-5832b592743a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5e307901-c935-4654-b246-5832b592743a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5e51559c-ade1-4983-9904-1a9c9fd43fed' class='xr-var-data-in' type='checkbox'><label for='data-5e51559c-ade1-4983-9904-1a9c9fd43fed' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([    1000,     2000,     3000, ..., 57226000, 57227000, 57227415])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_start</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1000 2000 ... 57226000 57227000</div><input id='attrs-80ceb84a-3d46-4077-80bb-6fdf9f1885fb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-80ceb84a-3d46-4077-80bb-6fdf9f1885fb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ec1bab95-2d9f-4466-acde-86662eb3ce21' class='xr-var-data-in' type='checkbox'><label for='data-ec1bab95-2d9f-4466-acde-86662eb3ce21' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([       0,     1000,     2000, ..., 57225000, 57226000, 57227000])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-b39122a8-dbdc-4a4f-ba81-daccecf292a3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b39122a8-dbdc-4a4f-ba81-daccecf292a3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0a7003f2-12c6-47ac-8cf9-14bd186f4a7e' class='xr-var-data-in' type='checkbox'><label for='data-0a7003f2-12c6-47ac-8cf9-14bd186f4a7e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CHN&#x27;</div><input id='attrs-2c830790-be4f-4663-b8f7-25bd96eea787' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2c830790-be4f-4663-b8f7-25bd96eea787' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2778bac3-444a-46ab-8141-abed8728d217' class='xr-var-data-in' type='checkbox'><label for='data-2778bac3-444a-46ab-8141-abed8728d217' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CHN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>L1</span></div><div class='xr-var-dims'>(L1)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>&#x27;c0&#x27; &#x27;c1&#x27; &#x27;c10&#x27; ... &#x27;c7&#x27; &#x27;c8&#x27; &#x27;c9&#x27;</div><input id='attrs-5a919012-20d3-4cc7-92ca-47a0b48e5e57' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5a919012-20d3-4cc7-92ca-47a0b48e5e57' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f255a312-47d4-41c5-aa27-1cfaef8007d1' class='xr-var-data-in' type='checkbox'><label for='data-f255a312-47d4-41c5-aa27-1cfaef8007d1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0&#x27;, &#x27;c1&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;,
+       &#x27;c18&#x27;, &#x27;c19&#x27;, &#x27;c2&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;,
+       &#x27;c27&#x27;, &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c3&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c4&#x27;,
+       &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;], dtype=object)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-dfec6722-40ed-4f3c-b625-7cc27be225a8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-dfec6722-40ed-4f3c-b625-7cc27be225a8' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_da</span></div><div class='xr-var-dims'>(L1, chrom1k, count_type)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 193022, 1), meta=np.ndarray&gt;</div><input id='attrs-3f40e56a-ab51-473b-bde0-2bbfa20d7de0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3f40e56a-ab51-473b-bde0-2bbfa20d7de0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1e1e28d3-8838-44c0-b707-de8da1cce132' class='xr-var-data-in' type='checkbox'><label for='data-1e1e28d3-8838-44c0-b707-de8da1cce132' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 1.61 GiB </td>
+                        <td> 1.47 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (35, 3088347, 2) </td>
+                        <td> (1, 193022, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1120 chunks in 98 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="100" height="184" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="10" y1="7" x2="24" y2="22" />
+  <line x1="10" y1="15" x2="24" y2="29" />
+  <line x1="10" y1="22" x2="24" y2="37" />
+  <line x1="10" y1="30" x2="24" y2="44" />
+  <line x1="10" y1="37" x2="24" y2="52" />
+  <line x1="10" y1="45" x2="24" y2="59" />
+  <line x1="10" y1="52" x2="24" y2="67" />
+  <line x1="10" y1="60" x2="24" y2="74" />
+  <line x1="10" y1="67" x2="24" y2="82" />
+  <line x1="10" y1="75" x2="24" y2="89" />
+  <line x1="10" y1="82" x2="24" y2="97" />
+  <line x1="10" y1="90" x2="24" y2="104" />
+  <line x1="10" y1="97" x2="24" y2="112" />
+  <line x1="10" y1="105" x2="24" y2="119" />
+  <line x1="10" y1="112" x2="24" y2="127" />
+  <line x1="10" y1="120" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="120" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="10" y2="120" />
+  <line x1="11" y1="1" x2="11" y2="121" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="12" y1="2" x2="12" y2="122" />
+  <line x1="13" y1="3" x2="13" y2="123" />
+  <line x1="14" y1="4" x2="14" y2="124" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="15" y1="5" x2="15" y2="125" />
+  <line x1="16" y1="6" x2="16" y2="126" />
+  <line x1="17" y1="7" x2="17" y2="127" />
+  <line x1="18" y1="8" x2="18" y2="128" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="19" y1="9" x2="19" y2="129" />
+  <line x1="20" y1="10" x2="20" y2="130" />
+  <line x1="21" y1="11" x2="21" y2="131" />
+  <line x1="22" y1="12" x2="22" y2="132" />
+  <line x1="23" y1="13" x2="23" y2="133" />
+  <line x1="24" y1="14" x2="24" y2="134" />
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 24.9485979497544,14.948597949754403 24.9485979497544,134.9485979497544 10.0,120.0" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="35" y2="0" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="35" y2="0" />
+  <line x1="11" y1="1" x2="36" y2="1" />
+  <line x1="12" y1="2" x2="37" y2="2" />
+  <line x1="12" y1="2" x2="38" y2="2" />
+  <line x1="13" y1="3" x2="39" y2="3" />
+  <line x1="14" y1="4" x2="40" y2="4" />
+  <line x1="15" y1="5" x2="40" y2="5" />
+  <line x1="15" y1="5" x2="41" y2="5" />
+  <line x1="16" y1="6" x2="42" y2="6" />
+  <line x1="17" y1="7" x2="43" y2="7" />
+  <line x1="18" y1="8" x2="43" y2="8" />
+  <line x1="19" y1="9" x2="44" y2="9" />
+  <line x1="19" y1="9" x2="45" y2="9" />
+  <line x1="20" y1="10" x2="46" y2="10" />
+  <line x1="21" y1="11" x2="46" y2="11" />
+  <line x1="22" y1="12" x2="47" y2="12" />
+  <line x1="23" y1="13" x2="48" y2="13" />
+  <line x1="24" y1="14" x2="49" y2="14" />
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="24" y2="14" style="stroke-width:2" />
+  <line x1="22" y1="0" x2="37" y2="14" />
+  <line x1="35" y1="0" x2="50" y2="14" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.0,0.0 35.41261651458248,0.0 50.36121446433688,14.948597949754403 24.9485979497544,14.948597949754403" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="24" y1="14" x2="50" y2="14" style="stroke-width:2" />
+  <line x1="24" y1="22" x2="50" y2="22" />
+  <line x1="24" y1="29" x2="50" y2="29" />
+  <line x1="24" y1="37" x2="50" y2="37" />
+  <line x1="24" y1="44" x2="50" y2="44" />
+  <line x1="24" y1="52" x2="50" y2="52" />
+  <line x1="24" y1="59" x2="50" y2="59" />
+  <line x1="24" y1="67" x2="50" y2="67" />
+  <line x1="24" y1="74" x2="50" y2="74" />
+  <line x1="24" y1="82" x2="50" y2="82" />
+  <line x1="24" y1="89" x2="50" y2="89" />
+  <line x1="24" y1="97" x2="50" y2="97" />
+  <line x1="24" y1="104" x2="50" y2="104" />
+  <line x1="24" y1="112" x2="50" y2="112" />
+  <line x1="24" y1="119" x2="50" y2="119" />
+  <line x1="24" y1="127" x2="50" y2="127" />
+  <line x1="24" y1="134" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="24" y1="14" x2="24" y2="134" style="stroke-width:2" />
+  <line x1="37" y1="14" x2="37" y2="134" />
+  <line x1="50" y1="14" x2="50" y2="134" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="24.9485979497544,14.948597949754403 50.36121446433688,14.948597949754403 50.36121446433688,134.9485979497544 24.9485979497544,134.9485979497544" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="37.654906" y="154.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="70.361214" y="74.948598" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,70.361214,74.948598)">3088347</text>
+  <text x="7.474299" y="147.474299" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,7.474299,147.474299)">35</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-5cc4aa41-88a0-4d24-b00e-7085b189c738' class='xr-section-summary-in' type='checkbox'  ><label for='section-5cc4aa41-88a0-4d24-b00e-7085b189c738' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>chrom1k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-340dee6a-e7de-4462-b04c-2c233fc85e5e' class='xr-index-data-in' type='checkbox'/><label for='index-340dee6a-e7de-4462-b04c-2c233fc85e5e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chrY_57218&#x27;, &#x27;chrY_57219&#x27;, &#x27;chrY_57220&#x27;, &#x27;chrY_57221&#x27;, &#x27;chrY_57222&#x27;,
+       &#x27;chrY_57223&#x27;, &#x27;chrY_57224&#x27;, &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;, &#x27;chrY_57227&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom1k&#x27;, length=3088347))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-a2da817a-bb69-468b-a1f4-34123b377f60' class='xr-index-data-in' type='checkbox'/><label for='index-a2da817a-bb69-468b-a1f4-34123b377f60' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>L1</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-efb63596-b8f3-448d-b516-c187c6d7f6ae' class='xr-index-data-in' type='checkbox'/><label for='index-efb63596-b8f3-448d-b516-c187c6d7f6ae' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0&#x27;, &#x27;c1&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;,
+       &#x27;c18&#x27;, &#x27;c19&#x27;, &#x27;c2&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;,
+       &#x27;c27&#x27;, &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c3&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c4&#x27;,
+       &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;L1&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ba0749c3-7dcb-40b4-96c1-e71cdef9bb74' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ba0749c3-7dcb-40b4-96c1-e71cdef9bb74' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>L1</dd><dt><span>var_dim :</span></dt><dd>chrom1k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_chromosome</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">,</span> <span class="s1">&#39;chrL&#39;</span><span class="p">]</span>
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>213335 chrom1k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
 </pre></div>
 </div>
 </div>
@@ -1129,9 +3847,32 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">1000</span><span class="p">]})</span>
 
 <span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
-<span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
-    <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="p">)</span>
+
+<span class="c1"># --- robust black-list removal (inline replacement) ---</span>
+<span class="c1"># MCDS.remove_black_list_region intersects with pybedtools and calls</span>
+<span class="c1"># .to_dataframe().set_index([&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]). In pybedtools&gt;=0.12 an</span>
+<span class="c1"># EMPTY intersect returns a column-less DataFrame, so set_index raises</span>
+<span class="c1"># KeyError(&quot;None of [&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;] ...&quot;) instead of the caught</span>
+<span class="c1"># EmptyDataError. Reproduce the same result robustly by building the feature</span>
+<span class="c1"># bed from the mcds bin coords and dropping bins overlapping the black list.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pybedtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_pbt</span>
+<span class="n">_feat</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_feature_bed</span><span class="p">(</span><span class="n">var_dim</span><span class="o">=</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">_feat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
+<span class="n">_black</span> <span class="o">=</span> <span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+    <span class="n">_feat</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom1k&#39;</span><span class="p">]]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="p">(</span><span class="n">black_list_path</span><span class="p">),</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">_black</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_black</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_drop</span><span class="p">]</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span> <span class="n">_keep</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">_drop</span><span class="p">)</span><span class="si">}</span><span class="s1"> chrom1k features removed due to overlapping black list regions.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No feature overlapping the black list bed file.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No feature overlapping the black list bed file.
 </pre></div>
 </div>
 </div>
@@ -1208,6 +3949,94 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chrom</th>
+      <th>start</th>
+    </tr>
+    <tr>
+      <th>chrom5k</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr10_10</th>
+      <td>chr10</td>
+      <td>50000</td>
+    </tr>
+    <tr>
+      <th>chr10_100</th>
+      <td>chr10</td>
+      <td>500000</td>
+    </tr>
+    <tr>
+      <th>chr10_1000</th>
+      <td>chr10</td>
+      <td>5000000</td>
+    </tr>
+    <tr>
+      <th>chr10_10000</th>
+      <td>chr10</td>
+      <td>50000000</td>
+    </tr>
+    <tr>
+      <th>chr10_10001</th>
+      <td>chr10</td>
+      <td>50005000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr9_995</th>
+      <td>chr9</td>
+      <td>4975000</td>
+    </tr>
+    <tr>
+      <th>chr9_996</th>
+      <td>chr9</td>
+      <td>4980000</td>
+    </tr>
+    <tr>
+      <th>chr9_997</th>
+      <td>chr9</td>
+      <td>4985000</td>
+    </tr>
+    <tr>
+      <th>chr9_998</th>
+      <td>chr9</td>
+      <td>4990000</td>
+    </tr>
+    <tr>
+      <th>chr9_999</th>
+      <td>chr9</td>
+      <td>4995000</td>
+    </tr>
+  </tbody>
+</table>
+<p>524330 rows × 2 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1248,6 +4077,113 @@
     <span class="c1">#     ax.set_yticks([])</span>
     <span class="c1">#     ax.set_xticklabels([&#39;-500k&#39;, [&#39;A&gt;B&#39;,&#39;B&gt;A&#39;,&#39;Others&#39;][i], &#39;+500k&#39;])</span>
     <span class="c1">#     ax.set_ylabel(f&#39;{data.shape[0]} Compartment Boundaries&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c20
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c30
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c18
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c29
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c19
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c28
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c11
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c32
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c31
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c24
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c27
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c26
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c21
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c12
 </pre></div>
 </div>
 </div>
@@ -1297,6 +4233,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/71008e70517ce5b94d7661161d4a60a704c2228983aa6a391745157123e0d976.png" src="../_images/71008e70517ce5b94d7661161d4a60a704c2228983aa6a391745157123e0d976.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1341,6 +4280,16 @@
     <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;compartment/comp_boundary_flankmCH_</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a3712ffb025e068f99454fc378c223cd09ecb828490247f56e18afd963585642.png" src="../_images/a3712ffb025e068f99454fc378c223cd09ecb828490247f56e18afd963585642.png" />
+<img alt="../_images/438235d6a7fe0d2ebfd66ad3ee32ed0c5445481d0079ce3f557741443751cf6f.png" src="../_images/438235d6a7fe0d2ebfd66ad3ee32ed0c5445481d0079ce3f557741443751cf6f.png" />
+<img alt="../_images/53348e79681da745e8ccca0355e01785cbd8c089dbfb5590e3378448515a54e9.png" src="../_images/53348e79681da745e8ccca0355e01785cbd8c089dbfb5590e3378448515a54e9.png" />
+<img alt="../_images/90ded90932c116cca782522a91bf7b8cda547964c6eeb1d73bfa541c5fa9dfcd.png" src="../_images/90ded90932c116cca782522a91bf7b8cda547964c6eeb1d73bfa541c5fa9dfcd.png" />
+<img alt="../_images/3bef7d061560676c0f3428973a8a7d9ed53b297a275e67fe91175d4e42fed0e2.png" src="../_images/3bef7d061560676c0f3428973a8a7d9ed53b297a275e67fe91175d4e42fed0e2.png" />
+<img alt="../_images/7829bd1cfcf4e0f1161a1cdade7195f1a162e869c0e4f1bf89c4b13f359af3ee.png" src="../_images/7829bd1cfcf4e0f1161a1cdade7195f1a162e869c0e4f1bf89c4b13f359af3ee.png" />
+<img alt="../_images/9e0a1f898b6702791c96e942bffcf76e48112992385441133a5bf6225f1fb98a.png" src="../_images/9e0a1f898b6702791c96e942bffcf76e48112992385441133a5bf6225f1fb98a.png" />
+<img alt="../_images/eeb4fbe483d7efc483b6b37708ba9256bace736cdcca202fdc0e4db1aff22352.png" src="../_images/eeb4fbe483d7efc483b6b37708ba9256bace736cdcca202fdc0e4db1aff22352.png" />
 </div>
 </div>
 </section>

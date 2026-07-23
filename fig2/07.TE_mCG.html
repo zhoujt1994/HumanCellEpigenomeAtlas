@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -889,18 +890,20 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allcools</span> <span class="n">generate</span><span class="o">-</span><span class="n">dataset</span> <span class="o">--</span><span class="n">allc_table</span> <span class="n">allclist_L1</span><span class="o">.</span><span class="n">tsv</span> \
-    <span class="o">--</span><span class="n">output_path</span> <span class="n">L1_repeat</span><span class="o">.</span><span class="n">mcds</span> \
-    <span class="o">--</span><span class="n">chrom_size_path</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> \
-    <span class="o">--</span><span class="n">obs_dim</span> <span class="n">L1</span> \
-    <span class="o">--</span><span class="n">cpu</span> <span class="mi">36</span> \
-    <span class="o">--</span><span class="n">chunk_size</span> <span class="mi">1</span> \ 
-    <span class="o">--</span><span class="n">regions</span> <span class="n">SINE</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">repeatmasker</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">repeatmasker</span><span class="o">.</span><span class="n">repClass</span><span class="o">-</span><span class="n">SINE</span><span class="o">.</span><span class="n">bed</span> \
-    <span class="o">--</span><span class="n">regions</span> <span class="n">LINE</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">repeatmasker</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">repeatmasker</span><span class="o">.</span><span class="n">repClass</span><span class="o">-</span><span class="n">LINE</span><span class="o">.</span><span class="n">bed</span> \
-    <span class="o">--</span><span class="n">regions</span> <span class="n">LTR</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">repeatmasker</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">repeatmasker</span><span class="o">.</span><span class="n">repClass</span><span class="o">-</span><span class="n">LTR</span><span class="o">.</span><span class="n">bed</span> \
-    <span class="o">--</span><span class="n">quantifiers</span> <span class="n">SINE</span> <span class="n">count</span> <span class="n">CGN</span> \
-    <span class="o">--</span><span class="n">quantifiers</span> <span class="n">LINE</span> <span class="n">count</span> <span class="n">CGN</span> \
-    <span class="o">--</span><span class="n">quantifiers</span> <span class="n">LTR</span> <span class="n">count</span> <span class="n">CGN</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
+<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
+<span class="c1"># allcools generate-dataset --allc_table allclist_L1.tsv \</span>
+<span class="c1">#     --output_path L1_repeat.mcds \</span>
+<span class="c1">#     --chrom_size_path /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes \</span>
+<span class="c1">#     --obs_dim L1 \</span>
+<span class="c1">#     --cpu 36 \</span>
+<span class="c1">#     --chunk_size 1 \ </span>
+<span class="c1">#     --regions SINE /large_storage/zhoulab/ref/repeatmasker/hg38/hg38.repeatmasker.repClass-SINE.bed \</span>
+<span class="c1">#     --regions LINE /large_storage/zhoulab/ref/repeatmasker/hg38/hg38.repeatmasker.repClass-LINE.bed \</span>
+<span class="c1">#     --regions LTR /large_storage/zhoulab/ref/repeatmasker/hg38/hg38.repeatmasker.repClass-LTR.bed \</span>
+<span class="c1">#     --quantifiers SINE count CGN \</span>
+<span class="c1">#     --quantifiers LINE count CGN \</span>
+<span class="c1">#     --quantifiers LTR count CGN</span>
 </pre></div>
 </div>
 </div>

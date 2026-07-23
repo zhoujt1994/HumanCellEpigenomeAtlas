@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -552,6 +553,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -783,7 +789,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/063d51edca1dcc13be31af4cc9f102eb2f49d549564f1189a7904d72d569f585.png" src="../_images/063d51edca1dcc13be31af4cc9f102eb2f49d549564f1189a7904d72d569f585.png" />
+<img alt="../_images/eebb66686adb1a2780382d37ba507222030c2c73b791881827a64c819ed8aaf9.png" src="../_images/eebb66686adb1a2780382d37ba507222030c2c73b791881827a64c819ed8aaf9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -795,41 +801,37 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fibro Adr -0.4696066934544801
-Fibro Mus -0.488204475529475
-Fibro EpiN -0.4092487506238873
-Fibro Brst -0.6363147255226962
-Fibro Sk -0.5015807853394326
-Fibro EndN -0.48612811021670777
-Fibro GI -0.5193303214891105
-Fibro HT -0.5377667939038807
-Neu Exc 0.23433213931631366
-Neu Inh 0.2193913440688712
-Glia Astro -0.18097036348608214
-Epi Endcri -0.5559560168217726
-Glia Oligo -0.20502165304795908
-Hema B -0.6287959638002504
-Hema NK -0.7154698189121014
-Hema Tmem -0.6426450032346182
-Hema Tnaive -0.7157460346775558
-Hema Mast -0.7307108281767946
-Hema Myeloid -0.7660586777367807
-Epi Aci -0.5392670248658549
-Epi Duc -0.5084059919720998
-Epi AdrCtx -0.588428026310207
-Mus Crd -0.4430974858311366
-Epi Krt/Lum -0.5901305184245133
-Epi Alv -0.4220095270711217
-Epi Gas -0.5571067103467813
-Epi Ent -0.6305932933117723
-Epi TPB -0.6801187051169961
-Endo Vsc -0.7243881744539497
-Endo Lym -0.647220047982146
-Mus Skl -0.5508059275717501
-Epi BrstBasal -0.4369336040409474
-Neu Schw -0.4431504656168035
-Fibro Myo -0.3644415663559445
-Perivascular -0.6453634038115412
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fibro Brst -0.6333716282755443
+Fibro Sk -0.49731924317967263
+Fibro EpiN -0.40149950022352343
+Fibro Mus -0.4821311689401577
+Fibro EndN -0.48133971956145677
+Fibro GI -0.5173082416342708
+Fibro HT -0.5350888280149687
+Hema Myeloid -0.7657781777804042
+Hema Mast -0.7274387550453512
+Hema Tmem -0.6406172632017167
+Hema B -0.6260810792721662
+Hema NK -0.7118803021045911
+Hema Tnaive -0.711651556478839
+Epi Ent -0.6282577507934756
+Epi TPB -0.6780707871899466
+Epi Endcri -0.5531942070871229
+Epi Aci -0.5360263178842855
+Epi Krt/Lum -0.5868593789977026
+Epi Alv -0.4140190256941173
+Epi Gas -0.5544546436365251
+Epi Duc -0.503803117644465
+Epi AdrCtx -0.5865829611343072
+Mus Crd -0.439124636903428
+Glia Schw -0.4383009176164708
+Endo Vsc -0.7232250769087001
+Endo Lym -0.6429572585765027
+Mus Skl -0.5498691443963143
+Epi BrstBasal -0.43181470792101845
+Fibro Adr -0.46379168214455374
+Fibro Myo -0.3615935848228503
+Perivascular -0.6423111448234636
 </pre></div>
 </div>
 </div>
@@ -932,10 +934,10 @@ Perivascular -0.6453634038115412
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mcg = pd.read_hdf(&#39;mCG_distribution/L1_chrom100k_mCG.hdf&#39;, key=&#39;data&#39;)</span>
-<span class="c1"># mcg = mcg.T.loc[comptmp.index, ct]</span>
-<span class="c1"># mcgall = np.zeros(Call.shape[0])</span>
-<span class="c1"># mcgall[mcg.index.str.split(&#39;_&#39;).str[1].astype(int)] = mcg.values.copy()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;mCG_distribution/L1_chrom100k_mCG.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">mcg</span> <span class="o">=</span> <span class="n">mcg</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">comptmp</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ct</span><span class="p">]</span>
+<span class="n">mcgall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Call</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">mcgall</span><span class="p">[</span><span class="n">mcg</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span> <span class="o">=</span> <span class="n">mcg</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
