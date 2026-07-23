@@ -19,13 +19,9 @@ parts:
           - file: fig1/02.m3c_blacklist
           - file: fig1/03.method_clustering
           - file: fig1/04.method_anchor
-          - file: fig1/05.modality_contribution
-          - file: fig1/06.downsample_clustering
           - file: fig1/08.L2both_per_celltype
-          - file: fig1/09.pairwise_prediction
           - file: fig1/10.compare_bulkmc
           - file: fig1/11.compare_bulkhic
-          - file: fig1/12.L2any_L2both_diffloop
   - caption: "Fig. 2 — CG methylation across cell types"
     chapters:
       - file: fig2/fig2
@@ -61,8 +57,6 @@ parts:
           - file: fig3/06.mCH_mCG_comp
           - file: fig3/07.mCH_clustering
           - file: fig3/04.mCH_mCG_corr
-          - file: fig3/08.mCH_hetero
-          - file: fig3/10.mCH_geneplot
   - caption: "Fig. 4 — Chromatin contacts across cell types"
     chapters:
       - file: fig4/fig4
@@ -87,7 +81,6 @@ parts:
           - file: fig5/08.pycistarget_loopDMR
           - file: fig5/07.L2any_L2both
           - file: fig5/05.loop_dmr_enrichment
-          - file: fig5/04.mCoverDomainboundary
           - file: fig5/06.loop_dmr_motif
   - caption: "Fig. 6 — Discrepant methylation- vs contact-defined types"
     chapters:
@@ -95,10 +88,7 @@ parts:
         sections:
           - file: fig6/02.MusSkl_donor_clustering
           - file: fig6/01.MusSkl_clustering
-          - file: fig6/04.MusSkl_diff
           - file: fig6/06.MusSkl_diff_7group
           - file: fig6/07.Epi-TPB
           - file: fig6/09.NTbSchw_clustering
           - file: fig6/03.MusSkl_diffloop
-          - file: fig6/05.MusSkl_diff_3group
-          - file: fig6/08.Epi-Gas
