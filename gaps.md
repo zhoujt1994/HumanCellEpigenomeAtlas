@@ -26,7 +26,7 @@ Skip for now.
 
 | Fig 6A | elsewhere (`clustering/merged/L2_hiconly/summary`) | mC-vs-3C ARI barplot; ARI computed, barplot cell not in the fig notebooks. |
 
-You should resolve that now?
+✅ **RESOLVED** — recovered as `fig6/00.mc3c_ARI.ipynb`, verified (all 35 major types render).
 
 | Fig 6D | `fig6/01.MusSkl_clustering` | Donor-corrected 3×3 confusion matrix; nb01's table has the **pre-donor** counts, the published version is generated elsewhere. |
 
@@ -43,15 +43,23 @@ Those are in PMD analysis. Search the analysis directory further.
 
 | Fig S32D–H | elsewhere | Schwann DMR/loop heatmaps; enteric/gastric DMR·loop·DEG heatmaps (`fig6/08.Epi-Gas`, dropped, only made t-SNEs). |
 
-
+Find D in analyses. Skip E-H for now.
 
 ## C. Computed but plotted **inline only** — add a `savefig` to regenerate
 
 | Panel | Notebook | Note |
 |-------|----------|------|
 | Fig S16A/B | `fig3/03.mC_context_lambda` | mCH-vs-Lambda fold-change / z-scored mCH clustermaps shown inline. |
+
+You can replot it. This should be straight forward. If you cannot just skip it.
+
 | Fig 3I / Fig S23B | not in `fig3/` | mCH↔DEG-expression correlation (violins + corr-vs-distance-to-TSS); no producing cell in the fig3 notebooks. |
+
+Search analysis subfolder more carefully. Should be in mch_rna so something similar.
+
 | Fig S3A/B | `fig4/09.loop_rna` (breast only) | DEG↔loop / DEG↔mCG-at-DMR cosine across colon/stomach/skin/heart; multi-tissue producer not in the release. |
+
+Skip for now.
 
 **Recovered in this build** (were inline/commented, now saved): **Fig 5H** (`fig5/08` c53,
 Homer loop-DMR dot plot — `savefig` re-enabled) and **Fig 5I** (`fig5/07` c26,
@@ -62,11 +70,24 @@ DMR↔diff-loop correlation violin — `savefig` added).
 | Panel | Notebook | Note |
 |-------|----------|------|
 | Fig S24B | `fig4/01` c46/c50 | Notebook plots 4 columns; published S24B shows 5 (adds a "Strength" column). |
+
+You can try to add the strength column e.g. (AA+BB) / (AB+BA) or reverse.
+
 | Fig 6E | `fig6/06` c64/c67 | MYH7 fast/slow browser is byte-identical across nb04/05/06; attributed to nb06 (the published-companion notebook). |
+
+You already have that?
+
 | Fig S4 / S6 | elsewhere | S4 = per-tissue ATAC+snm3C joint embedding; S6 = subtype-donor mCG/loop correlation + violins. No source in the fig notebooks. |
 
-## Notes on panels that are **covered** (avoid the old README mis-attributions)
-- **Fig S2E** = `fig1/04` c23 (not a gap); **Fig 1F** dendrogram = `fig1/07` c22.
+Skip for now.
+
+## Reference — panels that ARE reproduced (with the correct notebook)
+
+These are **not gaps** — each is fully produced by a notebook in the book. They are listed
+only because the old `code_share/README.md` pointed them at the **wrong** notebook, so this
+is the corrected "panel → notebook" pointer. Nothing to do here.
+
+- **Fig S2E** = `fig1/04` c23; **Fig 1F** dendrogram = `fig1/07` c22.
 - **Fig 2 S9A/B** = `fig2/02` (not the 08/09 calling pipelines); **S10D/E** = `fig2/02`, **S10A–C** = `fig2/10`.
 - **Fig 3C/S19** = `fig3/05`; **S17/S18** = `fig3/02`; **3D/3E** = `fig3/09`; **S21** = `fig3/04`.
 - **S29A/B** = `fig2/18`; **S27A** = `fig5/05`; **S30/S31** support **Fig 1F**, not Fig 6.
