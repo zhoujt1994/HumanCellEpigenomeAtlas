@@ -37,7 +37,7 @@ import builtins
 import functools
 import os
 
-_STATE = {"active": False, "overwrite": False, "patched": False}
+_STATE = {"active": False, "overwrite": False, "patched": False, "readonly": False}
 _ORIG = {}
 
 
@@ -92,6 +92,8 @@ def _guard_method(orig, path_argno=0, path_kw=None, extra_suffixes=()):
         elif len(args) > path_argno:
             path = args[path_argno]
         if _is_pathlike(path):
+            if _STATE["readonly"]:
+                return None            # readonly: skip every write silently
             if _exists(path, extra_suffixes):
                 _skip(path)
                 return None
@@ -194,8 +196,9 @@ def _patch_all():
     def _guarded_open(file, mode="r", *args, **kwargs):
         if _STATE["active"] and not _STATE["overwrite"] and _is_pathlike(file):
             m = mode if isinstance(mode, str) else "r"
-            if any(c in m for c in ("w", "a", "x")) and _exists(file):
-                _skip(file)
+            if any(c in m for c in ("w", "a", "x")) and (_STATE["readonly"] or _exists(file)):
+                if not _STATE["readonly"]:
+                    _skip(file)
                 # return a harmless no-op file handle to /dev/null so callers
                 # that .write() to it don't crash.
                 return _orig_open(os.devnull, "w")
@@ -216,8 +219,9 @@ def _patch_all():
             import re
 
             m = re.search(r">>?\s*([^\s|;&><]+)", command)
-            if m and _exists(m.group(1).strip("'\"")):
-                _skip(m.group(1))
+            if m and (_STATE["readonly"] or _exists(m.group(1).strip("'\""))):
+                if not _STATE["readonly"]:
+                    _skip(m.group(1))
                 return 0
         return _orig_system(command)
 
@@ -226,12 +230,25 @@ def _patch_all():
     _STATE["patched"] = True
 
 
-def activate(overwrite=False):
-    """Turn the guard on. ``overwrite=True`` lets writes proceed (danger)."""
+def activate(overwrite=False, readonly=None):
+    """Turn the guard on.
+
+    ``overwrite=True`` lets writes proceed (danger). ``readonly=True`` skips ALL
+    writes (savefig, to_csv, …) so a validation run never touches disk — the inline
+    figures still render. ``readonly`` defaults to the ``REPRO_READONLY`` env var.
+    """
     _patch_all()
     _STATE["active"] = True
     _STATE["overwrite"] = bool(overwrite)
-    mode = "OVERWRITE ALLOWED" if overwrite else "no-overwrite (existing files are cached/skipped)"
+    if readonly is None:
+        readonly = os.environ.get("REPRO_READONLY", "").lower() in ("1", "true", "yes", "on")
+    _STATE["readonly"] = bool(readonly)
+    if readonly:
+        mode = "READ-ONLY (all writes skipped; inline figures still render)"
+    elif overwrite:
+        mode = "OVERWRITE ALLOWED"
+    else:
+        mode = "no-overwrite (existing files are cached/skipped)"
     print(f"[repro_guard] active — {mode}")
 
 

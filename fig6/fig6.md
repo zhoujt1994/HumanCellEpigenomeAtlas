@@ -20,13 +20,13 @@ cells are still open — see `REVIEW_NEEDED.md`.
 
 | Panel | Notebook | Cell(s) | What it makes |
 |-------|----------|---------|---------------|
-| 6A ⚠ | ARI values in [Fig5/07.L2any_L2both](../fig5/07.L2any_L2both.ipynb) c18–c19 | — | ARI per major type barplot (Neu Inh highest → Epi Aci lowest). **The barplot exists in the paper; its render cell is not located in code_share** (see REVIEW_NEEDED) |
+| 6A ⚠ | [Fig5/07.L2any_L2both](../fig5/07.L2any_L2both.ipynb) c21 (values) | — | ARI per major type barplot. **Values computed there (`result['ARI']`); the barplot render is a one-line `result['ARI'].sort_values().plot.bar()` to add** (see REVIEW_NEEDED) |
 | 6B | [02.MusSkl_donor_clustering](02.MusSkl_donor_clustering.ipynb) | c49 | Mus Skl t-SNE mCG (left) & contact (right) — **donor-joint coordinates, colored by donor-separate cell-group labels** |
 | 6C | [02](02.MusSkl_donor_clustering.ipynb) | c49 | Same (donor-joint) coordinates colored by global mCG |
 | 6D | [01.MusSkl_clustering](01.MusSkl_clustering.ipynb) | c42 | Confusion matrix mC-subtypes × 3C-subtypes |
 | 6E | [04](04.MusSkl_diff.ipynb) / [06](06.MusSkl_diff_7group.ipynb) | c53 (c55 zoom) | Contact + mCG browser at chr14 *MYH7* + zoomed DMR regions i/ii (see variant note) |
 | 6F | [04](04.MusSkl_diff.ipynb) / [06](06.MusSkl_diff_7group.ipynb) | c32/c40 | Diff-loop strength (left, 18,646 loops) + mCG of DMRs at anchors (right, 19,647 DMRs), 7 groups, k-means |
-| 6G ⚠ | [06.MusSkl_diff_7group](06.MusSkl_diff_7group.ipynb) | — | **Motif-enrichment dot plot** (NES color, #motif-hits size; EGR1/ZEB1/FOS/MYF5/PAX7…) per loop-DMR group. Exists in the paper; cisTarget/SCENIC+ compute is in the diff notebooks — pin the dot-plot cell |
+| 6G | [Fig5/08.pycistarget_loopDMR](../fig5/08.pycistarget_loopDMR.ipynb) | `TF_overlapped_nes_mus_long` | Motif **dot plot** (NES/‌#hits) per Mus Skl loop-DMR group ✅ **recovered** |
 | 6H | [07.Epi-TPB](07.Epi-TPB.ipynb) | c17 | Epi-TPB t-SNE contact (top) / mCG (bottom) by subtype-donor (VCT/SCT) |
 | 6I | [07](07.Epi-TPB.ipynb) | c28 (+DEG expr) | mCG of DMRs between subtypes (left) + DEG expression (right) |
 | 6J ⚠ | [07](07.Epi-TPB.ipynb) | — | mCG at flanking regions of subtype vs donor DMRs — flank cell not pinned |
@@ -80,8 +80,9 @@ coordinates, the final ones), and the group labels used to color them.
 The published **Fig 6D** confusion matrix is 3×3 (mC-Stem/Fast/Slow × 3C-Stem/Fast/Slow),
 and **Fig 6F/6G have 7 columns** — the populated mC/3C combinations `Fast/Fast, Slow/Fast,
 Stem/Fast, Stem/Stem, Stem/Slow, Fast/Slow, Slow/Slow`. That means the figure uses **7
-cell groups**, so **`06.MusSkl_diff_7group` — not the 8-group `04` — appears to produce the
-published Fig 6E–G + S32A.** (My first pass, following the notebook naming, had said `04`.)
+cell groups**, so **`06.MusSkl_diff_7group` produces the published Fig 6E–G + S32A** — CONFIRMED by the author:
+the published heatmap is `Mus-Skl_mc3c_DMR_loop_7group_new_fdr_cgkmeans_heatmap.pdf` (18,646 loops /
+19,647 DMRs).
 `05.MusSkl_diff_3group` collapses to 3 groups (an alternate). **Please confirm 7-group is
 the published version.**
 ```

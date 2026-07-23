@@ -9,6 +9,7 @@ parts:
       - file: inputs
       - file: fig2/00.demo_fig2A
       - file: gaps
+      - file: reproducibility
   - caption: "Fig. 1 — Single-cell atlas of methylation & 3D genome"
     chapters:
       - file: fig1/fig1
@@ -86,6 +87,7 @@ parts:
           - file: fig5/05.loop_dmr_enrichment
           - file: fig5/06.loop_dmr_motif
           - file: fig5/07.L2any_L2both
+          - file: fig5/08.pycistarget_loopDMR
   - caption: "Fig. 6 — Discrepant methylation- vs contact-defined types"
     chapters:
       - file: fig6/fig6
