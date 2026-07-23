@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,6 +526,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#liu-2021">Liu 2021</a></li>
 </ul>
             </nav>
@@ -537,6 +542,23 @@
   <section class="tex2jax_ignore mathjax_ignore" id="decay">
 <h1>1. Decay<a class="headerlink" href="#decay" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}decay/cell_*_decay.hdf5'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'/gale/netapp/home/wtian/hba/analysis/MultiModalityIntigration/RNA/vs-DNAm/integration-data/neu.majortype-transfered-from-mC.pdpkl'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'/gale/netapp/home/wtian/hba/analysis/MultiModalityIntigration/RNA/vs-DNAm/integration-data/nonn.majortype-transfered-from-mC.pdpkl'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'/gale/netapp/home/wtian/hba/analysis/MultiModalityIntigration/RNA/clustering/based-on-kim-20220729/cell_meta.qced.pdhdf'</span></code>  ·  <em>metadata</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'/gale/netapp/home/wtian/hba/analysis/MotifEnrich/MajorType/dmr.MajorType.rho08.dist250.filter1.repflt/qry.h5ad'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'/gale/netapp/home/wtian/hba/analysis/DMR/DMR-results/MajorType-hyp/hypo.{xx}.bed'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}compartment_majortype/saddle_impute_mergerawpca.npy'</span></code>  ·  <em>compartment</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}compartment_majortype/saddle_raw_mergerawpca.npy'</span></code>  ·  <em>compartment</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{cemba.CEMBA_SNM3C_CELL_TYPE_ANNOTATION_PATH}/CEMBA.snm3C.Annotations.zarr/'</span></code>  ·  <em>ext: CEMBA</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}cell_*_decay.hdf5'</span></code>  ·  <em>other</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -620,6 +642,7 @@
 <span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c35&#39;</span><span class="p">,</span><span class="s1">&#39;c36&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 </pre></div>
 </div>
 </div>
@@ -647,7 +670,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_colors</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1colors</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_colors</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_color</span><span class="p">)</span>
 <span class="n">selc</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;ratio&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
 <span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">decay</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">z_score</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> 
                     <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">row_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> 
@@ -658,8 +681,8 @@
 <span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5k&#39;</span><span class="p">,</span> <span class="s1">&#39;10k&#39;</span><span class="p">,</span> <span class="s1">&#39;20k&#39;</span><span class="p">,</span> <span class="s1">&#39;50k&#39;</span><span class="p">,</span> <span class="s1">&#39;100k&#39;</span><span class="p">,</span> <span class="s1">&#39;200k&#39;</span><span class="p">,</span> <span class="s1">&#39;500k&#39;</span><span class="p">,</span> <span class="s1">&#39;1M&#39;</span><span class="p">,</span> <span class="s1">&#39;2M&#39;</span><span class="p">,</span> <span class="s1">&#39;5M&#39;</span><span class="p">,</span> <span class="s1">&#39;10M&#39;</span><span class="p">,</span> <span class="s1">&#39;20M&#39;</span><span class="p">,</span> <span class="s1">&#39;50M&#39;</span><span class="p">,</span> <span class="s1">&#39;100M&#39;</span><span class="p">]</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">xx</span><span class="o">/</span><span class="mi">2500</span><span class="p">)</span><span class="o">/</span><span class="mf">0.125</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">xticks</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">L1colors</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">L1colors</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">L1_color</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     
 <span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">100000000</span><span class="p">]:</span>
@@ -2304,6 +2327,7 @@ Name: ratio, dtype: float64
 <img alt="../_images/27a7ff8ee03aa64f004e8398276d1ec9a195f299814c4454d1d9a8f9489eec6c.png" src="../_images/27a7ff8ee03aa64f004e8398276d1ec9a195f299814c4454d1d9a8f9489eec6c.png" />
 </div>
 </div>
+</section>
 <section id="liu-2021">
 <h2>Liu 2021<a class="headerlink" href="#liu-2021" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -4893,6 +4917,7 @@ Attributes:
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#liu-2021">Liu 2021</a></li>
 </ul>
   </nav></div>

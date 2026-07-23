@@ -153,6 +153,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -217,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -304,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -495,7 +503,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -511,6 +521,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -523,6 +541,18 @@
   <section class="tex2jax_ignore mathjax_ignore" id="diffcomp-majortype">
 <h1>5. Diffcomp majortype<a class="headerlink" href="#diffcomp-majortype" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{compdir}L1/comp.impute.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{compdir}L1/comp.{mode}.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}DifferentialResult/fdr_result/differential.intra_sample_combined.pcQnm.bedGraph'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}bin_stats.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}analysis/mCG_distribution/L1_chrom100k_mCG.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}analysis/mCH_distribution/L1_chrom100k_mCH.hdf'</span></code>  ·  <em>other</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -533,6 +563,11 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
 </pre></div>
 </div>
 </div>
@@ -581,6 +616,7 @@
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">res</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 </pre></div>
 </div>
 </div>
@@ -1065,6 +1101,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in library(bigstatsr) : there is no package called ‘bigstatsr’
+Execution halted
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1471,7 +1513,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8819781fb944a1170abbc27710bed392fdc403d06615360e144cc6f78ac23ba2.png" src="../_images/8819781fb944a1170abbc27710bed392fdc403d06615360e144cc6f78ac23ba2.png" />
+<img alt="../_images/5b88061bb22012c4f1f8bf2b839c297b1c11458f44665236d71f02ecca69bb13.png" src="../_images/5b88061bb22012c4f1f8bf2b839c297b1c11458f44665236d71f02ecca69bb13.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1499,7 +1541,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cac0bfb01fd56877165fcde1fa6ab65edde5dd9ced288c971189ce49d0f83f58.png" src="../_images/cac0bfb01fd56877165fcde1fa6ab65edde5dd9ced288c971189ce49d0f83f58.png" />
+<img alt="../_images/1f8f5a5c93fc3704626c3bdd604869884849d5fab8594927afc15973ec80a97d.png" src="../_images/1f8f5a5c93fc3704626c3bdd604869884849d5fab8594927afc15973ec80a97d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1773,7 +1815,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3a7eb9d981a1d0726b53c3e1b14906a0d90b900660c7ffcd0ad2bb32512f3be6.png" src="../_images/3a7eb9d981a1d0726b53c3e1b14906a0d90b900660c7ffcd0ad2bb32512f3be6.png" />
+<img alt="../_images/6892e13df4ddc9981909f82a66ae71fadcec536567fdad5b68048d926a302099.png" src="../_images/6892e13df4ddc9981909f82a66ae71fadcec536567fdad5b68048d926a302099.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1802,7 +1844,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;logPadj&#39;, ylabel=&#39;sample_maha&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/cc5429a56219682e482b7e27108d71345dbf7df16e30c365c93e4017776c1335.png" src="../_images/cc5429a56219682e482b7e27108d71345dbf7df16e30c365c93e4017776c1335.png" />
+<img alt="../_images/97d96fd018ecce3d8f5a3552daaea225aabee242fc90143e9139fdf46e08e17c.png" src="../_images/97d96fd018ecce3d8f5a3552daaea225aabee242fc90143e9139fdf46e08e17c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1818,12 +1860,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7f1bea016c20&gt;,
- &lt;matplotlib.axis.XTick at 0x7f1bea016e30&gt;,
- &lt;matplotlib.axis.XTick at 0x7f1bea2fa050&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7fbf419dad40&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fbf419f5300&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fbf4192ca60&gt;]
 </pre></div>
 </div>
-<img alt="../_images/bd15ecfbe81739efd60d3b81e24b0230bb1f239f9ed59cd0734dd10970cc0ae7.png" src="../_images/bd15ecfbe81739efd60d3b81e24b0230bb1f239f9ed59cd0734dd10970cc0ae7.png" />
+<img alt="../_images/9c5f825938e05011c9f33362ac1ef0b94776d0a38d8f599bcd46bbe8e539dc24.png" src="../_images/9c5f825938e05011c9f33362ac1ef0b94776d0a38d8f599bcd46bbe8e539dc24.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1839,14 +1881,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7f1bea28aa10&gt;,
- &lt;matplotlib.axis.XTick at 0x7f1bea28a9e0&gt;,
- &lt;matplotlib.axis.XTick at 0x7f1be9baf4c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7fbf416e1bd0&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fbf41739ed0&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fbf4173aaa0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/7d8f413e7c854fb4d4341370c64d2225547f8299281dc87f6562ad50ffaa30a7.png" src="../_images/7d8f413e7c854fb4d4341370c64d2225547f8299281dc87f6562ad50ffaa30a7.png" />
+<img alt="../_images/67f120b040e9e0570f92301943bc47ff9b9149af1ccde7088ec65b572154f445.png" src="../_images/67f120b040e9e0570f92301943bc47ff9b9149af1ccde7088ec65b572154f445.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1903,6 +1946,23 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

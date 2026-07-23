@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,12 +526,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-plot-tissue-pmd">load and plot tissue PMD</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-saved-files">load saved files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-histone-data">merge histone data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-histone-data">Load histone data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-all-tissues-cell-types">merge all tissues/cell types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-bin-by-tissue-heatmap">plot bin-by-tissue heatmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-plot-tissue-pmd">load and plot tissue PMD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-saved-files">load saved files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-histone-data">merge histone data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-histone-data">Load histone data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-all-tissues-cell-types">merge all tissues/cell types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-bin-by-tissue-heatmap">plot bin-by-tissue heatmap</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -542,6 +549,20 @@
   <section class="tex2jax_ignore mathjax_ignore" id="pmd-histone">
 <h1>13. PMD histone<a class="headerlink" href="#pmd-histone" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{pmddir}{ct}_10kb_hist.h5ad'</span></code>  ·  <em>PMD/methyl-compartment</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{pmddir}tissue13_kmeans3_mccomp.hdf'</span></code>  ·  <em>PMD/methyl-compartment</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'/large_storage/zhoulab/resource/ENCODE/histone/metadata.tsv'</span></code>  ·  <em>ext: ENCODE</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}histone_10kb.hdf'</span></code>  ·  <em>ext: histone</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}diff_10k/{hist}/{group_name}.stats.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{pmddir}LG_10kb_hist.h5ad'</span></code>  ·  <em>PMD/methyl-compartment</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{pmddir}B_10kb_hist.h5ad'</span></code>  ·  <em>PMD/methyl-compartment</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -635,7 +656,7 @@
 </div>
 </div>
 <section id="load-and-plot-tissue-pmd">
-<h2>load and plot tissue PMD<a class="headerlink" href="#load-and-plot-tissue-pmd" title="Link to this heading">#</a></h2>
+<h3>load and plot tissue PMD<a class="headerlink" href="#load-and-plot-tissue-pmd" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nc</span> <span class="o">=</span> <span class="mi">3</span>
@@ -699,7 +720,7 @@
 </div>
 </section>
 <section id="load-saved-files">
-<h2>load saved files<a class="headerlink" href="#load-saved-files" title="Link to this heading">#</a></h2>
+<h3>load saved files<a class="headerlink" href="#load-saved-files" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tissue_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Peyer&#39;s patch&quot;</span><span class="p">:</span> <span class="s1">&#39;SB&#39;</span><span class="p">,</span> 
@@ -800,7 +821,7 @@ Name: count, dtype: int64
 </div>
 </section>
 <section id="merge-histone-data">
-<h2>merge histone data<a class="headerlink" href="#merge-histone-data" title="Link to this heading">#</a></h2>
+<h3>merge histone data<a class="headerlink" href="#merge-histone-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_tsv</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
@@ -850,6 +871,7 @@ Name: count, dtype: int64
 <span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c7&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 </pre></div>
 </div>
 </div>
@@ -921,7 +943,7 @@ Name: count, dtype: int64
 </div>
 </section>
 <section id="load-histone-data">
-<h2>Load histone data<a class="headerlink" href="#load-histone-data" title="Link to this heading">#</a></h2>
+<h3>Load histone data<a class="headerlink" href="#load-histone-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qnorm</span>
@@ -970,7 +992,7 @@ H3K27me3-human (259589, 12)
 </div>
 </section>
 <section id="merge-all-tissues-cell-types">
-<h2>merge all tissues/cell types<a class="headerlink" href="#merge-all-tissues-cell-types" title="Link to this heading">#</a></h2>
+<h3>merge all tissues/cell types<a class="headerlink" href="#merge-all-tissues-cell-types" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_pmd</span> <span class="o">=</span> <span class="n">pmd</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
@@ -1057,7 +1079,7 @@ H3K27me3-human (259589, 12)
 </div>
 </section>
 <section id="plot-bin-by-tissue-heatmap">
-<h2>plot bin-by-tissue heatmap<a class="headerlink" href="#plot-bin-by-tissue-heatmap" title="Link to this heading">#</a></h2>
+<h3>plot bin-by-tissue heatmap<a class="headerlink" href="#plot-bin-by-tissue-heatmap" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">order_row</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nc</span><span class="p">):</span>
@@ -1629,6 +1651,7 @@ Name: count, dtype: int64
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1696,12 +1719,15 @@ Name: count, dtype: int64
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-plot-tissue-pmd">load and plot tissue PMD</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-saved-files">load saved files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-histone-data">merge histone data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-histone-data">Load histone data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-all-tissues-cell-types">merge all tissues/cell types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-bin-by-tissue-heatmap">plot bin-by-tissue heatmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-plot-tissue-pmd">load and plot tissue PMD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-saved-files">load saved files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-histone-data">merge histone data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-histone-data">Load histone data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-all-tissues-cell-types">merge all tissues/cell types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-bin-by-tissue-heatmap">plot bin-by-tissue heatmap</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

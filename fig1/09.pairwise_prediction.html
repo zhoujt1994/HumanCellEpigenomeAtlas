@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="current nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,6 +526,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-cell-to-l2donor">Merge cell to L2donor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-l2any-to-l2both">Merge L2any to L2both</a></li>
 </ul>
@@ -538,6 +543,27 @@
   <section class="tex2jax_ignore mathjax_ignore" id="pairwise-prediction">
 <h1>9. Pairwise prediction<a class="headerlink" href="#pairwise-prediction" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}npc.tsv'</span></code>  ·  <em>metadata</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}5kCG100k3C_summary.h5ad'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2/{ct}/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}{ct}_mergeany_rocpr.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}{ct}_{mode}.npz'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}{ct}_mergeany.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2/{ct}/5kCG_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2/{ct}/100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}{ct}_mergeboth_rocpr80.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}{ct}_mergemc_rocpr.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}{ct}_merge3c_rocpr.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{ENTEX_ROOT}/allclist.tsv'</span></code>  ·  <em>sc/pseudobulk mC (allc)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}merged_allc/allclist_L2any.txt'</span></code>  ·  <em>sc/pseudobulk mC (allc)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}merged_cool_impute/coollist_L2any.txt'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2_hiconly/{ct}/100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2_hiconly/{ct}/mergehic_rocpr.npy'</span></code>  ·  <em>other</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -2006,6 +2032,7 @@ Name: count, Length: 177, dtype: int64
 </div>
 </div>
 </div>
+</section>
 <section id="merge-cell-to-l2donor">
 <h2>Merge cell to L2donor<a class="headerlink" href="#merge-cell-to-l2donor" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -2643,6 +2670,7 @@ dtype: int64
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-cell-to-l2donor">Merge cell to L2donor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-l2any-to-l2both">Merge L2any to L2both</a></li>
 </ul>

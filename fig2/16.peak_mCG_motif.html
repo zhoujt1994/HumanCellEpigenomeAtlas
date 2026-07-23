@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,6 +526,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ame-hocomoco">AME HOCOMOCO</a></li>
 </ul>
             </nav>
@@ -537,6 +542,19 @@
   <section class="tex2jax_ignore mathjax_ignore" id="peak-mcg-motif">
 <h1>16. Peak mCG motif<a class="headerlink" href="#peak-mcg-motif" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}merged_allc/subtype_globalCG.csv.gz'</span></code>  ·  <em>sc/pseudobulk mC (allc)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{peakdir}peak_majortype_CGN.mcds'</span></code>  ·  <em>mC matrix (mcds)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{peakdir}{ct}.bed'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{REF_ROOT}/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl'</span></code>  ·  <em>reference</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{REF_ROOT}/aertslab_motif_colleciton/motifs.txt'</span></code>  ·  <em>reference</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{REF_ROOT}/yin_2017_motif_type.csv'</span></code>  ·  <em>reference</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}HOCOMOCOv11_core_motif_list.txt'</span></code>  ·  <em>other</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -613,6 +631,7 @@
 <span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c7&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 </pre></div>
 </div>
 </div>
@@ -3318,6 +3337,7 @@ Name: count, dtype: int64
 <img alt="../_images/37cacfc5731217659b4574cbd23a0b1822eecd3f3a7500055b9a5b0d473bbc87.png" src="../_images/37cacfc5731217659b4574cbd23a0b1822eecd3f3a7500055b9a5b0d473bbc87.png" />
 </div>
 </div>
+</section>
 <section id="ame-hocomoco">
 <h2>AME HOCOMOCO<a class="headerlink" href="#ame-hocomoco" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -3987,6 +4007,7 @@ Name: count, dtype: int64
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ame-hocomoco">AME HOCOMOCO</a></li>
 </ul>
   </nav></div>

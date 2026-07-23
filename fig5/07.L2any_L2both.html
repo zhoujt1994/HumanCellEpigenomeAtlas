@@ -64,7 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fig. 6 — Discrepant methylation- vs contact-defined cell types" href="../fig6/fig6.html" />
+    <link rel="next" title="8. pycisTarget loop-DMR motif enrichment" href="08.pycistarget_loopDMR.html" />
     <link rel="prev" title="6. Loop dmr motif" href="06.loop_dmr_motif.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -153,6 +153,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -217,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -304,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -495,7 +503,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -511,6 +521,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -523,6 +541,22 @@
   <section class="tex2jax_ignore mathjax_ignore" id="l2any-l2both">
 <h1>7. L2any L2both<a class="headerlink" href="#l2any-l2both" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/group_meta.tsv'</span></code>  ·  <em>metadata</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}DMR/L2both-L2any/{l2b}_dmr'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{tmpdir}loop_Q.hdf'</span></code>  ·  <em>loop calls</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{tmpdir}merged_loop.hdf'</span></code>  ·  <em>loop calls</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}DMR/L2any_L2bothratio.txt'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}DMR/L2both_L2anyratio.txt'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}DMR/L1-L2both/c2_dmr'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L2/{l1name}/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L2_hiconly/{l1name}/mergemcg_rocpr.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L2_hiconly/{l1name}/mergehic_rocpr.npy'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -3174,6 +3208,7 @@ Name: corr, dtype: float64
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3215,11 +3250,11 @@ Name: corr, dtype: float64
       </div>
     </a>
     <a class="right-next"
-       href="../fig6/fig6.html"
+       href="08.pycistarget_loopDMR.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fig. 6 — Discrepant methylation- vs contact-defined cell types</p>
+        <p class="prev-next-title">8. pycisTarget loop-DMR motif enrichment</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3229,6 +3264,23 @@ Name: corr, dtype: float64
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

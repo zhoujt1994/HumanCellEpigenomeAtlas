@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,6 +526,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l2any-diff-loop">L2any diff loop</a></li>
 </ul>
             </nav>
@@ -537,6 +542,22 @@
   <section class="tex2jax_ignore mathjax_ignore" id="musskl-diff-3group">
 <h1>5. MusSkl diff 3group<a class="headerlink" href="#musskl-diff-3group" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig6.html"><span class="std std-doc">Fig. 6 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}/DMR_3group_{version}group.mcds'</span></code>  ·  <em>mC matrix (mcds)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{loopdir}merged_loop.hdf'</span></code>  ·  <em>loop calls</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{loopdir}loop_Q.hdf'</span></code>  ·  <em>loop calls</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{loopdir}loop_T.hdf'</span></code>  ·  <em>loop calls</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{ct}/hg38.main.10kbin.dmr.3group_{version}.txt'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{REF_ROOT}/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'</span></code>  ·  <em>ref: gencode</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{cooldir}{ct}.Q.cool'</span></code>  ·  <em>contacts (cool)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Mus-Skl/SklMus-mc_dmr'</span></code>  ·  <em>DMR</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Mus-Skl/Mus-Skl_DMR.mcds'</span></code>  ·  <em>mC matrix (mcds)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Mus-Skl/cell_3971_DMR_8group_mCG.hdf'</span></code>  ·  <em>DMR</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -1867,6 +1888,7 @@ Attributes:
 </div>
 </div>
 </div>
+</section>
 <section id="l2any-diff-loop">
 <h2>L2any diff loop<a class="headerlink" href="#l2any-diff-loop" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -6054,6 +6076,7 @@ Attributes:
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l2any-diff-loop">L2any diff loop</a></li>
 </ul>
   </nav></div>

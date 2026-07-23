@@ -153,6 +153,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -217,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="current nav bd-sidenav">
@@ -304,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -495,7 +503,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -511,6 +521,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -523,6 +541,20 @@
   <section class="tex2jax_ignore mathjax_ignore" id="dendrogram-annot">
 <h1>7. Dendrogram annot<a class="headerlink" href="#dendrogram-annot" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}npc.tsv'</span></code>  ·  <em>metadata</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}5kCG100k3C_summary.h5ad'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}celltype_annot.tsv'</span></code>  ·  <em>table</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2final_celltype_L2both_new.tsv'</span></code>  ·  <em>table</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}../../L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2_hiconly/{l1_name}/100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L2/{l1_name}/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'dendro_annot/All_{method_dist}_{method_hclust}.dendro'</span></code>  ·  <em>other</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -533,6 +565,11 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
 </pre></div>
 </div>
 </div>
@@ -572,8 +609,6 @@
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">
@@ -787,13 +822,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 2324 × 0
-    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;
-    obsm: &#39;5kCG100k3C_u15pc10&#39;, &#39;5kCG100k3C_u15pc10_tsne&#39;, &#39;X_tsne&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -824,9 +852,22 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating a temporary cluster...done:
-socket cluster with 32 nodes on host ‘localhost’
-Multiscale bootstrap... Done.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creating a temporary cluster...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>socket cluster with 32 nodes on host ‘localhost’
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiscale bootstrap... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done.
 </pre></div>
 </div>
 </div>
@@ -903,11 +944,6 @@ Multiscale bootstrap... Done.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dendro_annot/All_correlation_average.dendro&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -922,12 +958,35 @@ Multiscale bootstrap... Done.
 3      c6
 4      c5
 5      c4
-6      c3
-7      c2
-8     c11
-9     c10
-10     c1
-11     c0
+6     c34
+7     c33
+8     c32
+9     c31
+10    c30
+11     c3
+12    c29
+13    c28
+14    c27
+15    c26
+16    c25
+17    c24
+18    c23
+19    c22
+20    c21
+21    c20
+22     c2
+23    c19
+24    c18
+25    c17
+26    c16
+27    c15
+28    c14
+29    c13
+30    c12
+31    c11
+32    c10
+33     c1
+34     c0
 dtype: object
 </pre></div>
 </div>
@@ -1008,18 +1067,22 @@ Epi-TPB
 Epi-AdrCtx
 Mus-Crd
 Mus-Skl
-Epi-Alv
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epi-Alv
 Epi-Gas
 Epi-Ent
 Epi-Aci
 Epi-Krt_Lum
 Epi-Duc
-Neu-Schw
+Glia-Schw
 Glia-Oligo
 Glia-Astro
 Epi-Endcri
 Neu-Exc
-Neu-Inh
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Neu-Inh
 Endo-Vsc
 Endo-Lym
 Epi-BrstBasal
@@ -1031,7 +1094,9 @@ Fibro-EndN
 Fibro-Brst
 Fibro-EpiN
 Fibro-Mus
-Fibro-Sk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fibro-Sk
 Fibro-GI
 </pre></div>
 </div>
@@ -1053,7 +1118,7 @@ Fibro-GI
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Hema B&#39;, &#39;Hema NK&#39;, &#39;Hema Tmem&#39;, &#39;Hema Tnaive&#39;, &#39;Hema Myeloid&#39;,
        &#39;Hema Mast&#39;, &#39;Epi TPB&#39;, &#39;Epi AdrCtx&#39;, &#39;Mus Crd&#39;, &#39;Mus Skl&#39;, &#39;Epi Alv&#39;,
-       &#39;Epi Gas&#39;, &#39;Epi Ent&#39;, &#39;Epi Aci&#39;, &#39;Epi Krt/Lum&#39;, &#39;Epi Duc&#39;, &#39;Neu Schw&#39;,
+       &#39;Epi Gas&#39;, &#39;Epi Ent&#39;, &#39;Epi Aci&#39;, &#39;Epi Krt/Lum&#39;, &#39;Epi Duc&#39;, &#39;Glia Schw&#39;,
        &#39;Glia Oligo&#39;, &#39;Glia Astro&#39;, &#39;Epi Endcri&#39;, &#39;Neu Exc&#39;, &#39;Neu Inh&#39;,
        &#39;Endo Vsc&#39;, &#39;Endo Lym&#39;, &#39;Epi BrstBasal&#39;, &#39;Perivascular&#39;, &#39;Fibro Adr&#39;,
        &#39;Fibro Myo&#39;, &#39;Fibro HT&#39;, &#39;Fibro EndN&#39;, &#39;Fibro Brst&#39;, &#39;Fibro EpiN&#39;,
@@ -1261,7 +1326,7 @@ Fibro-GI
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fdae3364446b7eb5c4b2dca7f06ece0ac83d5dff4c4af547fd585c3c0b88bb11.png" src="../_images/fdae3364446b7eb5c4b2dca7f06ece0ac83d5dff4c4af547fd585c3c0b88bb11.png" />
+<img alt="../_images/be8bb928dd908539b2d63cbee50ce38472d99ecaecf1eb321d752352a2c7d0a6.png" src="../_images/be8bb928dd908539b2d63cbee50ce38472d99ecaecf1eb321d752352a2c7d0a6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1394,7 +1459,7 @@ Fibro-GI
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4c70108be20fdd031a643cf53f5da41298c3babe8761cbe986a2a20b08f0477a.png" src="../_images/4c70108be20fdd031a643cf53f5da41298c3babe8761cbe986a2a20b08f0477a.png" />
+<img alt="../_images/4bb9344814dd133c12ebd4a3f6099c2a37909cd7a56db728e24dda6bf6c4731e.png" src="../_images/4bb9344814dd133c12ebd4a3f6099c2a37909cd7a56db728e24dda6bf6c4731e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1404,10 +1469,8 @@ Fibro-GI
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c10&#39;, &#39;c21&#39;, &#39;c8&#39;, &#39;c33&#39;, &#39;c9&#39;, &#39;c24&#39;, &#39;c29&#39;, &#39;c0&#39;, &#39;c22&#39;, &#39;c12&#39;,
-       &#39;c28&#39;, &#39;c13&#39;, &#39;c1&#39;, &#39;c26&#39;, &#39;c30&#39;, &#39;c18&#39;, &#39;c27&#39;, &#39;c34&#39;, &#39;c17&#39;, &#39;c4&#39;,
-       &#39;c7&#39;, &#39;c32&#39;, &#39;c19&#39;, &#39;c15&#39;, &#39;c23&#39;, &#39;c5&#39;, &#39;c2&#39;, &#39;c14&#39;, &#39;c6&#39;, &#39;c3&#39;, &#39;c31&#39;,
-       &#39;c20&#39;, &#39;c16&#39;, &#39;c25&#39;, &#39;c11&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c12&#39;, &#39;c14&#39;, &#39;c17&#39;, &#39;c18&#39;, &#39;c1&#39;, &#39;c16&#39;, &#39;c15&#39;, &#39;c10&#39;, &#39;c0&#39;, &#39;c2&#39;,
+       &#39;c13&#39;, &#39;c19&#39;, &#39;c11&#39;],
       dtype=&#39;object&#39;, name=&#39;L1&#39;)
 </pre></div>
 </div>
@@ -1420,41 +1483,7 @@ Fibro-GI
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2,
- 14,
- 33,
- 27,
- 34,
- 17,
- 22,
- 0,
- 15,
- 4,
- 21,
- 5,
- 1,
- 19,
- 24,
- 10,
- 20,
- 28,
- 9,
- 29,
- 32,
- 26,
- 11,
- 7,
- 16,
- 30,
- 12,
- 6,
- 31,
- 23,
- 25,
- 13,
- 8,
- 18,
- 3]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 9, 10, 1, 8, 7, 2, 0, 12, 5, 11, 3]
 </pre></div>
 </div>
 </div>
@@ -1466,41 +1495,19 @@ Fibro-GI
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;c7&#39;,
- &#39;c27&#39;,
- &#39;c1&#39;,
- &#39;c15&#39;,
- &#39;c0&#39;,
- &#39;c24&#39;,
- &#39;c2&#39;,
- &#39;c9&#39;,
- &#39;c26&#39;,
- &#39;c5&#39;,
- &#39;c20&#39;,
- &#39;c4&#39;,
- &#39;c8&#39;,
- &#39;c22&#39;,
- &#39;c18&#39;,
- &#39;c30&#39;,
- &#39;c21&#39;,
- &#39;c14&#39;,
- &#39;c31&#39;,
- &#39;c13&#39;,
- &#39;c10&#39;,
- &#39;c16&#39;,
- &#39;c3&#39;,
- &#39;c33&#39;,
- &#39;c25&#39;,
- &#39;c12&#39;,
- &#39;c29&#39;,
- &#39;c34&#39;,
- &#39;c11&#39;,
- &#39;c19&#39;,
- &#39;c17&#39;,
- &#39;c28&#39;,
- &#39;c32&#39;,
- &#39;c23&#39;,
- &#39;c6&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Fibro Gastrointestinal Myofibroblast Intestinal&#39;,
+ &#39;Fibro Gastrointestinal Esophagus 1&#39;,
+ &#39;Fibro Gastrointestinal Crypt RSPO Intestinal&#39;,
+ &#39;Fibro Gastrointestinal Crypt Colon&#39;,
+ &#39;Fibro Gastrointestinal Stomach 2&#39;,
+ &#39;Fibro Gastrointestinal Crypt WNT2B Colon&#39;,
+ &#39;Fibro Gastrointestinal Crypt WNT2B Ileum&#39;,
+ &#39;Fibro Gastrointestinal Stomach 1&#39;,
+ &#39;Fibro Gastrointestinal Villus WNT5B Intestinal&#39;,
+ &#39;Fibro Gastrointestinal Adventitial Lung&#39;,
+ &#39;Fibro Gastrointestinal Esophagus 2&#39;,
+ &#39;Fibro Gastrointestinal Alveolar Lung&#39;,
+ &#39;Fibro Gastrointestinal Peribronchial Lung&#39;]
 </pre></div>
 </div>
 </div>
@@ -1542,378 +1549,136 @@ Fibro-GI
   </thead>
   <tbody>
     <tr>
-      <th>35</th>
-      <td>13</td>
+      <th>13</th>
       <td>8</td>
-      <td>0.411217</td>
-      <td>2</td>
-      <td>0.999959</td>
-      <td>0.999974</td>
-      <td>0.986017</td>
-      <td>0.991651</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>32</td>
-      <td>26</td>
-      <td>0.433781</td>
-      <td>2</td>
-      <td>0.999999</td>
-      <td>0.999999</td>
-      <td>0.999957</td>
-      <td>0.999974</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>12</td>
-      <td>6</td>
-      <td>0.437554</td>
-      <td>2</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.997739</td>
-      <td>0.998844</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>18</td>
-      <td>3</td>
-      <td>0.488865</td>
-      <td>2</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.995729</td>
-      <td>0.998477</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>33</td>
-      <td>27</td>
-      <td>0.530176</td>
-      <td>2</td>
-      <td>0.999990</td>
-      <td>0.999998</td>
-      <td>0.993434</td>
-      <td>0.998462</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>35</td>
-      <td>38</td>
-      <td>0.530788</td>
-      <td>4</td>
-      <td>0.999987</td>
-      <td>0.999996</td>
-      <td>0.986037</td>
-      <td>0.995472</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>14</td>
-      <td>39</td>
-      <td>0.587241</td>
-      <td>3</td>
-      <td>0.999889</td>
-      <td>0.999988</td>
-      <td>0.965173</td>
-      <td>0.995662</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>11</td>
       <td>7</td>
-      <td>0.593531</td>
+      <td>0.113088</td>
       <td>2</td>
       <td>1.000000</td>
       <td>1.000000</td>
-      <td>0.996558</td>
-      <td>0.999591</td>
+      <td>0.711017</td>
+      <td>0.724613</td>
     </tr>
     <tr>
-      <th>43</th>
-      <td>24</td>
+      <th>14</th>
       <td>10</td>
-      <td>0.595344</td>
-      <td>2</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999860</td>
-      <td>0.999941</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>25</td>
-      <td>40</td>
-      <td>0.602050</td>
-      <td>5</td>
-      <td>0.999988</td>
-      <td>0.999997</td>
-      <td>0.990760</td>
-      <td>0.997087</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>23</td>
-      <td>44</td>
-      <td>0.647783</td>
-      <td>6</td>
-      <td>0.999964</td>
-      <td>0.999993</td>
-      <td>0.997571</td>
-      <td>0.999407</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>30</td>
-      <td>37</td>
-      <td>0.673438</td>
-      <td>3</td>
-      <td>0.999654</td>
-      <td>0.999816</td>
-      <td>0.994727</td>
-      <td>0.997163</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>19</td>
-      <td>43</td>
-      <td>0.675028</td>
-      <td>3</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.998639</td>
-      <td>0.999245</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>28</td>
-      <td>9</td>
-      <td>0.688473</td>
-      <td>2</td>
-      <td>0.999997</td>
-      <td>0.999999</td>
-      <td>0.998163</td>
-      <td>0.999287</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>31</td>
-      <td>45</td>
-      <td>0.712202</td>
-      <td>7</td>
-      <td>0.999988</td>
-      <td>0.999997</td>
-      <td>0.998742</td>
-      <td>0.999554</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>21</td>
-      <td>5</td>
-      <td>0.715713</td>
-      <td>2</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999928</td>
-      <td>0.999975</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td>20</td>
-      <td>48</td>
-      <td>0.736488</td>
-      <td>3</td>
-      <td>0.999978</td>
-      <td>0.999987</td>
-      <td>0.999813</td>
-      <td>0.999898</td>
-    </tr>
-    <tr>
-      <th>52</th>
       <td>1</td>
-      <td>47</td>
-      <td>0.742784</td>
-      <td>4</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999978</td>
-      <td>0.999982</td>
+      <td>0.147294</td>
+      <td>2</td>
+      <td>0.998502</td>
+      <td>0.999478</td>
+      <td>0.938134</td>
+      <td>0.974338</td>
     </tr>
     <tr>
-      <th>53</th>
-      <td>46</td>
-      <td>49</td>
-      <td>0.748464</td>
-      <td>10</td>
-      <td>0.998565</td>
-      <td>0.999597</td>
-      <td>0.990637</td>
-      <td>0.997240</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>50</td>
-      <td>52</td>
-      <td>0.761853</td>
-      <td>6</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999062</td>
-      <td>0.999222</td>
-    </tr>
-    <tr>
-      <th>55</th>
-      <td>29</td>
-      <td>36</td>
-      <td>0.772654</td>
+      <th>15</th>
+      <td>9</td>
+      <td>14</td>
+      <td>0.228103</td>
       <td>3</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
+      <td>0.999576</td>
+      <td>0.999656</td>
+      <td>0.884227</td>
+      <td>0.913788</td>
     </tr>
     <tr>
-      <th>56</th>
-      <td>2</td>
-      <td>41</td>
-      <td>0.801312</td>
-      <td>4</td>
-      <td>0.999995</td>
-      <td>0.999998</td>
-      <td>0.999993</td>
-      <td>0.999998</td>
-    </tr>
-    <tr>
-      <th>57</th>
-      <td>34</td>
-      <td>17</td>
-      <td>0.804350</td>
-      <td>2</td>
-      <td>0.999998</td>
-      <td>1.000000</td>
-      <td>0.999971</td>
-      <td>0.999996</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td>51</td>
-      <td>55</td>
-      <td>0.810038</td>
-      <td>6</td>
-      <td>0.999996</td>
-      <td>0.999998</td>
-      <td>0.999684</td>
-      <td>0.999807</td>
-    </tr>
-    <tr>
-      <th>59</th>
-      <td>15</td>
-      <td>4</td>
-      <td>0.817460</td>
-      <td>2</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>60</th>
-      <td>16</td>
-      <td>53</td>
-      <td>0.823491</td>
-      <td>11</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999770</td>
-      <td>0.999982</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td>0</td>
-      <td>59</td>
-      <td>0.833232</td>
-      <td>3</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td>54</td>
-      <td>58</td>
-      <td>0.871135</td>
+      <th>16</th>
       <td>12</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999882</td>
-      <td>0.999926</td>
+      <td>5</td>
+      <td>0.264138</td>
+      <td>2</td>
+      <td>0.999421</td>
+      <td>0.999944</td>
+      <td>0.971698</td>
+      <td>0.996978</td>
     </tr>
     <tr>
-      <th>63</th>
-      <td>42</td>
-      <td>60</td>
-      <td>0.883368</td>
-      <td>13</td>
-      <td>0.999990</td>
-      <td>0.999997</td>
-      <td>0.999573</td>
-      <td>0.999870</td>
+      <th>17</th>
+      <td>2</td>
+      <td>0</td>
+      <td>0.268770</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.958849</td>
+      <td>0.982675</td>
     </tr>
     <tr>
-      <th>64</th>
-      <td>56</td>
-      <td>57</td>
-      <td>0.884172</td>
+      <th>18</th>
       <td>6</td>
-      <td>0.999960</td>
-      <td>0.999979</td>
-      <td>0.999964</td>
-      <td>0.999976</td>
+      <td>15</td>
+      <td>0.277078</td>
+      <td>4</td>
+      <td>0.999889</td>
+      <td>0.999950</td>
+      <td>0.982718</td>
+      <td>0.992174</td>
     </tr>
     <tr>
-      <th>65</th>
-      <td>62</td>
-      <td>63</td>
-      <td>0.915300</td>
-      <td>25</td>
-      <td>0.999954</td>
-      <td>0.999922</td>
-      <td>0.999713</td>
-      <td>0.999737</td>
+      <th>19</th>
+      <td>11</td>
+      <td>3</td>
+      <td>0.305910</td>
+      <td>2</td>
+      <td>0.994771</td>
+      <td>0.998874</td>
+      <td>0.971024</td>
+      <td>0.993151</td>
     </tr>
     <tr>
-      <th>66</th>
-      <td>61</td>
-      <td>65</td>
-      <td>0.945066</td>
-      <td>28</td>
-      <td>0.999998</td>
-      <td>1.000000</td>
-      <td>0.999630</td>
+      <th>20</th>
+      <td>4</td>
+      <td>18</td>
+      <td>0.359297</td>
+      <td>5</td>
+      <td>0.998924</td>
       <td>0.999929</td>
+      <td>0.975268</td>
+      <td>0.998344</td>
     </tr>
     <tr>
-      <th>67</th>
+      <th>21</th>
+      <td>13</td>
+      <td>17</td>
+      <td>0.365925</td>
+      <td>4</td>
+      <td>0.999479</td>
+      <td>0.999657</td>
+      <td>0.922991</td>
+      <td>0.950932</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>20</td>
+      <td>21</td>
+      <td>0.496783</td>
+      <td>9</td>
+      <td>0.998080</td>
+      <td>0.998670</td>
+      <td>0.995021</td>
+      <td>0.996996</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>16</td>
+      <td>19</td>
+      <td>0.497657</td>
+      <td>4</td>
+      <td>0.999589</td>
+      <td>0.999907</td>
+      <td>0.998849</td>
+      <td>0.999736</td>
+    </tr>
+    <tr>
+      <th>24</th>
       <td>22</td>
-      <td>66</td>
-      <td>0.961741</td>
-      <td>29</td>
-      <td>1.000000</td>
-      <td>1.000000</td>
-      <td>0.999999</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>68</th>
-      <td>64</td>
-      <td>67</td>
-      <td>0.976185</td>
-      <td>35</td>
-      <td>0.999927</td>
-      <td>0.999974</td>
-      <td>0.999830</td>
-      <td>0.999877</td>
+      <td>23</td>
+      <td>0.681520</td>
+      <td>13</td>
+      <td>0.999015</td>
+      <td>0.999495</td>
+      <td>0.983029</td>
+      <td>0.990930</td>
     </tr>
   </tbody>
 </table>
@@ -1992,6 +1757,7 @@ Fibro-GI
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2047,6 +1813,23 @@ Fibro-GI
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

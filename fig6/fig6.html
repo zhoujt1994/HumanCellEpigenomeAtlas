@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1. MusSkl clustering" href="01.MusSkl_clustering.html" />
-    <link rel="prev" title="7. L2any L2both" href="../fig5/07.L2any_L2both.html" />
+    <link rel="prev" title="8. pycisTarget loop-DMR motif enrichment" href="../fig5/08.pycistarget_loopDMR.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -565,9 +569,9 @@ cells are still open — see <code class="docutils literal notranslate"><span cl
 </thead>
 <tbody>
 <tr class="row-even"><td><p>6A ⚠</p></td>
-<td><p>ARI values in <a class="reference internal" href="../fig5/07.L2any_L2both.html"><span class="std std-doc">Fig5/07.L2any_L2both</span></a> c18–c19</p></td>
+<td><p><a class="reference internal" href="../fig5/07.L2any_L2both.html"><span class="std std-doc">Fig5/07.L2any_L2both</span></a> c21 (values)</p></td>
 <td><p>—</p></td>
-<td><p>ARI per major type barplot (Neu Inh highest → Epi Aci lowest). <strong>The barplot exists in the paper; its render cell is not located in code_share</strong> (see REVIEW_NEEDED)</p></td>
+<td><p>ARI per major type barplot. <strong>Values computed there (<code class="docutils literal notranslate"><span class="pre">result['ARI']</span></code>); the barplot render is a one-line <code class="docutils literal notranslate"><span class="pre">result['ARI'].sort_values().plot.bar()</span></code> to add</strong> (see REVIEW_NEEDED)</p></td>
 </tr>
 <tr class="row-odd"><td><p>6B</p></td>
 <td><p><a class="reference internal" href="02.MusSkl_donor_clustering.html"><span class="std std-doc">02.MusSkl_donor_clustering</span></a></p></td>
@@ -594,10 +598,10 @@ cells are still open — see <code class="docutils literal notranslate"><span cl
 <td><p>c32/c40</p></td>
 <td><p>Diff-loop strength (left, 18,646 loops) + mCG of DMRs at anchors (right, 19,647 DMRs), 7 groups, k-means</p></td>
 </tr>
-<tr class="row-even"><td><p>6G ⚠</p></td>
-<td><p><a class="reference internal" href="06.MusSkl_diff_7group.html"><span class="std std-doc">06.MusSkl_diff_7group</span></a></p></td>
-<td><p>—</p></td>
-<td><p><strong>Motif-enrichment dot plot</strong> (NES color, #motif-hits size; EGR1/ZEB1/FOS/MYF5/PAX7…) per loop-DMR group. Exists in the paper; cisTarget/SCENIC+ compute is in the diff notebooks — pin the dot-plot cell</p></td>
+<tr class="row-even"><td><p>6G</p></td>
+<td><p><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html"><span class="std std-doc">Fig5/08.pycistarget_loopDMR</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TF_overlapped_nes_mus_long</span></code></p></td>
+<td><p>Motif <strong>dot plot</strong> (NES/‌#hits) per Mus Skl loop-DMR group ✅ <strong>recovered</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>6H</p></td>
 <td><p><a class="reference internal" href="07.Epi-TPB.html"><span class="std std-doc">07.Epi-TPB</span></a></p></td>
@@ -699,8 +703,9 @@ coordinates, the final ones), and the group labels used to color them.</p>
 <p class="admonition-title">MusSkl_diff variants — which is the published one? (⚠ revised)</p>
 <p>The published <strong>Fig 6D</strong> confusion matrix is 3×3 (mC-Stem/Fast/Slow × 3C-Stem/Fast/Slow),
 and <strong>Fig 6F/6G have 7 columns</strong> — the populated mC/3C combinations <code class="docutils literal notranslate"><span class="pre">Fast/Fast,</span> <span class="pre">Slow/Fast,</span> <span class="pre">Stem/Fast,</span> <span class="pre">Stem/Stem,</span> <span class="pre">Stem/Slow,</span> <span class="pre">Fast/Slow,</span> <span class="pre">Slow/Slow</span></code>. That means the figure uses <strong>7
-cell groups</strong>, so <strong><code class="docutils literal notranslate"><span class="pre">06.MusSkl_diff_7group</span></code> — not the 8-group <code class="docutils literal notranslate"><span class="pre">04</span></code> — appears to produce the
-published Fig 6E–G + S32A.</strong> (My first pass, following the notebook naming, had said <code class="docutils literal notranslate"><span class="pre">04</span></code>.)
+cell groups</strong>, so <strong><code class="docutils literal notranslate"><span class="pre">06.MusSkl_diff_7group</span></code> produces the published Fig 6E–G + S32A</strong> — CONFIRMED by the author:
+the published heatmap is <code class="docutils literal notranslate"><span class="pre">Mus-Skl_mc3c_DMR_loop_7group_new_fdr_cgkmeans_heatmap.pdf</span></code> (18,646 loops /
+19,647 DMRs).
 <code class="docutils literal notranslate"><span class="pre">05.MusSkl_diff_3group</span></code> collapses to 3 groups (an alternate). <strong>Please confirm 7-group is
 the published version.</strong></p>
 </div>
@@ -767,12 +772,12 @@ fix). <code class="docutils literal notranslate"><span class="pre">10–14</span
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../fig5/07.L2any_L2both.html"
+       href="../fig5/08.pycistarget_loopDMR.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">7. L2any L2both</p>
+        <p class="prev-next-title">8. pycisTarget loop-DMR motif enrichment</p>
       </div>
     </a>
     <a class="right-next"

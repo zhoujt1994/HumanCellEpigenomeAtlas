@@ -17,7 +17,7 @@ enrichment at chromatin loops.
 | 5E | [02](02.comp_pmd.ipynb) | c9 | Cross-cell-type heatmap: compartment score vs methylation compartment, k-means ordered |
 | 5F | [03.mCoverCompboundary](03.mCoverCompboundary.ipynb) | c35 | Compartment-switch domain-boundary flank **mCG** (A>B / B>A / Other) |
 | 5G | [03](03.mCoverCompboundary.ipynb) | c61 | Same flank **mCH** |
-| 5H | [06.loop_dmr_motif](06.loop_dmr_motif.ipynb) | — | Loop-proximal DMR motif enrichment — **SCENIC+ compute only, no plot cell (gap)** |
+| 5H | [08.pycistarget_loopDMR](08.pycistarget_loopDMR.ipynb) | `TF_loopdmr_methyltype` | Motif **dot plot**: enrichment at loop vs non-loop DMRs per major type ✅ **recovered** (was missing from code_share) |
 | 5I | [07.L2any_L2both](07.L2any_L2both.ipynb) | c7 (c10 diff-loop) | L2any-vs-L2both DMR heatmaps per group |
 
 ### Associated Extended Data figures

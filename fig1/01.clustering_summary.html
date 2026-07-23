@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="current nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,6 +526,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-fig1">Example in Fig1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-all-cell-tsne">Plot all cell tSNE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-metadata-and-different-level-coordinates">Merge metadata and different level coordinates</a></li>
@@ -539,6 +544,28 @@
   <section class="tex2jax_ignore mathjax_ignore" id="clustering-summary">
 <h1>1. Clustering summary<a class="headerlink" href="#clustering-summary" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig1.html"><span class="std std-doc">Fig. 1 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}tissuecolor.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{REF_ROOT}/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz'</span></code>  ·  <em>ref: gencode</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{cooldir}{ct}/{ct}.Q.cool'</span></code>  ·  <em>contacts (cool)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L1/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L1/5kCG_lsi.h5ad'</span></code>  ·  <em>raw embedding</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L1/100k3C_pca.h5ad'</span></code>  ·  <em>raw embedding</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}5kCG100k3C_summary.tsv.gz'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}L2/{ctname}/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}L2/{ctname}/5kCG_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}L2/{ctname}/100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/tissue/L1/{t}/5kCG100k3C_embed.h5ad'</span></code>  ·  <em>embedding h5ad</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/tissue/L1/{t}/mCG_5kb_lsi.h5ad'</span></code>  ·  <em>raw embedding</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/tissue/L1/{t}/HiC_100kb_pca.h5ad'</span></code>  ·  <em>raw embedding</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}5kCG100k3C_summary.csv.gz'</span></code>  ·  <em>joint summary obj</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}subtype_meta.tsv'</span></code>  ·  <em>metadata</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -549,6 +576,11 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
 </pre></div>
 </div>
 </div>
@@ -597,13 +629,16 @@
 <span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c35&#39;</span><span class="p">,</span><span class="s1">&#39;c36&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 <span class="n">tissue_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">tissuecolor.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">tissue_color</span> <span class="o">=</span> <span class="n">tissue_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">tissue_annot</span> <span class="o">=</span> <span class="n">tissue_meta</span><span class="p">[</span><span class="s1">&#39;tissue_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">tissue_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">tissue_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">tissue_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tissue_annot</span><span class="p">})</span>  <span class="c1"># also key by annot name</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 <section id="example-in-fig1">
 <h2>Example in Fig1<a class="headerlink" href="#example-in-fig1" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -678,7 +713,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
-c1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1
 </pre></div>
 </div>
 </div>
@@ -715,7 +752,7 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d3aab73ea9e33f9fe626434d52f17aadcd3c4b5a4842b5731496674a07cc5586.png" src="../_images/d3aab73ea9e33f9fe626434d52f17aadcd3c4b5a4842b5731496674a07cc5586.png" />
+<img alt="../_images/df5bfdd5aef9ecf4ed6dba941c3f6d781afe801a12b13c678989880ab692007e.png" src="../_images/df5bfdd5aef9ecf4ed6dba941c3f6d781afe801a12b13c678989880ab692007e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -995,7 +1032,19 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, ..., False, False, False])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell
+TrCo_A9HOW_Plate1-6-G12-A24    0.774266
+TrCo_A9VP4_Plate1-1-C6-D14     0.739454
+TrCo_A9VP4_Plate1-2-H14-N16    0.738984
+TrCo_A9VP4_Plate1-4-D12-F19    0.750455
+TrCo_A9VP4_Plate1-2-H14-J4     0.755272
+                                 ...   
+TrCo_A9VP4_Plate1-6-I13-M12    0.685173
+TrCo_A9VP4_Plate1-6-I13-M24    0.565137
+TrCo_A9VP4_Plate1-6-I13-N23    0.544398
+TrCo_A9VP4_Plate1-6-I13-O24    0.538136
+TrCo_A9VP4_Plate1-1-C6-I1      0.708489
+Name: mCGFrac, Length: 721, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1085,8 +1134,8 @@ c1
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
-    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;, &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;, &#39;cluster&#39;, &#39;Short/Long&#39;
-    obsm: &#39;100k3C_pc50_seuratL2_tsne&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;5kCG_u50_seuratL2_tsne&#39;, &#39;X_tsne&#39;
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;, &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;, &#39;cluster&#39;, &#39;Short/Long&#39;, &#39;mcg_L2&#39;, &#39;hic_L2&#39;, &#39;L2_final&#39;
+    obsm: &#39;100k3C_pc50_seuratL2_tsne&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;5kCG_u50_seuratL2_tsne&#39;, &#39;X_tsne&#39;, &#39;5kCG100k3C_u50pc50&#39;
 </pre></div>
 </div>
 </div>
@@ -1143,9 +1192,11 @@ c1
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1color.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 <span class="n">tissue_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">tissuecolor.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">tissue_color</span> <span class="o">=</span> <span class="n">tissue_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">tissue_annot</span> <span class="o">=</span> <span class="n">tissue_meta</span><span class="p">[</span><span class="s1">&#39;tissue_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">tissue_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">tissue_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">tissue_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tissue_annot</span><span class="p">})</span>  <span class="c1"># also key by annot name</span>
 </pre></div>
 </div>
 </div>
@@ -1252,7 +1303,7 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/538a1c216c85ac51e55dbe60839df5d2131b177975b72af493c84e58754a17c8.png" src="../_images/538a1c216c85ac51e55dbe60839df5d2131b177975b72af493c84e58754a17c8.png" />
+<img alt="../_images/0523fe148a6918b1dff783a4259b67542fa8ad62fb779b746ad2eb18b9793d9f.png" src="../_images/0523fe148a6918b1dff783a4259b67542fa8ad62fb779b746ad2eb18b9793d9f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1299,7 +1350,7 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7dc5b0083b223875798997a75722420f90c9cadbf91ee73c7a558046b40f45be.png" src="../_images/7dc5b0083b223875798997a75722420f90c9cadbf91ee73c7a558046b40f45be.png" />
+<img alt="../_images/83489b8f21eb8492a862ec8f10c9be60d93ec54e8462d9477c572b2922700cbf.png" src="../_images/83489b8f21eb8492a862ec8f10c9be60d93ec54e8462d9477c572b2922700cbf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1331,7 +1382,7 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cbc729027fc731e81d69a399b41bcb721099928af195011ac412f6543c386ff1.png" src="../_images/cbc729027fc731e81d69a399b41bcb721099928af195011ac412f6543c386ff1.png" />
+<img alt="../_images/fb309747a894fa06429a74933a811cdbc876270c42e7d9277e0ed96c84f9ae7d.png" src="../_images/fb309747a894fa06429a74933a811cdbc876270c42e7d9277e0ed96c84f9ae7d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1339,7 +1390,7 @@ c1
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Epi AdrCtx&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi Alv&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi BrstBasal&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi Krt/Lum&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;Epi Aci&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi Duc&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi Endcri&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi Ent&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Epi TPB&#39;</span><span class="p">,</span>
        <span class="s1">&#39;Mus Crd&#39;</span><span class="p">,</span> <span class="s1">&#39;Mus Skl&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;Glia Astro&#39;</span><span class="p">,</span> <span class="s1">&#39;Glia Oligo&#39;</span><span class="p">,</span> <span class="s1">&#39;Neu Exc&#39;</span><span class="p">,</span> <span class="s1">&#39;Neu Inh&#39;</span><span class="p">,</span> <span class="s1">&#39;Neu Schw&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;Glia Astro&#39;</span><span class="p">,</span> <span class="s1">&#39;Glia Oligo&#39;</span><span class="p">,</span> <span class="s1">&#39;Neu Exc&#39;</span><span class="p">,</span> <span class="s1">&#39;Neu Inh&#39;</span><span class="p">,</span> <span class="s1">&#39;Glia Schw&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;Fibro Adr&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro Brst&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro EndN&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro EpiN&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro GI&#39;</span><span class="p">,</span> 
        <span class="s1">&#39;Fibro HT&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro Mus&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro Myo&#39;</span><span class="p">,</span> <span class="s1">&#39;Fibro Sk&#39;</span><span class="p">,</span>
        <span class="s1">&#39;Hema Mast&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema Myeloid&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema B&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema NK&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema Tmem&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema Tnaive&#39;</span><span class="p">,</span> 
@@ -1375,7 +1426,7 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bc35d98870652013128f3ec11e038107c6bec0979a9a1521133ec784b07a8329.png" src="../_images/bc35d98870652013128f3ec11e038107c6bec0979a9a1521133ec784b07a8329.png" />
+<img alt="../_images/c5a3cda59ec5e1efd20231e25a156bbeb73575689869bf944bc861e966a8fa29.png" src="../_images/c5a3cda59ec5e1efd20231e25a156bbeb73575689869bf944bc861e966a8fa29.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1395,7 +1446,7 @@ c1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f9d11fcc990cfb9428e2bca4300521203036f9731b5bbeb4d74203360279804a.png" src="../_images/f9d11fcc990cfb9428e2bca4300521203036f9731b5bbeb4d74203360279804a.png" />
+<img alt="../_images/681cfb658d2160179cede1ef7a897b8a4c9f68d61e9d9f435f8e6f2b458a2080.png" src="../_images/681cfb658d2160179cede1ef7a897b8a4c9f68d61e9d9f435f8e6f2b458a2080.png" />
 </div>
 </div>
 </section>
@@ -1678,19 +1729,33 @@ c1
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 9
 33 10
-27 17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27 17
 25 14
-23 10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23 10
 11 16
-22 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 5
 24 7
-14 11
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 11
 50 15
-50 12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50 12
 36 12
-31 11
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31 11
 46 15
-42 10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42 10
 21 14
 </pre></div>
 </div>
@@ -2157,18 +2222,22 @@ LG 20
 LV 15
 RAA 18
 PI 8
-PBMC 12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PBMC 12
 P 6
 M1C 38
 SkGcn 12
 Sk 26
 SB 18
-ST 12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ST 12
 NTb 16
 TrCo 23
 </pre></div>
 </div>
-<img alt="../_images/f1ce09460a4b2268af183d1db1354170be4c8e0bbec7f608a2a4d97a56b102ee.png" src="../_images/f1ce09460a4b2268af183d1db1354170be4c8e0bbec7f608a2a4d97a56b102ee.png" />
+<img alt="../_images/24d7f4ed2c26a3e8ddb01c395be8f8782a4c50652552dbb2b160aed41d273a4c.png" src="../_images/24d7f4ed2c26a3e8ddb01c395be8f8782a4c50652552dbb2b160aed41d273a4c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2223,18 +2292,22 @@ LG 20
 LV 15
 RAA 18
 PI 8
-PBMC 12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PBMC 12
 P 6
 M1C 38
 SkGcn 12
 Sk 26
 SB 18
 ST 12
-NTb 16
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NTb 16
 TrCo 23
 </pre></div>
 </div>
-<img alt="../_images/1c83b56bd3032aff023b9de66f9762f27426caf3ec046e4c7496808b9e15fc2f.png" src="../_images/1c83b56bd3032aff023b9de66f9762f27426caf3ec046e4c7496808b9e15fc2f.png" />
+<img alt="../_images/37d2779b5995047d63b80844cf06e74a305316de7238429a7beba51eb76551ca.png" src="../_images/37d2779b5995047d63b80844cf06e74a305316de7238429a7beba51eb76551ca.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2289,18 +2362,22 @@ LG 20
 LV 15
 RAA 18
 PI 8
-PBMC 12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PBMC 12
 P 6
 M1C 38
 SkGcn 12
 Sk 26
 SB 18
 ST 12
-NTb 16
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NTb 16
 TrCo 23
 </pre></div>
 </div>
-<img alt="../_images/4ec1ddcc6b588b61648081ee2f24e9f18a8594faedd140c403f26bed1868363d.png" src="../_images/4ec1ddcc6b588b61648081ee2f24e9f18a8594faedd140c403f26bed1868363d.png" />
+<img alt="../_images/5187c96cfb14eae0028d4dca148457787e9bb40a9b62ecdabe095cb0c10029fe.png" src="../_images/5187c96cfb14eae0028d4dca148457787e9bb40a9b62ecdabe095cb0c10029fe.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2356,7 +2433,9 @@ c20 4
 c25 1
 c30 1
 c13 4
-c8 6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8 6
 c4 5
 c18 7
 c2 2
@@ -2364,7 +2443,9 @@ c29 5
 c17 2
 c19 4
 c28 3
-c6 13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6 13
 c11 3
 c32 2
 c34 4
@@ -2373,7 +2454,9 @@ c31 1
 c14 5
 c7 5
 c24 7
-c0 17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0 17
 c27 6
 c1 14
 c15 4
@@ -2381,11 +2464,13 @@ c26 2
 c5 3
 c10 14
 c16 14
-c21 7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c21 7
 c12 11
 </pre></div>
 </div>
-<img alt="../_images/2998e1369b632d28e45963c5c375ebdf7be0fc7d9c2d8ab49cf6f491ad2a7adc.png" src="../_images/2998e1369b632d28e45963c5c375ebdf7be0fc7d9c2d8ab49cf6f491ad2a7adc.png" />
+<img alt="../_images/1bf78b0edca12c670209fcda665c305a6f4c272f1f62f945bbc89b3287f6afd0.png" src="../_images/1bf78b0edca12c670209fcda665c305a6f4c272f1f62f945bbc89b3287f6afd0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2441,7 +2526,9 @@ c20 4
 c25 1
 c30 1
 c13 4
-c8 6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8 6
 c4 5
 c18 7
 c2 2
@@ -2449,7 +2536,9 @@ c29 5
 c17 2
 c19 4
 c28 3
-c6 13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6 13
 c11 3
 c32 2
 c34 4
@@ -2457,20 +2546,24 @@ c23 7
 c31 1
 c14 5
 c7 5
-c24 7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c24 7
 c0 17
 c27 6
 c1 14
 c15 4
 c26 2
 c5 3
-c10 14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10 14
 c16 14
 c21 7
 c12 11
 </pre></div>
 </div>
-<img alt="../_images/78f080f19ee767be5861d77c91d6015b41e9f1dbf746559fb4ff354e724d042f.png" src="../_images/78f080f19ee767be5861d77c91d6015b41e9f1dbf746559fb4ff354e724d042f.png" />
+<img alt="../_images/6993374c8b5fa3647c7777ce2e8f630c130776730b5362c9cde736865838e6f3.png" src="../_images/6993374c8b5fa3647c7777ce2e8f630c130776730b5362c9cde736865838e6f3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2526,7 +2619,9 @@ c20 4
 c25 1
 c30 1
 c13 4
-c8 6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8 6
 c4 5
 c18 7
 c2 2
@@ -2534,7 +2629,9 @@ c29 5
 c17 2
 c19 4
 c28 3
-c6 13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6 13
 c11 3
 c32 2
 c34 4
@@ -2543,19 +2640,23 @@ c31 1
 c14 5
 c7 5
 c24 7
-c0 17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0 17
 c27 6
 c1 14
 c15 4
 c26 2
 c5 3
 c10 14
-c16 14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16 14
 c21 7
 c12 11
 </pre></div>
 </div>
-<img alt="../_images/7ed957e5672bd9c8e8b5b8985224482202979f693041f053dbc12a3d530a8be6.png" src="../_images/7ed957e5672bd9c8e8b5b8985224482202979f693041f053dbc12a3d530a8be6.png" />
+<img alt="../_images/b1a076d3e02fbdf48b45cadbbd7c40d1be62068cea10bb8eac36c3c810332af6.png" src="../_images/b1a076d3e02fbdf48b45cadbbd7c40d1be62068cea10bb8eac36c3c810332af6.png" />
 </div>
 </div>
 </section>
@@ -2627,6 +2728,7 @@ c12 11
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-fig1">Example in Fig1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-all-cell-tsne">Plot all cell tSNE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-metadata-and-different-level-coordinates">Merge metadata and different level coordinates</a></li>

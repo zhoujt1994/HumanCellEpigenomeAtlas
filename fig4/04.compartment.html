@@ -221,6 +221,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../inputs.html">Required input files (per notebook)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fig2/00.demo_fig2A.html">0. Reproduction demo — atlas numbers &amp; Fig. 2A</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">5. Loop dmr enrichment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">6. Loop dmr motif</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">7. L2any L2both</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">8. pycisTarget loop-DMR motif enrichment</a></li>
+
+
 </ul>
 </details></li>
 </ul>
@@ -522,6 +526,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-pc-model-with-merged-raw">Fit PC model with merged raw</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saddle-plot-of-merged-raw-pc-transformed-compartment">Saddle plot of merged raw pc transformed compartment</a></li>
 </ul>
@@ -538,6 +543,18 @@
   <section class="tex2jax_ignore mathjax_ignore" id="compartment">
 <h1>4. Compartment<a class="headerlink" href="#compartment" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig4.html"><span class="std std-doc">Fig. 4 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<section id="required-input-files">
+<h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
+<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{outdir}merged_comp.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{REF_ROOT}/hg38/hg38.100kbin.CpG.txt'</span></code>  ·  <em>reference</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir_raw}merged.mcool::resolutions/100000'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir_impute}merged.cool'</span></code>  ·  <em>contacts (cool)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{ENTEX_ROOT}/L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}{ct}/{ct}.Q.cool'</span></code>  ·  <em>contacts (cool)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}{ct}/{ct}/{ct}.raw.mcool::resolutions/100000'</span></code>  ·  <em>other</em></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
@@ -737,6 +754,7 @@ merge-cool finished.
 </div>
 </div>
 </div>
+</section>
 <section id="fit-pc-model-with-merged-raw">
 <h2>Fit PC model with merged raw<a class="headerlink" href="#fit-pc-model-with-merged-raw" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -2101,6 +2119,7 @@ merged finished
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-pc-model-with-merged-raw">Fit PC model with merged raw</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saddle-plot-of-merged-raw-pc-transformed-compartment">Saddle plot of merged raw pc transformed compartment</a></li>
 </ul>
