@@ -594,6 +594,49 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">zscore</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dist_norm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">cap</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_dist</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">n_diag</span> <span class="o">=</span> <span class="n">max_dist</span> <span class="o">//</span> <span class="n">res</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag_indices</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mask</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_diag</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">row</span><span class="p">[:</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">:]]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">E</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_diag</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">tmp_filter</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">tmp2</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">tmp_filter</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">E</span><span class="p">[</span><span class="n">row</span><span class="p">[:</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">:]]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cutoff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp2</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+            <span class="n">tmp2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tmp2</span> <span class="o">&lt;</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">tmp2</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+            <span class="n">tmp2</span> <span class="o">=</span> <span class="n">zscore</span><span class="p">(</span><span class="n">tmp2</span><span class="p">)</span>
+            <span class="n">tmp2</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">tmp2</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">tmp2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">tmp2</span><span class="p">,</span> <span class="n">a_min</span><span class="o">=-</span><span class="n">cap</span><span class="p">,</span> <span class="n">a_max</span><span class="o">=</span><span class="n">cap</span><span class="p">)</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="o">~</span><span class="n">tmp_filter</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp2</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="n">tmp_filter</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">E</span><span class="p">[</span><span class="n">row</span><span class="p">[:</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">E</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hic_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">metadata.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">hic_list</span>
 </pre></div>
@@ -945,9 +988,422 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">loop_all</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hic_list</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">hic_list</span><span class="p">[</span><span class="s1">&#39;File format&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;hic&#39;</span><span class="p">])</span>
+<span class="n">loop_E</span> <span class="o">=</span> <span class="n">loop_A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">loop_all</span> <span class="o">=</span> <span class="p">{</span><span class="n">chrom</span><span class="p">:</span><span class="n">loop_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loop_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">chrom</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span> <span class="o">//</span> <span class="n">res</span> <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">22</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">csr_matrix</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hicstraw</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_hic</span><span class="p">(</span><span class="n">hic_path</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hicstraw</span><span class="o">.</span><span class="n">straw</span><span class="p">(</span><span class="s2">&quot;observed&quot;</span><span class="p">,</span> <span class="s2">&quot;VC_SQRT&quot;</span><span class="p">,</span> <span class="n">hic_path</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="s2">&quot;BP&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="n">nbins</span> <span class="o">=</span> <span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">chrom</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">idx</span><span class="p">,</span> <span class="n">idy</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">binX</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">idy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">binY</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">counts</span><span class="p">,</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idy</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nbins</span><span class="p">,</span> <span class="n">nbins</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_loop_values</span><span class="p">(</span><span class="n">hic_path</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">load_hic</span><span class="p">(</span><span class="n">hic_path</span><span class="p">,</span> <span class="n">chrom</span><span class="p">)</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">dist_norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">idx</span><span class="p">,</span> <span class="n">idy</span> <span class="o">=</span> <span class="n">loop_all</span><span class="p">[</span><span class="n">chrom</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idy</span><span class="p">],</span> <span class="n">E</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idy</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hic_file = &#39;ENCFF736ITL&#39;</span>
+<span class="c1"># hic_path = f&#39;{hic_dir}{hic_file}.hic&#39;</span>
+<span class="c1"># chrom = &#39;chr2&#39;</span>
+<span class="c1"># tmp = load_loop_values(hic_path, chrom)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_A.loc[loop_all[chrom].index, hic_file] = tmp[0].copy()</span>
+<span class="c1"># loop_E.loc[loop_all[chrom].index, hic_file] = tmp[1].copy()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">hic_file</span> <span class="ow">in</span> <span class="n">hic_list</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hic_list</span><span class="p">[</span><span class="s1">&#39;File format&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;hic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">22</span><span class="p">]:</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                <span class="n">load_loop_values</span><span class="p">,</span>
+                <span class="n">hic_path</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}{</span><span class="n">hic_file</span><span class="si">}</span><span class="s1">.hic&#39;</span><span class="p">,</span>
+                <span class="n">chrom</span><span class="o">=</span><span class="n">chrom</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">chrom</span><span class="p">,</span> <span class="n">hic_file</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="n">chrom</span><span class="p">,</span> <span class="n">hic_file</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> 
+        <span class="n">loop_A</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loop_all</span><span class="p">[</span><span class="n">chrom</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">hic_file</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">loop_E</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">loop_all</span><span class="p">[</span><span class="n">chrom</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">hic_file</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">chrom</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">hic_file</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loop_A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">loop_E</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4920640, 108) (4920640, 108)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_A</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_raw.feather&#39;</span><span class="p">)</span>
+<span class="n">loop_E</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_norm.feather&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_raw.feather&#39;</span><span class="p">)</span>
+<span class="n">loop_E</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_norm.feather&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">subtype_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">loop_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">loop_dir</span><span class="si">}</span><span class="s1">merged_loop_subtype.bedpe&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">loop_all</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loop_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loop_all</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def load_loop(ct):</span>
+<span class="c1">#     global loop_subtype</span>
+<span class="c1">#     tmp = pd.read_csv(f&#39;{loop_dir}{ct}.loop.bedpe&#39;, header=None, index_col=None, sep=&#39;\t&#39;)</span>
+<span class="c1">#     idx = tmp[0].astype(str) + &#39;-&#39; + (tmp[1] // res).astype(str) + &#39;-&#39; + (tmp[4] // res).astype(str)</span>
+<span class="c1">#     return idx, tmp[6].values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_subtype = pd.DataFrame(0, index=loop_all.index, columns=loop_meta.index)</span>
+
+<span class="c1"># cpu = 24</span>
+<span class="c1"># with ProcessPoolExecutor(cpu) as executor:</span>
+<span class="c1">#     futures = {}</span>
+<span class="c1">#     for ct in loop_meta.index:</span>
+<span class="c1">#         future = executor.submit(</span>
+<span class="c1">#             load_loop,</span>
+<span class="c1">#             ct=ct</span>
+<span class="c1">#         )</span>
+<span class="c1">#         futures[future] = ct</span>
+
+<span class="c1">#     for future in as_completed(futures):</span>
+<span class="c1">#         idx, tmp = future.result()</span>
+<span class="c1">#         ct = futures[future]</span>
+<span class="c1">#         loop_subtype.loc[idx, ct] = tmp.copy()</span>
+<span class="c1">#         print(f&#39;{ct} finished&#39;)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_subtype = loop_subtype.reset_index(drop=True)</span>
+<span class="c1"># loop_subtype.to_feather(f&#39;{hic_dir}../merged_loop_subtype.feather&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_fdr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop.fdr.hdf&#39;</span><span class="p">)</span>
+<span class="n">loop_fdr</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_fdr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">loop_fdr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>Qanova</th>
+      <th>Eanova</th>
+      <th>Tanova</th>
+      <th>Epval</th>
+      <th>E-fdr</th>
+      <th>Qpval</th>
+      <th>Q-fdr</th>
+      <th>Tpval</th>
+      <th>T-fdr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1-90-96</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>960000</td>
+      <td>970000</td>
+      <td>5.042329</td>
+      <td>20.926895</td>
+      <td>4.494431</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>8.341023e-110</td>
+      <td>8.165374e-109</td>
+      <td>1.090170e-90</td>
+      <td>2.869749e-89</td>
+    </tr>
+    <tr>
+      <th>chr1-90-97</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>970000</td>
+      <td>980000</td>
+      <td>4.738470</td>
+      <td>19.486002</td>
+      <td>2.717560</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.899026e-99</td>
+      <td>3.186306e-98</td>
+      <td>3.626022e-34</td>
+      <td>2.268452e-33</td>
+    </tr>
+    <tr>
+      <th>chr1-90-98</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>980000</td>
+      <td>990000</td>
+      <td>4.301203</td>
+      <td>17.806469</td>
+      <td>2.210808</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.352196e-84</td>
+      <td>2.712431e-83</td>
+      <td>1.004186e-20</td>
+      <td>3.644723e-20</td>
+    </tr>
+    <tr>
+      <th>chr1-90-99</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>990000</td>
+      <td>1000000</td>
+      <td>3.700243</td>
+      <td>16.479128</td>
+      <td>1.971232</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.880206e-64</td>
+      <td>1.633354e-63</td>
+      <td>4.231184e-15</td>
+      <td>1.150216e-14</td>
+    </tr>
+    <tr>
+      <th>chr1-90-100</th>
+      <td>chr1</td>
+      <td>900000</td>
+      <td>910000</td>
+      <td>chr1</td>
+      <td>1000000</td>
+      <td>1010000</td>
+      <td>3.205522</td>
+      <td>15.836222</td>
+      <td>1.911751</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.521436e-48</td>
+      <td>4.557278e-48</td>
+      <td>8.531849e-14</td>
+      <td>2.152616e-13</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr22-5057-5063</th>
+      <td>chr22</td>
+      <td>50570000</td>
+      <td>50580000</td>
+      <td>chr22</td>
+      <td>50630000</td>
+      <td>50640000</td>
+      <td>2.214853</td>
+      <td>15.689219</td>
+      <td>1.981052</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7.983715e-21</td>
+      <td>1.207860e-20</td>
+      <td>2.554515e-15</td>
+      <td>7.030564e-15</td>
+    </tr>
+    <tr>
+      <th>chr22-5058-5067</th>
+      <td>chr22</td>
+      <td>50580000</td>
+      <td>50590000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>6.897342</td>
+      <td>26.117575</td>
+      <td>2.094782</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.223421e-177</td>
+      <td>3.296435e-176</td>
+      <td>6.245877e-18</td>
+      <td>1.975720e-17</td>
+    </tr>
+    <tr>
+      <th>chr22-5059-5067</th>
+      <td>chr22</td>
+      <td>50590000</td>
+      <td>50600000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>6.583107</td>
+      <td>25.551344</td>
+      <td>2.303068</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>6.856992e-166</td>
+      <td>1.571334e-164</td>
+      <td>4.963425e-23</td>
+      <td>2.002546e-22</td>
+    </tr>
+    <tr>
+      <th>chr22-5060-5067</th>
+      <td>chr22</td>
+      <td>50600000</td>
+      <td>50610000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>7.204093</td>
+      <td>26.817493</td>
+      <td>3.212370</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.470852e-189</td>
+      <td>1.090107e-187</td>
+      <td>9.389484e-49</td>
+      <td>9.272779e-48</td>
+    </tr>
+    <tr>
+      <th>chr22-5061-5067</th>
+      <td>chr22</td>
+      <td>50610000</td>
+      <td>50620000</td>
+      <td>chr22</td>
+      <td>50670000</td>
+      <td>50680000</td>
+      <td>9.370002</td>
+      <td>27.395016</td>
+      <td>4.485466</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.145649e-272</td>
+      <td>1.843671e-270</td>
+      <td>2.215692e-90</td>
+      <td>5.797941e-89</td>
+    </tr>
+  </tbody>
+</table>
+<p>4920640 rows × 15 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_subtype = pd.read_feather(f&#39;{hic_dir}../merged_loop_subtype.feather&#39;)</span>
+<span class="c1"># ave = loop_subtype.mean(axis=1)</span>
+<span class="c1"># stdev = loop_subtype.std(axis=1)</span>
 </pre></div>
 </div>
 </div>
@@ -986,7 +1442,49 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selp</span> <span class="o">=</span> <span class="p">((</span><span class="n">zscore</span><span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selp</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>282103
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_A</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_all</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">loop_N</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_all</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">loop_Q</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_fdr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">loop_E</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_fdr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selp</span> <span class="o">=</span> <span class="n">selp</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># result = pd.DataFrame(index=loop_E.columns)</span>
+<span class="c1"># for ct in loop_meta.index:</span>
+<span class="c1">#     selp = (loop_subtype[ct] - ave).nlargest(5000).index</span>
+<span class="c1">#     result[ct] = loop_E.loc[selp].mean(axis=0)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sklearn.metrics import pairwise_distances</span>
+<span class="c1"># selp = stdev.nlargest(100000).index</span>
+<span class="c1"># dist = pairwise_distances(loop_E.loc[selp].T, loop_subtype.loc[selp].T, metric=&#39;correlation&#39;)</span>
 </pre></div>
 </div>
 </div>

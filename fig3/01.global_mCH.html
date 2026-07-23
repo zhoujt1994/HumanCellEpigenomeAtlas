@@ -539,6 +539,20 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
+<span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
+<span class="n">BOOK_ROOT</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BOOK_ROOT&#39;</span><span class="p">,</span>  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/HumanCellEpigenomeAtlas&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
@@ -566,8 +580,34 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="s1">&#39;/data/ENTEx/&#39;</span>
 <span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;/mnt/disks/jupyter/home/jzhou_salk_edu/sky_workdir/ENTEx/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">clustering/merged/L1pre/5kCG_lsi.h5ad&#39;</span><span class="p">)</span>
+<span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
+    obs: &#39;batch&#39;, &#39;Plate&#39;, &#39;PCRIndex&#39;, &#39;MultiplexGroup&#39;, &#39;RandomIndex&#39;, &#39;Col384&#39;, &#39;Row384&#39;, &#39;R1InputReads&#39;, &#39;R1InputReadsBP&#39;, &#39;R1WithAdapters&#39;, &#39;R1QualTrimBP&#39;, &#39;R1TrimmedReads&#39;, &#39;R1TrimmedReadsBP&#39;, &#39;R1TrimmedReadsRate&#39;, &#39;R1UniqueMappedReads&#39;, &#39;R1DeduppedReads&#39;, &#39;R2InputReads&#39;, &#39;R2InputReadsBP&#39;, &#39;R2WithAdapters&#39;, &#39;R2QualTrimBP&#39;, &#39;R2TrimmedReads&#39;, &#39;R2TrimmedReadsBP&#39;, &#39;R2TrimmedReadsRate&#39;, &#39;R2UniqueMappedReads&#39;, &#39;R2DeduppedReads&#39;, &#39;CisShortContact&#39;, &#39;CisLongContact&#39;, &#39;TransContact&#39;, &#39;mCHmC&#39;, &#39;mCHCov&#39;, &#39;mCHFrac&#39;, &#39;mCGmC&#39;, &#39;mCGCov&#39;, &#39;mCGFrac&#39;, &#39;mCCCmC&#39;, &#39;mCCCCov&#39;, &#39;mCCCFrac&#39;, &#39;GenomeCov&#39;, &#39;FinalmCReads&#39;, &#39;CellInputReadPairs&#39;, &#39;R1MappingRate&#39;, &#39;R2MappingRate&#39;, &#39;R1DuplicationRate&#39;, &#39;R2DuplicationRate&#39;, &#39;CellBarcodeRatio&#39;, &#39;TotalContacts&#39;, &#39;CisShortRatio&#39;, &#39;CisLongRatio&#39;, &#39;TransRatio&#39;, &#39;Pool&#39;, &#39;Tissue&#39;, &#39;Sample&#39;, &#39;Donor&#39;, &#39;Protocol&#39;, &#39;Cis/Trans&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;Cluster&#39;, &#39;ClusterTissue&#39;, &#39;leiden&#39;, &#39;5kCG_u50hm_leiden_0.5&#39;, &#39;5kCG_u50hm_leiden_0.8&#39;, &#39;5kCG_u50hm_leiden_1.0&#39;, &#39;5kCG_u50hm_leiden_1.2&#39;, &#39;5kCG_u50hm_leiden_1.6&#39;, &#39;5kCG_u50hm_leiden_2.0&#39;, &#39;celltype&#39;
+    obsm: &#39;100k3C_pca&#39;, &#39;100k3C_u35_tsne&#39;, &#39;100k3C_u35hm&#39;, &#39;100k3C_u35hm_tsne&#39;, &#39;5kCG100k3C_u50u35&#39;, &#39;5kCG100k3C_u50u35_tsne&#39;, &#39;5kCG_pca&#39;, &#39;5kCG_u50_seuratfilter60&#39;, &#39;5kCG_u50_seuratfilter60_tsne&#39;, &#39;5kCG_u50_tsne&#39;, &#39;5kCG_u50hm&#39;, &#39;5kCG_u50hm_tsne&#39;, &#39;5kCG_u50sc&#39;, &#39;5kCG_u50sc_tsne&#39;, &#39;X_lsi&#39;, &#39;X_pca&#39;, &#39;X_pca_harmony&#39;, &#39;X_pca_sc&#39;, &#39;X_tsne&#39;, &#39;lsi_all&#39;
 </pre></div>
 </div>
 </div>
@@ -695,6 +735,35 @@
 </table>
 <p>93550 rows × 3 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Tissue&#39;</span><span class="p">)[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tissue
+LG           42.124317
+Sk           69.026878
+EG           92.588166
+ST          139.705450
+SkGcn       167.999282
+TrCo        177.609836
+M1C         188.945653
+B           268.943952
+NTb         293.576543
+PBMC        294.667301
+SB         1794.870558
+LV       156774.371775
+RAA      183522.280091
+P        367416.452626
+AG       499903.707733
+PI       689529.581702
+Name: cov, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1473,6 +1542,52 @@
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">binom</span>
+<span class="p">[</span><span class="n">binom</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">mch_df</span><span class="p">[[</span><span class="s1">&#39;mCHmC&#39;</span><span class="p">,</span> <span class="s1">&#39;mCHCov&#39;</span><span class="p">,</span> <span class="s1">&#39;LambdamCHFrac&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 1.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 1.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 1.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

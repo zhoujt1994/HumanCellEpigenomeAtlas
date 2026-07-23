@@ -594,6 +594,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/&#39;</span>
 <span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/pairwise_prediction/&#39;</span>
 </pre></div>
@@ -603,6 +614,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="s1">&#39;Mus-Skl&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">npc.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;npc_cg&#39;</span><span class="p">,</span> <span class="s1">&#39;npc_3c&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -627,6 +645,21 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 3973 × 0
     obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;leiden_init_mc&#39;, &#39;leiden_init_3c&#39;, &#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;group_mc_3c&#39;
     obsm: &#39;5kCG100k3C_u7pc10&#39;, &#39;5kCG100k3C_u7pc10_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+PT-1K2DA    2152
+PT-1LVAN    1821
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -656,9 +689,2208 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">obsm_key</span><span class="p">,</span> <span class="n">raw_key</span><span class="p">,</span> <span class="n">adata_tmp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;X_lsi&#39;</span><span class="p">,</span> <span class="s1">&#39;X_pca&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C_pca&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">adata_3c</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_tmp</span><span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1"># npc = significant_pc_test(tmp, p_cutoff=0.05, obsm=obsm_key, update=False)</span>
+        <span class="c1"># tmp.obsm[obsm_key] = normalize(tmp.obsm[raw_key][:, :10], axis=1)</span>
+        <span class="n">tsne</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="n">obsm_key</span><span class="p">)</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;igraph&#39;</span><span class="p">)</span>
+        <span class="n">adata_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_lsi PT-1K2DA
+X_lsi PT-1LVAN
+X_pca PT-1K2DA
+X_pca PT-1LVAN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+
+<span class="c1"># ConsensusClustering</span>
+<span class="c1"># Important factores</span>
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
+<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
+<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># Other ConsensusClustering parameters</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
+<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+<span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">tmp</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">:</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;igraph&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">obsm_key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;X_lsi&#39;</span><span class="p">,</span> <span class="s1">&#39;X_pca&#39;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">obsm_key</span><span class="p">])</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 2 - 3 clusters, mean 2.7, std 0.47
+Summarizing multiple clustering results
+2142 cells assigned to 3 raw clusters
+10 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+3 non-outlier labels
+Balanced accuracy on the training set: 0.993
+Balanced accuracy on the hold-out set: 0.970
+Stop iteration because current accuracy 0.970 &gt; target accuracy 0.900.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.975
+Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 3 - 3 clusters, mean 3.0, std 0.00
+Summarizing multiple clustering results
+1821 cells assigned to 2 raw clusters
+0 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+3 non-outlier labels
+Balanced accuracy on the training set: 0.994
+Balanced accuracy on the hold-out set: 0.985
+Stop iteration because current accuracy 0.985 &gt; target accuracy 0.900.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.986
+Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 3 - 3 clusters, mean 3.0, std 0.00
+Summarizing multiple clustering results
+2147 cells assigned to 3 raw clusters
+5 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+3 non-outlier labels
+Balanced accuracy on the training set: 0.977
+Balanced accuracy on the hold-out set: 0.977
+Stop iteration because current accuracy 0.977 &gt; target accuracy 0.900.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.972
+Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 3 - 3 clusters, mean 3.0, std 0.00
+Summarizing multiple clustering results
+1818 cells assigned to 3 raw clusters
+3 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+3 non-outlier labels
+Balanced accuracy on the training set: 0.990
+Balanced accuracy on the hold-out set: 0.977
+Stop iteration because current accuracy 0.977 &gt; target accuracy 0.900.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.988
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_other&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">,</span><span class="s1">&#39;consensus_leiden_other&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>consensus_leiden_other</th>
+      <th>c0</th>
+      <th>c1</th>
+      <th>c2</th>
+    </tr>
+    <tr>
+      <th>consensus_leiden_init</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c0</th>
+      <td>1060</td>
+      <td>141</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>47</td>
+      <td>544</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c2</th>
+      <td>151</td>
+      <td>158</td>
+      <td>49</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">,</span><span class="s1">&#39;consensus_leiden_other&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>consensus_leiden_other</th>
+      <th>c0</th>
+      <th>c1</th>
+      <th>c2</th>
+    </tr>
+    <tr>
+      <th>consensus_leiden_init</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c0</th>
+      <td>800</td>
+      <td>23</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>35</td>
+      <td>767</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c2</th>
+      <td>70</td>
+      <td>40</td>
+      <td>85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 <section id="using-donor-separated-embedding">
 <h2>Using donor separated embedding<a class="headerlink" href="#using-donor-separated-embedding" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var_dim</span> <span class="o">=</span> <span class="s1">&#39;chrom5k&#39;</span>
+<span class="n">chrom_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">,</span> <span class="s1">&#39;chrL&#39;</span><span class="p">]</span>
+<span class="n">mcds_path_list</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/mcds/*mcds&#39;</span><span class="p">)</span>
+<span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">mcds_path_list</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="n">var_dim</span><span class="p">)</span>
+<span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="o">=</span><span class="n">chrom_to_remove</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="n">var_dim</span><span class="p">)</span>
+<span class="n">mcds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42659 chrom5k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
+</pre></div>
+</div>
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 108GB
+Dimensions:                    (cell: 93550, chrom5k: 575010)
+Coordinates:
+  * cell                       (cell) &lt;U34 13MB &#x27;PBMC_11714_Plate1-1-A1-A1&#x27; ....
+  * chrom5k                    (chrom5k) &lt;U11 25MB &#x27;chr1_0&#x27; ... &#x27;chr9_27678&#x27;
+    chrom5k_chrom              (chrom5k) &lt;U5 12MB dask.array&lt;chunksize=(38605,), meta=np.ndarray&gt;
+    chrom5k_end                (chrom5k) int64 5MB dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;
+    chrom5k_start              (chrom5k) int64 5MB dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;
+Data variables:
+    chrom5k_da_CGN-hypo-score  (cell, chrom5k) float16 108GB dask.array&lt;chunksize=(7, 77209), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom5k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-758b73d7-fc3e-4af6-b8d4-fd41da6d6769' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-758b73d7-fc3e-4af6-b8d4-fd41da6d6769' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 93550</li><li><span class='xr-has-index'>chrom5k</span>: 575010</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-ded7a730-1a2b-432f-a21d-7a63049d4a6d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ded7a730-1a2b-432f-a21d-7a63049d4a6d' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U34</div><div class='xr-var-preview xr-preview'>&#x27;PBMC_11714_Plate1-1-A1-A1&#x27; ... ...</div><input id='attrs-6f02c469-7335-4a1b-933e-54de449dd8b3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6f02c469-7335-4a1b-933e-54de449dd8b3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-73a8beba-57cc-4f84-b0c0-c25485f2c35e' class='xr-var-data-in' type='checkbox'><label for='data-73a8beba-57cc-4f84-b0c0-c25485f2c35e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;PBMC_11714_Plate1-1-A1-A1&#x27;, &#x27;PBMC_11714_Plate1-1-A1-A13&#x27;,
+       &#x27;PBMC_11714_Plate1-1-A1-A14&#x27;, ..., &#x27;PI_HP13049_AR_Plate9-6-C10-P12&#x27;,
+       &#x27;PI_HP13049_AR_Plate9-6-C10-P23&#x27;, &#x27;PI_HP13049_AR_Plate9-6-C10-P24&#x27;],
+      dtype=&#x27;&lt;U34&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom5k</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chr9_27678&#x27;</div><input id='attrs-4dd4a6ea-7cc4-4e6b-8d2a-09af6b4ff01b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-4dd4a6ea-7cc4-4e6b-8d2a-09af6b4ff01b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-094118ab-0198-4636-ac4b-ba58bc0ada1f' class='xr-var-data-in' type='checkbox'><label for='data-094118ab-0198-4636-ac4b-ba58bc0ada1f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;,
+       &#x27;chr9_27678&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_chrom</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(38605,), meta=np.ndarray&gt;</div><input id='attrs-a809d0ff-e789-4688-a2a2-0448b85724e3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a809d0ff-e789-4688-a2a2-0448b85724e3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d2d509a9-60f7-4d50-a541-620263cfa619' class='xr-var-data-in' type='checkbox'><label for='data-d2d509a9-60f7-4d50-a541-620263cfa619' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 10.97 MiB </td>
+                        <td> 754.00 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (575010,) </td>
+                        <td> (38605,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 15 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> <U5 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="8" y1="0" x2="8" y2="25" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="24" y1="0" x2="24" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="40" y1="0" x2="40" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="56" y1="0" x2="56" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="72" y1="0" x2="72" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="88" y1="0" x2="88" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="104" y1="0" x2="104" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_end</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;</div><input id='attrs-47550885-8777-4ea6-a294-48d0aa9aaf59' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-47550885-8777-4ea6-a294-48d0aa9aaf59' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d6cedfc9-b68b-45ab-8f4c-980446e59b7e' class='xr-var-data-in' type='checkbox'><label for='data-d6cedfc9-b68b-45ab-8f4c-980446e59b7e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4.39 MiB </td>
+                        <td> 603.20 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (575010,) </td>
+                        <td> (77209,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 8 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_start</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;</div><input id='attrs-b3dc50ee-0f9b-44ef-a72d-5613dd5863aa' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-b3dc50ee-0f9b-44ef-a72d-5613dd5863aa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-95141b37-459e-4891-8ca2-0ba751312c65' class='xr-var-data-in' type='checkbox'><label for='data-95141b37-459e-4891-8ca2-0ba751312c65' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4.39 MiB </td>
+                        <td> 603.20 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (575010,) </td>
+                        <td> (77209,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 8 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-5e896b6e-aa4d-493f-ac69-c3aadddc3a61' class='xr-section-summary-in' type='checkbox'  checked><label for='section-5e896b6e-aa4d-493f-ac69-c3aadddc3a61' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_da_CGN-hypo-score</span></div><div class='xr-var-dims'>(cell, chrom5k)</div><div class='xr-var-dtype'>float16</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(7, 77209), meta=np.ndarray&gt;</div><input id='attrs-e0a34d74-55bc-4bd1-86f1-01fbf914a7b0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e0a34d74-55bc-4bd1-86f1-01fbf914a7b0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c9814bba-9935-4f73-b0e4-7c3e8864fbcb' class='xr-var-data-in' type='checkbox'><label for='data-c9814bba-9935-4f73-b0e4-7c3e8864fbcb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 100.20 GiB </td>
+                        <td> 1.03 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (93550, 575010) </td>
+                        <td> (7, 77209) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 106992 chunks in 50 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float16 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="91" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="2" x2="120" y2="2" />
+  <line x1="0" y1="4" x2="120" y2="4" />
+  <line x1="0" y1="6" x2="120" y2="6" />
+  <line x1="0" y1="8" x2="120" y2="8" />
+  <line x1="0" y1="10" x2="120" y2="10" />
+  <line x1="0" y1="12" x2="120" y2="12" />
+  <line x1="0" y1="15" x2="120" y2="15" />
+  <line x1="0" y1="17" x2="120" y2="17" />
+  <line x1="0" y1="19" x2="120" y2="19" />
+  <line x1="0" y1="21" x2="120" y2="21" />
+  <line x1="0" y1="23" x2="120" y2="23" />
+  <line x1="0" y1="25" x2="120" y2="25" />
+  <line x1="0" y1="28" x2="120" y2="28" />
+  <line x1="0" y1="30" x2="120" y2="30" />
+  <line x1="0" y1="32" x2="120" y2="32" />
+  <line x1="0" y1="34" x2="120" y2="34" />
+  <line x1="0" y1="36" x2="120" y2="36" />
+  <line x1="0" y1="38" x2="120" y2="38" />
+  <line x1="0" y1="41" x2="120" y2="41" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="41" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="41" />
+  <line x1="32" y1="0" x2="32" y2="41" />
+  <line x1="48" y1="0" x2="48" y2="41" />
+  <line x1="64" y1="0" x2="64" y2="41" />
+  <line x1="80" y1="0" x2="80" y2="41" />
+  <line x1="96" y1="0" x2="96" y2="41" />
+  <line x1="112" y1="0" x2="112" y2="41" />
+  <line x1="120" y1="0" x2="120" y2="41" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,41.09189477896524 0.0,41.09189477896524" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="61.091895" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="20.545947" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,20.545947)">93550</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-c4baa66c-a346-4b71-a62d-3046bfd53f39' class='xr-section-summary-in' type='checkbox'  ><label for='section-c4baa66c-a346-4b71-a62d-3046bfd53f39' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-7c600cee-d31e-47ea-a64b-2902ffd86e86' class='xr-index-data-in' type='checkbox'/><label for='index-7c600cee-d31e-47ea-a64b-2902ffd86e86' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;PBMC_11714_Plate1-1-A1-A1&#x27;, &#x27;PBMC_11714_Plate1-1-A1-A13&#x27;,
+       &#x27;PBMC_11714_Plate1-1-A1-A14&#x27;, &#x27;PBMC_11714_Plate1-1-A1-A2&#x27;,
+       &#x27;PBMC_11714_Plate1-1-A1-B1&#x27;, &#x27;PBMC_11714_Plate1-1-A1-B13&#x27;,
+       &#x27;PBMC_11714_Plate1-1-A1-B14&#x27;, &#x27;PBMC_11714_Plate1-1-A1-B2&#x27;,
+       &#x27;PBMC_11714_Plate1-1-A1-C1&#x27;, &#x27;PBMC_11714_Plate1-1-A1-C13&#x27;,
+       ...
+       &#x27;PI_HP13049_AR_Plate9-6-C10-N12&#x27;, &#x27;PI_HP13049_AR_Plate9-6-C10-N23&#x27;,
+       &#x27;PI_HP13049_AR_Plate9-6-C10-N24&#x27;, &#x27;PI_HP13049_AR_Plate9-6-C10-O11&#x27;,
+       &#x27;PI_HP13049_AR_Plate9-6-C10-O12&#x27;, &#x27;PI_HP13049_AR_Plate9-6-C10-O23&#x27;,
+       &#x27;PI_HP13049_AR_Plate9-6-C10-P11&#x27;, &#x27;PI_HP13049_AR_Plate9-6-C10-P12&#x27;,
+       &#x27;PI_HP13049_AR_Plate9-6-C10-P23&#x27;, &#x27;PI_HP13049_AR_Plate9-6-C10-P24&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=93550))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom5k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c4638c8e-294a-41b9-bfec-56cba800375a' class='xr-index-data-in' type='checkbox'/><label for='index-c4638c8e-294a-41b9-bfec-56cba800375a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chr9_27669&#x27;, &#x27;chr9_27670&#x27;, &#x27;chr9_27671&#x27;, &#x27;chr9_27672&#x27;, &#x27;chr9_27673&#x27;,
+       &#x27;chr9_27674&#x27;, &#x27;chr9_27675&#x27;, &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;, &#x27;chr9_27678&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom5k&#x27;, length=575010))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3257ad38-7f06-4e76-96c6-1f6d56de5e40' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3257ad38-7f06-4e76-96c6-1f6d56de5e40' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom5k</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">mcds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 5GB
+Dimensions:                    (cell: 3973, chrom5k: 575010)
+Coordinates:
+  * cell                       (cell) &lt;U34 540kB &#x27;SkGcn_C1MKW_Plate1-1-O3-A1&#x27;...
+  * chrom5k                    (chrom5k) &lt;U11 25MB &#x27;chr1_0&#x27; ... &#x27;chr9_27678&#x27;
+    chrom5k_chrom              (chrom5k) &lt;U5 12MB dask.array&lt;chunksize=(38605,), meta=np.ndarray&gt;
+    chrom5k_end                (chrom5k) int64 5MB dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;
+    chrom5k_start              (chrom5k) int64 5MB dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;
+Data variables:
+    chrom5k_da_CGN-hypo-score  (cell, chrom5k) float16 5GB dask.array&lt;chunksize=(4, 77209), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom5k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-22b8f3cc-f522-4bdf-8f16-8771011829d7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-22b8f3cc-f522-4bdf-8f16-8771011829d7' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 3973</li><li><span class='xr-has-index'>chrom5k</span>: 575010</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-d9da9a9b-9c57-43e9-8cb3-596bb042ee06' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d9da9a9b-9c57-43e9-8cb3-596bb042ee06' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U34</div><div class='xr-var-preview xr-preview'>&#x27;SkGcn_C1MKW_Plate1-1-O3-A1&#x27; ......</div><input id='attrs-0c84ad1f-963f-484d-b433-8963065eb59f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0c84ad1f-963f-484d-b433-8963065eb59f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-11eabb8b-db71-4200-b9b4-4bced0fc44fd' class='xr-var-data-in' type='checkbox'><label for='data-11eabb8b-db71-4200-b9b4-4bced0fc44fd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;SkGcn_C1MKW_Plate1-1-O3-A1&#x27;, &#x27;SkGcn_C1MKW_Plate1-1-O3-A14&#x27;,
+       &#x27;SkGcn_C1MKW_Plate1-1-O3-B13&#x27;, ..., &#x27;SkGcn_C1PWV_Plate8-6-O14-P12&#x27;,
+       &#x27;SkGcn_C1PWV_Plate8-6-O14-P23&#x27;, &#x27;SkGcn_C1PWV_Plate8-6-O14-P24&#x27;],
+      dtype=&#x27;&lt;U34&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom5k</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chr9_27678&#x27;</div><input id='attrs-a93d66ea-513a-4741-971a-a2821f991eb6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a93d66ea-513a-4741-971a-a2821f991eb6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-44eb2f4a-a513-4224-bf0f-e0e69a3c0c9c' class='xr-var-data-in' type='checkbox'><label for='data-44eb2f4a-a513-4224-bf0f-e0e69a3c0c9c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;,
+       &#x27;chr9_27678&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_chrom</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(38605,), meta=np.ndarray&gt;</div><input id='attrs-27e2d99d-75c0-4927-be7f-90240dcd1bc0' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-27e2d99d-75c0-4927-be7f-90240dcd1bc0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ac27404b-8166-4536-a778-7e5724535439' class='xr-var-data-in' type='checkbox'><label for='data-ac27404b-8166-4536-a778-7e5724535439' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 10.97 MiB </td>
+                        <td> 754.00 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (575010,) </td>
+                        <td> (38605,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 15 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> <U5 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="8" y1="0" x2="8" y2="25" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="24" y1="0" x2="24" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="40" y1="0" x2="40" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="56" y1="0" x2="56" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="72" y1="0" x2="72" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="88" y1="0" x2="88" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="104" y1="0" x2="104" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_end</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;</div><input id='attrs-bde200c3-228b-4236-8f96-2b7712b17b4c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-bde200c3-228b-4236-8f96-2b7712b17b4c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-adb8787b-3e66-43ed-8ebb-ef3b96e9f61e' class='xr-var-data-in' type='checkbox'><label for='data-adb8787b-3e66-43ed-8ebb-ef3b96e9f61e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4.39 MiB </td>
+                        <td> 603.20 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (575010,) </td>
+                        <td> (77209,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 8 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_start</span></div><div class='xr-var-dims'>(chrom5k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(77209,), meta=np.ndarray&gt;</div><input id='attrs-34178e8d-d9c0-4e29-87ac-45978cd46729' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-34178e8d-d9c0-4e29-87ac-45978cd46729' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7224ac28-5b5f-424f-a25a-2238a9b9b4f2' class='xr-var-data-in' type='checkbox'><label for='data-7224ac28-5b5f-424f-a25a-2238a9b9b4f2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4.39 MiB </td>
+                        <td> 603.20 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (575010,) </td>
+                        <td> (77209,) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 8 chunks in 3 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> int64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,140.000000,12.706308)">1</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-045eec46-482d-4d8d-8b36-c260c709d767' class='xr-section-summary-in' type='checkbox'  checked><label for='section-045eec46-482d-4d8d-8b36-c260c709d767' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom5k_da_CGN-hypo-score</span></div><div class='xr-var-dims'>(cell, chrom5k)</div><div class='xr-var-dtype'>float16</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(4, 77209), meta=np.ndarray&gt;</div><input id='attrs-d4e69606-5a86-487e-bcfb-fedc113f3942' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d4e69606-5a86-487e-bcfb-fedc113f3942' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ba5e7229-a818-43df-9457-b8c288382e20' class='xr-var-data-in' type='checkbox'><label for='data-ba5e7229-a818-43df-9457-b8c288382e20' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 4.26 GiB </td>
+                        <td> 1.03 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (3973, 575010) </td>
+                        <td> (7, 77209) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 6952 chunks in 51 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float16 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="170" height="75" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="1" x2="120" y2="1" />
+  <line x1="0" y1="2" x2="120" y2="2" />
+  <line x1="0" y1="4" x2="120" y2="4" />
+  <line x1="0" y1="5" x2="120" y2="5" />
+  <line x1="0" y1="7" x2="120" y2="7" />
+  <line x1="0" y1="8" x2="120" y2="8" />
+  <line x1="0" y1="10" x2="120" y2="10" />
+  <line x1="0" y1="11" x2="120" y2="11" />
+  <line x1="0" y1="13" x2="120" y2="13" />
+  <line x1="0" y1="14" x2="120" y2="14" />
+  <line x1="0" y1="15" x2="120" y2="15" />
+  <line x1="0" y1="16" x2="120" y2="16" />
+  <line x1="0" y1="18" x2="120" y2="18" />
+  <line x1="0" y1="19" x2="120" y2="19" />
+  <line x1="0" y1="20" x2="120" y2="20" />
+  <line x1="0" y1="21" x2="120" y2="21" />
+  <line x1="0" y1="22" x2="120" y2="22" />
+  <line x1="0" y1="24" x2="120" y2="24" />
+  <line x1="0" y1="25" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="32" y1="0" x2="32" y2="25" />
+  <line x1="48" y1="0" x2="48" y2="25" />
+  <line x1="64" y1="0" x2="64" y2="25" />
+  <line x1="80" y1="0" x2="80" y2="25" />
+  <line x1="96" y1="0" x2="96" y2="25" />
+  <line x1="112" y1="0" x2="112" y2="25" />
+  <line x1="120" y1="0" x2="120" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 120.0,0.0 120.0,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >575010</text>
+  <text x="140.000000" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,12.706308)">3973</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-8177adcc-5222-46e5-b55f-c73a74f0c1ba' class='xr-section-summary-in' type='checkbox'  ><label for='section-8177adcc-5222-46e5-b55f-c73a74f0c1ba' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-90437815-0c48-41d8-a78a-4d22a6a5db49' class='xr-index-data-in' type='checkbox'/><label for='index-90437815-0c48-41d8-a78a-4d22a6a5db49' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;SkGcn_C1MKW_Plate1-1-O3-A1&#x27;, &#x27;SkGcn_C1MKW_Plate1-1-O3-A14&#x27;,
+       &#x27;SkGcn_C1MKW_Plate1-1-O3-B13&#x27;, &#x27;SkGcn_C1MKW_Plate1-1-O3-B14&#x27;,
+       &#x27;SkGcn_C1MKW_Plate1-1-O3-B2&#x27;, &#x27;SkGcn_C1MKW_Plate1-1-O3-C1&#x27;,
+       &#x27;SkGcn_C1MKW_Plate1-1-O3-C13&#x27;, &#x27;SkGcn_C1MKW_Plate1-1-O3-C14&#x27;,
+       &#x27;SkGcn_C1MKW_Plate1-1-O3-C2&#x27;, &#x27;SkGcn_C1MKW_Plate1-1-O3-D1&#x27;,
+       ...
+       &#x27;SkGcn_C1PWV_Plate8-6-O14-M23&#x27;, &#x27;SkGcn_C1PWV_Plate8-6-O14-M24&#x27;,
+       &#x27;SkGcn_C1PWV_Plate8-6-O14-N12&#x27;, &#x27;SkGcn_C1PWV_Plate8-6-O14-N24&#x27;,
+       &#x27;SkGcn_C1PWV_Plate8-6-O14-O11&#x27;, &#x27;SkGcn_C1PWV_Plate8-6-O14-O12&#x27;,
+       &#x27;SkGcn_C1PWV_Plate8-6-O14-O24&#x27;, &#x27;SkGcn_C1PWV_Plate8-6-O14-P12&#x27;,
+       &#x27;SkGcn_C1PWV_Plate8-6-O14-P23&#x27;, &#x27;SkGcn_C1PWV_Plate8-6-O14-P24&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=3973))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom5k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ef85de3f-11ea-4609-a50f-66da76e2de45' class='xr-index-data-in' type='checkbox'/><label for='index-ef85de3f-11ea-4609-a50f-66da76e2de45' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chr9_27669&#x27;, &#x27;chr9_27670&#x27;, &#x27;chr9_27671&#x27;, &#x27;chr9_27672&#x27;, &#x27;chr9_27673&#x27;,
+       &#x27;chr9_27674&#x27;, &#x27;chr9_27675&#x27;, &#x27;chr9_27676&#x27;, &#x27;chr9_27677&#x27;, &#x27;chr9_27678&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom5k&#x27;, length=575010))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-1f5e8a48-ec08-448c-9a69-85ce46c5c79c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1f5e8a48-ec08-448c-9a69-85ce46c5c79c' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom5k</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_score_adata</span><span class="p">(</span><span class="n">mc_type</span><span class="o">=</span><span class="s1">&#39;CGN&#39;</span><span class="p">,</span> <span class="n">quant_type</span><span class="o">=</span><span class="s1">&#39;hypo&#39;</span><span class="p">)</span>
+<span class="n">binarize_matrix</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading chunk 0-3973/3973
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">black_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
+<span class="n">filter_regions</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_cell</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">remove_black_list_region</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>489595 regions remained.
+10035 regions removed due to overlapping (bedtools intersect -f 0.2) with black list regions.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/5kCG.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LSI</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+            <span class="n">n_components</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_key</span> <span class="o">=</span> <span class="s1">&#39;5kCG_lsi&#39;</span>
+<span class="n">obsm_key</span> <span class="o">=</span> <span class="s1">&#39;X_lsi&#39;</span>
+<span class="n">adata_mc_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">mcad</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">obsm_name</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">)</span>
+    <span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">raw_key</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">obsm_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">raw_key</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">tsne</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">adata_mc_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 components passed P cutoff of 0.05.
+X_lsi PT-1K2DA
+11 components passed P cutoff of 0.05.
+X_lsi PT-1LVAN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dim</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">cell_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">embedding/SkGcn/cell_table.tsv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">cell_list</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cell_list</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+<span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">embedding/SkGcn/</span><span class="si">{</span><span class="n">chrom</span><span class="si">}</span><span class="s1">.npz&#39;</span><span class="p">)[</span><span class="s1">&#39;arr_0&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+        <span class="n">selc</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cell_list</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+        <span class="n">tmp_reduce</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+        <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp_reduce</span> <span class="o">/</span> <span class="n">model</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1
+chr2
+chr3
+chr4
+chr5
+chr6
+chr7
+chr8
+chr9
+chr10
+chr11
+chr12
+chr13
+chr14
+chr15
+chr16
+chr17
+chr18
+chr19
+chr20
+chr21
+chr22
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_key</span> <span class="o">=</span> <span class="s1">&#39;100k3C_pca&#39;</span>
+<span class="n">obsm_key</span> <span class="o">=</span> <span class="s1">&#39;X_pca&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+<span class="n">adata_3c_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="n">selc</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">obs</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">raw_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;100k3C_eigen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">singular_values_</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">raw_key</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">obsm_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">raw_key</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">tsne</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">adata_3c_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 components passed P cutoff of 0.05.
+X_pca PT-1K2DA
+6 components passed P cutoff of 0.05.
+X_pca PT-1LVAN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_3c_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mus-Skl/100k3C_</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_embed.h5ad&#39;</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_mc_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mus-Skl/5kCG_</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;5kCG&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mus-Skl/</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_embed.h5ad&#39;</span><span class="p">)</span>
+        <span class="n">adata_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5kCG PT-1K2DA
+5kCG PT-1LVAN
+100k3C PT-1K2DA
+100k3C PT-1LVAN
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+
+<span class="c1"># ConsensusClustering</span>
+<span class="c1"># Important factores</span>
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
+<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
+<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># Other ConsensusClustering parameters</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
+<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+<span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for i,obsm_key in enumerate([&#39;X_lsi&#39;, &#39;X_pca&#39;]]):</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">obsm_key</span> <span class="o">=</span> <span class="s1">&#39;X_pca&#39;</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">obsm_key</span><span class="p">])</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 2 - 3 clusters, mean 3.0, std 0.06
+Summarizing multiple clustering results
+2152 cells assigned to 2 raw clusters
+0 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+3 non-outlier labels
+Balanced accuracy on the training set: 0.964
+Balanced accuracy on the hold-out set: 0.952
+Stop iteration because current accuracy 0.952 &gt; target accuracy 0.900.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.969
+Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 3 - 3 clusters, mean 3.0, std 0.00
+Summarizing multiple clustering results
+1821 cells assigned to 2 raw clusters
+0 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+3 non-outlier labels
+Balanced accuracy on the training set: 0.988
+Balanced accuracy on the hold-out set: 0.989
+Stop iteration because current accuracy 0.989 &gt; target accuracy 0.900.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.986
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_other&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">,</span><span class="s1">&#39;consensus_leiden_other&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>consensus_leiden_other</th>
+      <th>c0</th>
+      <th>c1</th>
+      <th>c2</th>
+    </tr>
+    <tr>
+      <th>consensus_leiden_init</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c0</th>
+      <td>1053</td>
+      <td>152</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>52</td>
+      <td>497</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>c2</th>
+      <td>143</td>
+      <td>202</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">,</span><span class="s1">&#39;consensus_leiden_other&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>consensus_leiden_other</th>
+      <th>c0</th>
+      <th>c1</th>
+      <th>c2</th>
+    </tr>
+    <tr>
+      <th>consensus_leiden_init</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c0</th>
+      <td>774</td>
+      <td>36</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c1</th>
+      <td>21</td>
+      <td>773</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>c2</th>
+      <td>89</td>
+      <td>41</td>
+      <td>85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">adata_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">}),</span> <span class="n">adata_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">})])</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">adata_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">}),</span> <span class="n">adata_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">})])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="n">count</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_3c</th>
+      <th>3c0</th>
+      <th>3c1</th>
+      <th>3c2</th>
+    </tr>
+    <tr>
+      <th>leiden_group_mc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mc0</th>
+      <td>135</td>
+      <td>291</td>
+      <td>184</td>
+    </tr>
+    <tr>
+      <th>mc1</th>
+      <td>1</td>
+      <td>1271</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th>mc2</th>
+      <td>4</td>
+      <td>173</td>
+      <td>1826</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rename_cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rename_cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Fast/Stem&#39;</span><span class="p">,</span> <span class="s1">&#39;Slow/Stem&#39;</span><span class="p">])]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 3973 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;leiden_init_mc&#39;, &#39;leiden_init_3c&#39;, &#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;group_mc_3c&#39;, &#39;group_mc_3c_old&#39;
+    obsm: &#39;5kCG100k3C_u7pc10&#39;, &#39;5kCG100k3C_u7pc10_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="mi">4</span>
@@ -702,6 +2934,463 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/119ae83f839aaad0095fbed55ae8f37251ca173c1ede544e507608cd9c7a76bb.png" src="../_images/119ae83f839aaad0095fbed55ae8f37251ca173c1ede544e507608cd9c7a76bb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">mode</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;5kCG&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C&#39;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mus-Skl/</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">mode</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;5kCG&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C&#39;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mus-Skl/</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_embed.h5ad&#39;</span><span class="p">)</span>
+        <span class="n">adata_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">adata_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">}),</span> <span class="n">adata_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">})])</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">adata_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">}),</span> <span class="n">adata_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;consensus_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;c2&#39;</span><span class="p">:</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c0&#39;</span><span class="p">:</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">:</span><span class="s1">&#39;c2&#39;</span><span class="p">})])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rename_cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">rename_cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;old&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>old   new 
+Slow  Slow    1957
+Fast  Fast    1234
+Stem  Stem     496
+Slow  Fast     125
+Fast  Stem      90
+      Slow      40
+Slow  Stem      24
+Stem  Slow       6
+      Fast       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct1</span><span class="p">,</span> <span class="n">ct2</span> <span class="o">=</span> <span class="s1">&#39;Fast&#39;</span><span class="p">,</span> <span class="s1">&#39;Stem&#39;</span>
+<span class="c1"># ct1, ct2 = &#39;Slow&#39;, &#39;Fast&#39;</span>
+<span class="n">selc</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">ct1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">ct2</span><span class="p">)]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mus-Skl/allc/allclist_mc</span><span class="si">{</span><span class="n">ct1</span><span class="si">}</span><span class="s1">_mc</span><span class="si">{</span><span class="n">ct2</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allc/&#39;</span> <span class="o">+</span> <span class="n">selc</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="mi">1957</span><span class="o">+</span><span class="mi">1234</span><span class="o">+</span><span class="mi">496</span><span class="p">)</span><span class="o">/</span><span class="mi">3973</span><span class="p">,</span> <span class="p">(</span><span class="mi">125</span><span class="o">+</span><span class="mi">40</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">125</span><span class="o">+</span><span class="mi">90</span><span class="o">+</span><span class="mi">40</span><span class="o">+</span><span class="mi">24</span><span class="o">+</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9280140951422099 0.5769230769230769
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;old&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>old   new 
+Slow  Slow    2043
+Fast  Fast    1683
+Stem  Stem     136
+Fast  Slow      54
+Slow  Fast      50
+Fast  Stem       4
+Stem  Fast       2
+      Slow       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="mi">2043</span><span class="o">+</span><span class="mi">1683</span><span class="o">+</span><span class="mi">136</span><span class="p">)</span><span class="o">/</span><span class="mi">3973</span><span class="p">,</span> <span class="p">(</span><span class="mi">54</span><span class="o">+</span><span class="mi">50</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">54</span><span class="o">+</span><span class="mi">50</span><span class="o">+</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9720614145482004 0.9369369369369369
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="mi">3973</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9048577900830607
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed_new.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed_new.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 3973 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;leiden_init_mc&#39;, &#39;leiden_init_3c&#39;, &#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;group_mc_3c&#39;, &#39;group_mc_3c_old&#39;
+    obsm: &#39;5kCG100k3C_u7pc10&#39;, &#39;5kCG100k3C_u7pc10_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group_mc_3c</th>
+      <th>group_mc_3c_old</th>
+    </tr>
+    <tr>
+      <th>cell</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SkGcn_C1MKW_Plate1-1-O3-A1</th>
+      <td>Slow/Slow</td>
+      <td>Slow/Slow</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1MKW_Plate1-1-O3-A14</th>
+      <td>Slow/Fast</td>
+      <td>Slow/Fast</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1MKW_Plate1-1-O3-B13</th>
+      <td>Slow/Slow</td>
+      <td>Slow/Slow</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1MKW_Plate1-1-O3-B14</th>
+      <td>Slow/Slow</td>
+      <td>Slow/Slow</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1MKW_Plate1-1-O3-B2</th>
+      <td>Fast/Fast</td>
+      <td>Fast/Fast</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-O12</th>
+      <td>Fast/Fast</td>
+      <td>Fast/Fast</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-O24</th>
+      <td>Slow/Slow</td>
+      <td>Slow/Slow</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P12</th>
+      <td>Stem/Fast</td>
+      <td>Stem/Fast</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P23</th>
+      <td>Fast/Fast</td>
+      <td>Fast/Fast</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P24</th>
+      <td>Fast/Fast</td>
+      <td>Fast/Fast</td>
+    </tr>
+  </tbody>
+</table>
+<p>3973 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group_mc_3c_old  group_mc_3c
+Stem/Stem        Slow/Stem         1
+                 Stem/Fast         1
+                 Stem/Slow         1
+                 Stem/Stem       134
+Stem/Fast        Fast/Fast         1
+                 Slow/Fast         1
+                 Slow/Slow         1
+                 Stem/Fast       192
+                 Stem/Slow         4
+                 Stem/Stem         1
+Stem/Slow        Slow/Slow         3
+                 Stem/Fast         8
+                 Stem/Slow       155
+Fast/Stem        Stem/Fast         1
+Fast/Fast        Fast/Fast      1154
+                 Fast/Slow        11
+                 Slow/Fast        15
+                 Stem/Fast        79
+                 Stem/Slow         1
+Fast/Slow        Fast/Fast        16
+                 Fast/Slow        53
+                 Slow/Fast         4
+                 Slow/Slow        21
+                 Stem/Fast         4
+                 Stem/Slow         5
+Slow/Stem        Slow/Stem         1
+Slow/Fast        Fast/Fast        98
+                 Fast/Slow         5
+                 Fast/Stem         1
+                 Slow/Fast       137
+                 Slow/Slow        32
+                 Slow/Stem         2
+                 Stem/Fast         6
+Slow/Slow        Fast/Fast         2
+                 Fast/Slow        19
+                 Slow/Fast        16
+                 Slow/Slow      1769
+                 Stem/Slow        18
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c_old&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group_mc_3c  group_mc_3c_old
+Fast/Fast    Stem/Fast             1
+             Fast/Fast          1154
+             Fast/Slow            16
+             Slow/Fast            98
+             Slow/Slow             2
+Fast/Slow    Fast/Fast            11
+             Fast/Slow            53
+             Slow/Fast             5
+             Slow/Slow            19
+Fast/Stem    Slow/Fast             1
+Slow/Fast    Stem/Fast             1
+             Fast/Fast            15
+             Fast/Slow             4
+             Slow/Fast           137
+             Slow/Slow            16
+Slow/Slow    Stem/Fast             1
+             Stem/Slow             3
+             Fast/Slow            21
+             Slow/Fast            32
+             Slow/Slow          1769
+Slow/Stem    Stem/Stem             1
+             Slow/Stem             1
+             Slow/Fast             2
+Stem/Fast    Stem/Stem             1
+             Stem/Fast           192
+             Stem/Slow             8
+             Fast/Stem             1
+             Fast/Fast            79
+             Fast/Slow             4
+             Slow/Fast             6
+Stem/Slow    Stem/Stem             1
+             Stem/Fast             4
+             Stem/Slow           155
+             Fast/Fast             1
+             Fast/Slow             5
+             Slow/Slow            18
+Stem/Stem    Stem/Stem           134
+             Stem/Fast             1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allc_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allclist.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">allc_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A2</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B13</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B14</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-O24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P11</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P12</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P23</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+  </tbody>
+</table>
+<p>93550 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/gale/netapp/entex/ENTEx/allc_CGN/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
+<span class="c1"># adata.obs[&#39;allcpath&#39;] = allc_table.loc[adata.obs.index, 1]</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gs://ecker-zhoujt-analysis/ENTEx/tissue/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/impute/10K/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.cool&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;coolpath&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">count</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">])]</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/allclist_donor_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/coollist_donor_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>

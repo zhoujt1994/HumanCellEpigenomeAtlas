@@ -595,6 +595,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/&#39;</span>
 <span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/loop_rna/&#39;</span>
 </pre></div>
@@ -619,6 +630,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ens2gene</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">gene2ens</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_name&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scRNA/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">study</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">study</span><span class="si">}</span><span class="s1">.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata</span>
 </pre></div>
@@ -637,9 +656,98 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;level0&#39;</span><span class="p">,</span> <span class="s1">&#39;level1&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>level0           level1                                level2          
+Doublet          Doublet                               Doublet             20774
+Epithelial       Basal-myoepithelial                   BMYO1               30074
+                                                       BMYO2                1471
+                 DDC1                                  DDC1                  705
+                 DDC2                                  DDC2                  261
+                 Luminal adaptive secretory precurser  LASP1               73109
+                                                       LASP2               54842
+                                                       LASP3               50491
+                                                       LASP4                7976
+                                                       LASP5                 209
+                 Luminal hormone sensing               LHS1                94935
+                                                       LHS2                18115
+                                                       LHS3                11373
+Immune           Lymphoid                              B_mem_switched       1619
+                                                       B_mem_unswitched      476
+                                                       B_naive               866
+                                                       CD4_Th               1802
+                                                       CD4_naive            1914
+                                                       CD8_Tc1              2984
+                                                       CD8_Tem              1075
+                                                       CD8_Trm              9426
+                                                       ILC                   179
+                                                       NK                    183
+                                                       NKT                   282
+                                                       Plasma_cell           623
+                 Myeloid                               DC                    243
+                                                       Macro                2492
+                                                       Macro-lipo             56
+Stroma           Fibroblast                            FB1                 80168
+                                                       FB2                 76725
+                                                       FB3                 11334
+                                                       FB4                  8241
+                 Lymphatic endothelial                 LE1                  8407
+                                                       LE2                  5349
+                 Perivascular                          PV1                 27410
+                                                       PV2                 14828
+                                                       PV3                 22317
+                                                       PV4                 20158
+                                                       PV5                  5534
+                 Vascular endothelial                  VEA                 29436
+                                                       VEAT                28785
+                                                       VEC                 14024
+                                                       VEV                 55113
+stripped_nuclei  stripped_nuclei                       stripped_nuclei      6899
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;level1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;Basal-myoepithelial&#39;</span><span class="p">,</span> <span class="s1">&#39;Luminal-adaptive-secretory-precurser&#39;</span><span class="p">,</span> <span class="s1">&#39;Luminal-hormone-sensing&#39;</span><span class="p">])</span>
 <span class="n">legname</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;BMYO&#39;</span><span class="p">,</span> <span class="s1">&#39;LASP&#39;</span><span class="p">,</span> <span class="s1">&#39;LHS&#39;</span><span class="p">])</span>
 <span class="n">legmap</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="n">yy</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="n">legname</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">leg</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">,</span> <span class="s1">&#39;donor_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>celltype                              donor_id     
+Luminal-hormone-sensing               HBCA_Donor_33    20046
+Luminal-adaptive-secretory-precurser  HBCA_Donor_38    14854
+                                      HBCA_Donor_45    11176
+Luminal-hormone-sensing               HBCA_Donor_44     9235
+Luminal-adaptive-secretory-precurser  HBCA_Donor_3      8919
+                                                       ...  
+                                      HBCA_Donor_35       30
+Basal-myoepithelial                   HBCA_Donor_28       26
+Luminal-hormone-sensing               HBCA_Donor_28       26
+Luminal-adaptive-secretory-precurser  HBCA_Donor_28       14
+Basal-myoepithelial                   HBCA_Donor_20        2
+Name: count, Length: 165, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -862,6 +970,13 @@ Luminal-adaptive-secretory-precurser Luminal-hormone-sensing 2322
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exprtmp</span> <span class="o">=</span> <span class="n">expr</span> <span class="o">/</span> <span class="n">expr</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e6</span>
 <span class="n">exprtmp</span> <span class="o">=</span> <span class="n">exprtmp</span><span class="p">[</span><span class="n">deg_stats</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">selg</span><span class="p">]]</span>
 <span class="n">exprtmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">design</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">design</span><span class="p">[</span><span class="s1">&#39;donor_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">exprtmp</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1186,6 +1301,60 @@ Luminal-adaptive-secretory-precurser Luminal-hormone-sensing 2322
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">tmp3c</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Oranges&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> 
+                    <span class="n">xticklabels</span><span class="o">=</span><span class="n">loopq</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L2_annot</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rorder_3c</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">corder_3c</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">tmprna</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">exprtmp</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rorder_rna</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">corder_rna</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">selgene</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">ens2gene</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AC104237.3    60
+CCDC68        56
+OXTR          50
+PRLR          46
+AL390294.1    46
+              ..
+ARHGAP20       1
+IL18           1
+S100A14        1
+S100A2         1
+GORAB-AS1      1
+Name: count, Length: 1403, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;c18-b0&#39;</span><span class="p">,</span> <span class="s1">&#39;c18-b1&#39;</span><span class="p">,</span> <span class="s1">&#39;c25-b0&#39;</span><span class="p">])</span>
 <span class="n">cooldir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">loop/subtype/&#39;</span>
 </pre></div>
@@ -1249,6 +1418,18 @@ Luminal-adaptive-secretory-precurser Luminal-hormone-sensing 2322
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c18-b0
 c18-b1
 c25-b0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loopr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>976
 </pre></div>
 </div>
 </div>

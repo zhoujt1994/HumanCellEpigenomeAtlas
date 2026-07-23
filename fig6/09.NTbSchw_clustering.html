@@ -571,9 +571,9 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scanpy.external</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sce</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.integration.seurat_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeuratIntegration</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># from ALLCools.clustering import *</span>
+<span class="c1"># from ALLCools.integration.seurat_class import SeuratIntegration</span>
+<span class="c1"># from ALLCools.plot import *</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">TruncatedSVD</span>
@@ -608,6 +608,14 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/&#39;</span>
 <span class="n">rawdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L2/Glia-Schw/&#39;</span>
 <span class="n">anchordir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L2/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">black_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
+<span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -966,6 +974,21 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rawdir</span><span class="si">}</span><span class="s1">5kCG.h5ad&#39;</span><span class="p">)</span>
+<span class="n">mcad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 1544 × 575010
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;
+    var: &#39;chrom&#39;, &#39;start&#39;, &#39;end&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cellfilter = (mcad.obs[&#39;Tissue&#39;]==&#39;NTb&#39;)</span>
 <span class="n">cellfilter</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">mcad</span> <span class="o">=</span> <span class="n">mcad</span><span class="p">[</span><span class="n">cellfilter</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -981,7 +1004,519 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_regions</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_cell</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">remove_black_list_region</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>256421 regions remained.
+4911 regions removed due to overlapping (bedtools intersect -f 0.2) with black list regions.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LSI</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+            <span class="n">n_components</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm_name</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 components passed P cutoff of 0.05.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_lsi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">sample_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;PT-1K2DA&#39;, &#39;PT-1LVAN&#39;, &#39;STL003&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+PT-1LVAN    505
+PT-1K2DA    393
+STL003        2
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor_index</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">adata</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sample_list</span><span class="p">,</span> <span class="n">adata_list</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">anchor_index</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}</span><span class="s1">NTb-*/mCG_5kb_seurat_anchor_*.hdf&#39;</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">ct_list</span><span class="p">:</span>
+    <span class="n">anchor_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/mCG_5kb_seurat_anchor_*.hdf&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">adata_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/mCG_5kb_lsi.h5ad&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">anchor_file</span><span class="p">)</span>
+    <span class="n">adata_tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">adata_file</span><span class="p">)</span>
+    <span class="n">sample_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">cell_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_tmp</span><span class="p">]</span>
+    <span class="n">thres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">],</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">thres</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">anchor</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">)</span>
+    
+<span class="n">anchor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="p">[[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">,</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x1_donor  x2_donor
+PT-1K2DA  PT-1LVAN    1195
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">anchor_df</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sample_list</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span>
+        <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span>
+            <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">:</span><span class="s1">&#39;x1&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span> <span class="o">=</span> <span class="n">SeuratIntegration</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">adata_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">))),</span> <span class="n">adata_list</span><span class="p">)}</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_dataset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]</span>
+
+<span class="c1"># intra-dataset KNN for scoring the anchors</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">k_local</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">key_local</span> <span class="o">=</span> <span class="s1">&#39;X_lsi&#39;</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_calculate_local_knn</span><span class="p">()</span>
+
+<span class="c1"># alignments and all_pairs</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">anchor_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">key_correct</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">,</span>
+                                 <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span>
+                                 <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                 <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+                         <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]))</span>
+
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tsne</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alignments: [[[1], [0]], [[1, 0], [2]]]
+Merge datasets
+[[1], [0]]
+Initialize
+Find nearest anchors. k_weight:  100
+Normalize graph
+Transform data
+[[1, 0], [2]]
+Initialize
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/5kCG_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dim</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">rawdir</span><span class="si">}</span><span class="s1">raw/</span><span class="si">{</span><span class="n">chrom</span><span class="si">}</span><span class="s1">.npz&#39;</span><span class="p">)[</span><span class="s1">&#39;arr_0&#39;</span><span class="p">][</span><span class="n">cellfilter</span><span class="p">]</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+    <span class="n">tmp_reduce</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+    <span class="n">matrix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp_reduce</span> <span class="o">/</span> <span class="n">model</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1
+chr2
+chr3
+chr4
+chr5
+chr6
+chr7
+chr8
+chr9
+chr10
+chr11
+chr12
+chr13
+chr14
+chr15
+chr16
+chr17
+chr18
+chr19
+chr20
+chr21
+chr22
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">matrix_reduce</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+<span class="c1"># matrix_reduce = matrix_reduce / model.singular_values_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">)</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_pca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix_reduce</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s1">&#39;100k3C_pca&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 components passed P cutoff of 0.05.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_pca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_pca&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">sample_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;PT-1K2DA&#39;, &#39;PT-1LVAN&#39;, &#39;STL003&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Donor
+PT-1LVAN    505
+PT-1K2DA    393
+STL003        2
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor_index</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">adata</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sample_list</span><span class="p">,</span> <span class="n">adata_list</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">anchor_index</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}</span><span class="s1">NTb-*/HiC_100kb_seurat_anchor_*.hdf&#39;</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">ct_list</span><span class="p">:</span>
+    <span class="n">anchor_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/HiC_100kb_seurat_anchor_*.hdf&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">adata_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">anchordir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/HiC_100kb_pca.h5ad&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">anchor_file</span><span class="p">)</span>
+    <span class="n">adata_tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">adata_file</span><span class="p">)</span>
+    <span class="n">sample_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">cell_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_tmp</span><span class="p">]</span>
+    <span class="n">thres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">],</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">thres</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">anchor</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">)</span>
+    
+<span class="n">anchor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="p">[[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">,</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x1_donor  x2_donor
+PT-1K2DA  PT-1LVAN    1050
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">anchor_df</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sample_list</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span>
+        <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span>
+            <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">:</span><span class="s1">&#39;x1&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span> <span class="o">=</span> <span class="n">SeuratIntegration</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">adata_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">))),</span> <span class="n">adata_list</span><span class="p">)}</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_dataset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]</span>
+
+<span class="c1"># intra-dataset KNN for scoring the anchors</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">k_local</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">key_local</span> <span class="o">=</span> <span class="s1">&#39;X_pca&#39;</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_calculate_local_knn</span><span class="p">()</span>
+
+<span class="c1"># alignments and all_pairs</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">anchor_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># npc = 50</span>
+<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">key_correct</span><span class="o">=</span><span class="s1">&#39;100k3C_pca&#39;</span><span class="p">,</span>
+                                 <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span>
+                                 <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                 <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alignments: [[[1], [0]], [[1, 0], [2]]]
+Merge datasets
+[[1], [0]]
+Initialize
+Find nearest anchors. k_weight:  100
+Normalize graph
+Transform data
+[[1, 0], [2]]
+Initialize
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+                         <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]))</span>
+
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tsne</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dump_embedding</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="s1">&#39;tsne&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 900 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    obsm: &#39;100k3C_pca&#39;, &#39;X_pca&#39;, &#39;100k3C_pc10_seuratL2&#39;, &#39;X_tsne&#39;, &#39;100k3C_pc10_seuratL2_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -1010,6 +1545,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coord_base</span> <span class="o">=</span> <span class="s1">&#39;tsne&#39;</span>
 <span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/5kCG_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1023,6 +1565,21 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span> <span class="o">=</span> <span class="n">dump_embedding</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
 <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">dump_embedding</span><span class="p">(</span><span class="n">adata_3c</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L2_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">subtype_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">L2_annot</span> <span class="o">=</span> <span class="n">L2_meta</span><span class="p">[</span><span class="s1">&#39;celltype_L2_both_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L2_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;subtype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L2_annot</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1129,6 +1686,42 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
+<span class="n">dist_cg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="c1"># sns.clustermap(1-dist, cmap=&#39;cividis&#39;, metric=&#39;cosine&#39;, vmin=0.5, vmax=1.0)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
+<span class="n">dist_3c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="c1"># sns.clustermap(1-dist, cmap=&#39;cividis&#39;, metric=&#39;cosine&#39;, vmin=0.7, vmax=1.0)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_cg</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">_mcdist.csv&#39;</span><span class="p">)</span>
+<span class="n">dist_3c</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">_3cdist.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_cg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">_mcdist.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dist_3c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">_3cdist.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_cg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">dist_cg</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">dist_3c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">dist_3c</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -1158,6 +1751,859 @@
 <div class="cell_output docutils container">
 <img alt="../_images/75d5c68ac1756549a78708fcdaad3798e1d040f2292047c6d98b749aaa7ddecb.png" src="../_images/75d5c68ac1756549a78708fcdaad3798e1d040f2292047c6d98b749aaa7ddecb.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cluster
+c21-c0    335
+c21-c3    239
+c21-c4    154
+c21-c5    119
+c21-c7     48
+c21-c6      1
+c21-c1      1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+
+<span class="c1"># ConsensusClustering</span>
+<span class="c1"># Important factores</span>
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
+<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
+<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.85</span>
+<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># Other ConsensusClustering parameters</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
+<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 5 - 8 clusters, mean 6.5, std 0.60
+Summarizing multiple clustering results
+3812 cells assigned to 10 raw clusters
+161 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+10 non-outlier labels
+Balanced accuracy on the training set: 0.974
+Balanced accuracy on the hold-out set: 0.906
+Stop iteration because current accuracy 0.906 &gt; target accuracy 0.850.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.904
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 8 - 11 clusters, mean 9.7, std 0.67
+Summarizing multiple clustering results
+3557 cells assigned to 17 raw clusters
+416 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+17 non-outlier labels
+Balanced accuracy on the training set: 0.954
+Balanced accuracy on the hold-out set: 0.897
+Stop iteration because current accuracy 0.897 &gt; target accuracy 0.850.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.914
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_3c</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata_3c</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sc.pp.neighbors(adata_mc, n_neighbors=25, use_rep=f&#39;5kCG_u{npc_cg}_seuratL2&#39;)</span>
+<span class="c1"># sc.tl.diffmap(adata_mc, n_comps=npc_cg)</span>
+<span class="c1"># sc.pp.neighbors(adata_mc, n_neighbors=25, use_rep=&#39;X_diffmap&#39;)</span>
+<span class="c1"># adata_mc.uns[&#39;iroot&#39;] = np.flatnonzero(labelany==&#39;c8&#39;)[0]</span>
+<span class="c1"># sc.tl.dpt(adata_mc, n_dcs=npc_cg)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sc.pp.neighbors(adata_3c, n_neighbors=25, use_rep=f&#39;100k3C_pc{npc_3c}_seuratL2&#39;)</span>
+<span class="c1"># sc.tl.diffmap(adata_3c, n_comps=npc_3c)</span>
+<span class="c1"># sc.pp.neighbors(adata_3c, n_neighbors=25, use_rep=&#39;X_diffmap&#39;)</span>
+<span class="c1"># adata_3c.uns[&#39;iroot&#39;] = np.flatnonzero(labelany==&#39;c8&#39;)[0]</span>
+<span class="c1"># sc.tl.dpt(adata_3c, n_dcs=npc_3c)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(3,3), dpi=300)</span>
+<span class="c1"># ax.scatter(x=adata_3c.obs[&#39;dpt_pseudotime&#39;], y=adata_mc.obs[&#39;dpt_pseudotime&#39;], s=1)</span>
+<span class="c1"># ax.set_xlabel(&#39;3C Pseudotime&#39;)</span>
+<span class="c1"># ax.set_ylabel(&#39;mCG Pseudotime&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(2, 3, figsize=(12,6), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     for j,yy in enumerate([adata_mc.obs[&#39;dpt_pseudotime&#39;], </span>
+<span class="c1">#                            adata_3c.obs[&#39;dpt_pseudotime&#39;]]):</span>
+<span class="c1">#         ax = axes[j,i]</span>
+<span class="c1">#         _ = continuous_scatter(data=tmp,</span>
+<span class="c1">#                                ax=ax,</span>
+<span class="c1">#                                coord_base=coord_base,</span>
+<span class="c1">#                                hue=yy,</span>
+<span class="c1">#                                s=ds,</span>
+<span class="c1">#                                labelsize=12,</span>
+<span class="c1">#                                max_points=None,</span>
+<span class="c1">#                                scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                               )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># order_idx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(3, 3, figsize=(12,9), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     for j,yy in enumerate([labelany, </span>
+<span class="c1">#                            adata_mc.obs[&#39;leiden&#39;], </span>
+<span class="c1">#                            adata_3c.obs[&#39;leiden&#39;]]):</span>
+        
+<span class="c1">#         ax = axes[i,j]</span>
+<span class="c1">#         _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                                 ax=ax,</span>
+<span class="c1">#                                 coord_base=coord_base,</span>
+<span class="c1">#                                 hue=yy,</span>
+<span class="c1">#                                 text_anno=yy, </span>
+<span class="c1">#                                 s=ds,</span>
+<span class="c1">#                                 labelsize=12,</span>
+<span class="c1">#                                 max_points=None,</span>
+<span class="c1">#                                 palette=&#39;tab20&#39;,</span>
+<span class="c1">#                                 scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                                 # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                                 # show_legend=True</span>
+<span class="c1">#                                )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(3, 3, figsize=(12,9), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     for j,yy in enumerate([labelany, </span>
+<span class="c1">#                            adata_mc.obs[&#39;leiden&#39;], </span>
+<span class="c1">#                            adata_3c.obs[&#39;leiden&#39;]]):</span>
+        
+<span class="c1">#         ax = axes[i,j]</span>
+<span class="c1">#         _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                                 ax=ax,</span>
+<span class="c1">#                                 coord_base=coord_base,</span>
+<span class="c1">#                                 hue=yy,</span>
+<span class="c1">#                                 text_anno=yy, </span>
+<span class="c1">#                                 s=ds,</span>
+<span class="c1">#                                 labelsize=12,</span>
+<span class="c1">#                                 max_points=None,</span>
+<span class="c1">#                                 palette=&#39;tab20&#39;,</span>
+<span class="c1">#                                 scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                                 # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                                 # show_legend=True</span>
+<span class="c1">#                                )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># leiden_group_mc = [[0], [3,5,8,10,11,13,15,17,19], [1,2,4,6,7,9,14,18]]</span>
+<span class="c1"># leiden_group_mc = [[2], [0,5,8,9],[1,3,4,6,7]]</span>
+<span class="n">leiden_group_mc</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">]]</span>
+<span class="n">leiden_group_3c</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="n">leiden_map</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;mc</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leiden_group_mc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">leiden_map</span><span class="p">)</span>
+<span class="n">leiden_map</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;3c</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leiden_group_3c</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">leiden_map</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_3c</th>
+      <th>3c0</th>
+      <th>3c1</th>
+      <th>3c2</th>
+    </tr>
+    <tr>
+      <th>leiden_group_mc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mc0</th>
+      <td>137</td>
+      <td>200</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <th>mc1</th>
+      <td>1</td>
+      <td>1260</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <th>mc2</th>
+      <td>1</td>
+      <td>281</td>
+      <td>1824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata_mc.obs[f&#39;5kCG_u{npc_cg}_leiden_init&#39;].value_counts()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5kCG_u7_leiden_init
+c1     511
+c0     503
+c2     419
+c3     386
+c4     333
+c5     261
+c6     231
+c7     227
+c8     212
+c11    153
+c9     143
+c14    130
+c10    123
+c12    112
+c13     98
+c15     75
+c16     56
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata_3c.obs[f&#39;100k3C_pc{npc_3c}_leiden_init&#39;].value_counts()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100k3C_pc10_leiden_init
+c0    1177
+c1     640
+c2     492
+c3     424
+c4     347
+c5     248
+c6     211
+c7     152
+c9     143
+c8     139
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(1, 3, figsize=(13,3), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     yy = adata.obs[&#39;group_mc_3c&#39;]</span>
+<span class="c1">#     ax = axes[i]</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=yy,</span>
+<span class="c1">#                             text_anno=yy, </span>
+<span class="c1">#                             s=ds,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab10&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             show_legend=(i==2)</span>
+<span class="c1">#                            )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allc_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allclist.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">allc_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A2</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B13</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B14</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-O24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P11</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P12</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P23</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+  </tbody>
+</table>
+<p>93550 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/gale/netapp/entex/ENTEx/allc_CGN/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
+<span class="c1"># adata.obs[&#39;allcpath&#39;] = allc_table.loc[adata.obs.index, 1]</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gs://ecker-zhoujt-analysis/ENTEx/tissue/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/impute/10K/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.cool&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;coolpath&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">count</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">])]</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/allclist_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/coollist_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;coolpath&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/frame.py:3902,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3900</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3901</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3902</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">3904</span> <span class="c1"># take() does not accept boolean indexers</span>
+<span class="g g-Whitespace">   </span><span class="mi">3905</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:6114,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6111</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6112</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6114</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6116</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6117</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">6118</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:6175,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6173</span>     <span class="k">if</span> <span class="n">use_interval_msg</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6174</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6175</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6177</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">6178</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &quot;None of [Index([&#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;allcpath&#39;, &#39;coolpath&#39;], dtype=&#39;object&#39;)] are in the [columns]&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/allclist_mc.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leg = np.sort(adata_mc.obs[&#39;leiden&#39;].unique())</span>
+<span class="c1"># ncol = 3</span>
+<span class="c1"># nrow = (len(leg)-1) // ncol + 1</span>
+<span class="c1"># tmp = adata_3c.obs.copy()</span>
+<span class="c1"># tmp[&#39;leiden&#39;] = adata_mc.obs[&#39;leiden&#39;].copy()</span>
+
+<span class="c1"># fig, axes = plt.subplots(nrow, ncol, figsize=(ncol*4, nrow*3), dpi=300)</span>
+<span class="c1"># for xx,ax in zip(leg, axes.flatten()):</span>
+<span class="c1">#     ax.scatter(tmp[&#39;tsne_0&#39;], tmp[&#39;tsne_1&#39;], s=ds, </span>
+<span class="c1">#                edgecolor=&#39;none&#39;, rasterized=True, color=(0.8, 0.8, 0.8), alpha=0.5)</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp.loc[tmp[&#39;leiden&#39;]==xx],</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=&#39;leiden&#39;,</span>
+<span class="c1">#                             text_anno=&#39;leiden&#39;, </span>
+<span class="c1">#                             s=ds*2,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab20&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             # show_legend=True</span>
+<span class="c1">#                            )</span>
+
+<span class="c1"># for ax in axes.flatten()[len(leg):]:</span>
+<span class="c1">#     ax.axis(&#39;off&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leg = np.sort(adata_3c.obs[&#39;leiden&#39;].unique())</span>
+<span class="c1"># ncol = 3</span>
+<span class="c1"># nrow = (len(leg)-1) // ncol + 1</span>
+<span class="c1"># tmp = adata_mc.obs.copy()</span>
+<span class="c1"># tmp[&#39;leiden&#39;] = adata_3c.obs[&#39;leiden&#39;].copy()</span>
+
+<span class="c1"># fig, axes = plt.subplots(nrow, ncol, figsize=(ncol*4, nrow*3), dpi=300)</span>
+<span class="c1"># for xx,ax in zip(leg, axes.flatten()):</span>
+<span class="c1">#     ax.scatter(tmp[&#39;tsne_0&#39;], tmp[&#39;tsne_1&#39;], s=ds, </span>
+<span class="c1">#                edgecolor=&#39;none&#39;, rasterized=True, color=(0.8, 0.8, 0.8), alpha=0.5)</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp.loc[tmp[&#39;leiden&#39;]==xx],</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=&#39;leiden&#39;,</span>
+<span class="c1">#                             text_anno=&#39;leiden&#39;, </span>
+<span class="c1">#                             s=ds*2,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab20&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             # show_legend=True</span>
+<span class="c1">#                            )</span>
+
+<span class="c1"># for ax in axes.flatten()[len(leg):]:</span>
+<span class="c1">#     ax.axis(&#39;off&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 3973 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;leiden_init_mc&#39;, &#39;leiden_init_3c&#39;, &#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;group_mc_3c&#39;
+    obsm: &#39;5kCG100k3C_u7pc10&#39;, &#39;5kCG100k3C_u7pc10_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">)[</span><span class="s1">&#39;Cis/Trans&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group_mc_3c
+mc0-3c0    1.298418
+mc0-3c1    1.079613
+mc0-3c2    1.153688
+mc1-3c0    1.335362
+mc1-3c1    1.136933
+mc1-3c2    1.153178
+mc2-3c0    1.146449
+mc2-3c1    1.073968
+mc2-3c2    1.167972
+Name: Cis/Trans, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp3c</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mc1-3c1&#39;, &#39;mc2-3c1&#39;, &#39;mc0-3c1&#39;, &#39;mc0-3c0&#39;, &#39;mc0-3c2&#39;, &#39;mc1-3c2&#39;,
+       &#39;mc2-3c2&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def rename_cluster(xx):</span>
+<span class="c1">#     yy = xx.replace(&#39;-&#39;,&#39; &#39;).replace(&#39;c&#39;, &#39;C&#39;)</span>
+<span class="c1">#     yy = yy.replace(&#39;0&#39;, &#39;-Stem&#39;).replace(&#39;1&#39;, &#39;-Fast&#39;).replace(&#39;2&#39;, &#39;-Slow&#39;)</span>
+<span class="c1">#     return yy</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rename_cluster</span><span class="p">(</span><span class="n">xx</span><span class="p">):</span>
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;mc&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;3c&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">yy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;Stem&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;Fast&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;Slow&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">yy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">color_palette</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">leg</span><span class="p">:</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x1</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">==</span><span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">color_palette</span><span class="p">[</span><span class="n">rename_cluster</span><span class="p">(</span><span class="n">xx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[</span><span class="n">k1</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">k1</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">color_palette</span><span class="p">[</span><span class="n">rename_cluster</span><span class="p">(</span><span class="n">xx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[</span><span class="n">k2</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">k2</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;celltype&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_mc</th>
+      <th>mc0</th>
+      <th>mc1</th>
+      <th>mc2</th>
+    </tr>
+    <tr>
+      <th>celltype</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Fast</th>
+      <td>207.0</td>
+      <td>1305.0</td>
+      <td>171.0</td>
+    </tr>
+    <tr>
+      <th>Slow</th>
+      <td>161.0</td>
+      <td>58.0</td>
+      <td>1935.0</td>
+    </tr>
+    <tr>
+      <th>Stl</th>
+      <td>135.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">99</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.689325341 , 0.7784430472])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="n">count</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_3c</th>
+      <th>3c0</th>
+      <th>3c1</th>
+      <th>3c2</th>
+    </tr>
+    <tr>
+      <th>leiden_group_mc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mc0</th>
+      <td>137</td>
+      <td>200</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <th>mc1</th>
+      <td>1</td>
+      <td>1260</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <th>mc2</th>
+      <td>1</td>
+      <td>281</td>
+      <td>1824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>

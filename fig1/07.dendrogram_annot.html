@@ -611,6 +611,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">npc.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;npc_cg&#39;</span><span class="p">,</span> <span class="s1">&#39;npc_3c&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">obs</span>
 
 <span class="c1">## map abbr to annot</span>
@@ -639,6 +646,144 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">celltype_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>L1</th>
+      <th>L1_annot</th>
+      <th>L1_abbr</th>
+      <th>L2_any</th>
+      <th>celltype_annot</th>
+      <th>celltype_abbr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c33-c0</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c0</td>
+      <td>Endo Lymphatic Esophagus</td>
+      <td>Endo Lym Esp</td>
+    </tr>
+    <tr>
+      <th>c33-c1</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c1</td>
+      <td>Endo Lymphatic Skin</td>
+      <td>Endo Lym Skn</td>
+    </tr>
+    <tr>
+      <th>c33-c2</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c2</td>
+      <td>Endo Lymphatic Breast</td>
+      <td>Endo Lym Brs</td>
+    </tr>
+    <tr>
+      <th>c33-c3</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c3</td>
+      <td>Endo Lymphatic Mix</td>
+      <td>Endo Lym Mix</td>
+    </tr>
+    <tr>
+      <th>c33-c4</th>
+      <td>c33</td>
+      <td>Endo Lymphatic</td>
+      <td>Endo Lym</td>
+      <td>c4</td>
+      <td>Endo Lymphatic Mix</td>
+      <td>Endo Lym Mix</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>c4-3c14</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c14</td>
+      <td>Epi Gastric Endocrine</td>
+      <td>Endocrine</td>
+    </tr>
+    <tr>
+      <th>c4-3c15</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c15</td>
+      <td>Epi Gastric Neck</td>
+      <td>Neck</td>
+    </tr>
+    <tr>
+      <th>c4-3c16</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c16</td>
+      <td>Epi Gastric Chief</td>
+      <td>Chief</td>
+    </tr>
+    <tr>
+      <th>c4-3c17</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c17</td>
+      <td>Epi Gastric Chief</td>
+      <td>Chief</td>
+    </tr>
+    <tr>
+      <th>c4-3c18</th>
+      <td>c4</td>
+      <td>Epi Gastric</td>
+      <td>Epi Gas</td>
+      <td>3c18</td>
+      <td>Epi Gastric Chief</td>
+      <td>Chief</td>
+    </tr>
+  </tbody>
+</table>
+<p>457 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">L1map</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -651,6 +796,17 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
     obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;L1&#39;, &#39;L1_annot&#39;
     obsm: &#39;5kCG100k3C_u50pc50&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ct = &#39;Epi-Endcri&#39;</span>
+<span class="c1"># adata = anndata.read_h5ad(f&#39;{indir}L2/{ct}/5kCG100k3C_embed.h5ad&#39;)</span>
+<span class="c1"># # labelany = np.load(f&#39;{outdir}{ct}_mergeany_rocpr.npy&#39;, allow_pickle=True)</span>
+<span class="c1"># adata.obs[&#39;celltype&#39;] = meta[&#39;celltype_L2_both_annot&#39;].copy()</span>
+<span class="c1"># adata</span>
 </pre></div>
 </div>
 </div>
@@ -706,7 +862,256 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">label_branch</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">neg</span><span class="p">):</span>
+    
+    <span class="k">global</span> <span class="n">label</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">data_cg</span><span class="p">,</span> <span class="n">data_3c</span>
+    <span class="n">selc</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">neg</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">count</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">&gt;</span><span class="n">count</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">neg</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">():</span>
+        <span class="n">label_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="mi">1</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">neg</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">label_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="mi">1</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">neg</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">}</span>
+    <span class="c1"># print(label_dict, selc.sum())</span>
+    <span class="c1"># selc = np.random.permutation(np.where(selc)[0])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">data_cg</span><span class="p">,</span> <span class="n">data_3c</span><span class="p">]):</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">label_dict</span><span class="p">)</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+            <span class="n">pred</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">average_precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data_cg</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc_cg</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data_3c</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="o">-</span><span class="n">npc_3c</span><span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">)</span>
+<span class="n">skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">node_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pc_center</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])}</span>
+<span class="n">alignment</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">alignment</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">node_dict</span><span class="p">[</span><span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">node_dict</span><span class="p">[</span><span class="n">xx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+    <span class="n">node_dict</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">node_dict</span><span class="p">)]</span> <span class="o">=</span> <span class="n">node_dict</span><span class="p">[</span><span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="n">node_dict</span><span class="p">[</span><span class="n">xx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ct_pair</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">alignment</span><span class="p">,</span> <span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">label_branch</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">ct_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">neg</span><span class="o">=</span><span class="n">ct_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CG_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;CG_pr&#39;</span><span class="p">,</span> <span class="s1">&#39;3C_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;3C_pr&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span><span class="p">,</span> <span class="n">result</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dendro</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;dendro_annot/All_</span><span class="si">{</span><span class="n">method_dist</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_hclust</span><span class="si">}</span><span class="s1">.dendro&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      c9
+1      c8
+2      c7
+3      c6
+4      c5
+5      c4
+6     c34
+7     c33
+8     c32
+9     c31
+10    c30
+11     c3
+12    c29
+13    c28
+14    c27
+15    c26
+16    c25
+17    c24
+18    c23
+19    c22
+20    c21
+21    c20
+22     c2
+23    c19
+24    c18
+25    c17
+26    c16
+27    c15
+28    c14
+29    c13
+30    c12
+31    c11
+32    c10
+33     c1
+34     c0
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l1order</span> <span class="o">=</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">l1</span> <span class="ow">in</span> <span class="n">l1order</span><span class="p">:</span>
+    <span class="n">l1_name</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">l1</span><span class="p">,</span> <span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">l1_name</span><span class="p">)</span>
+    <span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span> <span class="o">=</span> <span class="n">npc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">l1_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>    
+    <span class="k">if</span> <span class="n">l1</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;c4&#39;</span><span class="p">,</span><span class="s1">&#39;c8&#39;</span><span class="p">]:</span>
+        <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2_hiconly/</span><span class="si">{</span><span class="n">l1_name</span><span class="si">}</span><span class="s1">/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+        <span class="n">obsm</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">l1_name</span><span class="si">}</span><span class="s1">/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+        <span class="n">obsm</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;celltype_L2_both_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">nc</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">nc</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">continue</span>
+        
+<span class="c1">#     pc_center = get_pc_centers(adata, obsm=obsm, group=&#39;celltype&#39;)</span>
+<span class="c1">#     dendro = Dendrogram(nboot=nboot,</span>
+<span class="c1">#                         method_dist=method_dist,</span>
+<span class="c1">#                         method_hclust=method_hclust,</span>
+<span class="c1">#                         n_jobs=32)</span>
+<span class="c1">#     dendro.fit(pc_center)</span>
+
+<span class="c1">#     adata = anndata.read_h5ad(f&#39;{indir}L2/{l1_name}/5kCG100k3C_embed.h5ad&#39;)</span>
+<span class="c1">#     adata.obs[&#39;celltype&#39;] = meta[&#39;celltype_L2_both_annot&#39;].copy()</span>
+<span class="c1">#     data_cg = normalize(adata.obsm[f&#39;5kCG100k3C_u{npc_cg}pc{npc_3c}&#39;][:, :npc_cg], axis=1)</span>
+<span class="c1">#     data_3c = normalize(adata.obsm[f&#39;5kCG100k3C_u{npc_cg}pc{npc_3c}&#39;][:, -npc_3c:], axis=1)</span>
+<span class="c1">#     clf = LogisticRegression(class_weight=&#39;balanced&#39;)</span>
+<span class="c1">#     skf = StratifiedKFold(n_splits=3, shuffle=True, random_state=0)</span>
+<span class="c1">#     label = adata.obs[&#39;celltype&#39;].astype(&#39;category&#39;)</span>
+<span class="c1">#     count = label.astype(str).value_counts()</span>
+
+<span class="c1">#     node_dict = {i: [xx] for i,xx in enumerate(pc_center.index[::-1])}</span>
+<span class="c1">#     alignment = []</span>
+<span class="c1">#     for xx in dendro.linkage.iloc[:, :2].values:</span>
+<span class="c1">#         alignment.append([node_dict[xx[0]], node_dict[xx[1]]])</span>
+<span class="c1">#         node_dict[len(node_dict)] = node_dict[xx[0]] + node_dict[xx[1]]</span>
+
+<span class="c1">#     with ProcessPoolExecutor(cpu) as executor:</span>
+<span class="c1">#         futures = {}</span>
+<span class="c1">#         for ct_pair, node in zip(alignment, dendro.linkage.index):</span>
+<span class="c1">#             future = executor.submit(</span>
+<span class="c1">#                 label_branch,</span>
+<span class="c1">#                 pos=ct_pair[0],</span>
+<span class="c1">#                 neg=ct_pair[1],</span>
+<span class="c1">#             )</span>
+<span class="c1">#             futures[future] = node</span>
+
+<span class="c1">#         result = {}</span>
+<span class="c1">#         for future in as_completed(futures):</span>
+<span class="c1">#             node = futures[future]</span>
+<span class="c1">#             tmp = future.result()</span>
+<span class="c1">#             result[node] = tmp.flatten()</span>
+
+<span class="c1">#     result = pd.DataFrame(result, index=[&#39;CG_roc&#39;, &#39;CG_pr&#39;, &#39;3C_roc&#39;, &#39;3C_pr&#39;]).T</span>
+<span class="c1">#     dendro.linkage = pd.concat([dendro.linkage, result], axis=1)</span>
+<span class="c1">#     joblib.dump(dendro, f&#39;dendro_annot/{l1}_{method_dist}_{method_hclust}.dendro&#39;)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hema-B
+Hema-NK
+Hema-Tmem
+Hema-Tnaive
+Hema-Myeloid
+Hema-Mast
+Epi-TPB
+Epi-AdrCtx
+Mus-Crd
+Mus-Skl
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epi-Alv
+Epi-Gas
+Epi-Ent
+Epi-Aci
+Epi-Krt_Lum
+Epi-Duc
+Glia-Schw
+Glia-Oligo
+Glia-Astro
+Epi-Endcri
+Neu-Exc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Neu-Inh
+Endo-Vsc
+Endo-Lym
+Epi-BrstBasal
+Perivascular
+Fibro-Adr
+Fibro-Myo
+Fibro-HT
+Fibro-EndN
+Fibro-Brst
+Fibro-EpiN
+Fibro-Mus
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fibro-Sk
+Fibro-GI
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dendrogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Hema B&#39;, &#39;Hema NK&#39;, &#39;Hema Tmem&#39;, &#39;Hema Tnaive&#39;, &#39;Hema Myeloid&#39;,
+       &#39;Hema Mast&#39;, &#39;Epi TPB&#39;, &#39;Epi AdrCtx&#39;, &#39;Mus Crd&#39;, &#39;Mus Skl&#39;, &#39;Epi Alv&#39;,
+       &#39;Epi Gas&#39;, &#39;Epi Ent&#39;, &#39;Epi Aci&#39;, &#39;Epi Krt/Lum&#39;, &#39;Epi Duc&#39;, &#39;Glia Schw&#39;,
+       &#39;Glia Oligo&#39;, &#39;Glia Astro&#39;, &#39;Epi Endcri&#39;, &#39;Neu Exc&#39;, &#39;Neu Inh&#39;,
+       &#39;Endo Vsc&#39;, &#39;Endo Lym&#39;, &#39;Epi BrstBasal&#39;, &#39;Perivascular&#39;, &#39;Fibro Adr&#39;,
+       &#39;Fibro Myo&#39;, &#39;Fibro HT&#39;, &#39;Fibro EndN&#39;, &#39;Fibro Brst&#39;, &#39;Fibro EpiN&#39;,
+       &#39;Fibro Mus&#39;, &#39;Fibro Sk&#39;, &#39;Fibro GI&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -718,6 +1123,66 @@
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="s1">&#39;c2&#39;</span>
+<span class="n">dendro_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;dendro_annot/</span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_dist</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_hclust</span><span class="si">}</span><span class="s1">.dendro&#39;</span>
+<span class="n">dendro</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dendro_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>CG_roc</th>
+      <th>CG_pr</th>
+      <th>3C_roc</th>
+      <th>3C_pr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0.531446</td>
+      <td>2</td>
+      <td>0.927452</td>
+      <td>0.992311</td>
+      <td>0.999877</td>
+      <td>0.999988</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -850,6 +1315,430 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/be8bb928dd908539b2d63cbee50ce38472d99ecaecf1eb321d752352a2c7d0a6.png" src="../_images/be8bb928dd908539b2d63cbee50ce38472d99ecaecf1eb321d752352a2c7d0a6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">_plot_dendrogram</span>
+
+<span class="n">dendro_all</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dendro_annot/All_</span><span class="si">{</span><span class="n">method_dist</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_hclust</span><span class="si">}</span><span class="s1">.dendro&#39;</span><span class="p">)</span>
+<span class="n">l1order</span> <span class="o">=</span> <span class="n">dendro_all</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">coord_offset</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">l1pos</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Create a figure and axis</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Iterate over the dendrogram order</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">l1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">l1order</span><span class="p">):</span>
+    <span class="c1"># Load the dendrogram from file</span>
+    <span class="n">dendro_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;dendro_annot/</span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_dist</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_hclust</span><span class="si">}</span><span class="s1">.dendro&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dendro_path</span><span class="p">):</span>
+        <span class="n">coord_offset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coord_offset</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">l1pos</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coord_offset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord_offset</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">xticklabels</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">l1</span><span class="p">]])</span>
+        <span class="k">continue</span>
+    
+    <span class="n">dendro</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dendro_path</span><span class="p">)</span>
+    <span class="n">nc</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">])</span>
+    <span class="n">coord_offset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coord_offset</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nc</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Modify the icoord with an offset</span>
+    <span class="n">modified_icoord</span> <span class="o">=</span> <span class="p">[[</span><span class="n">coord</span> <span class="o">+</span> <span class="n">coord_offset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">]</span> <span class="k">for</span> <span class="n">coords</span> <span class="ow">in</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">]]</span>
+    <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">modified_icoord</span>
+
+    <span class="c1"># Compute score for color linkages</span>
+    <span class="c1"># tmp = dendro.edge_stats</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;score_dis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">selp</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;CG_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;CG_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;3C_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;3C_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">selp</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;CG_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;CG_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;3C_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;3C_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="c1"># tmp[&#39;score_dis&#39;] = (tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1)&gt;0.9).astype(int) - (tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)&gt;0.9).astype(int)</span>
+    <span class="c1"># tmp[&#39;score_con&#39;] = tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1) - tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)</span>
+
+    <span class="n">icoord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">])</span>
+    <span class="n">dcoord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">])</span>
+    <span class="n">l1pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">icoord</span><span class="p">[</span><span class="n">dcoord</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dcoord</span><span class="p">)]))</span>
+    
+    <span class="c1"># Plot the dendrogram</span>
+    
+    <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">zz</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;icoord&#39;</span><span class="p">],</span> <span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;dcoord&#39;</span><span class="p">],</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;score_dis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">zz</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">color_mc</span>
+        <span class="k">elif</span> <span class="n">zz</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">color_3c</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="n">xticklabels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">])</span>
+    <span class="c1"># _plot_dendrogram(dendro.dendrogram[&#39;icoord&#39;], </span>
+    <span class="c1">#                  dendro.dendrogram[&#39;dcoord&#39;], </span>
+    <span class="c1">#                  dendro.dendrogram[&#39;ivl&#39;], </span>
+    <span class="c1">#                  p=30, </span>
+    <span class="c1">#                  n=dendro.linkage.shape[0]+1, </span>
+    <span class="c1">#                  mh=dendro.linkage.values[:, :2].max(), </span>
+    <span class="c1">#                  orientation=&#39;top&#39;, </span>
+    <span class="c1">#                  no_labels=False, </span>
+    <span class="c1">#                  color_list=dendro.dendrogram[&#39;color_list&#39;],</span>
+    <span class="c1">#                  leaf_font_size=8,</span>
+    <span class="c1">#                  leaf_rotation=90,</span>
+    <span class="c1">#                  # contraction_marks=contraction_marks,</span>
+    <span class="c1">#                  ax=ax,</span>
+    <span class="c1">#                  # above_threshold_color=above_threshold_color</span>
+    <span class="c1">#                 )</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">xticklabels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">)</span>
+<span class="n">selticks</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">))</span><span class="o">%</span><span class="k">2</span>)==1
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">))[</span><span class="n">selticks</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">[</span><span class="n">selticks</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Modify the icoord with an offset</span>
+<span class="n">node_pos</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:[</span><span class="n">l1pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dendro_all</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">])}</span>
+<span class="n">icoord</span><span class="p">,</span> <span class="n">dcoord</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">zz</span> <span class="ow">in</span> <span class="n">dendro_all</span><span class="o">.</span><span class="n">linkage</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span> <span class="o">=</span> <span class="n">node_pos</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span> <span class="n">node_pos</span><span class="p">[</span><span class="n">yy</span><span class="p">]</span>
+    <span class="n">icoord</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pos1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos2</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">dcoord</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pos1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">zz</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">pos2</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">node_pos</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">node_pos</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pos1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos2</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">zz</span><span class="p">]</span>
+    
+<span class="c1"># modified_icoord = [[coord + coord_offset[i] for coord in coords] for coords in dendro.dendrogram[&#39;icoord&#39;]]</span>
+<span class="c1"># dendro.dendrogram[&#39;icoord&#39;] = modified_icoord</span>
+
+<span class="c1"># Compute score for color linkages</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">dendro_all</span><span class="o">.</span><span class="n">linkage</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;score_dis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">selp</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;CG_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;CG_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.9</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;3C_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;3C_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">selp</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;CG_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;CG_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;3C_roc&#39;</span><span class="p">,</span> <span class="s1">&#39;3C_pr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c1"># tmp[&#39;score_dis&#39;] = (tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1)&gt;0.9).astype(int) - (tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)&gt;0.9).astype(int)</span>
+<span class="c1"># tmp[&#39;score_con&#39;] = tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1) - tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)</span>
+
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">zz</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">icoord</span><span class="p">,</span> <span class="n">dcoord</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;score_dis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">zz</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">color_mc</span>
+    <span class="k">elif</span> <span class="n">zz</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">color_3c</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l1pos</span><span class="p">)),</span> <span class="n">l1pos</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">l1order</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">],</span> 
+           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">xticklabels</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dendro_annot/dendrogram_</span><span class="si">{</span><span class="n">method_dist</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">method_hclust</span><span class="si">}</span><span class="s1">_vertical_odd.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pc_center</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c12&#39;, &#39;c14&#39;, &#39;c17&#39;, &#39;c18&#39;, &#39;c1&#39;, &#39;c16&#39;, &#39;c15&#39;, &#39;c10&#39;, &#39;c0&#39;, &#39;c2&#39;,
+       &#39;c13&#39;, &#39;c19&#39;, &#39;c11&#39;],
+      dtype=&#39;object&#39;, name=&#39;L1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 6, 9, 10, 1, 8, 7, 2, 0, 12, 5, 11, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dendro</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">[</span><span class="s1">&#39;ivl&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Fibro Gastrointestinal Myofibroblast Intestinal&#39;,
+ &#39;Fibro Gastrointestinal Esophagus 1&#39;,
+ &#39;Fibro Gastrointestinal Crypt RSPO Intestinal&#39;,
+ &#39;Fibro Gastrointestinal Crypt Colon&#39;,
+ &#39;Fibro Gastrointestinal Stomach 2&#39;,
+ &#39;Fibro Gastrointestinal Crypt WNT2B Colon&#39;,
+ &#39;Fibro Gastrointestinal Crypt WNT2B Ileum&#39;,
+ &#39;Fibro Gastrointestinal Stomach 1&#39;,
+ &#39;Fibro Gastrointestinal Villus WNT5B Intestinal&#39;,
+ &#39;Fibro Gastrointestinal Adventitial Lung&#39;,
+ &#39;Fibro Gastrointestinal Esophagus 2&#39;,
+ &#39;Fibro Gastrointestinal Alveolar Lung&#39;,
+ &#39;Fibro Gastrointestinal Peribronchial Lung&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dendro</span><span class="o">.</span><span class="n">linkage</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>CG_roc</th>
+      <th>CG_pr</th>
+      <th>3C_roc</th>
+      <th>3C_pr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>8</td>
+      <td>7</td>
+      <td>0.113088</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.711017</td>
+      <td>0.724613</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>10</td>
+      <td>1</td>
+      <td>0.147294</td>
+      <td>2</td>
+      <td>0.998502</td>
+      <td>0.999478</td>
+      <td>0.938134</td>
+      <td>0.974338</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>9</td>
+      <td>14</td>
+      <td>0.228103</td>
+      <td>3</td>
+      <td>0.999576</td>
+      <td>0.999656</td>
+      <td>0.884227</td>
+      <td>0.913788</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>12</td>
+      <td>5</td>
+      <td>0.264138</td>
+      <td>2</td>
+      <td>0.999421</td>
+      <td>0.999944</td>
+      <td>0.971698</td>
+      <td>0.996978</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2</td>
+      <td>0</td>
+      <td>0.268770</td>
+      <td>2</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.958849</td>
+      <td>0.982675</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>6</td>
+      <td>15</td>
+      <td>0.277078</td>
+      <td>4</td>
+      <td>0.999889</td>
+      <td>0.999950</td>
+      <td>0.982718</td>
+      <td>0.992174</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>11</td>
+      <td>3</td>
+      <td>0.305910</td>
+      <td>2</td>
+      <td>0.994771</td>
+      <td>0.998874</td>
+      <td>0.971024</td>
+      <td>0.993151</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>4</td>
+      <td>18</td>
+      <td>0.359297</td>
+      <td>5</td>
+      <td>0.998924</td>
+      <td>0.999929</td>
+      <td>0.975268</td>
+      <td>0.998344</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>13</td>
+      <td>17</td>
+      <td>0.365925</td>
+      <td>4</td>
+      <td>0.999479</td>
+      <td>0.999657</td>
+      <td>0.922991</td>
+      <td>0.950932</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>20</td>
+      <td>21</td>
+      <td>0.496783</td>
+      <td>9</td>
+      <td>0.998080</td>
+      <td>0.998670</td>
+      <td>0.995021</td>
+      <td>0.996996</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>16</td>
+      <td>19</td>
+      <td>0.497657</td>
+      <td>4</td>
+      <td>0.999589</td>
+      <td>0.999907</td>
+      <td>0.998849</td>
+      <td>0.999736</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>22</td>
+      <td>23</td>
+      <td>0.681520</td>
+      <td>13</td>
+      <td>0.999015</td>
+      <td>0.999495</td>
+      <td>0.983029</td>
+      <td>0.990930</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ct in L1_list:</span>
+<span class="c1">#     dendro = joblib.load(f&#39;dendro_annot/{ct}.dendro&#39;)</span>
+<span class="c1">#     tmp = dendro.edge_stats</span>
+<span class="c1">#     tmp[&#39;score_dis&#39;] = (tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1)&gt;0.9).astype(int) - (tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)&gt;0.9).astype(int)</span>
+<span class="c1">#     tmp[&#39;score_con&#39;] = tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1) - tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)</span>
+<span class="c1">#     fig, ax = plt.subplots(figsize=(3, 1), dpi=300)</span>
+<span class="c1">#     _ = plot_dendrogram(dendro=dendro.dendrogram,</span>
+<span class="c1">#                         linkage_df=dendro.linkage,</span>
+<span class="c1">#                         ax=ax,</span>
+<span class="c1">#                         line_palette=&quot;twilight&quot;,</span>
+<span class="c1">#                         plot_non_singleton=False,</span>
+<span class="c1">#                         line_hue=tmp[&#39;score_con&#39;].sort_index(),</span>
+<span class="c1">#                         line_hue_norm=[-0.5,0.5],</span>
+<span class="c1">#                        )</span>
+<span class="c1">#     ax.set_title(ct, fontsize=12)</span>
+<span class="c1">#     ax.set_xticklabels(ax.get_xticklabels(), fontsize=10)</span>
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ct in L1_list:</span>
+<span class="c1">#     dendro = joblib.load(f&#39;dendro_annot/{ct}.dendro&#39;)</span>
+<span class="c1">#     tmp = dendro.edge_stats</span>
+<span class="c1">#     tmp[&#39;score_dis&#39;] = (tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1)&gt;0.9).astype(int) - (tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)&gt;0.9).astype(int)</span>
+<span class="c1">#     # tmp[&#39;score_con&#39;] = tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1) - tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)</span>
+<span class="c1">#     fig, ax = plt.subplots(figsize=(3, 1), dpi=300)</span>
+<span class="c1">#     _ = plot_dendrogram(dendro=dendro.dendrogram,</span>
+<span class="c1">#                         linkage_df=dendro.linkage,</span>
+<span class="c1">#                         ax=ax,</span>
+<span class="c1">#                         line_palette=&quot;twilight&quot;,</span>
+<span class="c1">#                         plot_non_singleton=False,</span>
+<span class="c1">#                         line_hue=tmp[&#39;score_dis&#39;].sort_index(),</span>
+<span class="c1">#                         line_hue_norm=[-1.5,1.5],</span>
+<span class="c1">#                        )</span>
+<span class="c1">#     ax.set_title(ct, fontsize=12)</span>
+<span class="c1">#     ax.set_xticklabels(ax.get_xticklabels(), fontsize=10)</span>
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ct in L1_list:</span>
+<span class="c1">#     dendro = joblib.load(f&#39;dendro_annot/{ct}_{method_dist}_{method_hclust}.dendro&#39;)</span>
+<span class="c1">#     tmp = dendro.edge_stats</span>
+<span class="c1">#     tmp[&#39;score_dis&#39;] = (tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1)&gt;0.9).astype(int) - (tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)&gt;0.9).astype(int)</span>
+<span class="c1">#     # tmp[&#39;score_con&#39;] = tmp[[&#39;CG_roc&#39;, &#39;CG_pr&#39;]].min(axis=1) - tmp[[&#39;3C_roc&#39;, &#39;3C_pr&#39;]].min(axis=1)</span>
+<span class="c1">#     fig, ax = plt.subplots(figsize=(3, 1), dpi=300)</span>
+<span class="c1">#     _ = plot_dendrogram(dendro=dendro.dendrogram,</span>
+<span class="c1">#                         linkage_df=dendro.linkage,</span>
+<span class="c1">#                         ax=ax,</span>
+<span class="c1">#                         line_palette=&quot;twilight&quot;,</span>
+<span class="c1">#                         plot_non_singleton=False,</span>
+<span class="c1">#                         line_hue=tmp[&#39;score_dis&#39;].sort_index(),</span>
+<span class="c1">#                         line_hue_norm=[-1.5,1.5],</span>
+<span class="c1">#                        )</span>
+<span class="c1">#     ax.set_title(ct, fontsize=12)</span>
+<span class="c1">#     ax.set_xticklabels(ax.get_xticklabels(), fontsize=10)</span>
+    
+    
+</pre></div>
+</div>
 </div>
 </div>
 </section>

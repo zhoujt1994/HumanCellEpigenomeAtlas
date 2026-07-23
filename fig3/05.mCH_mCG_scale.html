@@ -646,6 +646,109 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="mi">5000000</span><span class="p">,</span> <span class="mi">35000000</span>
+
+<span class="n">data_all</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="s1">&#39;ACGT&#39;</span><span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="s1">&#39;ACGT&#39;</span><span class="p">}</span>
+<span class="k">with</span> <span class="n">pysam</span><span class="o">.</span><span class="n">TabixFile</span><span class="p">(</span><span class="n">allc_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">allc</span><span class="p">:</span>
+    <span class="n">allc_lines</span> <span class="o">=</span> <span class="n">allc</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">allc_lines</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">data_all</span><span class="p">[</span><span class="n">context</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pos</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;ACGT&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_all</span><span class="p">[</span><span class="n">context</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;mc&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="n">posfilter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">bed</span> <span class="ow">in</span> <span class="n">rm_list</span><span class="p">:</span>
+        <span class="n">bedtmp</span> <span class="o">=</span> <span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">end</span><span class="p">,</span> <span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">start</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="n">bedtmp</span><span class="p">:</span>
+            <span class="n">posfilter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">xx</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">yy</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">posfilter</span><span class="p">]</span>
+    <span class="n">data_mc</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mc&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">])</span>
+    <span class="n">data_cov</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">start</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">posres</span> <span class="ow">in</span> <span class="n">reslist</span><span class="p">:</span>
+        <span class="n">npos</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">//</span> <span class="n">posres</span> <span class="o">*</span> <span class="n">posres</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">data_mc</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">posres</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> <span class="o">/</span> <span class="n">data_cov</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">posres</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
+        <span class="c1"># tmp[np.isnan(tmp)] = 0</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">posres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+C
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+G
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+T
+1
+5
+10
+50
+100
+500
+1000
+5000
+10000
+50000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binres</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">binnify</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">,</span> <span class="n">binres</span><span class="p">)</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+<span class="n">chunk_size</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">//</span> <span class="mi">48</span>
+<span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span> <span class="o">//</span> <span class="n">chunk_size</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28760 48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -688,6 +791,148 @@
         <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
             <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">result</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># chunk = bed.iloc[100:105]</span>
+<span class="c1"># tmp = matrixch(allc_path, chunk)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">chunk</span> <span class="ow">in</span> <span class="n">bed</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;chunk&#39;</span><span class="p">):</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">matrixch</span><span class="p">,</span>
+            <span class="n">allc_path</span><span class="o">=</span><span class="n">allc_path</span><span class="p">,</span> 
+            <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">context</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">context</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chunk</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk13 finished
+chunk12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk21 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk16 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk8 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
+chunk5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk9 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk14 finished
+chunk3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk22 finished
+chunk23 finished
+chunk7 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk10 finished
+chunk20 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk11 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk26 finished
+chunk48 finished
+chunk24 finished
+chunk25 finished
+chunk27 finished
+chunk38 finished
+chunk29 finished
+chunk31 finished
+chunk28 finished
+chunk36 finished
+chunk30 finished
+chunk33 finished
+chunk34 finished
+chunk32 finished
+chunk42 finished
+chunk40 finished
+chunk37 finished
+chunk35 finished
+chunk44 finished
+chunk39 finished
+chunk46 finished
+chunk47 finished
+chunk43 finished
+chunk45 finished
+chunk41 finished
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">mC_100kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
     
 </pre></div>
 </div>
@@ -792,6 +1037,265 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/a8c8677b30e51672245e4ebf4bc61ad45972d315b02bed6af492e78265cd5fe4.png" src="../_images/a8c8677b30e51672245e4ebf4bc61ad45972d315b02bed6af492e78265cd5fe4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slop</span> <span class="o">=</span> <span class="mi">50000</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scRNA/pseudobulk/L1/L1.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(49501, 33)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+<span class="n">bed</span><span class="p">[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sfilter</span> <span class="o">=</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;strand&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sfilter</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sfilter</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sfilter</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span> <span class="o">//</span> <span class="mi">2</span>
+    
+<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[((</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">))]</span>
+<span class="n">chunk_size</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">//</span> <span class="mi">48</span>
+<span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">index</span> <span class="o">//</span> <span class="n">chunk_size</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chunk&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55733 48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">bed</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;chunk&#39;</span><span class="p">):</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">center</span><span class="o">-</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span><span class="o">+</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chr1 -47527 152473
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">matrixch</span><span class="p">(</span><span class="n">allc_path</span><span class="p">,</span> <span class="n">chunk</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">pysam</span><span class="o">.</span><span class="n">TabixFile</span><span class="p">(</span><span class="n">allc_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">allc</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">context</span><span class="p">:{}</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,(</span><span class="n">chrom</span><span class="p">,</span><span class="n">center</span><span class="p">,</span><span class="n">strand</span><span class="p">)</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;strand&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">context</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATCN&#39;</span><span class="p">}</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">center</span><span class="o">-</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span><span class="o">+</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span>
+            <span class="n">allc_lines</span> <span class="o">=</span> <span class="n">allc</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">allc_lines</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">context</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pos</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">])</span>
+            <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">context</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;mc&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>            
+                <span class="n">posfilter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">bed</span> <span class="ow">in</span> <span class="n">rm_list</span><span class="p">:</span>
+                    <span class="n">bedtmp</span> <span class="o">=</span> <span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">end</span><span class="p">,</span> <span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">start</span><span class="p">)]</span>
+                    <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="n">bedtmp</span><span class="p">:</span>
+                        <span class="n">posfilter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">xx</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">yy</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">posfilter</span><span class="p">]</span>
+                <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">start</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">npos</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+                <span class="n">data_mc</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mc&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">npos</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ws</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
+                <span class="n">data_cov</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">])),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">npos</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ws</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_mc</span> <span class="o">/</span> <span class="n">data_cov</span>
+                <span class="k">if</span> <span class="n">strand</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">][</span><span class="n">idx</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">chunk</span> <span class="ow">in</span> <span class="n">bed</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;chunk&#39;</span><span class="p">):</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">matrixch</span><span class="p">,</span>
+            <span class="n">allc_path</span><span class="o">=</span><span class="n">allc_path</span><span class="p">,</span> 
+            <span class="n">chunk</span><span class="o">=</span><span class="n">chunk</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">context</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">context</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chunk</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+        
+<span class="k">for</span> <span class="n">context</span> <span class="ow">in</span> <span class="s1">&#39;GATC&#39;</span><span class="p">:</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mC_geneslop100kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk3 finished
+chunk16 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk15 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk20 finished
+chunk13 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk23 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk11 finished
+chunk12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk21 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk22 finished
+chunk5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk19 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk9 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk17 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk14 finished
+chunk10 finished
+chunk4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk7 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk8 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk6 finished
+chunk18 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chunk25 finished
+chunk48 finished
+chunk24 finished
+chunk34 finished
+chunk32 finished
+chunk26 finished
+chunk29 finished
+chunk37 finished
+chunk28 finished
+chunk30 finished
+chunk35 finished
+chunk27 finished
+chunk33 finished
+chunk39 finished
+chunk40 finished
+chunk36 finished
+chunk41 finished
+chunk31 finished
+chunk38 finished
+chunk43 finished
+chunk42 finished
+chunk44 finished
+chunk45 finished
+chunk46 finished
+chunk47 finished
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">shifted_correlations</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    X: array of shape (200, n)</span>
+<span class="sd">    Returns: array of shape (100,)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---- Step 1: fill NaNs per column ----</span>
+    <span class="n">col_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">col_means</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># ---- Step 2: swap dimensions to n x 200 ----</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>                                     <span class="c1"># shape (n, 200)</span>
+
+    <span class="c1"># Precompute “baseline” (rows: n, cols: 100)</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">100</span><span class="p">]</span>                           <span class="c1"># (n, 100)</span>
+    <span class="n">base_mean</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">base_std</span>  <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">seg</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">:</span><span class="n">k</span><span class="o">+</span><span class="mi">100</span><span class="p">]</span>                     <span class="c1"># (n, 100)</span>
+
+        <span class="n">seg_mean</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">seg_std</span>  <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># covariance across the 100 positions (axis=1)</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="p">((</span><span class="n">seg</span> <span class="o">-</span> <span class="n">seg_mean</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">base</span> <span class="o">-</span> <span class="n">base_mean</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">coro</span> <span class="o">=</span> <span class="n">cov</span> <span class="o">/</span> <span class="p">(</span><span class="n">seg_std</span> <span class="o">*</span> <span class="n">base_std</span><span class="p">)</span>       <span class="c1"># correlation per row</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">coro</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                    <span class="c1"># average across n rows</span>
+
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>

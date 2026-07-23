@@ -579,6 +579,16 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># gene_meta = pd.read_csv(&#39;/anvil/scratch/x-maywu/project/ref/hg38/gencode-v30/gencode.v30.annotation.gene.flat.tsv.gz&#39;, sep=&#39;\t&#39;, header=0)</span>
+<span class="c1"># gene_meta[&#39;gene_id_idx&#39;] = gene_meta[&#39;gene_id&#39;].str.split(&#39;.&#39;).str[0]</span>
+<span class="c1"># ens2gene = gene_meta.set_index(&#39;gene_id_idx&#39;)[&#39;gene_name&#39;].to_dict()</span>
+<span class="c1"># gene2ens = gene_meta.set_index(&#39;gene_name&#39;)[&#39;gene_id_idx&#39;].to_dict()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#tf2call[&#39;Call&#39;].unique()</span>
 <span class="n">callmap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;MethylPlus&#39;</span><span class="p">:</span><span class="s1">&#39;MethylPlus&#39;</span><span class="p">,</span> 
  <span class="s1">&#39;MethylMinus&#39;</span><span class="p">:</span><span class="s1">&#39;MethylMinus&#39;</span><span class="p">,</span> 
@@ -608,7 +618,457 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read with whitespace as the delimiter</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">meta</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;#motif_id&#39;</span><span class="p">]</span>
+<span class="c1">#id2genename = meta[&#39;gene_name&#39;].to_dict()</span>
+<span class="n">id2genename</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">id2genename</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the path to your HTML file or a URL</span>
+<span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="s1">&#39;Region_set&#39;</span><span class="p">,</span> <span class="s1">&#39;NES&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/loop_peak_motif/*/*_ctx_results.html&#39;</span><span class="p">)]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#df.index = df[&#39;Unnamed: 0&#39;]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Region_set&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Region_set&#39;</span><span class="p">]]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Region_set</th>
+      <th>NES</th>
+      <th>AUC</th>
+      <th>Rank_at_max</th>
+      <th>Motif_hits</th>
+      <th>majortype</th>
+      <th>group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>flyfactorsurvey__l_3_neo38_SANGER_2.5_FBgn0086910</td>
+      <td>summit_peak_c31</td>
+      <td>4.757087</td>
+      <td>0.004720</td>
+      <td>2459.0</td>
+      <td>709.0</td>
+      <td>c31</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>metacluster_24.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.724101</td>
+      <td>0.004706</td>
+      <td>2300.0</td>
+      <td>742.0</td>
+      <td>c31</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>metacluster_167.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.275767</td>
+      <td>0.004504</td>
+      <td>749.0</td>
+      <td>256.0</td>
+      <td>c31</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>tfdimers__MD00428</td>
+      <td>summit_peak_c31</td>
+      <td>4.126995</td>
+      <td>0.004437</td>
+      <td>1256.0</td>
+      <td>390.0</td>
+      <td>c31</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>swissregulon__hs__EZH2</td>
+      <td>summit_peak_c31</td>
+      <td>3.976877</td>
+      <td>0.004369</td>
+      <td>1115.0</td>
+      <td>395.0</td>
+      <td>c31</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>tfdimers__MD00083</td>
+      <td>loop_peak_c20</td>
+      <td>3.155672</td>
+      <td>0.003011</td>
+      <td>1512.0</td>
+      <td>932.0</td>
+      <td>c20</td>
+      <td>loop</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>dbtfbs__ZNF2_HEK293_ENCSR011CKE_merged_N1</td>
+      <td>loop_peak_c20</td>
+      <td>3.063553</td>
+      <td>0.002996</td>
+      <td>4141.0</td>
+      <td>2449.0</td>
+      <td>c20</td>
+      <td>loop</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>metacluster_168.5</td>
+      <td>loop_peak_c20</td>
+      <td>3.043705</td>
+      <td>0.002993</td>
+      <td>7140.0</td>
+      <td>4216.0</td>
+      <td>c20</td>
+      <td>loop</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>metacluster_159.3</td>
+      <td>loop_peak_c20</td>
+      <td>3.001286</td>
+      <td>0.002986</td>
+      <td>8537.0</td>
+      <td>5974.0</td>
+      <td>c20</td>
+      <td>loop</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>tfdimers__MD00242</td>
+      <td>loop_peak_c20</td>
+      <td>3.000326</td>
+      <td>0.002985</td>
+      <td>8464.0</td>
+      <td>4909.0</td>
+      <td>c20</td>
+      <td>loop</td>
+    </tr>
+  </tbody>
+</table>
+<p>1189 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">genelist</span> <span class="o">=</span> <span class="n">id2genename</span><span class="p">[</span><span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genelist</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>metacluster_24.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.724101</td>
+      <td>0.004706</td>
+      <td>2300.0</td>
+      <td>742.0</td>
+      <td>c31</td>
+      <td>summit</td>
+      <td>BCL6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>metacluster_24.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.724101</td>
+      <td>0.004706</td>
+      <td>2300.0</td>
+      <td>742.0</td>
+      <td>c31</td>
+      <td>summit</td>
+      <td>BPTF</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>metacluster_24.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.724101</td>
+      <td>0.004706</td>
+      <td>2300.0</td>
+      <td>742.0</td>
+      <td>c31</td>
+      <td>summit</td>
+      <td>E2F1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>metacluster_24.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.724101</td>
+      <td>0.004706</td>
+      <td>2300.0</td>
+      <td>742.0</td>
+      <td>c31</td>
+      <td>summit</td>
+      <td>E2F6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>metacluster_24.2</td>
+      <td>summit_peak_c31</td>
+      <td>4.724101</td>
+      <td>0.004706</td>
+      <td>2300.0</td>
+      <td>742.0</td>
+      <td>c31</td>
+      <td>summit</td>
+      <td>EP300</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;Region_set&#39;</span><span class="p">,</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span><span class="s1">&#39;AUC&#39;</span><span class="p">,</span><span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">,</span><span class="s1">&#39;majortype&#39;</span><span class="p">,</span><span class="s1">&#39;group&#39;</span><span class="p">,</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tmp = meta[meta[&#39;gene_name&#39;]==&#39;CTCF&#39;][&#39;gene_name&#39;]</span>
+<span class="c1"># for k,v in zip(tmp.index,tmp.values):</span>
+<span class="c1">#     id2genename[k] = v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># meta = meta.loc[meta.groupby(&#39;#motif_id&#39;)[&#39;expr&#39;].idxmax()]</span>
+<span class="c1"># meta.index = meta[&#39;#motif_id&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;loop_peak_motif/majortype_merged_loop_TF_all.hdf&#39;</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;loop_peak_motif/majortype_merged_loop_TF_all.hdf&#39;</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df = df.loc[df[&#39;Unnamed: 0&#39;].isin(id2genename.keys())]</span>
+<span class="c1"># df[&#39;gene&#39;] = df[&#39;Unnamed: 0&#39;].map(id2genename)</span>
+<span class="c1"># df.head()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Region_set</th>
+      <th>NES</th>
+      <th>AUC</th>
+      <th>Rank_at_max</th>
+      <th>Motif_hits</th>
+      <th>majortype</th>
+      <th>group</th>
+      <th>gene</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>metacluster_101.6</td>
+      <td>summit_peak_c5</td>
+      <td>5.281048</td>
+      <td>0.005448</td>
+      <td>5042.0</td>
+      <td>637.0</td>
+      <td>c5</td>
+      <td>summit</td>
+      <td>CTCF</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kznf__CTCF_Transfac.4_Transfac</td>
+      <td>summit_peak_c5</td>
+      <td>5.275421</td>
+      <td>0.005444</td>
+      <td>4958.0</td>
+      <td>465.0</td>
+      <td>c5</td>
+      <td>summit</td>
+      <td>CTCF</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>dbtfbs__ZNF2_HEK293_ENCSR011CKE_merged_N1</td>
+      <td>summit_peak_c5</td>
+      <td>4.201181</td>
+      <td>0.004787</td>
+      <td>4909.0</td>
+      <td>436.0</td>
+      <td>c5</td>
+      <td>summit</td>
+      <td>ZNF2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>metacluster_159.3</td>
+      <td>summit_peak_c5</td>
+      <td>4.187881</td>
+      <td>0.004779</td>
+      <td>5026.0</td>
+      <td>644.0</td>
+      <td>c5</td>
+      <td>summit</td>
+      <td>CTCF</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>metacluster_101.5</td>
+      <td>summit_peak_c5</td>
+      <td>3.818548</td>
+      <td>0.004553</td>
+      <td>5041.0</td>
+      <td>600.0</td>
+      <td>c5</td>
+      <td>summit</td>
+      <td>CTCF</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;summit&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selg</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">selg</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">cluster</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;gene&#39;</span><span class="p">][:</span><span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">selg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">selg</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">selg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>68
 </pre></div>
 </div>
 </div>
@@ -641,6 +1101,432 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;majortype&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
+<span class="n">col</span><span class="o">=</span><span class="s1">&#39;AUC&#39;</span>
+<span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>majortype</th>
+      <th>c0</th>
+      <th>c1</th>
+      <th>c10</th>
+      <th>c11</th>
+      <th>c12</th>
+      <th>c13</th>
+      <th>c14</th>
+      <th>c15</th>
+      <th>c16</th>
+      <th>c17</th>
+      <th>...</th>
+      <th>c31</th>
+      <th>c32</th>
+      <th>c33</th>
+      <th>c34</th>
+      <th>c35</th>
+      <th>c4</th>
+      <th>c5</th>
+      <th>c6</th>
+      <th>c8</th>
+      <th>c9</th>
+    </tr>
+    <tr>
+      <th>gene</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AHDC1</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003162</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>AHR</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003191</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003430</td>
+      <td>0.000000</td>
+      <td>0.003594</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>ARID3A</th>
+      <td>0.004184</td>
+      <td>0.004146</td>
+      <td>0.003729</td>
+      <td>0.003982</td>
+      <td>0.004501</td>
+      <td>0.004766</td>
+      <td>0.004588</td>
+      <td>0.004134</td>
+      <td>0.004736</td>
+      <td>0.004558</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.004482</td>
+      <td>0.003841</td>
+      <td>0.004338</td>
+      <td>0.003835</td>
+      <td>0.005224</td>
+      <td>0.005448</td>
+      <td>0.004581</td>
+      <td>0.005292</td>
+      <td>0.004083</td>
+    </tr>
+    <tr>
+      <th>ARID5B</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003162</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>ARNT</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003554</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ZSCAN5B</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003657</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>ZSCAN5C</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003657</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>ZXDA</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003300</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003509</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003622</td>
+      <td>0.000000</td>
+      <td>0.004137</td>
+      <td>0.003468</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>ZXDB</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003300</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003509</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003622</td>
+      <td>0.000000</td>
+      <td>0.004137</td>
+      <td>0.003468</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>ZXDC</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003300</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003509</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003622</td>
+      <td>0.000000</td>
+      <td>0.004137</td>
+      <td>0.003468</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>577 rows × 34 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df_list</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1">#selg = []</span>
+<span class="n">nes</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">,]:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># tmp[&#39;gene&#39;] = tmp.index # .map(id2genename)</span>
+    <span class="c1"># tmp = tmp.groupby(&#39;gene&#39;).max()</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">]:</span>
+        <span class="c1"># for cluster in tmp.columns:</span>
+        <span class="c1">#     selg += list(tmp[cluster].sort_values()[-5:].index)</span>
+        <span class="c1"># selg = np.unique(selg)</span>
+        <span class="n">data</span> <span class="o">=</span><span class="n">zscore</span><span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#data = tmp.loc[selg]</span>
+        <span class="n">nes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span>
+        <span class="n">melted_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>  <span class="n">z_score</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span> <span class="c1">#metric=&#39;cosine&#39;,z_score=0,  vmin=0,vmax=3, </span>
+        <span class="n">rorder</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span>
+        <span class="n">corder</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="n">data</span> <span class="o">=</span> <span class="n">zscore</span><span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#data = tmp.loc[selg]</span>
+        <span class="n">melted_data</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>  <span class="n">z_score</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span>  <span class="p">)</span> <span class="c1">#metric=&#39;cosine&#39;,  z_score=0,vmin=0,vmax=3, </span>
+        <span class="c1">#if col == &#39;AUC&#39;:</span>
+            
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">melted_df_list</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">melted_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df_list</span><span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">][[</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]:</span>
+    <span class="n">melted_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">melted_df_list</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+<span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span>
+<span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">nes</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">corder</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">nes</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">rorder</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df</span><span class="p">[</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Rank_at_max&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">melted_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1169, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tf2call</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Little effect&#39;, &#39;MethylMinus&#39;, &#39;MethylPlus&#39;, &#39;no info&#39;],
+      dtype=&#39;&lt;U13&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 <span class="n">color_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span><span class="n">colors</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tf2call</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span> <span class="p">}</span>
@@ -654,10 +1540,878 @@
 <div class="cell_output docutils container">
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.7013952690139202
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="loop-dmr">
 <h1>loop DMR<a class="headerlink" href="#loop-dmr" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the path to your HTML file or a URL</span>
+<span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="s1">&#39;Region_set&#39;</span><span class="p">,</span> <span class="s1">&#39;NES&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/loop_peak_motif/*/*_ctx_results.html&#39;</span><span class="p">)]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#df.index = df[&#39;Unnamed: 0&#39;]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Region_set&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Region_set&#39;</span><span class="p">]]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Region_set</th>
+      <th>NES</th>
+      <th>AUC</th>
+      <th>Rank_at_max</th>
+      <th>Motif_hits</th>
+      <th>majortype</th>
+      <th>group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.579140</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>metacluster_101.6</td>
+      <td>summit_dmr_c29</td>
+      <td>5.703285</td>
+      <td>0.004398</td>
+      <td>6432.0</td>
+      <td>991.0</td>
+      <td>c29</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>hdpi__BCL11A</td>
+      <td>summit_dmr_c29</td>
+      <td>4.114440</td>
+      <td>0.003840</td>
+      <td>577.0</td>
+      <td>104.0</td>
+      <td>c29</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>metacluster_101.2</td>
+      <td>summit_dmr_c29</td>
+      <td>3.908422</td>
+      <td>0.003767</td>
+      <td>3968.0</td>
+      <td>600.0</td>
+      <td>c29</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>predrem__nrMotif1056</td>
+      <td>summit_dmr_c29</td>
+      <td>3.665377</td>
+      <td>0.003682</td>
+      <td>711.0</td>
+      <td>119.0</td>
+      <td>c29</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>jaspar__MA1085.2</td>
+      <td>summit_dmr_c10</td>
+      <td>3.237482</td>
+      <td>0.002894</td>
+      <td>809.0</td>
+      <td>350.0</td>
+      <td>c10</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>predrem__nrMotif1763</td>
+      <td>summit_dmr_c10</td>
+      <td>3.222392</td>
+      <td>0.002892</td>
+      <td>792.0</td>
+      <td>351.0</td>
+      <td>c10</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>elemento__AGCGCGC</td>
+      <td>summit_dmr_c10</td>
+      <td>3.208793</td>
+      <td>0.002890</td>
+      <td>2990.0</td>
+      <td>1208.0</td>
+      <td>c10</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>metacluster_131.9</td>
+      <td>summit_dmr_c10</td>
+      <td>3.163747</td>
+      <td>0.002883</td>
+      <td>6151.0</td>
+      <td>2459.0</td>
+      <td>c10</td>
+      <td>summit</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>predrem__nrMotif1633</td>
+      <td>summit_dmr_c10</td>
+      <td>3.021045</td>
+      <td>0.002862</td>
+      <td>3260.0</td>
+      <td>1269.0</td>
+      <td>c10</td>
+      <td>summit</td>
+    </tr>
+  </tbody>
+</table>
+<p>1100 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">genelist</span> <span class="o">=</span> <span class="n">id2genename</span><span class="p">[</span><span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genelist</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>ARID3A</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>CTCF</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>CTCFL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>HMGXB4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>KLF16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;Region_set&#39;</span><span class="p">,</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span><span class="s1">&#39;AUC&#39;</span><span class="p">,</span><span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">,</span><span class="s1">&#39;majortype&#39;</span><span class="p">,</span><span class="s1">&#39;group&#39;</span><span class="p">,</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;loop_dmr_motif/pycistarget_majortype_merged_loopdmr_TF_all.hdf&#39;</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;loop_dmr_motif/pycistarget_majortype_merged_loopdmr_TF_all.hdf&#39;</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="c1"># df = df.loc[df[&#39;Unnamed: 0&#39;].isin(id2genename.keys())]</span>
+<span class="c1"># df[&#39;gene&#39;] = df[&#39;Unnamed: 0&#39;].map(id2genename)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;summit&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>Region_set</th>
+      <th>NES</th>
+      <th>AUC</th>
+      <th>Rank_at_max</th>
+      <th>Motif_hits</th>
+      <th>majortype</th>
+      <th>group</th>
+      <th>gene</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>ARID3A</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>CTCF</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>CTCFL</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>HMGXB4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>metacluster_159.3</td>
+      <td>summit_dmr_c29</td>
+      <td>6.57914</td>
+      <td>0.004706</td>
+      <td>5502.0</td>
+      <td>894.0</td>
+      <td>c29</td>
+      <td>summit</td>
+      <td>KLF16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selg</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">cluster</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;gene&#39;</span><span class="p">][:</span><span class="mi">30</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="n">selg</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<span class="n">selg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">selg</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">selg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>134
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selg = [&#39;CTCF&#39;,&#39;YY1&#39;,&#39;BACH2&#39;,&#39;RUNX3&#39;,&#39;JUNB&#39;,&#39;SMC3&#39;,&#39;NFATC4&#39;,&#39;TBX5&#39;,&#39;PDX1&#39;,&#39;PAX3&#39;,</span>
+<span class="c1">#         &#39;DLX2&#39;,&#39;SOX15&#39;, &#39;NR3C1&#39;,&#39;KLF16&#39;, &#39;SIX4&#39;,&#39;FOXA1&#39;,&#39;NR2F1&#39;]</span>
+<span class="n">selg</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CTCF&#39;</span><span class="p">,</span><span class="s1">&#39;YY1&#39;</span><span class="p">,</span><span class="s1">&#39;BACH2&#39;</span><span class="p">,</span><span class="s1">&#39;RUNX3&#39;</span><span class="p">,</span><span class="s1">&#39;JUNB&#39;</span><span class="p">,</span><span class="s1">&#39;SMC3&#39;</span><span class="p">,</span><span class="s1">&#39;NFATC4&#39;</span><span class="p">,</span><span class="s1">&#39;TBX5&#39;</span><span class="p">,</span><span class="s1">&#39;PDX1&#39;</span><span class="p">,</span><span class="s1">&#39;PAX3&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;CEBPB&#39;</span><span class="p">,</span><span class="s1">&#39;SOX17&#39;</span><span class="p">,</span> <span class="s1">&#39;NR4A2&#39;</span><span class="p">,</span><span class="s1">&#39;TFAP2C&#39;</span><span class="p">,</span> <span class="s1">&#39;TEAD4&#39;</span><span class="p">,</span><span class="s1">&#39;FOXA1&#39;</span><span class="p">,</span><span class="s1">&#39;MYF6&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf2call</span> <span class="o">=</span> <span class="n">jaspr_meta</span><span class="p">[</span><span class="n">jaspr_meta</span><span class="p">[</span><span class="s1">&#39;TF name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())][[</span><span class="s1">&#39;TF name&#39;</span><span class="p">,</span><span class="s1">&#39;Call&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">tf2call</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">tf2call</span><span class="p">[</span><span class="s1">&#39;TF name&#39;</span><span class="p">]</span>
+<span class="n">tf2call</span> <span class="o">=</span> <span class="n">tf2call</span><span class="p">[</span><span class="s1">&#39;Call&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">jaspr_meta</span><span class="p">[[</span><span class="s1">&#39;TF name&#39;</span><span class="p">,</span> <span class="s1">&#39;Call&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;TF name&#39;</span><span class="p">]</span>
+<span class="n">tf2call</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Call&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">tf2call</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">tf2call</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;no info&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="s1">&#39;majortype&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)]</span>
+<span class="n">col</span><span class="o">=</span><span class="s1">&#39;AUC&#39;</span>
+<span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>majortype</th>
+      <th>c0</th>
+      <th>c1</th>
+      <th>c10</th>
+      <th>c11</th>
+      <th>c12</th>
+      <th>c13</th>
+      <th>c14</th>
+      <th>c15</th>
+      <th>c16</th>
+      <th>c17</th>
+      <th>...</th>
+      <th>c32</th>
+      <th>c33</th>
+      <th>c34</th>
+      <th>c35</th>
+      <th>c36</th>
+      <th>c4</th>
+      <th>c5</th>
+      <th>c6</th>
+      <th>c8</th>
+      <th>c9</th>
+    </tr>
+    <tr>
+      <th>gene</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AHDC1</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>AR</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>ARID3A</th>
+      <td>0.004368</td>
+      <td>0.004546</td>
+      <td>0.003491</td>
+      <td>0.004831</td>
+      <td>0.005354</td>
+      <td>0.005381</td>
+      <td>0.005177</td>
+      <td>0.000000</td>
+      <td>0.004023</td>
+      <td>0.006269</td>
+      <td>...</td>
+      <td>0.006652</td>
+      <td>0.005152</td>
+      <td>0.004287</td>
+      <td>0.005551</td>
+      <td>0.004499</td>
+      <td>0.006524</td>
+      <td>0.006272</td>
+      <td>0.005011</td>
+      <td>0.005305</td>
+      <td>0.00592</td>
+    </tr>
+    <tr>
+      <th>ARID5B</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>ARNT</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.004203</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ZSCAN32</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>ZSCAN5A</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>ZSCAN5B</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>ZSCAN5C</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.003171</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+    <tr>
+      <th>ZSCAN9</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+    </tr>
+  </tbody>
+</table>
+<p>549 rows × 35 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df_list</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1">#selg = []</span>
+<span class="n">nes</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">,]:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># tmp[&#39;gene&#39;] = tmp.index # .map(id2genename)</span>
+    <span class="c1"># tmp = tmp.groupby(&#39;gene&#39;).max()</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">]:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span> <span class="c1">#zscore(zscore(tmp.loc[selg], axis=0), axis=1)</span>
+        <span class="n">nes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span>
+        <span class="n">melted_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">3</span> <span class="p">)</span> <span class="c1">#metric=&#39;cosine&#39;,z_score=0,  vmin=0,vmax=3, </span>
+        <span class="n">rorder</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span>
+        <span class="n">corder</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span>
+    <span class="k">else</span><span class="p">:</span>  
+        <span class="n">data</span> <span class="o">=</span> <span class="n">zscore</span><span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#data = tmp.loc[selg]</span>
+        <span class="n">melted_data</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span>  <span class="n">z_score</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span>  <span class="p">)</span> <span class="c1">#metric=&#39;cosine&#39;,  z_score=0,vmin=0,vmax=3, </span>
+        <span class="c1">#if col == &#39;AUC&#39;:</span>
+            
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">melted_df_list</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">melted_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df_list</span><span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">][[</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;Rank_at_max&#39;</span><span class="p">,</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]:</span>
+    <span class="n">melted_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">melted_df_list</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+<span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Motif_hits&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">]</span>
+<span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;cluster_Name&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">nes</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">corder</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">nes</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">rorder</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">melted_df</span> <span class="o">=</span> <span class="n">melted_df</span><span class="p">[</span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;Rank_at_max&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">melted_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(183, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.013655
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span><span class="p">[</span><span class="s1">&#39;NES&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.899961
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="homer-loop-dmr">
 <h1>homer loop dmr<a class="headerlink" href="#homer-loop-dmr" title="Link to this heading">#</a></h1>
@@ -1110,6 +2864,151 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2412, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#melted_df = melted_df[melted_df[&#39;-Log P-value&#39;]&gt;7]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted_df</span><span class="c1">#[melted_df[&#39;-Log P-value&#39;]&gt;7]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gene</th>
+      <th>cluster_Name</th>
+      <th>-Log P-value</th>
+      <th># of Target Sequences with Motif</th>
+      <th>Motif_hits</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AP-2alpha</td>
+      <td>c0</td>
+      <td>-0.261372</td>
+      <td>9431.0</td>
+      <td>3.974604</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AP-2alpha</td>
+      <td>c1</td>
+      <td>-0.556617</td>
+      <td>4501.0</td>
+      <td>3.653405</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AP-2alpha</td>
+      <td>c10</td>
+      <td>-0.048206</td>
+      <td>29608.0</td>
+      <td>4.471424</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AP-2alpha</td>
+      <td>c11</td>
+      <td>-0.323971</td>
+      <td>4228.0</td>
+      <td>3.626238</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AP-2alpha</td>
+      <td>c12</td>
+      <td>-0.034963</td>
+      <td>6727.0</td>
+      <td>3.827886</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2407</th>
+      <td>Zfp281</td>
+      <td>c4</td>
+      <td>-0.230802</td>
+      <td>1594.0</td>
+      <td>3.202761</td>
+    </tr>
+    <tr>
+      <th>2408</th>
+      <td>Zfp281</td>
+      <td>c5</td>
+      <td>-0.115041</td>
+      <td>293.0</td>
+      <td>2.468347</td>
+    </tr>
+    <tr>
+      <th>2409</th>
+      <td>Zfp281</td>
+      <td>c6</td>
+      <td>-0.262498</td>
+      <td>3189.0</td>
+      <td>3.503791</td>
+    </tr>
+    <tr>
+      <th>2410</th>
+      <td>Zfp281</td>
+      <td>c8</td>
+      <td>-0.223470</td>
+      <td>1756.0</td>
+      <td>3.244772</td>
+    </tr>
+    <tr>
+      <th>2411</th>
+      <td>Zfp281</td>
+      <td>c9</td>
+      <td>-0.448270</td>
+      <td>807.0</td>
+      <td>2.907411</td>
+    </tr>
+  </tbody>
+</table>
+<p>2412 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-6.907755278982137
 </pre></div>
 </div>
 </div>

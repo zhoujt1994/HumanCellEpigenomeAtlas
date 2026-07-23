@@ -722,6 +722,26 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
+<span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/merged_cool_impute/25K/L1/c7-b1.Q.cool&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cool</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;group_n_cells&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_stats</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">loop_all</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">summit_all</span> <span class="o">=</span> <span class="p">[]</span>
@@ -739,6 +759,18 @@
 <span class="n">loop_stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">loop_stats</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pixel_count&#39;</span><span class="p">,</span> <span class="s1">&#39;pixel_length&#39;</span><span class="p">,</span> <span class="s1">&#39;summit_count&#39;</span><span class="p">,</span> <span class="s1">&#39;summit_length&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">loop_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">loop_all</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">summit_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">summit_all</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loop_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">summit_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11180225 724461
 </pre></div>
 </div>
 </div>
@@ -803,6 +835,335 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/b6523545faf00d42196074861bed2ad1a19c0321f532686ab0056569459f2af6.png" src="../_images/b6523545faf00d42196074861bed2ad1a19c0321f532686ab0056569459f2af6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">schicluster.loop.loop_calling</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_summit</span>
+<span class="n">bedpe_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;chrom2&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">,</span> <span class="s1">&#39;y2&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">loop/majortype/c1/c1.loop.bedpe&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">loop</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">bedpe_cols</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist_thres</span><span class="p">,</span> <span class="n">resolution</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">10000</span>
+<span class="n">summit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+            <span class="n">find_summit</span><span class="p">(</span>
+                <span class="n">loop</span><span class="o">=</span><span class="n">sub_df</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span> <span class="n">dist_thres</span><span class="o">=</span><span class="n">dist_thres</span> <span class="o">//</span> <span class="n">resolution</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">sub_df</span> <span class="ow">in</span> <span class="n">loop</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;chrom&#39;</span><span class="p">)</span>
+        <span class="p">],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">summit</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6546
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">looppath</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">loop/subtype/subtype-loop-path.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">looppath</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>celltype_L2_both-tissue</th>
+      <th>celltype_L2_both</th>
+      <th>loop_path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>52</th>
+      <td>c3-b11-P</td>
+      <td>c3-b11</td>
+      <td>gs://ecker-may-entex-analysis/loop/122024-subt...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>c3-b12-AG</td>
+      <td>c3-b12</td>
+      <td>gs://ecker-may-entex-analysis/loop/122024-subt...</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>c3-b14-LV</td>
+      <td>c3-b14</td>
+      <td>gs://ecker-may-entex-analysis/loop/122024-subt...</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>c3-b13-M1C</td>
+      <td>c3-b13</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>c22-b0-PI</td>
+      <td>c22-b0</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1117</th>
+      <td>c16-b11-M1C</td>
+      <td>c16-b11</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+    <tr>
+      <th>1118</th>
+      <td>c16-b12-M1C</td>
+      <td>c16-b12</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+    <tr>
+      <th>1120</th>
+      <td>c16-b13-M1C</td>
+      <td>c16-b13</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+    <tr>
+      <th>1124</th>
+      <td>c21-b5-NTb</td>
+      <td>c21-b5</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+    <tr>
+      <th>1133</th>
+      <td>c21-b6-Sk</td>
+      <td>c21-b6</td>
+      <td>gs://ecker-may-entex-analysis/loop/241218-subt...</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">ct</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;gsutil cp </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">.loop.bedpe </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">loop/subtype/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.loop.bedpe&#39;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ct</span>
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">ct</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;gsutil ls </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/Success &gt; success_</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.txt&#39;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ct</span>
+    
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">group</span><span class="p">,</span><span class="n">ct</span><span class="p">,</span><span class="n">path</span> <span class="ow">in</span> <span class="n">looppath</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">check</span><span class="p">,</span>
+            <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+            <span class="n">ct</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span>
+            <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c20-b0 finished
+c6-b11 finished
+c6-b12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c32-b1 finished
+c34-b2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34-b3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23-b1 finished
+c23-b2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23-b3 finished
+c23-b4 finished
+c23-b5 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23-b6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c31-b0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14-b0 finished
+c14-b3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14-b1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14-b4 finished
+c15-b2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c15-b3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5-b1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5-b0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c5-b2 finished
+c10-b0 finished
+c10-b5 finished
+c10-b4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-b1 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-b6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-b2 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-b7 finished
+c10-b3 finished
+c10-b8 finished
+c10-b9 finished
+c10-b10 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-b11 finished
+c10-b12 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10-b13 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16-b4 finished
+c16-b5 finished
+c16-b2 finished
+c16-b3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16-b7 finished
+c16-b6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c16-b1 finished
+c16-b9 finished
+c16-b8 finished
+c16-b10 finished
+c16-b11 finished
+c16-b12 finished
+c16-b13 finished
+c21-b5 finished
+c21-b6 finished
+c3-b13 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6-b10 finished
+c20-b2 finished
+c13-b0 finished
+c4-b1 finished
+c18-b2 finished
+c22-b0 finished
+c2-b0 finished
+c3-b12 finished
+c9-b0 finished
+c20-b1 finished
+c18-b6 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c13-b3 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c17-b0 finished
+c4-b0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c9-b1 finished
+c17-b1 finished
+c18-b5 finished
+c8-b1 finished
+c20-b3 finished
+c4-b4 finished
+c29-b0 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c2-b1 finished
+c30-b0 finished
+c29-b4 finished
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c3-b11 finished
+c3-b14 finished
+c4-b3 finished
+c4-b2 finished
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># for f in $(cat success*txt | awk -F&#39;/&#39; &#39;{print $(NF-1)}&#39; | cut -d- -f1-2 | sort); do wc -l ${f}.loop.bedpe; done</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>

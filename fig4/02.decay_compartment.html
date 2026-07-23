@@ -622,6 +622,22 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">compall</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">binfilter</span><span class="p">,</span> <span class="n">compall</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">:]]</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">qnorm</span><span class="o">.</span><span class="n">quantile_normalize</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+<span class="n">compall</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">binfilter</span><span class="p">,</span> <span class="n">compall</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compall</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;compartment/L1/comp.</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">.qnorm.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distbin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">8.01</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mi">100</span><span class="p">))</span>
 <span class="c1"># difflogbin = np.power(10, np.arange(-2.5, 0.61, 3.1/50))</span>
 <span class="n">diffbin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">30.01</span><span class="p">,</span> <span class="mi">30</span><span class="o">/</span><span class="mi">50</span><span class="p">)</span>
@@ -658,6 +674,31 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">obs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contact_hist(contact_path=f&#39;{indir}contact/{cell}.3C.contact.rmbkl.tsv.gz&#39;, ct=ct)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[538.,  96.,  26., ...,   0.,   0.,   0.],
+        [540.,  58.,  19., ...,   0.,   0.,   0.],
+        [539.,  61.,  13., ...,   0.,   0.,   0.],
+        ...,
+        [ 62.,  62.,  41., ...,   0.,   0.,   0.],
+        [ 23.,  52.,  25., ...,   0.,   0.,   0.],
+        [ 31.,  31.,  25., ...,   0.,   0.,   0.]]),
+ array([[ 0.,  1.,  0., ...,  9.,  5., 13.],
+        [ 0.,  0.,  0., ...,  2., 13.,  9.],
+        [ 0.,  0.,  0., ..., 10.,  3.,  1.],
+        ...,
+        [ 0.,  0.,  0., ...,  0.,  0.,  0.],
+        [ 0.,  0.,  0., ...,  0.,  0.,  0.],
+        [ 0.,  0.,  0., ...,  0.,  0.,  0.]]))
 </pre></div>
 </div>
 </div>
@@ -866,6 +907,13 @@ c12 finished
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_convolve</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_convolve</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_convolve</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">convolve</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">weights</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

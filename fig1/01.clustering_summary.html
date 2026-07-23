@@ -718,6 +718,18 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loopl</span> <span class="o">*</span> <span class="n">resl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>116840000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_allc</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">indir</span>
     <span class="n">allc_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged_allc/L1/CGN/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.CGN-Merge.allc.tsv.gz&#39;</span>
@@ -909,6 +921,49 @@ c1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># L1_color = [</span>
+<span class="c1">#     &quot;#dd7f87&quot;,</span>
+<span class="c1">#     &quot;#c43f52&quot;,</span>
+<span class="c1">#     &quot;#d33d33&quot;,</span>
+<span class="c1">#     &quot;#e37a5b&quot;,</span>
+<span class="c1">#     &quot;#a44b29&quot;,</span>
+<span class="c1">#     &quot;#e0742b&quot;,</span>
+<span class="c1">#     &quot;#d99d6c&quot;,</span>
+<span class="c1">#     &quot;#91652d&quot;,</span>
+<span class="c1">#     &quot;#d9a138&quot;,</span>
+<span class="c1">#     &quot;#9f892f&quot;,</span>
+<span class="c1">#     &quot;#aeb268&quot;,</span>
+<span class="c1">#     &quot;#a9b836&quot;,</span>
+<span class="c1">#     &quot;#63711c&quot;,</span>
+<span class="c1">#     &quot;#627037&quot;,</span>
+<span class="c1">#     &quot;#579232&quot;,</span>
+<span class="c1">#     &quot;#65bc3f&quot;,</span>
+<span class="c1">#     &quot;#3f8146&quot;,</span>
+<span class="c1">#     &quot;#53c067&quot;,</span>
+<span class="c1">#     &quot;#6fb685&quot;,</span>
+<span class="c1">#     &quot;#46cb97&quot;,</span>
+<span class="c1">#     &quot;#2b7f63&quot;,</span>
+<span class="c1">#     &quot;#41bfbf&quot;,</span>
+<span class="c1">#     &quot;#4aa5d4&quot;,</span>
+<span class="c1">#     &quot;#7199df&quot;,</span>
+<span class="c1">#     &quot;#5366a9&quot;,</span>
+<span class="c1">#     &quot;#657ce4&quot;,</span>
+<span class="c1">#     &quot;#695dd8&quot;,</span>
+<span class="c1">#     &quot;#b58edb&quot;,</span>
+<span class="c1">#     &quot;#7c4fa5&quot;,</span>
+<span class="c1">#     &quot;#af5ad1&quot;,</span>
+<span class="c1">#     &quot;#e36aca&quot;,</span>
+<span class="c1">#     &quot;#cc81b4&quot;,</span>
+<span class="c1">#     &quot;#ad398b&quot;,</span>
+<span class="c1">#     &quot;#984866&quot;,</span>
+<span class="c1">#     &quot;#e04986&quot;,</span>
+<span class="c1"># ]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata</span>
 </pre></div>
@@ -924,6 +979,169 @@ c1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="s1">&#39;TrCo_&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;_Plate1-&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="s1">&#39;mCGFrac&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cell
+TrCo_A9HOW_Plate1-6-G12-A24    0.774266
+TrCo_A9VP4_Plate1-1-C6-D14     0.739454
+TrCo_A9VP4_Plate1-2-H14-N16    0.738984
+TrCo_A9VP4_Plate1-4-D12-F19    0.750455
+TrCo_A9VP4_Plate1-2-H14-J4     0.755272
+                                 ...   
+TrCo_A9VP4_Plate1-6-I13-M12    0.685173
+TrCo_A9VP4_Plate1-6-I13-M24    0.565137
+TrCo_A9VP4_Plate1-6-I13-N23    0.544398
+TrCo_A9VP4_Plate1-6-I13-O24    0.538136
+TrCo_A9VP4_Plate1-1-C6-I1      0.708489
+Name: mCGFrac, Length: 721, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L1/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;L1&#39;
+    obsm: &#39;5kCG100k3C_u50pc50&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_u50pc50&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_u50pc50&#39;</span><span class="p">]</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_u50pc50_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_u50pc50_tsne&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L1/5kCG_lsi.h5ad&#39;</span><span class="p">)</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    obsm: &#39;5kCG_lsi&#39;, &#39;5kCG_u50_seuratL2&#39;, &#39;5kCG_u50_seuratL2_tsne&#39;, &#39;5kCG_u50_tsne&#39;, &#39;X_lsi&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_u50_seuratL2_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_u50_seuratL2_tsne&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L1/100k3C_pca.h5ad&#39;</span><span class="p">)</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;
+    obsm: &#39;100k3C_pc50_seuratL2&#39;, &#39;100k3C_pc50_seuratL2_tsne&#39;, &#39;100k3C_pc50_tsne&#39;, &#39;100k3C_pca&#39;, &#39;X_pca&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_pc50_seuratL2_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_pc50_seuratL2_tsne&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 86689 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;batch&#39;, &#39;L1_annot&#39;, &#39;L1&#39;, &#39;L2&#39;, &#39;L2_any&#39;, &#39;L2_both&#39;, &#39;L2_mc&#39;, &#39;L2_3c&#39;, &#39;tissue_annot&#39;, &#39;group&#39;, &#39;cluster&#39;, &#39;Short/Long&#39;, &#39;mcg_L2&#39;, &#39;hic_L2&#39;, &#39;L2_final&#39;
+    obsm: &#39;100k3C_pc50_seuratL2_tsne&#39;, &#39;5kCG100k3C_u50pc50_tsne&#39;, &#39;5kCG_u50_seuratL2_tsne&#39;, &#39;X_tsne&#39;, &#39;5kCG100k3C_u50pc50&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># L1_meta = adata.obs[[&#39;L1&#39;,&#39;L1_annot&#39;]].drop_duplicates().set_index(&#39;L1&#39;).sort_values(&#39;L1_annot&#39;)</span>
+<span class="c1"># L1_meta[&#39;color&#39;] = L1_color</span>
+<span class="c1"># L1_meta.to_csv(f&#39;{indir}L1color.tsv&#39;, sep=&#39;\t&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tissue_list = [&#39;AG&#39;, &#39;B&#39;, &#39;EG&#39;, &#39;LG&#39;, &#39;LV&#39;, &#39;RAA&#39;, &#39;PI&#39;, &#39;PBMC&#39;, &#39;P&#39;, &#39;M1C&#39;,</span>
+<span class="c1">#        &#39;SkGcn&#39;, &#39;Sk&#39;, &#39;SB&#39;, &#39;ST&#39;, &#39;NTb&#39;, &#39;TrCo&#39;]</span>
+<span class="c1"># tissue_annot = [&#39;Adrenal Gland&#39;, </span>
+<span class="c1">#                 &#39;Breast&#39;, </span>
+<span class="c1">#                 &#39;Esophagus&#39;, </span>
+<span class="c1">#                 &#39;Lung&#39;, </span>
+<span class="c1">#                 &#39;Left Ventricle&#39;, </span>
+<span class="c1">#                 &#39;Right Atrium Appendage&#39;, </span>
+<span class="c1">#                 &#39;Pancreatic Islet&#39;, </span>
+<span class="c1">#                 &#39;Peripheral Blood&#39;, </span>
+<span class="c1">#                 &#39;Placenta&#39;, </span>
+<span class="c1">#                 &#39;Primary Motor Cortex&#39;, </span>
+<span class="c1">#                 &#39;Skeletal Muscle&#39;, </span>
+<span class="c1">#                 &#39;Skin&#39;, </span>
+<span class="c1">#                 &#39;Small Intestine&#39;, </span>
+<span class="c1">#                 &#39;Stomach&#39;, </span>
+<span class="c1">#                 &#39;Tibial Nerve&#39;, </span>
+<span class="c1">#                 &#39;Transverse Colon&#39;</span>
+<span class="c1">#                ]</span>
+<span class="c1"># tissue_color = {xx:yy for xx,yy in zip(tissue_annot, sns.color_palette(&#39;tab20&#39;, len(tissue_annot)).as_hex())}</span>
+<span class="c1"># tissue_annot = {xx:yy for xx,yy in zip(tissue_list, tissue_annot)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tissue_meta = pd.DataFrame(index=tissue_list)</span>
+<span class="c1"># tissue_meta[&#39;tissue_annot&#39;] = tissue_annot</span>
+<span class="c1"># tissue_meta[&#39;color&#39;] = tissue_meta[&#39;tissue_annot&#39;].map(tissue_color)</span>
+<span class="c1"># tissue_meta.index.name = &#39;tissue&#39;</span>
+<span class="c1"># tissue_meta.to_csv(f&#39;{indir}tissuecolor.tsv&#39;, sep=&#39;\t&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1color.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
@@ -932,6 +1150,14 @@ c1
 <span class="n">tissue_color</span> <span class="o">=</span> <span class="n">tissue_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">tissue_annot</span> <span class="o">=</span> <span class="n">tissue_meta</span><span class="p">[</span><span class="s1">&#39;tissue_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">tissue_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">tissue_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">tissue_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tissue_annot</span><span class="p">})</span>  <span class="c1"># also key by annot name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;tissue_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tissue_annot</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1057,6 +1283,724 @@ c1
 </section>
 <section id="merge-metadata-and-different-level-coordinates">
 <h2>Merge metadata and different level coordinates<a class="headerlink" href="#merge-metadata-and-different-level-coordinates" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.tsv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster</th>
+      <th>subtype</th>
+      <th>majortype</th>
+      <th>FinalmCReads</th>
+      <th>mCHFrac</th>
+      <th>mCGFrac</th>
+      <th>CisLongContact</th>
+      <th>Cis/Trans</th>
+      <th>Short/Long</th>
+      <th>Donor</th>
+      <th>Tissue</th>
+    </tr>
+    <tr>
+      <th>cell</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-B13</th>
+      <td>c17-c0</td>
+      <td>c17-b0</td>
+      <td>c17</td>
+      <td>1376030</td>
+      <td>0.011876</td>
+      <td>0.727399</td>
+      <td>186626</td>
+      <td>1.318921</td>
+      <td>0.446979</td>
+      <td>PT-1LGRB</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-B14</th>
+      <td>c17-c6</td>
+      <td>c17-b1</td>
+      <td>c17</td>
+      <td>2734154</td>
+      <td>0.009636</td>
+      <td>0.706403</td>
+      <td>359403</td>
+      <td>1.171003</td>
+      <td>-0.255793</td>
+      <td>PT-1LGRB</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-C2</th>
+      <td>c17-c1</td>
+      <td>c17-b1</td>
+      <td>c17</td>
+      <td>1634700</td>
+      <td>0.012266</td>
+      <td>0.702188</td>
+      <td>206047</td>
+      <td>1.302957</td>
+      <td>-0.584638</td>
+      <td>PT-1LGRB</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-D13</th>
+      <td>c17-c0</td>
+      <td>c17-b0</td>
+      <td>c17</td>
+      <td>2407431</td>
+      <td>0.010201</td>
+      <td>0.698709</td>
+      <td>299610</td>
+      <td>1.023206</td>
+      <td>-0.656128</td>
+      <td>PT-1LGRB</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-D14</th>
+      <td>c17-c3</td>
+      <td>c17-b0</td>
+      <td>c17</td>
+      <td>2644447</td>
+      <td>0.008917</td>
+      <td>0.699867</td>
+      <td>301042</td>
+      <td>0.955355</td>
+      <td>-0.216212</td>
+      <td>PT-1LGRB</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-O12</th>
+      <td>c5-c0</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>2156069</td>
+      <td>0.010095</td>
+      <td>0.711533</td>
+      <td>217305</td>
+      <td>1.398971</td>
+      <td>-0.664927</td>
+      <td>PT-1LVAN</td>
+      <td>SkGcn</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-O24</th>
+      <td>c5-c7</td>
+      <td>c5-b0</td>
+      <td>c5</td>
+      <td>2452723</td>
+      <td>0.010655</td>
+      <td>0.712112</td>
+      <td>139778</td>
+      <td>1.005821</td>
+      <td>-0.570078</td>
+      <td>PT-1LVAN</td>
+      <td>SkGcn</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P12</th>
+      <td>c5-c4</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>3255254</td>
+      <td>0.009585</td>
+      <td>0.701310</td>
+      <td>247522</td>
+      <td>1.286691</td>
+      <td>-0.869752</td>
+      <td>PT-1LVAN</td>
+      <td>SkGcn</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P23</th>
+      <td>c5-c0</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>1496482</td>
+      <td>0.017285</td>
+      <td>0.748694</td>
+      <td>56049</td>
+      <td>0.701095</td>
+      <td>-0.521453</td>
+      <td>PT-1LVAN</td>
+      <td>SkGcn</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P24</th>
+      <td>c5-c0</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>1402072</td>
+      <td>0.014407</td>
+      <td>0.743782</td>
+      <td>50519</td>
+      <td>0.791462</td>
+      <td>-0.708802</td>
+      <td>PT-1LVAN</td>
+      <td>SkGcn</td>
+    </tr>
+  </tbody>
+</table>
+<p>86689 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;L1_joint_tsne_0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1_joint_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_u50pc50_tsne&#39;</span><span class="p">]</span>
+<span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;L1_5kCG_tsne_0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1_5kCG_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_u50_seuratL2_tsne&#39;</span><span class="p">]</span>
+<span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;L1_100k3C_tsne_0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1_100k3C_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_pc50_seuratL2_tsne&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;L2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tissue&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;joint&#39;</span><span class="p">,</span> <span class="s1">&#39;5kCG&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">meta</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">yy</span><span class="si">}</span><span class="s1">_tsne_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c35&#39;</span><span class="p">,</span><span class="s1">&#39;c36&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;L2&#39;</span>
+<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">ctname</span> <span class="o">=</span> <span class="n">L1_annot</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">selc</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">ct</span><span class="p">]</span>
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ctname</span><span class="si">}</span><span class="s1">/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
+    <span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ctname</span><span class="si">}</span><span class="s1">/5kCG_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
+    <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ctname</span><span class="si">}</span><span class="s1">/100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;Tissue&#39;</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tissue_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">selc</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">t</span><span class="p">]</span>
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
+    <span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">/mCG_5kb_lsi.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
+    <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">/HiC_100kb_pca.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
+    <span class="n">npc_cg</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;_seuratL2_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">npc_3c</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;_seuratL2_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span><span class="p">)</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 9
+33 10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27 17
+25 14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23 10
+11 16
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 5
+24 7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 11
+50 15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50 12
+36 12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31 11
+46 15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42 10
+21 14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;cluster&#39;, &#39;subtype&#39;, &#39;majortype&#39;, &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;,
+       &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Short/Long&#39;, &#39;Donor&#39;, &#39;Tissue&#39;,
+       &#39;L1_joint_tsne_0&#39;, &#39;L1_joint_tsne_1&#39;, &#39;L1_5kCG_tsne_0&#39;,
+       &#39;L1_5kCG_tsne_1&#39;, &#39;L1_100k3C_tsne_0&#39;, &#39;L1_100k3C_tsne_1&#39;,
+       &#39;L2_joint_tsne_0&#39;, &#39;L2_joint_tsne_1&#39;, &#39;L2_5kCG_tsne_0&#39;,
+       &#39;L2_5kCG_tsne_1&#39;, &#39;L2_100k3C_tsne_0&#39;, &#39;L2_100k3C_tsne_1&#39;,
+       &#39;Tissue_joint_tsne_0&#39;, &#39;Tissue_joint_tsne_1&#39;, &#39;Tissue_5kCG_tsne_0&#39;,
+       &#39;Tissue_5kCG_tsne_1&#39;, &#39;Tissue_100k3C_tsne_0&#39;, &#39;Tissue_100k3C_tsne_1&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster</th>
+      <th>subtype</th>
+      <th>majortype</th>
+      <th>FinalmCReads</th>
+      <th>mCHFrac</th>
+      <th>mCGFrac</th>
+      <th>CisLongContact</th>
+      <th>Cis/Trans</th>
+      <th>Short/Long</th>
+      <th>Donor</th>
+      <th>...</th>
+      <th>L2_5kCG_tsne_0</th>
+      <th>L2_5kCG_tsne_1</th>
+      <th>L2_100k3C_tsne_0</th>
+      <th>L2_100k3C_tsne_1</th>
+      <th>Tissue_joint_tsne_0</th>
+      <th>Tissue_joint_tsne_1</th>
+      <th>Tissue_5kCG_tsne_0</th>
+      <th>Tissue_5kCG_tsne_1</th>
+      <th>Tissue_100k3C_tsne_0</th>
+      <th>Tissue_100k3C_tsne_1</th>
+    </tr>
+    <tr>
+      <th>cell</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-B13</th>
+      <td>c17-c0</td>
+      <td>c17-b0</td>
+      <td>c17</td>
+      <td>1376030</td>
+      <td>0.011876</td>
+      <td>0.727399</td>
+      <td>186626</td>
+      <td>1.318921</td>
+      <td>0.446979</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>-17.971627</td>
+      <td>4.153434</td>
+      <td>-22.665981</td>
+      <td>9.060770</td>
+      <td>-6.288688</td>
+      <td>-26.334854</td>
+      <td>-6.609710</td>
+      <td>29.406128</td>
+      <td>40.952520</td>
+      <td>-7.697411</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-B14</th>
+      <td>c17-c6</td>
+      <td>c17-b1</td>
+      <td>c17</td>
+      <td>2734154</td>
+      <td>0.009636</td>
+      <td>0.706403</td>
+      <td>359403</td>
+      <td>1.171003</td>
+      <td>-0.255793</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>-5.820349</td>
+      <td>22.824702</td>
+      <td>-12.735919</td>
+      <td>7.324342</td>
+      <td>-25.717593</td>
+      <td>-24.931657</td>
+      <td>-19.312954</td>
+      <td>30.621607</td>
+      <td>41.040478</td>
+      <td>-9.829805</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-C2</th>
+      <td>c17-c1</td>
+      <td>c17-b1</td>
+      <td>c17</td>
+      <td>1634700</td>
+      <td>0.012266</td>
+      <td>0.702188</td>
+      <td>206047</td>
+      <td>1.302957</td>
+      <td>-0.584638</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>6.485018</td>
+      <td>-3.822646</td>
+      <td>24.942036</td>
+      <td>11.727231</td>
+      <td>-34.630305</td>
+      <td>-5.052561</td>
+      <td>-23.342808</td>
+      <td>17.030080</td>
+      <td>17.876634</td>
+      <td>-26.870964</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-D13</th>
+      <td>c17-c0</td>
+      <td>c17-b0</td>
+      <td>c17</td>
+      <td>2407431</td>
+      <td>0.010201</td>
+      <td>0.698709</td>
+      <td>299610</td>
+      <td>1.023206</td>
+      <td>-0.656128</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>-29.079593</td>
+      <td>-4.333497</td>
+      <td>-17.356194</td>
+      <td>3.569278</td>
+      <td>-6.711752</td>
+      <td>-23.788432</td>
+      <td>-11.666168</td>
+      <td>5.738039</td>
+      <td>42.743518</td>
+      <td>3.232084</td>
+    </tr>
+    <tr>
+      <th>B_IOBHL_Plate10-1-A17-D14</th>
+      <td>c17-c3</td>
+      <td>c17-b0</td>
+      <td>c17</td>
+      <td>2644447</td>
+      <td>0.008917</td>
+      <td>0.699867</td>
+      <td>301042</td>
+      <td>0.955355</td>
+      <td>-0.216212</td>
+      <td>PT-1LGRB</td>
+      <td>...</td>
+      <td>15.422152</td>
+      <td>-18.816535</td>
+      <td>12.912868</td>
+      <td>-22.098690</td>
+      <td>-16.407984</td>
+      <td>-6.717667</td>
+      <td>-22.993453</td>
+      <td>4.648533</td>
+      <td>21.032718</td>
+      <td>-3.972677</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-O12</th>
+      <td>c5-c0</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>2156069</td>
+      <td>0.010095</td>
+      <td>0.711533</td>
+      <td>217305</td>
+      <td>1.398971</td>
+      <td>-0.664927</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>3.892447</td>
+      <td>19.118928</td>
+      <td>26.810694</td>
+      <td>-22.743058</td>
+      <td>-24.343529</td>
+      <td>14.358791</td>
+      <td>0.177157</td>
+      <td>0.129099</td>
+      <td>-5.153260</td>
+      <td>24.715943</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-O24</th>
+      <td>c5-c7</td>
+      <td>c5-b0</td>
+      <td>c5</td>
+      <td>2452723</td>
+      <td>0.010655</td>
+      <td>0.712112</td>
+      <td>139778</td>
+      <td>1.005821</td>
+      <td>-0.570078</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>-10.572230</td>
+      <td>-32.173632</td>
+      <td>2.237704</td>
+      <td>16.405757</td>
+      <td>-8.448709</td>
+      <td>-2.571831</td>
+      <td>18.061276</td>
+      <td>-23.459086</td>
+      <td>-24.406624</td>
+      <td>-7.877275</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P12</th>
+      <td>c5-c4</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>3255254</td>
+      <td>0.009585</td>
+      <td>0.701310</td>
+      <td>247522</td>
+      <td>1.286691</td>
+      <td>-0.869752</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>30.272144</td>
+      <td>-19.227104</td>
+      <td>39.613908</td>
+      <td>-12.273716</td>
+      <td>0.570947</td>
+      <td>19.386031</td>
+      <td>-14.365126</td>
+      <td>-27.575202</td>
+      <td>-16.078713</td>
+      <td>28.340502</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P23</th>
+      <td>c5-c0</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>1496482</td>
+      <td>0.017285</td>
+      <td>0.748694</td>
+      <td>56049</td>
+      <td>0.701095</td>
+      <td>-0.521453</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>5.612862</td>
+      <td>28.071137</td>
+      <td>11.219421</td>
+      <td>-3.120396</td>
+      <td>-25.941965</td>
+      <td>26.023391</td>
+      <td>-2.317161</td>
+      <td>7.092180</td>
+      <td>-15.149073</td>
+      <td>5.675793</td>
+    </tr>
+    <tr>
+      <th>SkGcn_C1PWV_Plate8-6-O14-P24</th>
+      <td>c5-c0</td>
+      <td>c5-b1</td>
+      <td>c5</td>
+      <td>1402072</td>
+      <td>0.014407</td>
+      <td>0.743782</td>
+      <td>50519</td>
+      <td>0.791462</td>
+      <td>-0.708802</td>
+      <td>PT-1LVAN</td>
+      <td>...</td>
+      <td>13.125788</td>
+      <td>21.703872</td>
+      <td>7.935227</td>
+      <td>6.663215</td>
+      <td>-9.559602</td>
+      <td>9.381563</td>
+      <td>-9.039470</td>
+      <td>-6.752887</td>
+      <td>-17.810519</td>
+      <td>2.719902</td>
+    </tr>
+  </tbody>
+</table>
+<p>86689 rows × 29 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L2_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">subtype_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">L2_annot</span> <span class="o">=</span> <span class="n">L2_meta</span><span class="p">[</span><span class="s1">&#39;celltype_L2_both_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;subtype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L2_annot</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>subtype
+SCT                4753
+ZR/ZF              2622
+Mus Slow           2154
+Chief              2072
+Mono 1             1796
+                   ... 
+Fibro GI Pb Lng      45
+SmMus Mus 1          43
+ET L5                35
+SmMus Mus 2          34
+Schw Skn             31
+Name: count, Length: 206, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 

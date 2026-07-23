@@ -625,9 +625,145 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">f</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.sandbox.stats.multicomp</span><span class="w"> </span><span class="kn">import</span> <span class="n">multipletests</span> <span class="k">as</span> <span class="n">FDR</span>
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">stats2fdr</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">pv</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nct</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncell</span><span class="o">-</span><span class="n">nct</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+    <span class="n">fdr</span> <span class="o">=</span> <span class="n">FDR</span><span class="p">(</span><span class="n">pv</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">&quot;fdr_bh&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">fdr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nct</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">ncell</span> <span class="o">=</span> <span class="mi">86689</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="s1">&#39;QET&#39;</span><span class="p">:</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">stats2fdr</span><span class="p">,</span>
+            <span class="n">loopall</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">anova&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+
+    <span class="c1"># result = []</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">loopall</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">fdr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E finished
+T finished
+Q finished
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loopall</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">loopdir</span><span class="si">}</span><span class="s1">merged_loop.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sell = (loopall[&#39;Qanova&#39;]==0) | (loopall[&#39;Eanova&#39;]==0) | (loopall[&#39;Tanova&#39;]==0)</span>
+<span class="c1"># loopall = loopall.loc[~sell]</span>
+<span class="c1"># loopq = loopq.loc[~sell, leg]</span>
+<span class="c1"># loopt = loopt.loc[~sell, leg]</span>
+<span class="c1"># print(loopall.shape)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thres1</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="n">thres2</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thres1</span><span class="p">,</span> <span class="n">thres2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9599639845400545 1.0364333894937898
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fdrthres</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">statfilter</span> <span class="o">=</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span>
+<span class="n">fdrfilter</span> <span class="o">=</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qfdr&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">fdrthres</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Efdr&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">fdrthres</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tfdr&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">fdrthres</span><span class="p">)</span>
+<span class="n">selloop</span> <span class="o">=</span> <span class="n">statfilter</span> <span class="o">&amp;</span> <span class="n">fdrfilter</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">statfilter</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">fdrfilter</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">selloop</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>288656 3043481 288656
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># selb = ((zscore(loopall[&#39;Qanova&#39;])&gt;thres2) &amp; (zscore(loopall[&#39;Tanova&#39;])&gt;thres2))</span>
+<span class="c1"># print(selb.sum())</span>
+<span class="n">selb</span> <span class="o">=</span> <span class="p">((</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selb</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>288656
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tmpq = loopq.loc[selb].values</span>
+<span class="c1"># tmpq = zscore(tmpq, axis=1)</span>
+<span class="c1"># tmpt = loopt.loc[selb].values</span>
+<span class="c1"># tmpt = zscore(tmpt, axis=1)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="differential-loop-vs-all-gene-tss">
 <h2>Differential Loop vs All Gene TSS<a class="headerlink" href="#differential-loop-vs-all-gene-tss" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resc</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">loopall</span> <span class="o">=</span> <span class="n">loopall</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span>
+<span class="n">anchor1</span> <span class="o">=</span> <span class="n">loopall</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">resc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">anchor2</span> <span class="o">=</span> <span class="n">loopall</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">//</span> <span class="n">resc</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sell</span> <span class="o">=</span> <span class="n">anchor1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">anchor2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
@@ -679,6 +815,21 @@
     <span class="k">return</span> <span class="n">sorted_data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">cluster_df</span><span class="p">,</span> <span class="n">corder</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.random.seed(0)</span>
+<span class="c1"># sel = np.random.choice(np.arange(len(looptmp)), 2000, False)</span>
+
+<span class="c1"># cg = sns.clustermap(looptmp[sel], cmap=&#39;bwr&#39;, vmin=-3, vmax=3, metric=&#39;cosine&#39;, xticklabels=leg.map(L1_annot), yticklabels=[], figsize=(6,6))</span>
+
+<span class="c1"># rorder = cg.dendrogram_row.reordered_ind.copy()</span>
+<span class="c1"># corder = cg.dendrogram_col.reordered_ind.copy()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 <div class="cell docutils container">

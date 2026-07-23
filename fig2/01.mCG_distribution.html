@@ -664,7 +664,60 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Generate multi-resolution mCG histograms -&gt; mCG_distribution/multires/{ct}.npy</span>
+<span class="c1"># (cached; read by fig2/02, fig3/02, fig3/08). Runs only if missing.</span>
+<span class="n">REGENERATE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">REGENERATE</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCG_distribution/multires/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_annot</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+    
+    <span class="n">cpu</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                <span class="n">multires_cghist</span><span class="p">,</span>
+                <span class="n">ct</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct</span>
+    
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[cached] multires/*.npy present, skipping generation&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_list</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donor_palette</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="n">yy</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">))}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(8,3), dpi=300)</span>
+<span class="c1"># sns.violinplot(data=meta, x=&#39;L1_annot&#39;, y=&#39;mCGFrac&#39;, hue=&#39;L1&#39;, ax=ax, palette=colors, order=L1_list,</span>
+<span class="c1">#                # order=pd.Series(L1_list).str.replace(&#39;-&#39;, &#39; &#39;).str.replace(&#39;_&#39;, &#39;/&#39;)[idx]</span>
+<span class="c1">#               )</span>
+<span class="c1"># ax.set_xticklabels(ax.get_xticklabels(), fontsize=12, rotation=90)</span>
+<span class="c1"># ax.set_yticklabels(ax.get_yticklabels(), fontsize=12)</span>
+<span class="c1"># ax.set_ylabel(&#39;mCG/CG&#39;, fontsize=12)</span>
+<span class="c1"># ax.get_legend().set_visible(False)</span>
+<span class="c1"># fig.tight_layout()</span>
+<span class="c1"># fig.savefig(&#39;mCG_distribution/L1_cellglobalCG_violin.pdf&#39;, transparent=True)</span>
 </pre></div>
 </div>
 </div>
@@ -776,6 +829,29 @@
     <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCG_distribution/multires/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span>
     
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">multires_cghist</span><span class="p">,</span>
+            <span class="n">ct</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -558,6 +558,54 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># cd /large_storage/zhoulab/zhoujt/project/ENTEx/</span>
+
+<span class="c1"># for i in `seq 0 35`; do</span>
+<span class="c1"># if test -e &quot;DMR/majortype-subtype/c${i}_dmr.bed&quot;; then </span>
+<span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; loop/majortype/c${i}/c${i}.loop_summit.bedpe | sort -k1,1 -k2,2n -u &gt; tmp.txt;</span>
+<span class="c1"># echo c${i} $(bedtools intersect -wa -a DMR/majortype-subtype/c${i}_dmr.bed -b tmp.txt | sort -k1,1 -k2,2n -u | wc -l) $(cat DMR/majortype-subtype/c${i}_dmr.bed | wc -l) $(cat tmp.txt | wc -l);</span>
+<span class="c1"># fi;</span>
+<span class="c1"># done | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;,$1,$2,$3,$4)}&#39; &gt; analysis/loop_dmr_enrich/subtype_dmr_loop_summit.txt</span>
+
+<span class="c1"># for i in `seq 0 35`; do</span>
+<span class="c1"># if test -e &quot;DMR/majortype-subtype/c${i}_dmr.bed&quot;; then </span>
+<span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; loop/majortype/c${i}/c${i}.loop.bedpe | sort -k1,1 -k2,2n -u &gt; tmp.txt;</span>
+<span class="c1"># echo c${i} $(bedtools intersect -wa -a DMR/majortype-subtype/c${i}_dmr.bed -b tmp.txt | sort -k1,1 -k2,2n -u | wc -l) $(cat DMR/majortype-subtype/c${i}_dmr.bed | wc -l) $(cat tmp.txt | wc -l);</span>
+<span class="c1"># fi;</span>
+<span class="c1"># done | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;,$1,$2,$3,$4)}&#39; &gt; analysis/loop_dmr_enrich/subtype_dmr_loop.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># for i in `seq 0 35`; do</span>
+<span class="c1"># if test -e &quot;DMR/majortype-subtype/c${i}_dmr.bed&quot;; then </span>
+<span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; loop/majortype/c${i}/c${i}.loop_summit.bedpe | sort -k1,1 -k2,2n -u &gt; tmp.txt;</span>
+<span class="c1"># echo c${i} $(bedtools intersect -wa -a tmp.txt -b DMR/majortype-subtype/c${i}_dmr.bed | sort -k1,1 -k2,2n -u | wc -l) $(bedtools intersect -wa -a /large_storage/zhoulab/ref/hg38/fasta/hg38.auto.anchor.bed -b DMR/majortype-subtype/c${i}_dmr.bed | sort -k1,1 -k2,2n -u | wc -l) $(cat tmp.txt | wc -l);</span>
+<span class="c1"># fi;</span>
+<span class="c1"># done | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;,$1,$2,$3,$4)}&#39; &gt; analysis/loop_dmr_enrich/loop_summit_subtype_dmr.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># for i in `seq 0 35`; do</span>
+<span class="c1"># if test -e &quot;DMR/majortype-subtype/c${i}_dmr.bed&quot;; then </span>
+<span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; loop/majortype/c${i}/c${i}.loop.bedpe | sort -k1,1 -k2,2n -u &gt; tmp.txt;</span>
+<span class="c1"># echo c${i} $(bedtools intersect -wa -a tmp.txt -b DMR/majortype-subtype/c${i}_dmr.bed | sort -k1,1 -k2,2n -u | wc -l) $(bedtools intersect -wa -a /large_storage/zhoulab/ref/hg38/fasta/hg38.auto.anchor.bed -b DMR/majortype-subtype/c${i}_dmr.bed | sort -k1,1 -k2,2n -u | wc -l) $(cat tmp.txt | wc -l);</span>
+<span class="c1"># fi;</span>
+<span class="c1"># done | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;,$1,$2,$3,$4)}&#39; &gt; analysis/loop_dmr_enrich/loop_subtype_dmr.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -603,6 +651,23 @@
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
+<span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot_bin</span> <span class="o">=</span> <span class="mi">249871</span>
 </pre></div>
 </div>
 </div>
@@ -905,6 +970,30 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2_contingency</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.multitest</span><span class="w"> </span><span class="kn">import</span> <span class="n">multipletests</span> <span class="k">as</span> <span class="n">FDR</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;loop&#39;</span><span class="p">,</span><span class="s1">&#39;summit&#39;</span><span class="p">]:</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">zz</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[[</span><span class="sa">f</span><span class="s1">&#39;dmr</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;dmrbin&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span><span class="n">pv</span><span class="p">,</span><span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">([[</span><span class="n">xx</span><span class="p">,</span><span class="n">zz</span><span class="o">-</span><span class="n">xx</span><span class="p">],[</span><span class="n">yy</span><span class="p">,</span><span class="n">tot_bin</span><span class="o">-</span><span class="n">yy</span><span class="p">]])</span>
+        <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pv</span><span class="p">)</span>
+    
+    <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">odd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;dmr</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;dmrbin&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">tot_bin</span>
+    <span class="n">data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">fdr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">FDR</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;fdr_bh&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rorder</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;loopodd&#39;</span><span class="p">,</span> <span class="s1">&#39;summitodd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rorder</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;loopodd&#39;</span><span class="p">,</span> <span class="s1">&#39;summitodd&#39;</span><span class="p">]]),</span> 
@@ -920,6 +1009,50 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/65a20fc0f0486ca155bbd20dbe44d93bab043df756e43badc31601a503f18972.png" src="../_images/65a20fc0f0486ca155bbd20dbe44d93bab043df756e43badc31601a503f18972.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;dmrloop&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;dmrbin&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;loop&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">249871</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L1
+c0     1.553949
+c1     1.859597
+c2     4.638596
+c3     1.054708
+c4     1.625803
+c5     3.208560
+c6     1.208276
+c8     1.310428
+c9     2.152529
+c10    1.157893
+c11    1.726311
+c12    1.218767
+c13    1.386090
+c14    1.301744
+c15    2.785190
+c16    1.316317
+c17    1.470382
+c18    1.113283
+c19    1.246145
+c20    1.600564
+c21    1.398317
+c23    1.440919
+c24    2.323698
+c26    1.617846
+c27    2.693243
+c28    1.485375
+c29    1.884324
+c32    2.687910
+c33    1.423364
+c34    1.644518
+c35    1.611963
+dtype: float64
+</pre></div>
+</div>
 </div>
 </div>
 </section>

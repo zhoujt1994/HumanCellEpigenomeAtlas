@@ -605,6 +605,16 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
+<span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">anndata._io.specs</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_elem</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span> <span class="k">as</span> <span class="n">ARI</span>
@@ -615,6 +625,19 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">rlt*h5ad&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/TE_mCG/goodcov.raw.LINE.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 26423 × 135365
 </pre></div>
 </div>
 </div>
@@ -862,6 +885,62 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/06ca4f5d7bcc61c1dfa1a972676e594ccfed743ec7369e3febfd7ae06ec0f3f5.png" src="../_images/06ca4f5d7bcc61c1dfa1a972676e594ccfed743ec7369e3febfd7ae06ec0f3f5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allcools</span> <span class="n">generate</span><span class="o">-</span><span class="n">dataset</span> <span class="o">--</span><span class="n">allc_table</span> <span class="n">allclist_L1</span><span class="o">.</span><span class="n">tsv</span> \
+    <span class="o">--</span><span class="n">output_path</span> <span class="n">L1_repeat</span><span class="o">.</span><span class="n">mcds</span> \
+    <span class="o">--</span><span class="n">chrom_size_path</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> \
+    <span class="o">--</span><span class="n">obs_dim</span> <span class="n">L1</span> \
+    <span class="o">--</span><span class="n">cpu</span> <span class="mi">36</span> \
+    <span class="o">--</span><span class="n">chunk_size</span> <span class="mi">1</span> \ 
+    <span class="o">--</span><span class="n">regions</span> <span class="n">SINE</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">repeatmasker</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">repeatmasker</span><span class="o">.</span><span class="n">repClass</span><span class="o">-</span><span class="n">SINE</span><span class="o">.</span><span class="n">bed</span> \
+    <span class="o">--</span><span class="n">regions</span> <span class="n">LINE</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">repeatmasker</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">repeatmasker</span><span class="o">.</span><span class="n">repClass</span><span class="o">-</span><span class="n">LINE</span><span class="o">.</span><span class="n">bed</span> \
+    <span class="o">--</span><span class="n">regions</span> <span class="n">LTR</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">repeatmasker</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">repeatmasker</span><span class="o">.</span><span class="n">repClass</span><span class="o">-</span><span class="n">LTR</span><span class="o">.</span><span class="n">bed</span> \
+    <span class="o">--</span><span class="n">quantifiers</span> <span class="n">SINE</span> <span class="n">count</span> <span class="n">CGN</span> \
+    <span class="o">--</span><span class="n">quantifiers</span> <span class="n">LINE</span> <span class="n">count</span> <span class="n">CGN</span> \
+    <span class="o">--</span><span class="n">quantifiers</span> <span class="n">LTR</span> <span class="n">count</span> <span class="n">CGN</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyranges</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pr</span>
+
+<span class="n">gene_bed_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz&#39;</span>
+<span class="n">peak_bed_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/peak/majortype/merged_peak.bed&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">var_dim</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SINE&#39;</span><span class="p">,</span> <span class="s1">&#39;LINE&#39;</span><span class="p">,</span> <span class="s1">&#39;LTR&#39;</span><span class="p">]:</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L1_repeat.mcds&#39;</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="n">var_dim</span><span class="p">)</span>
+    <span class="c1"># mcds.add_feature_cov_mean(var_dim=&#39;chrom1k&#39;, plot=False)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var_dim</span><span class="si">}</span><span class="s1">_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">count_type</span><span class="o">=</span><span class="s1">&#39;cov&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="n">var_dim</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">]})</span>
+    <span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span><span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">chromosome_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">,</span> <span class="s1">&#39;chrL&#39;</span><span class="p">]</span>
+    <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">chromosome_to_remove</span><span class="p">)</span>
+    <span class="n">mcds</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_norm_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">var_dim</span><span class="si">}</span><span class="s1">_da_frac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L1_</span><span class="si">{</span><span class="n">var_dim</span><span class="si">}</span><span class="s1">_mCG.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9363 SINE features removed due to overlapping (bedtools intersect -f 0.5) with black list regions.
+57233 SINE features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
+6101 LINE features removed due to overlapping (bedtools intersect -f 0.5) with black list regions.
+62733 LINE features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
+3466 LTR features removed due to overlapping (bedtools intersect -f 0.5) with black list regions.
+32793 LTR features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
+</pre></div>
+</div>
 </div>
 </div>
 </section>

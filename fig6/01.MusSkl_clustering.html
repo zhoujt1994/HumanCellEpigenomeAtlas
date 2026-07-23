@@ -588,6 +588,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/&#39;</span>
 <span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/pairwise_prediction/&#39;</span>
 </pre></div>
@@ -610,6 +621,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># meta = anndata.read_h5ad(f&#39;{indir}5kCG100k3C_summary.h5ad&#39;).obs</span>
+<span class="c1"># celltype_df = pd.read_csv(f&#39;{indir}celltype_annot.tsv&#39;, sep=&#39;\t&#39;, header=0, index_col=0).fillna(&#39;&#39;)</span>
+<span class="c1"># # celltype_df[&#39;celltype_abbr&#39;] = celltype_df[&#39;L1_annot&#39;] + &#39; &#39; + celltype_df[&#39;celltype_abbr&#39;].astype(str)</span>
+<span class="c1"># L2toct = celltype_df[&#39;celltype_abbr&#39;]</span>
+<span class="c1"># meta[&#39;celltype_abbr&#39;] = meta[&#39;L2_final&#39;].map(L2toct)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/5kCG_embed.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -625,6 +647,340 @@
 <span class="n">labelany</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mergeany_rocpr.npy&#39;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># labelboth = np.load(f&#39;{outdir}{ct}_mergeboth_rocpr.npy&#39;, allow_pickle=True)</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="mi">150</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(5, 3, figsize=(12,15), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+        
+<span class="c1">#     ax = axes[0,i]</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=labelany,</span>
+<span class="c1">#                             text_anno=labelany, </span>
+<span class="c1">#                             s=ds,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab20&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             # show_legend=True</span>
+<span class="c1">#                            )</span>
+    
+<span class="c1">#     ax = axes[1,i]</span>
+<span class="c1">#     _ = continuous_scatter(data=tmp,</span>
+<span class="c1">#                            ax=ax,</span>
+<span class="c1">#                            coord_base=coord_base,</span>
+<span class="c1">#                            hue=adata.obs[&#39;mCGFrac&#39;],</span>
+<span class="c1">#                            s=ds,</span>
+<span class="c1">#                            labelsize=12,</span>
+<span class="c1">#                            max_points=None,</span>
+<span class="c1">#                            scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                           )</span>
+
+<span class="c1">#     ax = axes[2,i]</span>
+<span class="c1">#     _ = continuous_scatter(data=tmp,</span>
+<span class="c1">#                            ax=ax,</span>
+<span class="c1">#                            coord_base=coord_base,</span>
+<span class="c1">#                            hue=adata.obs[&#39;mCHFrac&#39;],</span>
+<span class="c1">#                            s=ds,</span>
+<span class="c1">#                            labelsize=12,</span>
+<span class="c1">#                            max_points=None,</span>
+<span class="c1">#                            scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                           )</span>
+
+<span class="c1">#     ax = axes[3,i]</span>
+<span class="c1">#     _ = continuous_scatter(data=tmp,</span>
+<span class="c1">#                            ax=ax,</span>
+<span class="c1">#                            coord_base=coord_base,</span>
+<span class="c1">#                            hue=meta[&#39;Short/Long&#39;],</span>
+<span class="c1">#                            s=ds,</span>
+<span class="c1">#                            labelsize=12,</span>
+<span class="c1">#                            max_points=None,</span>
+<span class="c1">#                            scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                           )</span>
+
+<span class="c1">#     ax = axes[4,i]</span>
+<span class="c1">#     _ = continuous_scatter(data=tmp,</span>
+<span class="c1">#                            ax=ax,</span>
+<span class="c1">#                            coord_base=coord_base,</span>
+<span class="c1">#                            hue=adata.obs[&#39;Cis/Trans&#39;],</span>
+<span class="c1">#                            s=ds,</span>
+<span class="c1">#                            labelsize=12,</span>
+<span class="c1">#                            max_points=None,</span>
+<span class="c1">#                            scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                           )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+
+<span class="c1"># ConsensusClustering</span>
+<span class="c1"># Important factores</span>
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
+<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
+<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.85</span>
+<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># Other ConsensusClustering parameters</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
+<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 5 - 8 clusters, mean 6.5, std 0.60
+Summarizing multiple clustering results
+3812 cells assigned to 10 raw clusters
+161 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+10 non-outlier labels
+Balanced accuracy on the training set: 0.974
+Balanced accuracy on the hold-out set: 0.906
+Stop iteration because current accuracy 0.906 &gt; target accuracy 0.850.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.904
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Computing multiple clustering with different random seeds
+Repeating leiden clustering 500 times
+Found 8 - 11 clusters, mean 9.7, std 0.67
+Summarizing multiple clustering results
+3557 cells assigned to 17 raw clusters
+416 cells are multi-leiden outliers
+
+=== Start supervise model training and cluster merging ===
+
+=== iteration 1 ===
+17 non-outlier labels
+Balanced accuracy on the training set: 0.954
+Balanced accuracy on the hold-out set: 0.897
+Stop iteration because current accuracy 0.897 &gt; target accuracy 0.850.
+
+=== Assign final labels ===
+Assigned all the multi-leiden clustering outliers into clusters using the prediction model from final clustering version.
+Final ten-fold CV Accuracy on all the cells: 0.914
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_3c</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata_3c</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sc.pp.neighbors(adata_mc, n_neighbors=25, use_rep=f&#39;5kCG_u{npc_cg}_seuratL2&#39;)</span>
+<span class="c1"># sc.tl.diffmap(adata_mc, n_comps=npc_cg)</span>
+<span class="c1"># sc.pp.neighbors(adata_mc, n_neighbors=25, use_rep=&#39;X_diffmap&#39;)</span>
+<span class="c1"># adata_mc.uns[&#39;iroot&#39;] = np.flatnonzero(labelany==&#39;c8&#39;)[0]</span>
+<span class="c1"># sc.tl.dpt(adata_mc, n_dcs=npc_cg)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sc.pp.neighbors(adata_3c, n_neighbors=25, use_rep=f&#39;100k3C_pc{npc_3c}_seuratL2&#39;)</span>
+<span class="c1"># sc.tl.diffmap(adata_3c, n_comps=npc_3c)</span>
+<span class="c1"># sc.pp.neighbors(adata_3c, n_neighbors=25, use_rep=&#39;X_diffmap&#39;)</span>
+<span class="c1"># adata_3c.uns[&#39;iroot&#39;] = np.flatnonzero(labelany==&#39;c8&#39;)[0]</span>
+<span class="c1"># sc.tl.dpt(adata_3c, n_dcs=npc_3c)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(3,3), dpi=300)</span>
+<span class="c1"># ax.scatter(x=adata_3c.obs[&#39;dpt_pseudotime&#39;], y=adata_mc.obs[&#39;dpt_pseudotime&#39;], s=1)</span>
+<span class="c1"># ax.set_xlabel(&#39;3C Pseudotime&#39;)</span>
+<span class="c1"># ax.set_ylabel(&#39;mCG Pseudotime&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(2, 3, figsize=(12,6), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     for j,yy in enumerate([adata_mc.obs[&#39;dpt_pseudotime&#39;], </span>
+<span class="c1">#                            adata_3c.obs[&#39;dpt_pseudotime&#39;]]):</span>
+<span class="c1">#         ax = axes[j,i]</span>
+<span class="c1">#         _ = continuous_scatter(data=tmp,</span>
+<span class="c1">#                                ax=ax,</span>
+<span class="c1">#                                coord_base=coord_base,</span>
+<span class="c1">#                                hue=yy,</span>
+<span class="c1">#                                s=ds,</span>
+<span class="c1">#                                labelsize=12,</span>
+<span class="c1">#                                max_points=None,</span>
+<span class="c1">#                                scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                               )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_mc</span><span class="p">,</span> <span class="n">adata_3c</span><span class="p">]):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">],</span> 
+                           <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">],</span> 
+                           <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]]):</span>
+        
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                                <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                                <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                                <span class="n">hue</span><span class="o">=</span><span class="n">yy</span><span class="p">,</span>
+                                <span class="n">text_anno</span><span class="o">=</span><span class="n">yy</span><span class="p">,</span> 
+                                <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                                <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                                <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                                <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                                <span class="c1"># legend_kws={&#39;ncol&#39;:1}, </span>
+                                <span class="c1"># show_legend=True</span>
+                               <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># order_idx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(3, 3, figsize=(12,9), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     for j,yy in enumerate([labelany, </span>
+<span class="c1">#                            adata_mc.obs[&#39;leiden&#39;], </span>
+<span class="c1">#                            adata_3c.obs[&#39;leiden&#39;]]):</span>
+        
+<span class="c1">#         ax = axes[i,j]</span>
+<span class="c1">#         _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                                 ax=ax,</span>
+<span class="c1">#                                 coord_base=coord_base,</span>
+<span class="c1">#                                 hue=yy,</span>
+<span class="c1">#                                 text_anno=yy, </span>
+<span class="c1">#                                 s=ds,</span>
+<span class="c1">#                                 labelsize=12,</span>
+<span class="c1">#                                 max_points=None,</span>
+<span class="c1">#                                 palette=&#39;tab20&#39;,</span>
+<span class="c1">#                                 scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                                 # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                                 # show_legend=True</span>
+<span class="c1">#                                )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(3, 3, figsize=(12,9), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     for j,yy in enumerate([labelany, </span>
+<span class="c1">#                            adata_mc.obs[&#39;leiden&#39;], </span>
+<span class="c1">#                            adata_3c.obs[&#39;leiden&#39;]]):</span>
+        
+<span class="c1">#         ax = axes[i,j]</span>
+<span class="c1">#         _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                                 ax=ax,</span>
+<span class="c1">#                                 coord_base=coord_base,</span>
+<span class="c1">#                                 hue=yy,</span>
+<span class="c1">#                                 text_anno=yy, </span>
+<span class="c1">#                                 s=ds,</span>
+<span class="c1">#                                 labelsize=12,</span>
+<span class="c1">#                                 max_points=None,</span>
+<span class="c1">#                                 palette=&#39;tab20&#39;,</span>
+<span class="c1">#                                 scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                                 # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                                 # show_legend=True</span>
+<span class="c1">#                                )</span>
 </pre></div>
 </div>
 </div>
@@ -702,6 +1058,90 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata_mc.obs[f&#39;5kCG_u{npc_cg}_leiden_init&#39;].value_counts()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5kCG_u7_leiden_init
+c1     511
+c0     503
+c2     419
+c3     386
+c4     333
+c5     261
+c6     231
+c7     227
+c8     212
+c11    153
+c9     143
+c14    130
+c10    123
+c12    112
+c13     98
+c15     75
+c16     56
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata_3c.obs[f&#39;100k3C_pc{npc_3c}_leiden_init&#39;].value_counts()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100k3C_pc10_leiden_init
+c0    1177
+c1     640
+c2     492
+c3     424
+c4     347
+c5     248
+c6     211
+c7     152
+c9     143
+c8     139
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, axes = plt.subplots(1, 3, figsize=(13,3), dpi=300)</span>
+<span class="c1"># for i,xx in enumerate([adata, adata_mc, adata_3c]):</span>
+<span class="c1">#     tmp = xx.obs.copy()</span>
+<span class="c1">#     yy = adata.obs[&#39;group_mc_3c&#39;]</span>
+<span class="c1">#     ax = axes[i]</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=yy,</span>
+<span class="c1">#                             text_anno=yy, </span>
+<span class="c1">#                             s=ds,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab10&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             show_legend=(i==2)</span>
+<span class="c1">#                            )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata_mc</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG_embed.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata_3c</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
@@ -711,7 +1151,267 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allc_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allclist.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">allc_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-A2</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B13</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B14</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>M1C_3C_001_Plate1-1-F3-B1</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_BVBW_M1C/output_...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-O24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P11</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P12</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P23</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+    <tr>
+      <th>Sk_IOBHT_AR_Plate7-6-I24-P24</th>
+      <td>/gale/netapp/entex/ENTEx/Pool_EFEG_AG_LG_P_PI_...</td>
+    </tr>
+  </tbody>
+</table>
+<p>93550 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/gale/netapp/entex/ENTEx/allc_CGN/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
+<span class="c1"># adata.obs[&#39;allcpath&#39;] = allc_table.loc[adata.obs.index, 1]</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gs://ecker-zhoujt-analysis/ENTEx/tissue/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/impute/10K/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.cool&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;coolpath&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">count</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">])]</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/allclist_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;coolpath&#39;</span><span class="p">,</span> <span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/coollist_mc3cgroup.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;coolpath&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/frame.py:3902,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3900</span>     <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3901</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3902</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;columns&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">3904</span> <span class="c1"># take() does not accept boolean indexers</span>
+<span class="g g-Whitespace">   </span><span class="mi">3905</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="s2">&quot;dtype&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:6114,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6111</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6112</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6114</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6116</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6117</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">6118</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:6175,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6173</span>     <span class="k">if</span> <span class="n">use_interval_msg</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6174</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6175</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6177</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">6178</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &quot;None of [Index([&#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;allcpath&#39;, &#39;coolpath&#39;], dtype=&#39;object&#39;)] are in the [columns]&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/allclist_mc.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leg = np.sort(adata_mc.obs[&#39;leiden&#39;].unique())</span>
+<span class="c1"># ncol = 3</span>
+<span class="c1"># nrow = (len(leg)-1) // ncol + 1</span>
+<span class="c1"># tmp = adata_3c.obs.copy()</span>
+<span class="c1"># tmp[&#39;leiden&#39;] = adata_mc.obs[&#39;leiden&#39;].copy()</span>
+
+<span class="c1"># fig, axes = plt.subplots(nrow, ncol, figsize=(ncol*4, nrow*3), dpi=300)</span>
+<span class="c1"># for xx,ax in zip(leg, axes.flatten()):</span>
+<span class="c1">#     ax.scatter(tmp[&#39;tsne_0&#39;], tmp[&#39;tsne_1&#39;], s=ds, </span>
+<span class="c1">#                edgecolor=&#39;none&#39;, rasterized=True, color=(0.8, 0.8, 0.8), alpha=0.5)</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp.loc[tmp[&#39;leiden&#39;]==xx],</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=&#39;leiden&#39;,</span>
+<span class="c1">#                             text_anno=&#39;leiden&#39;, </span>
+<span class="c1">#                             s=ds*2,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab20&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             # show_legend=True</span>
+<span class="c1">#                            )</span>
+
+<span class="c1"># for ax in axes.flatten()[len(leg):]:</span>
+<span class="c1">#     ax.axis(&#39;off&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># leg = np.sort(adata_3c.obs[&#39;leiden&#39;].unique())</span>
+<span class="c1"># ncol = 3</span>
+<span class="c1"># nrow = (len(leg)-1) // ncol + 1</span>
+<span class="c1"># tmp = adata_mc.obs.copy()</span>
+<span class="c1"># tmp[&#39;leiden&#39;] = adata_3c.obs[&#39;leiden&#39;].copy()</span>
+
+<span class="c1"># fig, axes = plt.subplots(nrow, ncol, figsize=(ncol*4, nrow*3), dpi=300)</span>
+<span class="c1"># for xx,ax in zip(leg, axes.flatten()):</span>
+<span class="c1">#     ax.scatter(tmp[&#39;tsne_0&#39;], tmp[&#39;tsne_1&#39;], s=ds, </span>
+<span class="c1">#                edgecolor=&#39;none&#39;, rasterized=True, color=(0.8, 0.8, 0.8), alpha=0.5)</span>
+<span class="c1">#     _ = categorical_scatter(data=tmp.loc[tmp[&#39;leiden&#39;]==xx],</span>
+<span class="c1">#                             ax=ax,</span>
+<span class="c1">#                             coord_base=coord_base,</span>
+<span class="c1">#                             hue=&#39;leiden&#39;,</span>
+<span class="c1">#                             text_anno=&#39;leiden&#39;, </span>
+<span class="c1">#                             s=ds*2,</span>
+<span class="c1">#                             labelsize=12,</span>
+<span class="c1">#                             max_points=None,</span>
+<span class="c1">#                             palette=&#39;tab20&#39;,</span>
+<span class="c1">#                             scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                             # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                             # show_legend=True</span>
+<span class="c1">#                            )</span>
+
+<span class="c1"># for ax in axes.flatten()[len(leg):]:</span>
+<span class="c1">#     ax.axis(&#39;off&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 3973 × 0
+    obs: &#39;FinalmCReads&#39;, &#39;mCHFrac&#39;, &#39;mCGFrac&#39;, &#39;CisLongContact&#39;, &#39;Cis/Trans&#39;, &#39;Donor&#39;, &#39;Tissue&#39;, &#39;celltype&#39;, &#39;ClusterTissue&#39;, &#39;tsne_0&#39;, &#39;tsne_1&#39;, &#39;leiden_cons&#39;, &#39;leiden_cv&#39;, &#39;leiden_init&#39;, &#39;leiden_init_mc&#39;, &#39;leiden_init_3c&#39;, &#39;leiden_group_mc&#39;, &#39;leiden_group_3c&#39;, &#39;group_mc_3c&#39;
+    obsm: &#39;5kCG100k3C_u7pc10&#39;, &#39;5kCG100k3C_u7pc10_tsne&#39;, &#39;X_tsne&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">)[</span><span class="s1">&#39;Cis/Trans&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>group_mc_3c
+mc0-3c0    1.298418
+mc0-3c1    1.079613
+mc0-3c2    1.153688
+mc1-3c0    1.335362
+mc1-3c1    1.136933
+mc1-3c2    1.153178
+mc2-3c0    1.146449
+mc2-3c1    1.073968
+mc2-3c2    1.167972
+Name: Cis/Trans, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp3c</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;mc1-3c1&#39;, &#39;mc2-3c1&#39;, &#39;mc0-3c1&#39;, &#39;mc0-3c0&#39;, &#39;mc0-3c2&#39;, &#39;mc1-3c2&#39;,
+       &#39;mc2-3c2&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -743,6 +1443,78 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">color_palette</span><span class="p">[</span><span class="n">rename_cluster</span><span class="p">(</span><span class="n">xx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[</span><span class="n">k2</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">k2</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;celltype&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>leiden_group_mc</th>
+      <th>mc0</th>
+      <th>mc1</th>
+      <th>mc2</th>
+    </tr>
+    <tr>
+      <th>celltype</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Fast</th>
+      <td>207.0</td>
+      <td>1305.0</td>
+      <td>171.0</td>
+    </tr>
+    <tr>
+      <th>Slow</th>
+      <td>161.0</td>
+      <td>58.0</td>
+      <td>1935.0</td>
+    </tr>
+    <tr>
+      <th>Stl</th>
+      <td>135.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">99</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.689325341 , 0.7784430472])
 </pre></div>
 </div>
 </div>
