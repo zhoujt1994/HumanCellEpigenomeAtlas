@@ -1,5 +1,16 @@
 # Needs your confirmation
 
+> **Status (updated):** Several items below are now RESOLVED — don't re-review these:
+> - ✅ **Fig 6 = 7-group** (`step6.MusSkl_diff_7group`), confirmed by savefig name.
+> - ✅ **Fig 5H + 6G** motif dot plots = `pycistarget_loopDMR.ipynb` (now `fig5/08` in the book).
+> - ✅ **Fig 6A ARI barplot** = `clustering/merged/L2_hiconly/summary.ipynb` c12.
+> - ✅ **Glia Schw rename** propagated (metadata + obs + 50 paths + code).
+> - ✅ **mCT notebooks** (`fig6/10–14`) = not in paper → to drop.
+>
+> **For the live reproduce status (30/67 CLEAN + per-notebook blockers), see `reproducibility.md` — that is the current doc.**
+> The remaining OPEN questions are §4b/§5 below (where do S3/S4/S6/S32E–H live) and, in `reproducibility.md`, whether the missing-cell notebooks are exploratory-deletable.
+
+
 Things I am **not confident about** in the figure→code mapping. Please annotate each
 (✅ correct / ✏️ fix / ❓ code lives elsewhere). Grouped by how uncertain I am.
 

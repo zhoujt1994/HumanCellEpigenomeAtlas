@@ -20,7 +20,7 @@ cells are still open — see `REVIEW_NEEDED.md`.
 
 | Panel | Notebook | Cell(s) | What it makes |
 |-------|----------|---------|---------------|
-| 6A ⚠ | [Fig5/07.L2any_L2both](../fig5/07.L2any_L2both.ipynb) c21 (values) | — | ARI per major type barplot. **Values computed there (`result['ARI']`); the barplot render is a one-line `result['ARI'].sort_values().plot.bar()` to add** (see REVIEW_NEEDED) |
+| 6A | [Fig5/07.L2any_L2both](../fig5/07.L2any_L2both.ipynb) c21 (values) + barplot from `clustering/merged/L2_hiconly/summary.ipynb` c12 | — | ARI per major type barplot ✅ **located** (`ax.bar(x, score, color=L1_meta['color'])` → `mc_3c_L2_ARI.pdf`); to add to fig5/07 |
 | 6B | [02.MusSkl_donor_clustering](02.MusSkl_donor_clustering.ipynb) | c49 | Mus Skl t-SNE mCG (left) & contact (right) — **donor-joint coordinates, colored by donor-separate cell-group labels** |
 | 6C | [02](02.MusSkl_donor_clustering.ipynb) | c49 | Same (donor-joint) coordinates colored by global mCG |
 | 6D | [01.MusSkl_clustering](01.MusSkl_clustering.ipynb) | c42 | Confusion matrix mC-subtypes × 3C-subtypes |
