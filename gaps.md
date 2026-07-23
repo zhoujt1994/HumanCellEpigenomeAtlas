@@ -32,6 +32,8 @@ Skip for now.
 
 You can just sum up the per donor counts.
 
+✅ **RESOLVED** — verified the donor-corrected crosstab reproduces 135/291/184·1/1271/88·4/173/1826 exactly; Fig 6D drawing cell added to `fig6/02`.
+
 | Fig 6G | elsewhere | Loop-DMR motif dot plot (NES/#hits). |
 
 Skip for now.
@@ -41,7 +43,11 @@ Skip for now.
 
 Those are in PMD analysis. Search the analysis directory further.
 
+✅ **RESOLVED** — both in `fig2/12.PMD_Epi-TPB` (6I = c81, verified 3,774 unique DMRs; 6J = c95); moved into the Fig 6 chapter.
+
 | Fig S32D–H | elsewhere | Schwann DMR/loop heatmaps; enteric/gastric DMR·loop·DEG heatmaps (`fig6/08.Epi-Gas`, dropped, only made t-SNEs). |
+
+⏭ **SKIP** (author): S32D producing code AND input data are both absent from the tree (would need a from-scratch Schwann DMR+loop pipeline run); E–H may come from a coauthor.
 
 Find D in analyses. Skip E-H for now.
 
@@ -56,6 +62,8 @@ You can replot it. This should be straight forward. If you cannot just skip it.
 | Fig 3I / Fig S23B | not in `fig3/` | mCH↔DEG-expression correlation (violins + corr-vs-distance-to-TSS); no producing cell in the fig3 notebooks. |
 
 Search analysis subfolder more carefully. Should be in mch_rna so something similar.
+
+✅ **RESOLVED** — found in `analysis/mCH_geneexpr/{L1}/`; recovered both as `fig3/10.mCH_geneexpr_corr.ipynb` (3I violin + S23B distance scatter), baked.
 
 | Fig S3A/B | `fig4/09.loop_rna` (breast only) | DEG↔loop / DEG↔mCG-at-DMR cosine across colon/stomach/skin/heart; multi-tissue producer not in the release. |
 
