@@ -9,6 +9,7 @@ parts:
       - file: reproduce
       - file: PANEL_MAP
       - file: reproducibility
+      - file: NONCONFIDENT
       - file: gaps
   - caption: "Fig. 1 — Single-cell atlas of methylation & 3D genome"
     chapters:
