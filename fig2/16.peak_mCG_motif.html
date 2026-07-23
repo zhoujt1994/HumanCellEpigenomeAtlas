@@ -568,18 +568,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">scATAC</span><span class="o">/</span><span class="n">peak</span><span class="o">/</span><span class="n">majortype</span><span class="o">/</span>
-<span class="n">allcools</span> <span class="n">generate</span><span class="o">-</span><span class="n">dataset</span> <span class="o">--</span><span class="n">allc_table</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">merged_allc</span><span class="o">/</span><span class="n">L1</span><span class="o">/</span><span class="n">CGN</span><span class="o">/</span><span class="n">allclist_majortype</span><span class="o">.</span><span class="n">tsv</span> \
-<span class="o">--</span><span class="n">output_path</span> <span class="n">peak_majortype_CGN</span><span class="o">.</span><span class="n">mcds</span> \
-<span class="o">--</span><span class="n">chrom_size_path</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> \
-<span class="o">--</span><span class="n">obs_dim</span> <span class="n">majortype</span> \
-<span class="o">--</span><span class="n">cpu</span> <span class="mi">32</span> \
-<span class="o">--</span><span class="n">chunk_size</span> <span class="mi">1</span> \
-<span class="o">--</span><span class="n">regions</span> <span class="n">peak</span> <span class="n">concat_peak</span><span class="o">.</span><span class="n">bed</span> \
-<span class="o">--</span><span class="n">quantifiers</span> <span class="n">peak</span> <span class="n">count</span> <span class="n">CGN</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># cd /large_storage/zhoulab/zhoujt/project/ENTEx/scATAC/peak/majortype/</span>
+<span class="c1"># allcools generate-dataset --allc_table /large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/allclist_majortype.tsv \</span>
+<span class="c1"># --output_path peak_majortype_CGN.mcds \</span>
+<span class="c1"># --chrom_size_path /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes \</span>
+<span class="c1"># --obs_dim majortype \</span>
+<span class="c1"># --cpu 32 \</span>
+<span class="c1"># --chunk_size 1 \</span>
+<span class="c1"># --regions peak concat_peak.bed \</span>
+<span class="c1"># --quantifiers peak count CGN</span>
 </pre></div>
 </div>
 </div>
@@ -1043,11 +1049,11 @@ Data variables:
     peak_da     (majortype, peak, count_type) uint32 240MB dask.array&lt;chunksize=(1, 101301, 1), meta=np.ndarray&gt;
 Attributes:
     obs_dim:  majortype
-    var_dim:  peak</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-89a452db-5366-45b3-a958-5c81cb86efa6' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-89a452db-5366-45b3-a958-5c81cb86efa6' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>majortype</span>: 37</li><li><span class='xr-has-index'>peak</span>: 810407</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-02a15a9d-131d-406d-b7f6-0c7c52f2188c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-02a15a9d-131d-406d-b7f6-0c7c52f2188c' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-9279d521-e0bb-4364-9c10-107783052a7b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9279d521-e0bb-4364-9c10-107783052a7b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-041cdedf-4090-4509-ba8a-b784cd847a4d' class='xr-var-data-in' type='checkbox'><label for='data-041cdedf-4090-4509-ba8a-b784cd847a4d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>majortype</span></div><div class='xr-var-dims'>(majortype)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;c0&#x27; &#x27;c10&#x27; &#x27;c11&#x27; ... &#x27;c7&#x27; &#x27;c8&#x27; &#x27;c9&#x27;</div><input id='attrs-a9f864fb-3f85-4dd5-ac90-cf429f897bc5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a9f864fb-3f85-4dd5-ac90-cf429f897bc5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-55954045-eda5-4cea-b282-6dc66c54ce18' class='xr-var-data-in' type='checkbox'><label for='data-55954045-eda5-4cea-b282-6dc66c54ce18' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;, &#x27;c18&#x27;,
+    var_dim:  peak</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-bae75dd1-75ca-4997-affa-1f0011f8afe3' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-bae75dd1-75ca-4997-affa-1f0011f8afe3' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>majortype</span>: 37</li><li><span class='xr-has-index'>peak</span>: 810407</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-f8ff3363-a28f-4358-abeb-6e72dd38b0f0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f8ff3363-a28f-4358-abeb-6e72dd38b0f0' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-706789fe-bdb7-475b-bcfb-b613433a5d02' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-706789fe-bdb7-475b-bcfb-b613433a5d02' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6592d626-cc1d-4c16-900c-d4b9737a69e2' class='xr-var-data-in' type='checkbox'><label for='data-6592d626-cc1d-4c16-900c-d4b9737a69e2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>majortype</span></div><div class='xr-var-dims'>(majortype)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;c0&#x27; &#x27;c10&#x27; &#x27;c11&#x27; ... &#x27;c7&#x27; &#x27;c8&#x27; &#x27;c9&#x27;</div><input id='attrs-7da55b98-1035-43fa-8bbe-1ad903089d54' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-7da55b98-1035-43fa-8bbe-1ad903089d54' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-58d5a15c-d295-455a-80d4-f5124d129fac' class='xr-var-data-in' type='checkbox'><label for='data-58d5a15c-d295-455a-80d4-f5124d129fac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;, &#x27;c18&#x27;,
        &#x27;c19&#x27;, &#x27;c1&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;, &#x27;c27&#x27;,
        &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c2&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c35&#x27;, &#x27;c36&#x27;,
-       &#x27;c3&#x27;, &#x27;c4&#x27;, &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27;</div><input id='attrs-56c887df-39ab-4dfa-8fff-77349a19b748' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-56c887df-39ab-4dfa-8fff-77349a19b748' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6a6b3dc5-8e16-48c2-b58d-caeb0e1c9876' class='xr-var-data-in' type='checkbox'><label for='data-6a6b3dc5-8e16-48c2-b58d-caeb0e1c9876' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CGN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>peak</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;peak_0&#x27; &#x27;peak_1&#x27; ... &#x27;peak_810406&#x27;</div><input id='attrs-6ecb92eb-82a7-4bd3-99ca-e542bd0b9396' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6ecb92eb-82a7-4bd3-99ca-e542bd0b9396' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-af0ee6ca-be51-4938-9374-608fda45471e' class='xr-var-data-in' type='checkbox'><label for='data-af0ee6ca-be51-4938-9374-608fda45471e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;peak_0&#x27;, &#x27;peak_1&#x27;, &#x27;peak_2&#x27;, ..., &#x27;peak_810404&#x27;, &#x27;peak_810405&#x27;,
-       &#x27;peak_810406&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>peak_chrom</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-f2d9c609-5774-4da9-bddb-4dd2e9633b39' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-f2d9c609-5774-4da9-bddb-4dd2e9633b39' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-31dfd831-277a-490c-87e9-d85f58194bba' class='xr-var-data-in' type='checkbox'><label for='data-31dfd831-277a-490c-87e9-d85f58194bba' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[810407 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>peak_end</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-88851015-7668-472e-9bcc-2866d8290be6' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-88851015-7668-472e-9bcc-2866d8290be6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b700b62b-f252-49dd-97ee-3640000bafd6' class='xr-var-data-in' type='checkbox'><label for='data-b700b62b-f252-49dd-97ee-3640000bafd6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[810407 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>peak_start</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-c079e920-7213-4aae-b20b-01e85e5eee75' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c079e920-7213-4aae-b20b-01e85e5eee75' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6831ee9c-ac69-43e8-945c-4a9f4d67d5b7' class='xr-var-data-in' type='checkbox'><label for='data-6831ee9c-ac69-43e8-945c-4a9f4d67d5b7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[810407 values with dtype=int64]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e56bf187-b3dd-454f-ad4d-e434bb8a5bad' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e56bf187-b3dd-454f-ad4d-e434bb8a5bad' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>peak_da</span></div><div class='xr-var-dims'>(majortype, peak, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 101301, 1), meta=np.ndarray&gt;</div><input id='attrs-6c64b34e-9864-4474-893e-ae9daedada63' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6c64b34e-9864-4474-893e-ae9daedada63' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5a04d808-646e-43f6-8a05-81fc21c2d2fe' class='xr-var-data-in' type='checkbox'><label for='data-5a04d808-646e-43f6-8a05-81fc21c2d2fe' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+       &#x27;c3&#x27;, &#x27;c4&#x27;, &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mc_type</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CGN&#x27;</div><input id='attrs-3b8a130c-c5cd-416f-9a02-c2ba64e692c9' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3b8a130c-c5cd-416f-9a02-c2ba64e692c9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e80027fa-f39e-4732-8d0d-e1c5c2de8c4c' class='xr-var-data-in' type='checkbox'><label for='data-e80027fa-f39e-4732-8d0d-e1c5c2de8c4c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array(&#x27;CGN&#x27;, dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>peak</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>&lt;U11</div><div class='xr-var-preview xr-preview'>&#x27;peak_0&#x27; &#x27;peak_1&#x27; ... &#x27;peak_810406&#x27;</div><input id='attrs-5d2dffa7-46b6-4de7-a3b2-d89c431d7cdc' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5d2dffa7-46b6-4de7-a3b2-d89c431d7cdc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4ce5e4af-85cf-4bfa-a36a-af255d4f37b9' class='xr-var-data-in' type='checkbox'><label for='data-4ce5e4af-85cf-4bfa-a36a-af255d4f37b9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;peak_0&#x27;, &#x27;peak_1&#x27;, &#x27;peak_2&#x27;, ..., &#x27;peak_810404&#x27;, &#x27;peak_810405&#x27;,
+       &#x27;peak_810406&#x27;], dtype=&#x27;&lt;U11&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>peak_chrom</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-66f3a571-075f-436f-b0fa-31c29492536c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-66f3a571-075f-436f-b0fa-31c29492536c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b9580d1b-2517-41f5-987d-33c6053bf2bd' class='xr-var-data-in' type='checkbox'><label for='data-b9580d1b-2517-41f5-987d-33c6053bf2bd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[810407 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>peak_end</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0460457f-c02d-4c05-945e-056bc23ce273' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0460457f-c02d-4c05-945e-056bc23ce273' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2687e9b3-15a2-4c61-991e-fc0b7fef03e5' class='xr-var-data-in' type='checkbox'><label for='data-2687e9b3-15a2-4c61-991e-fc0b7fef03e5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[810407 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>peak_start</span></div><div class='xr-var-dims'>(peak)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-79e5a367-65ab-47b2-8a84-af0f86b02c33' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-79e5a367-65ab-47b2-8a84-af0f86b02c33' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f0af398f-fe4e-4d3f-b4bf-6414ee812bf1' class='xr-var-data-in' type='checkbox'><label for='data-f0af398f-fe4e-4d3f-b4bf-6414ee812bf1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[810407 values with dtype=int64]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b9fa17c8-9918-43bd-8e43-c70bcf9a7bff' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b9fa17c8-9918-43bd-8e43-c70bcf9a7bff' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>peak_da</span></div><div class='xr-var-dims'>(majortype, peak, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 101301, 1), meta=np.ndarray&gt;</div><input id='attrs-cd4886fb-d28a-4624-b025-a1d15284157c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-cd4886fb-d28a-4624-b025-a1d15284157c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3dac1fef-fab6-42c6-981f-4c1477755637' class='xr-var-data-in' type='checkbox'><label for='data-3dac1fef-fab6-42c6-981f-4c1477755637' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1177,17 +1183,17 @@ Attributes:
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-5a711e76-e11e-4b2a-b64d-b6ed13ae0821' class='xr-section-summary-in' type='checkbox'  ><label for='section-5a711e76-e11e-4b2a-b64d-b6ed13ae0821' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-84aafae7-54ea-412b-b72d-e8737a4aab07' class='xr-index-data-in' type='checkbox'/><label for='index-84aafae7-54ea-412b-b72d-e8737a4aab07' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>majortype</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0dcab381-00ae-47f0-b436-70748542cd61' class='xr-index-data-in' type='checkbox'/><label for='index-0dcab381-00ae-47f0-b436-70748542cd61' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;, &#x27;c18&#x27;,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-903f1bb3-47cf-4182-9760-ffcf2dd373ca' class='xr-section-summary-in' type='checkbox'  ><label for='section-903f1bb3-47cf-4182-9760-ffcf2dd373ca' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8f7f577f-2cb5-4122-a15d-38cde04c4fed' class='xr-index-data-in' type='checkbox'/><label for='index-8f7f577f-2cb5-4122-a15d-38cde04c4fed' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>majortype</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f2cdc58d-b609-4ca8-a89e-6589b07b1ed2' class='xr-index-data-in' type='checkbox'/><label for='index-f2cdc58d-b609-4ca8-a89e-6589b07b1ed2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0&#x27;, &#x27;c10&#x27;, &#x27;c11&#x27;, &#x27;c12&#x27;, &#x27;c13&#x27;, &#x27;c14&#x27;, &#x27;c15&#x27;, &#x27;c16&#x27;, &#x27;c17&#x27;, &#x27;c18&#x27;,
        &#x27;c19&#x27;, &#x27;c1&#x27;, &#x27;c20&#x27;, &#x27;c21&#x27;, &#x27;c22&#x27;, &#x27;c23&#x27;, &#x27;c24&#x27;, &#x27;c25&#x27;, &#x27;c26&#x27;, &#x27;c27&#x27;,
        &#x27;c28&#x27;, &#x27;c29&#x27;, &#x27;c2&#x27;, &#x27;c30&#x27;, &#x27;c31&#x27;, &#x27;c32&#x27;, &#x27;c33&#x27;, &#x27;c34&#x27;, &#x27;c35&#x27;, &#x27;c36&#x27;,
        &#x27;c3&#x27;, &#x27;c4&#x27;, &#x27;c5&#x27;, &#x27;c6&#x27;, &#x27;c7&#x27;, &#x27;c8&#x27;, &#x27;c9&#x27;],
-      dtype=&#x27;object&#x27;, name=&#x27;majortype&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>peak</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3c0b619b-5368-4554-aecb-d1f892ada05b' class='xr-index-data-in' type='checkbox'/><label for='index-3c0b619b-5368-4554-aecb-d1f892ada05b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;peak_0&#x27;, &#x27;peak_1&#x27;, &#x27;peak_2&#x27;, &#x27;peak_3&#x27;, &#x27;peak_4&#x27;, &#x27;peak_5&#x27;, &#x27;peak_6&#x27;,
+      dtype=&#x27;object&#x27;, name=&#x27;majortype&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>peak</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-1adad7ea-3211-4c31-be1d-09c0b4a615f9' class='xr-index-data-in' type='checkbox'/><label for='index-1adad7ea-3211-4c31-be1d-09c0b4a615f9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;peak_0&#x27;, &#x27;peak_1&#x27;, &#x27;peak_2&#x27;, &#x27;peak_3&#x27;, &#x27;peak_4&#x27;, &#x27;peak_5&#x27;, &#x27;peak_6&#x27;,
        &#x27;peak_7&#x27;, &#x27;peak_8&#x27;, &#x27;peak_9&#x27;,
        ...
        &#x27;peak_810397&#x27;, &#x27;peak_810398&#x27;, &#x27;peak_810399&#x27;, &#x27;peak_810400&#x27;,
        &#x27;peak_810401&#x27;, &#x27;peak_810402&#x27;, &#x27;peak_810403&#x27;, &#x27;peak_810404&#x27;,
        &#x27;peak_810405&#x27;, &#x27;peak_810406&#x27;],
-      dtype=&#x27;object&#x27;, name=&#x27;peak&#x27;, length=810407))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ceefd4b0-5bba-4b07-b26f-4b12b342bc51' class='xr-section-summary-in' type='checkbox'  checked><label for='section-ceefd4b0-5bba-4b07-b26f-4b12b342bc51' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>majortype</dd><dt><span>var_dim :</span></dt><dd>peak</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;object&#x27;, name=&#x27;peak&#x27;, length=810407))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-66c9ad08-a2fa-4607-bbf8-ff38653da3eb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-66c9ad08-a2fa-4607-bbf8-ff38653da3eb' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>majortype</dd><dt><span>var_dim :</span></dt><dd>peak</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2314,39 +2320,87 @@ Attributes:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c33
-c3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c3
 c22
-c9
-c20
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c20
 c25
-c30
-c13
-c8
-c4
-c18
-c29
-c17
-c19
-c28
-c6
-c11
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c30
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c13
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c18
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c29
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c19
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c28
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c11
 c32
-c34
-c23
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c34
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c23
 c31
-c14
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c14
 c35
-c24
-c0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c24
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c0
 c27
 c1
-c15
-c26
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c15
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c26
 c5
-c10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c10
 c16
-c21
-c12
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c21
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c12
 </pre></div>
 </div>
 </div>
@@ -2382,7 +2436,7 @@ c12
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bb25c85eb9627714b8fc3534e20ca24c5f5382f121335c66ba2d80f7ee00d7fe.png" src="../_images/bb25c85eb9627714b8fc3534e20ca24c5f5382f121335c66ba2d80f7ee00d7fe.png" />
+<img alt="../_images/79ef7c4ef4cb6f114a8b6e00f61a77f6f96edd8914503f9080f84b768d0037aa.png" src="../_images/79ef7c4ef4cb6f114a8b6e00f61a77f6f96edd8914503f9080f84b768d0037aa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2450,34 +2504,35 @@ c9 46239 5242
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## summit/loop ATAC peak enriched motif</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># ## summit/loop ATAC peak enriched motif</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="err">`</span><span class="n">seq</span> <span class="mi">1</span> <span class="mi">35</span><span class="err">`</span><span class="p">;</span> <span class="n">do</span> <span class="p">(</span>
-<span class="n">ct</span><span class="o">=</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span>
-<span class="n">dbdir</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">loop_peak_motif</span>
-<span class="n">outdir</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">mCG_peak_motif</span>
-<span class="k">if</span> <span class="n">test</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;$</span><span class="si">{outdir}</span><span class="s2">/$</span><span class="si">{ct}</span><span class="s2">/bed/hypo/$</span><span class="si">{ct}</span><span class="s2">.bed&quot;</span><span class="p">;</span> <span class="n">then</span> 
-<span class="n">scenicplus</span> <span class="n">grn_inference</span> <span class="n">motif_enrichment_cistarget</span> \
-    <span class="o">--</span><span class="n">region_set_folder</span> <span class="err">$</span><span class="p">{</span><span class="n">outdir</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span> \
-    <span class="o">--</span><span class="n">cistarget_db_fname</span> <span class="err">$</span><span class="p">{</span><span class="n">dbdir</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">merge_peak</span><span class="o">.</span><span class="n">regions_vs_motifs</span><span class="o">.</span><span class="n">rankings</span><span class="o">.</span><span class="n">feather</span> \
-    <span class="o">--</span><span class="n">output_fname_cistarget_result</span> <span class="err">$</span><span class="p">{</span><span class="n">outdir</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">ctx_results</span><span class="o">.</span><span class="n">hdf5</span> \
-    <span class="o">--</span><span class="n">temp_dir</span> <span class="err">$</span><span class="p">{</span><span class="n">outdir</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">tmp</span> \
-    <span class="o">--</span><span class="n">species</span> <span class="s2">&quot;homo_sapiens&quot;</span> \
-    <span class="o">--</span><span class="n">fr_overlap_w_ctx_db</span> <span class="mf">0.9</span> \
-    <span class="o">--</span><span class="n">auc_threshold</span> <span class="mf">0.005</span> \
-    <span class="o">--</span><span class="n">nes_threshold</span> <span class="mf">3.0</span> \
-    <span class="o">--</span><span class="n">rank_threshold</span> <span class="mf">0.05</span> \
-    <span class="o">--</span><span class="n">path_to_motif_annotations</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot;</span> \
-    <span class="o">--</span><span class="n">annotation_version</span> <span class="s2">&quot;v10nr_clust&quot;</span> \
-    <span class="o">--</span><span class="n">motif_similarity_fdr</span> <span class="mf">0.001</span> \
-    <span class="o">--</span><span class="n">orthologous_identity_threshold</span> <span class="mf">0.0</span> \
-    <span class="o">--</span><span class="n">annotations_to_use</span> <span class="s2">&quot;Direct_annot Orthology_annot&quot;</span> \
-    <span class="o">--</span><span class="n">write_html</span> \
-    <span class="o">--</span><span class="n">output_fname_cistarget_html</span> <span class="err">$</span><span class="p">{</span><span class="n">outdir</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">ctx_results</span><span class="o">.</span><span class="n">html</span> \
-    <span class="o">--</span><span class="n">n_cpu</span> <span class="mi">32</span>
-<span class="n">fi</span>
-<span class="p">)</span>
-<span class="n">done</span>
+<span class="c1"># for i in `seq 1 35`; do (</span>
+<span class="c1"># ct=c${i}</span>
+<span class="c1"># dbdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_peak_motif</span>
+<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCG_peak_motif</span>
+<span class="c1"># if test -e &quot;${outdir}/${ct}/bed/hypo/${ct}.bed&quot;; then </span>
+<span class="c1"># scenicplus grn_inference motif_enrichment_cistarget \</span>
+<span class="c1">#     --region_set_folder ${outdir}/${ct}/bed \</span>
+<span class="c1">#     --cistarget_db_fname ${dbdir}/${ct}/merge_peak.regions_vs_motifs.rankings.feather \</span>
+<span class="c1">#     --output_fname_cistarget_result ${outdir}/${ct}/ctx_results.hdf5 \</span>
+<span class="c1">#     --temp_dir ${outdir}/${ct}/tmp \</span>
+<span class="c1">#     --species &quot;homo_sapiens&quot; \</span>
+<span class="c1">#     --fr_overlap_w_ctx_db 0.9 \</span>
+<span class="c1">#     --auc_threshold 0.005 \</span>
+<span class="c1">#     --nes_threshold 3.0 \</span>
+<span class="c1">#     --rank_threshold 0.05 \</span>
+<span class="c1">#     --path_to_motif_annotations f&quot;{REF_ROOT}/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; \</span>
+<span class="c1">#     --annotation_version &quot;v10nr_clust&quot; \</span>
+<span class="c1">#     --motif_similarity_fdr 0.001 \</span>
+<span class="c1">#     --orthologous_identity_threshold 0.0 \</span>
+<span class="c1">#     --annotations_to_use &quot;Direct_annot Orthology_annot&quot; \</span>
+<span class="c1">#     --write_html \</span>
+<span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.html \</span>
+<span class="c1">#     --n_cpu 32</span>
+<span class="c1"># fi</span>
+<span class="c1"># )</span>
+<span class="c1"># done</span>
 </pre></div>
 </div>
 </div>
@@ -2710,18 +2765,8 @@ c9 46239 5242
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">motif_databases</span><span class="o">/</span><span class="n">JASPAR</span><span class="o">/</span><span class="n">JASPAR2024_CORE_non</span><span class="o">-</span><span class="n">redundant_pfms</span><span class="o">.</span><span class="n">meme</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>description
-[motif, similar, to]       120369
-[gene, is, annotated]       85696
-[gene, is, directly]        22353
-[gene, is, orthologous]     21017
-[motif, is, annotated]       3661
-Name: count, dtype: int64
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># /large_storage/zhoulab/ref/motif_databases/JASPAR/JASPAR2024_CORE_non-redundant_pfms.meme</span>
 </pre></div>
 </div>
 </div>
@@ -3297,7 +3342,7 @@ Name: count, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call
-MethylPlus       183
+MethylPlus       182
 MethylMinus      135
 no info           24
 Little effect     24
@@ -3313,8 +3358,10 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MethylPlus     147
-MethylMinus     92
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no info          1136
+MethylPlus        146
+MethylMinus        92
+Little effect      21
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -3331,7 +3378,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f3a75bc6710&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f8b91cad480&gt;
 </pre></div>
 </div>
 <img alt="../_images/37cacfc5731217659b4574cbd23a0b1822eecd3f3a7500055b9a5b0d473bbc87.png" src="../_images/37cacfc5731217659b4574cbd23a0b1822eecd3f3a7500055b9a5b0d473bbc87.png" />
@@ -3342,301 +3389,28 @@ Name: count, dtype: int64
 <h2>AME HOCOMOCO<a class="headerlink" href="#ame-hocomoco" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="err">$</span><span class="p">(</span><span class="n">ls</span> <span class="o">-</span><span class="n">d</span> <span class="n">c</span><span class="o">*</span><span class="p">);</span> <span class="n">do</span> <span class="p">(</span>
-<span class="n">bedtools</span> <span class="n">getfasta</span> <span class="o">-</span><span class="n">fi</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">fo</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hypo</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">bed</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hypo</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">bedtools</span> <span class="n">getfasta</span> <span class="o">-</span><span class="n">fi</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">fo</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hyper</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">bed</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hyper</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">ame</span> <span class="o">--</span><span class="n">control</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hyper</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">o</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">out_hypo</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hypo</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">motif_databases</span><span class="o">/</span><span class="n">HUMAN</span><span class="o">/</span><span class="n">HOCOMOCOv11_core_HUMAN_mono_meme_format</span><span class="o">.</span><span class="n">meme</span>
-<span class="n">ame</span> <span class="o">--</span><span class="n">control</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hypo</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">o</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">out_hyper</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hyper</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">motif_databases</span><span class="o">/</span><span class="n">HUMAN</span><span class="o">/</span><span class="n">HOCOMOCOv11_core_HUMAN_mono_meme_format</span><span class="o">.</span><span class="n">meme</span>
-<span class="p">)</span> <span class="o">&amp;</span> 
-<span class="n">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># for ct in $(ls -d c*); do (</span>
+<span class="c1"># bedtools getfasta -fi /large_storage/zhoulab/ref/hg38/fasta/hg38.fa -fo ${ct}/bed/hypo/${ct}.fa -bed ${ct}/bed/hypo/${ct}.bed</span>
+<span class="c1"># bedtools getfasta -fi /large_storage/zhoulab/ref/hg38/fasta/hg38.fa -fo ${ct}/bed/hyper/${ct}.fa -bed ${ct}/bed/hyper/${ct}.bed</span>
+<span class="c1"># ame --control ${ct}/bed/hyper/${ct}.fa --o ${ct}/out_hypo ${ct}/bed/hypo/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
+<span class="c1"># ame --control ${ct}/bed/hypo/${ct}.fa --o ${ct}/out_hyper ${ct}/bed/hyper/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
+<span class="c1"># ) &amp; </span>
+<span class="c1"># done</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rank</th>
-      <th>motif_DB</th>
-      <th>motif_ID</th>
-      <th>motif_alt_ID</th>
-      <th>consensus</th>
-      <th>p-value</th>
-      <th>adj_p-value</th>
-      <th>E-value</th>
-      <th>tests</th>
-      <th>FASTA_max</th>
-      <th>pos</th>
-      <th>neg</th>
-      <th>PWM_min</th>
-      <th>TP</th>
-      <th>%TP</th>
-      <th>FP</th>
-      <th>%FP</th>
-      <th>gene_name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>SP2_HUMAN.H11MO.0.A</td>
-      <td>NaN</td>
-      <td>GGSSVGGGGGCGGGGCCDGSGS</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>25932</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.28</td>
-      <td>25150</td>
-      <td>50.17</td>
-      <td>145</td>
-      <td>6.89</td>
-      <td>SP2</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>SP3_HUMAN.H11MO.0.B</td>
-      <td>NaN</td>
-      <td>SGVVGGGGGCGGGGCBRGSS</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>28818</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.92</td>
-      <td>25456</td>
-      <td>50.78</td>
-      <td>183</td>
-      <td>8.70</td>
-      <td>SP3</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>E2F4_HUMAN.H11MO.0.A</td>
-      <td>NaN</td>
-      <td>SRGGGCGGGAARD</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>22444</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.10</td>
-      <td>21830</td>
-      <td>43.55</td>
-      <td>116</td>
-      <td>5.51</td>
-      <td>E2F4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>MECP2_HUMAN.H11MO.0.C</td>
-      <td>NaN</td>
-      <td>SCCGGRR</td>
-      <td>6.360000e-308</td>
-      <td>1.310000e-303</td>
-      <td>5.260000e-301</td>
-      <td>20623</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.44</td>
-      <td>19349</td>
-      <td>38.60</td>
-      <td>79</td>
-      <td>3.75</td>
-      <td>MECP2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>THAP1_HUMAN.H11MO.0.C</td>
-      <td>NaN</td>
-      <td>SGCCGCCATSTYGGSYBCGGGC</td>
-      <td>3.660000e-301</td>
-      <td>7.220000e-297</td>
-      <td>2.900000e-294</td>
-      <td>19758</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.12</td>
-      <td>19666</td>
-      <td>39.23</td>
-      <td>92</td>
-      <td>4.37</td>
-      <td>THAP1</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>111</th>
-      <td>112</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>FOXI1_HUMAN.H11MO.0.B</td>
-      <td>NaN</td>
-      <td>YTBTGATTGGYY</td>
-      <td>7.240000e-07</td>
-      <td>2.090000e-03</td>
-      <td>8.380000e-01</td>
-      <td>2889</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.62</td>
-      <td>2465</td>
-      <td>4.92</td>
-      <td>58</td>
-      <td>2.76</td>
-      <td>FOXI1</td>
-    </tr>
-    <tr>
-      <th>112</th>
-      <td>113</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>RFX5_HUMAN.H11MO.0.A</td>
-      <td>NaN</td>
-      <td>GTCABCWGTTGCYRGGSARA</td>
-      <td>3.710000e-07</td>
-      <td>3.790000e-03</td>
-      <td>1.520000e+00</td>
-      <td>10254</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>2.32</td>
-      <td>5628</td>
-      <td>11.23</td>
-      <td>166</td>
-      <td>7.89</td>
-      <td>RFX5</td>
-    </tr>
-    <tr>
-      <th>114</th>
-      <td>115</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>TFEB_HUMAN.H11MO.0.C</td>
-      <td>NaN</td>
-      <td>RGTCACGTG</td>
-      <td>7.110000e-06</td>
-      <td>7.440000e-03</td>
-      <td>2.980000e+00</td>
-      <td>1049</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>2.96</td>
-      <td>986</td>
-      <td>1.97</td>
-      <td>16</td>
-      <td>0.76</td>
-      <td>TFEB</td>
-    </tr>
-    <tr>
-      <th>116</th>
-      <td>117</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>RFX3_HUMAN.H11MO.0.B</td>
-      <td>NaN</td>
-      <td>BGTTRCCATGGYRA</td>
-      <td>4.490000e-06</td>
-      <td>1.260000e-02</td>
-      <td>5.060000e+00</td>
-      <td>2827</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>214.00</td>
-      <td>737</td>
-      <td>1.47</td>
-      <td>9</td>
-      <td>0.43</td>
-      <td>RFX3</td>
-    </tr>
-    <tr>
-      <th>117</th>
-      <td>118</td>
-      <td>/large_storage/zhoulab/ref/motif_databases/HUM...</td>
-      <td>TBX3_HUMAN.H11MO.0.C</td>
-      <td>NaN</td>
-      <td>DRAGGTGBSAR</td>
-      <td>6.170000e-07</td>
-      <td>1.820000e-02</td>
-      <td>7.300000e+00</td>
-      <td>29773</td>
-      <td>50126</td>
-      <td>50126</td>
-      <td>2104</td>
-      <td>1.45</td>
-      <td>21300</td>
-      <td>42.49</td>
-      <td>782</td>
-      <td>37.17</td>
-      <td>TBX3</td>
-    </tr>
-  </tbody>
-</table>
-<p>87 rows × 18 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span>
-<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="err">$</span><span class="p">(</span><span class="n">ls</span> <span class="o">-</span><span class="n">d</span> <span class="n">c</span><span class="o">*</span><span class="p">);</span> <span class="n">do</span> <span class="p">(</span>
-<span class="n">bedtools</span> <span class="n">getfasta</span> <span class="o">-</span><span class="n">fi</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">fo</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">bed</span> <span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="o">/</span><span class="n">loop_peak_motif</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">merge_peak</span><span class="o">.</span><span class="n">slop1kb</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">ame</span> <span class="o">--</span><span class="n">control</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">o</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">out_hyper_all</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hyper</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">motif_databases</span><span class="o">/</span><span class="n">HUMAN</span><span class="o">/</span><span class="n">HOCOMOCOv11_core_HUMAN_mono_meme_format</span><span class="o">.</span><span class="n">meme</span>
-<span class="n">ame</span> <span class="o">--</span><span class="n">control</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">--</span><span class="n">o</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">out_hypo_all</span> <span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">/</span><span class="n">bed</span><span class="o">/</span><span class="n">hypo</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">ct</span><span class="p">}</span><span class="o">.</span><span class="n">fa</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">motif_databases</span><span class="o">/</span><span class="n">HUMAN</span><span class="o">/</span><span class="n">HOCOMOCOv11_core_HUMAN_mono_meme_format</span><span class="o">.</span><span class="n">meme</span>
-<span class="p">)</span> <span class="o">&amp;</span> 
-<span class="n">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis</span>
+<span class="c1"># for ct in $(ls -d c*); do (</span>
+<span class="c1"># bedtools getfasta -fi /large_storage/zhoulab/ref/hg38/fasta/hg38.fa -fo ${ct}/bed/${ct}.fa -bed ${indir}/loop_peak_motif/${ct}/merge_peak.slop1kb.bed</span>
+<span class="c1"># ame --control ${ct}/bed/${ct}.fa --o ${ct}/out_hyper_all ${ct}/bed/hyper/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
+<span class="c1"># ame --control ${ct}/bed/${ct}.fa --o ${ct}/out_hypo_all ${ct}/bed/hypo/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
+<span class="c1"># ) &amp; </span>
+<span class="c1"># done</span>
 </pre></div>
 </div>
 </div>
@@ -3703,10 +3477,10 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f3a82ddcd90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f8b8d1404f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/d8c29792114e50589c945000439869a3ad9edf31ad6af232b60a05b81293028d.png" src="../_images/d8c29792114e50589c945000439869a3ad9edf31ad6af232b60a05b81293028d.png" />
+<img alt="../_images/7023cd449a64d7cff35016a31039c75d14226bec0a6675141050587d4ae24743.png" src="../_images/7023cd449a64d7cff35016a31039c75d14226bec0a6675141050587d4ae24743.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3716,10 +3490,10 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f3a74ac7af0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f8b8d141a50&gt;
 </pre></div>
 </div>
-<img alt="../_images/ff3ee7bac2f09f36d8858fba65aea1a129e5d4dd6f019c38f3a14f23cef01614.png" src="../_images/ff3ee7bac2f09f36d8858fba65aea1a129e5d4dd6f019c38f3a14f23cef01614.png" />
+<img alt="../_images/7023cd449a64d7cff35016a31039c75d14226bec0a6675141050587d4ae24743.png" src="../_images/7023cd449a64d7cff35016a31039c75d14226bec0a6675141050587d4ae24743.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3729,8 +3503,10 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MethylMinus    36
-MethylPlus     29
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no info          325
+MethylMinus       36
+MethylPlus        29
+Little effect     11
 Name: count, dtype: int64
 </pre></div>
 </div>
@@ -3810,6 +3586,30 @@ Name: count, dtype: int64
   </thead>
   <tbody>
     <tr>
+      <th>Little effect</th>
+      <td>6</td>
+      <td>9</td>
+      <td>6</td>
+      <td>10</td>
+      <td>10</td>
+      <td>6</td>
+      <td>6</td>
+      <td>10</td>
+      <td>10</td>
+      <td>7</td>
+      <td>...</td>
+      <td>9</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>8</td>
+      <td>8</td>
+      <td>10</td>
+      <td>7</td>
+      <td>6</td>
+      <td>9</td>
+    </tr>
+    <tr>
       <th>MethylMinus</th>
       <td>14</td>
       <td>24</td>
@@ -3857,9 +3657,33 @@ Name: count, dtype: int64
       <td>5</td>
       <td>6</td>
     </tr>
+    <tr>
+      <th>no info</th>
+      <td>49</td>
+      <td>92</td>
+      <td>52</td>
+      <td>87</td>
+      <td>102</td>
+      <td>60</td>
+      <td>41</td>
+      <td>109</td>
+      <td>117</td>
+      <td>92</td>
+      <td>...</td>
+      <td>95</td>
+      <td>44</td>
+      <td>65</td>
+      <td>70</td>
+      <td>84</td>
+      <td>83</td>
+      <td>106</td>
+      <td>80</td>
+      <td>67</td>
+      <td>91</td>
+    </tr>
   </tbody>
 </table>
-<p>2 rows × 34 columns</p>
+<p>4 rows × 34 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -3881,7 +3705,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f49961a0d13ed01ad2862f346c0f8ed974230d0427c13960ff5caaf8118f0f43.png" src="../_images/f49961a0d13ed01ad2862f346c0f8ed974230d0427c13960ff5caaf8118f0f43.png" />
+<img alt="../_images/5c3dce2fdb9cbe847959746cc37b96276aad26ca3289a90c4e3bae3939869523.png" src="../_images/5c3dce2fdb9cbe847959746cc37b96276aad26ca3289a90c4e3bae3939869523.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3894,10 +3718,10 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f3a710c1b40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f8a648665f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/cb212bfaaf6dc4a79c6971afce6ec375e30cd162c54664e716028e4fea383c9d.png" src="../_images/cb212bfaaf6dc4a79c6971afce6ec375e30cd162c54664e716028e4fea383c9d.png" />
+<img alt="../_images/6bf5d045a5a2559974ab9e6d72e384101f5582222013bbdb5039d2e1bfe5974c.png" src="../_images/6bf5d045a5a2559974ab9e6d72e384101f5582222013bbdb5039d2e1bfe5974c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3919,7 +3743,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ea6acfcf19a6be5d073f4b3ac81e6a1f3aa667a77dadbaa102d846ce80ad9aa9.png" src="../_images/ea6acfcf19a6be5d073f4b3ac81e6a1f3aa667a77dadbaa102d846ce80ad9aa9.png" />
+<img alt="../_images/81c02c47eef167fa6b856f2e92b556e1be6ec47969ca69b35b0c4e52b1e7f061.png" src="../_images/81c02c47eef167fa6b856f2e92b556e1be6ec47969ca69b35b0c4e52b1e7f061.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3932,10 +3756,10 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7ff192b3edd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f8a9019e830&gt;
 </pre></div>
 </div>
-<img alt="../_images/a8898dc46b97943f1135903260eb092b17378740f3819efe34429e4eee1f24fb.png" src="../_images/a8898dc46b97943f1135903260eb092b17378740f3819efe34429e4eee1f24fb.png" />
+<img alt="../_images/6bf5d045a5a2559974ab9e6d72e384101f5582222013bbdb5039d2e1bfe5974c.png" src="../_images/6bf5d045a5a2559974ab9e6d72e384101f5582222013bbdb5039d2e1bfe5974c.png" />
 </div>
 </div>
 </section>

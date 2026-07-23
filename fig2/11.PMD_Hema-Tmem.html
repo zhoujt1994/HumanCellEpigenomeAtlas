@@ -2059,11 +2059,12 @@ Length: 100, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">*</span><span class="n">donor_dmr</span><span class="o">/</span><span class="n">dmr</span><span class="o">.</span><span class="n">bed</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">k3</span><span class="p">,</span><span class="mi">3</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{printf(&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&quot;, $1,$2,$3,NR)}&#39;</span> <span class="o">&gt;</span> <span class="n">donor_dmr</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">cat</span> <span class="o">*</span><span class="n">celltype_dmr</span><span class="o">/</span><span class="n">dmr</span><span class="o">.</span><span class="n">bed</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">k3</span><span class="p">,</span><span class="mi">3</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{printf(&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&quot;, $1,$2,$3,NR)}&#39;</span> <span class="o">&gt;</span> <span class="n">celltype_dmr</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">ls</span> <span class="o">*.</span><span class="n">CGN</span><span class="o">-</span><span class="n">Merge</span><span class="o">.</span><span class="n">allc</span><span class="o">.</span><span class="n">tsv</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">awk</span> <span class="o">-</span><span class="n">v</span> <span class="n">p</span><span class="o">=</span><span class="err">$</span><span class="n">PWD</span> <span class="s1">&#39;{printf(&quot;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&quot;, p, $1)}&#39;</span> <span class="o">&gt;</span> <span class="n">allclist_bulk</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">paste</span> <span class="o">&lt;</span><span class="p">(</span><span class="n">awk</span> <span class="o">-</span><span class="sa">F</span><span class="s1">&#39;/&#39;</span> <span class="s1">&#39;{print $NF}&#39;</span> <span class="n">allclist_bulk</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">d</span><span class="o">.</span> <span class="o">-</span><span class="n">f1</span><span class="p">)</span> <span class="n">allclist_bulk</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">allclist_bulk</span><span class="o">.</span><span class="n">tsv</span>
-<span class="n">allcools</span> <span class="n">generate</span><span class="o">-</span><span class="n">dataset</span> <span class="o">--</span><span class="n">allc_table</span> <span class="n">allclist_bulk</span><span class="o">.</span><span class="n">tsv</span> <span class="o">--</span><span class="n">output_path</span> <span class="n">Hema</span><span class="o">-</span><span class="n">Tmem</span><span class="o">-</span><span class="n">PBMC_dmr</span><span class="o">.</span><span class="n">mcds</span> <span class="o">--</span><span class="n">chrom_size_path</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> <span class="o">--</span><span class="n">obs_dim</span> <span class="n">cell</span> <span class="o">--</span><span class="n">cpu</span> <span class="mi">20</span> <span class="o">--</span><span class="n">chunk_size</span> <span class="mi">1</span> <span class="o">--</span><span class="n">regions</span> <span class="n">donor_dmr</span> <span class="n">donor_dmr</span><span class="o">.</span><span class="n">bed</span> <span class="o">--</span><span class="n">regions</span> <span class="n">celltype_dmr</span> <span class="n">celltype_dmr</span><span class="o">.</span><span class="n">bed</span> <span class="o">--</span><span class="n">quantifiers</span> <span class="n">donor_dmr</span> <span class="n">count</span> <span class="n">CGN</span> <span class="o">--</span><span class="n">quantifiers</span> <span class="n">celltype_dmr</span> <span class="n">count</span> <span class="n">CGN</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># cat *donor_dmr/dmr.bed | sort -k1,1 -k2,2n -k3,3n -u | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;, $1,$2,$3,NR)}&#39; &gt; donor_dmr.bed</span>
+<span class="c1"># cat *celltype_dmr/dmr.bed | sort -k1,1 -k2,2n -k3,3n -u | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;, $1,$2,$3,NR)}&#39; &gt; celltype_dmr.bed</span>
+<span class="c1"># ls *.CGN-Merge.allc.tsv.gz | awk -v p=$PWD &#39;{printf(&quot;%s/%s\n&quot;, p, $1)}&#39; &gt; allclist_bulk.txt</span>
+<span class="c1"># paste &lt;(awk -F&#39;/&#39; &#39;{print $NF}&#39; allclist_bulk.txt | cut -d. -f1) allclist_bulk.txt &gt; allclist_bulk.tsv</span>
+<span class="c1"># allcools generate-dataset --allc_table allclist_bulk.tsv --output_path Hema-Tmem-PBMC_dmr.mcds --chrom_size_path /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes --obs_dim cell --cpu 20 --chunk_size 1 --regions donor_dmr donor_dmr.bed --regions celltype_dmr celltype_dmr.bed --quantifiers donor_dmr count CGN --quantifiers celltype_dmr count CGN</span>
 </pre></div>
 </div>
 </div>
@@ -2551,18 +2552,6 @@ Attributes:
        ...
        26199, 26200, 26201, 26202, 26203, 26204, 26205, 26206, 26207, 26208],
       dtype=&#x27;int64&#x27;, name=&#x27;celltype_dmr&#x27;, length=39485))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-4bb1090c-1df9-41c0-9d55-552c2e83133a' class='xr-index-data-in' type='checkbox'/><label for='index-4bb1090c-1df9-41c0-9d55-552c2e83133a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7b92457e-ccdd-4b72-b65f-29cb08e0dcc2' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7b92457e-ccdd-4b72-b65f-29cb08e0dcc2' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>celltype_dmr</dd></dl></div></li></ul></div></div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Tc-Mem-11714&#39;, &#39;Tc-Mem-4809&#39;, &#39;Th-Mem-11714&#39;, &#39;Th-Mem-4809&#39;], dtype=&#39;object&#39;, name=&#39;cell&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3368,6 +3357,18 @@ Attributes:
        ...
        16619, 16620, 16621, 16622, 16623, 16624, 16625, 16626, 16627, 16628],
       dtype=&#x27;int64&#x27;, name=&#x27;donor_dmr&#x27;, length=26131))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e518a55b-94b3-49d8-a755-e2582e8ecedb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-e518a55b-94b3-49d8-a755-e2582e8ecedb' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>donor_dmr</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Tc-Mem-11714&#39;, &#39;Tc-Mem-4809&#39;, &#39;Th-Mem-11714&#39;, &#39;Th-Mem-4809&#39;], dtype=&#39;object&#39;, name=&#39;cell&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

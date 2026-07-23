@@ -1706,142 +1706,6 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmr</span> <span class="o">=</span> <span class="n">dmr_ds</span><span class="p">[[</span><span class="s1">&#39;dmr_chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
-<span class="n">dmr</span><span class="p">[[</span><span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dmr</span><span class="p">[[</span><span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">dmr</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>dmr_chrom</th>
-      <th>dmr_start</th>
-      <th>dmr_end</th>
-      <th>dmr_ndms</th>
-      <th>dmr_length</th>
-    </tr>
-    <tr>
-      <th>dmr</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>chr1-0</th>
-      <td>chr1</td>
-      <td>89358</td>
-      <td>89360</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>chr1-1</th>
-      <td>chr1</td>
-      <td>184209</td>
-      <td>184211</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>chr1-2</th>
-      <td>chr1</td>
-      <td>191306</td>
-      <td>191777</td>
-      <td>7</td>
-      <td>471.0</td>
-    </tr>
-    <tr>
-      <th>chr1-3</th>
-      <td>chr1</td>
-      <td>263618</td>
-      <td>263620</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>chr1-4</th>
-      <td>chr1</td>
-      <td>630016</td>
-      <td>630018</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>chr22-7904</th>
-      <td>chr22</td>
-      <td>50729739</td>
-      <td>50729741</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>chr22-7905</th>
-      <td>chr22</td>
-      <td>50731405</td>
-      <td>50731407</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>chr22-7906</th>
-      <td>chr22</td>
-      <td>50738282</td>
-      <td>50738322</td>
-      <td>3</td>
-      <td>40.0</td>
-    </tr>
-    <tr>
-      <th>chr22-7907</th>
-      <td>chr22</td>
-      <td>50775301</td>
-      <td>50775303</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>chr22-7908</th>
-      <td>chr22</td>
-      <td>50777267</td>
-      <td>50777269</td>
-      <td>1</td>
-      <td>2.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>331284 rows × 5 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seldmr</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;dmr_chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
 <span class="n">dmr_ds</span> <span class="o">=</span> <span class="n">dmr_ds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;dmr&#39;</span><span class="p">:</span><span class="n">dmr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">seldmr</span><span class="p">]})</span>
 <span class="n">dmr_data</span> <span class="o">=</span> <span class="n">dmr_ds</span><span class="p">[</span><span class="s1">&#39;dmr_da_frac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -2302,39 +2166,41 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">REGION_BED</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/Mus-Skl/dmr_oldiffloop.bed&quot;</span>
-<span class="n">GENOME_FASTA</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/hg38/fasta/hg38.fa&quot;</span>
-<span class="n">CHROMSIZES</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/hg38/fasta/hg38.main.chrom.sizes&quot;</span>
-<span class="n">DATABASE_PREFIX</span><span class="o">=</span><span class="s2">&quot;dmr_oldiffloop_slop1kb&quot;</span>
-<span class="n">SCRIPT_DIR</span><span class="o">=</span><span class="s2">&quot;/home/zhoujt/software/create_cisTarget_databases&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># REGION_BED=f&quot;{ENTEX_ROOT}/analysis/Mus-Skl/dmr_oldiffloop.bed&quot;</span>
+<span class="c1"># GENOME_FASTA=f&quot;{REF_ROOT}/hg38/fasta/hg38.fa&quot;</span>
+<span class="c1"># CHROMSIZES=f&quot;{REF_ROOT}/hg38/fasta/hg38.main.chrom.sizes&quot;</span>
+<span class="c1"># DATABASE_PREFIX=&quot;dmr_oldiffloop_slop1kb&quot;</span>
+<span class="c1"># SCRIPT_DIR=&quot;/home/zhoujt/software/create_cisTarget_databases&quot;</span>
 
-<span class="err">$</span><span class="p">{</span><span class="n">SCRIPT_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">create_fasta_with_padded_bg_from_bed</span><span class="o">.</span><span class="n">sh</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">GENOME_FASTA</span><span class="p">}</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">CHROMSIZES</span><span class="p">}</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">REGION_BED</span><span class="p">}</span> \
-        <span class="n">dmr_oldiffloop_slop1kb</span><span class="o">.</span><span class="n">fa</span> \
-        <span class="mi">1000</span> \
-        <span class="n">yes</span>
+<span class="c1"># ${SCRIPT_DIR}/create_fasta_with_padded_bg_from_bed.sh \</span>
+<span class="c1">#         ${GENOME_FASTA} \</span>
+<span class="c1">#         ${CHROMSIZES} \</span>
+<span class="c1">#         ${REGION_BED} \</span>
+<span class="c1">#         dmr_oldiffloop_slop1kb.fa \</span>
+<span class="c1">#         1000 \</span>
+<span class="c1">#         yes</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="err">$</span><span class="n">PATH</span><span class="p">:</span><span class="o">~/</span><span class="n">software</span><span class="o">/</span>
-<span class="n">OUT_DIR</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="err">$</span><span class="p">{</span><span class="n">PWD</span><span class="p">}</span><span class="s2">&quot;&quot;</span>
-<span class="n">REF_DIR</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/aertslab_motif_colleciton&quot;</span>
-<span class="n">CBDIR</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{REF_DIR}</span><span class="s2">/v10nr_clust_public/singletons&quot;</span>
-<span class="n">FASTA_FILE</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{OUT_DIR}</span><span class="s2">/dmr_oldiffloop_slop1kb.fa&quot;</span>
-<span class="n">MOTIF_LIST</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{REF_DIR}</span><span class="s2">/motifs.txt&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># export PATH=$PATH:~/software/</span>
+<span class="c1"># OUT_DIR=&quot;&quot;${PWD}&quot;&quot;</span>
+<span class="c1"># REF_DIR=f&quot;{REF_ROOT}/aertslab_motif_colleciton&quot;</span>
+<span class="c1"># CBDIR=&quot;${REF_DIR}/v10nr_clust_public/singletons&quot;</span>
+<span class="c1"># FASTA_FILE=&quot;${OUT_DIR}/dmr_oldiffloop_slop1kb.fa&quot;</span>
+<span class="c1"># MOTIF_LIST=&quot;${REF_DIR}/motifs.txt&quot;</span>
 
-<span class="s2">&quot;$</span><span class="si">{SCRIPT_DIR}</span><span class="s2">/create_cistarget_motif_databases.py&quot;</span> \
-    <span class="o">-</span><span class="n">f</span> <span class="err">$</span><span class="p">{</span><span class="n">FASTA_FILE</span><span class="p">}</span> \
-    <span class="o">-</span><span class="n">M</span> <span class="err">$</span><span class="p">{</span><span class="n">CBDIR</span><span class="p">}</span> \
-    <span class="o">-</span><span class="n">m</span> <span class="err">$</span><span class="p">{</span><span class="n">MOTIF_LIST</span><span class="p">}</span> \
-    <span class="o">-</span><span class="n">o</span> <span class="err">$</span><span class="p">{</span><span class="n">OUT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">DATABASE_PREFIX</span><span class="p">}</span> \
-    <span class="o">--</span><span class="n">bgpadding</span> <span class="mi">1000</span> \
-    <span class="o">-</span><span class="n">t</span> <span class="mi">36</span>
+<span class="c1"># &quot;${SCRIPT_DIR}/create_cistarget_motif_databases.py&quot; \</span>
+<span class="c1">#     -f ${FASTA_FILE} \</span>
+<span class="c1">#     -M ${CBDIR} \</span>
+<span class="c1">#     -m ${MOTIF_LIST} \</span>
+<span class="c1">#     -o ${OUT_DIR}/${DATABASE_PREFIX} \</span>
+<span class="c1">#     --bgpadding 1000 \</span>
+<span class="c1">#     -t 36</span>
 </pre></div>
 </div>
 </div>
@@ -2376,24 +2242,25 @@ Attributes:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenicplus</span> <span class="n">grn_inference</span> <span class="n">motif_enrichment_cistarget</span> \
-    <span class="o">--</span><span class="n">region_set_folder</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/Mus-Skl/dmr_oldiffloop_group&quot;</span> \
-    <span class="o">--</span><span class="n">cistarget_db_fname</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/Mus-Skl/dmr_oldiffloop_db/dmr_oldiffloop_slop1kb.regions_vs_motifs.rankings.feather&quot;</span> \
-    <span class="o">--</span><span class="n">output_fname_cistarget_result</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/Mus-Skl/dmr_oldiffloop_scplus/ctx_results.hdf5&quot;</span> \
-    <span class="o">--</span><span class="n">temp_dir</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/Mus-Skl/tmp&quot;</span> \
-    <span class="o">--</span><span class="n">species</span> <span class="s2">&quot;homo_sapiens&quot;</span> \
-    <span class="o">--</span><span class="n">fr_overlap_w_ctx_db</span> <span class="mf">0.4</span> \
-    <span class="o">--</span><span class="n">auc_threshold</span> <span class="mf">0.005</span> \
-    <span class="o">--</span><span class="n">nes_threshold</span> <span class="mf">3.0</span> \
-    <span class="o">--</span><span class="n">rank_threshold</span> <span class="mf">0.05</span> \
-    <span class="o">--</span><span class="n">path_to_motif_annotations</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot;</span> \
-    <span class="o">--</span><span class="n">annotation_version</span> <span class="s2">&quot;v10nr_clust&quot;</span> \
-    <span class="o">--</span><span class="n">motif_similarity_fdr</span> <span class="mf">0.001</span> \
-    <span class="o">--</span><span class="n">orthologous_identity_threshold</span> <span class="mf">0.0</span> \
-    <span class="o">--</span><span class="n">annotations_to_use</span> <span class="s2">&quot;Direct_annot Orthology_annot&quot;</span> \
-    <span class="o">--</span><span class="n">write_html</span> \
-    <span class="o">--</span><span class="n">output_fname_cistarget_html</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/Mus-Skl/dmr_oldiffloop_scplus/ctx_results.html&quot;</span> \
-    <span class="o">--</span><span class="n">n_cpu</span> <span class="mi">36</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># scenicplus grn_inference motif_enrichment_cistarget \</span>
+<span class="c1">#     --region_set_folder f&quot;{ENTEX_ROOT}/analysis/Mus-Skl/dmr_oldiffloop_group&quot; \</span>
+<span class="c1">#     --cistarget_db_fname f&quot;{ENTEX_ROOT}/analysis/Mus-Skl/dmr_oldiffloop_db/dmr_oldiffloop_slop1kb.regions_vs_motifs.rankings.feather&quot; \</span>
+<span class="c1">#     --output_fname_cistarget_result f&quot;{ENTEX_ROOT}/analysis/Mus-Skl/dmr_oldiffloop_scplus/ctx_results.hdf5&quot; \</span>
+<span class="c1">#     --temp_dir f&quot;{ENTEX_ROOT}/analysis/Mus-Skl/tmp&quot; \</span>
+<span class="c1">#     --species &quot;homo_sapiens&quot; \</span>
+<span class="c1">#     --fr_overlap_w_ctx_db 0.4 \</span>
+<span class="c1">#     --auc_threshold 0.005 \</span>
+<span class="c1">#     --nes_threshold 3.0 \</span>
+<span class="c1">#     --rank_threshold 0.05 \</span>
+<span class="c1">#     --path_to_motif_annotations f&quot;{REF_ROOT}/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; \</span>
+<span class="c1">#     --annotation_version &quot;v10nr_clust&quot; \</span>
+<span class="c1">#     --motif_similarity_fdr 0.001 \</span>
+<span class="c1">#     --orthologous_identity_threshold 0.0 \</span>
+<span class="c1">#     --annotations_to_use &quot;Direct_annot Orthology_annot&quot; \</span>
+<span class="c1">#     --write_html \</span>
+<span class="c1">#     --output_fname_cistarget_html f&quot;{ENTEX_ROOT}/analysis/Mus-Skl/dmr_oldiffloop_scplus/ctx_results.html&quot; \</span>
+<span class="c1">#     --n_cpu 36</span>
     
 </pre></div>
 </div>
@@ -4351,6 +4218,142 @@ Attributes:
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmr</span> <span class="o">=</span> <span class="n">dmr_ds</span><span class="p">[[</span><span class="s1">&#39;dmr_chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="n">dmr</span><span class="p">[[</span><span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dmr</span><span class="p">[[</span><span class="s1">&#39;dmr_start&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_end&#39;</span><span class="p">,</span> <span class="s1">&#39;dmr_ndms&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">dmr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>dmr_chrom</th>
+      <th>dmr_start</th>
+      <th>dmr_end</th>
+      <th>dmr_ndms</th>
+      <th>dmr_length</th>
+    </tr>
+    <tr>
+      <th>dmr</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>chr1-0</th>
+      <td>chr1</td>
+      <td>89358</td>
+      <td>89360</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>chr1-1</th>
+      <td>chr1</td>
+      <td>184209</td>
+      <td>184211</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>chr1-2</th>
+      <td>chr1</td>
+      <td>191306</td>
+      <td>191777</td>
+      <td>7</td>
+      <td>471.0</td>
+    </tr>
+    <tr>
+      <th>chr1-3</th>
+      <td>chr1</td>
+      <td>263618</td>
+      <td>263620</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>chr1-4</th>
+      <td>chr1</td>
+      <td>630016</td>
+      <td>630018</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>chr22-7904</th>
+      <td>chr22</td>
+      <td>50729739</td>
+      <td>50729741</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>chr22-7905</th>
+      <td>chr22</td>
+      <td>50731405</td>
+      <td>50731407</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>chr22-7906</th>
+      <td>chr22</td>
+      <td>50738282</td>
+      <td>50738322</td>
+      <td>3</td>
+      <td>40.0</td>
+    </tr>
+    <tr>
+      <th>chr22-7907</th>
+      <td>chr22</td>
+      <td>50775301</td>
+      <td>50775303</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>chr22-7908</th>
+      <td>chr22</td>
+      <td>50777267</td>
+      <td>50777269</td>
+      <td>1</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>331284 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

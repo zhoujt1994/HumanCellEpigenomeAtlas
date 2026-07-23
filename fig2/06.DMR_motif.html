@@ -561,42 +561,44 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sort</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="n">overlap_atac</span><span class="o">/</span><span class="n">majortype_36groups</span><span class="o">/*</span><span class="n">merged</span><span class="o">.</span><span class="n">bed</span> <span class="o">&gt;</span> <span class="n">concat_dmr</span><span class="o">.</span><span class="n">bed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># sort -m -k1,1 -k2,2n overlap_atac/majortype_36groups/*merged.bed &gt; concat_dmr.bed</span>
 
-<span class="n">REGION_BED</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">concat_dmr</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">GENOME_FASTA</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">fa</span>
-<span class="n">CHROMSIZES</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span>
-<span class="n">DATABASE_PREFIX</span><span class="o">=</span><span class="n">concat_dmr</span>
-<span class="n">SCRIPT_DIR</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">create_cisTarget_databases</span>
-<span class="n">OUT_DIR</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span>
-<span class="n">awk</span> <span class="s1">&#39;{printf(&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39;</span> <span class="err">$</span><span class="n">REGION_BED</span> <span class="o">|</span> <span class="n">bedtools</span> <span class="n">slop</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="o">-</span><span class="n">b</span> <span class="mi">500</span> <span class="o">-</span><span class="n">g</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">&gt;</span> <span class="err">$</span><span class="p">{</span><span class="n">OUT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">DATABASE_PREFIX</span><span class="p">}</span><span class="mf">.1</span><span class="n">kb</span><span class="o">.</span><span class="n">bed</span>
+<span class="c1"># REGION_BED=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/concat_dmr.bed</span>
+<span class="c1"># GENOME_FASTA=/large_storage/zhoulab/ref/hg38/fasta/hg38.fa</span>
+<span class="c1"># CHROMSIZES=/large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes</span>
+<span class="c1"># DATABASE_PREFIX=concat_dmr</span>
+<span class="c1"># SCRIPT_DIR=/home/zhoujt/software/create_cisTarget_databases</span>
+<span class="c1"># OUT_DIR=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR</span>
+<span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39; $REGION_BED | bedtools slop -i - -b 500 -g /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes | sort -k1,1 -k2,2n -u &gt; ${OUT_DIR}/${DATABASE_PREFIX}.1kb.bed</span>
 
-<span class="err">$</span><span class="p">{</span><span class="n">SCRIPT_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">create_fasta_with_padded_bg_from_bed</span><span class="o">.</span><span class="n">sh</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">GENOME_FASTA</span><span class="p">}</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">CHROMSIZES</span><span class="p">}</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">OUT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">DATABASE_PREFIX</span><span class="p">}</span><span class="mf">.1</span><span class="n">kb</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="err">$</span><span class="p">{</span><span class="n">OUT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">DATABASE_PREFIX</span><span class="p">}</span><span class="mf">.1</span><span class="n">kb</span><span class="o">.</span><span class="n">fa</span> \
-        <span class="mi">0</span> \
-        <span class="n">yes</span>
+<span class="c1"># ${SCRIPT_DIR}/create_fasta_with_padded_bg_from_bed.sh \</span>
+<span class="c1">#         ${GENOME_FASTA} \</span>
+<span class="c1">#         ${CHROMSIZES} \</span>
+<span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.1kb.bed \</span>
+<span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.1kb.fa \</span>
+<span class="c1">#         0 \</span>
+<span class="c1">#         yes</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PATH</span><span class="o">=</span><span class="err">$</span><span class="n">PATH</span><span class="p">:</span><span class="o">~/</span><span class="n">software</span><span class="o">/</span>
-<span class="n">REF_DIR</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">aertslab_motif_colleciton</span>
-<span class="n">CBDIR</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">REF_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">v10nr_clust_public</span><span class="o">/</span><span class="n">singletons</span>
-<span class="n">FASTA_FILE</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">OUT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">DATABASE_PREFIX</span><span class="p">}</span><span class="mf">.1</span><span class="n">kb</span><span class="o">.</span><span class="n">fa</span>
-<span class="n">MOTIF_LIST</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">REF_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">motifs</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># export PATH=$PATH:~/software/</span>
+<span class="c1"># REF_DIR=/large_storage/zhoulab/ref/aertslab_motif_colleciton</span>
+<span class="c1"># CBDIR=${REF_DIR}/v10nr_clust_public/singletons</span>
+<span class="c1"># FASTA_FILE=${OUT_DIR}/${DATABASE_PREFIX}.1kb.fa</span>
+<span class="c1"># MOTIF_LIST=${REF_DIR}/motifs.txt</span>
 
-<span class="s2">&quot;$</span><span class="si">{SCRIPT_DIR}</span><span class="s2">/create_cistarget_motif_databases.py&quot;</span> \
-    <span class="o">-</span><span class="n">f</span> <span class="err">$</span><span class="p">{</span><span class="n">FASTA_FILE</span><span class="p">}</span> \
-    <span class="o">-</span><span class="n">M</span> <span class="err">$</span><span class="p">{</span><span class="n">CBDIR</span><span class="p">}</span> \
-    <span class="o">-</span><span class="n">m</span> <span class="err">$</span><span class="p">{</span><span class="n">MOTIF_LIST</span><span class="p">}</span> \
-    <span class="o">-</span><span class="n">o</span> <span class="err">$</span><span class="p">{</span><span class="n">OUT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">DATABASE_PREFIX</span><span class="p">}</span> \
-    <span class="o">--</span><span class="n">bgpadding</span> <span class="mi">0</span> \
-    <span class="o">-</span><span class="n">t</span> <span class="mi">64</span>
+<span class="c1"># &quot;${SCRIPT_DIR}/create_cistarget_motif_databases.py&quot; \</span>
+<span class="c1">#     -f ${FASTA_FILE} \</span>
+<span class="c1">#     -M ${CBDIR} \</span>
+<span class="c1">#     -m ${MOTIF_LIST} \</span>
+<span class="c1">#     -o ${OUT_DIR}/${DATABASE_PREFIX} \</span>
+<span class="c1">#     --bgpadding 0 \</span>
+<span class="c1">#     -t 64</span>
 </pre></div>
 </div>
 </div>
@@ -638,60 +640,63 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span>
-<span class="n">atac_dir</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="n">scATAC</span><span class="o">/</span><span class="n">peak</span><span class="o">/</span><span class="n">majortype</span>
-<span class="n">dmr_dir</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">overlap_atac</span><span class="o">/</span><span class="n">majortype_36groups</span>
-<span class="n">out_dir</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">bed</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="err">`</span><span class="n">seq</span> <span class="mi">0</span> <span class="mi">36</span><span class="err">`</span>
-<span class="n">do</span> <span class="p">(</span>
-<span class="n">bedtools</span> <span class="n">closest</span> <span class="o">-</span><span class="n">b</span> <span class="err">$</span><span class="p">{</span><span class="n">atac_dir</span><span class="p">}</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span> <span class="o">-</span><span class="n">a</span> <span class="err">$</span><span class="p">{</span><span class="n">dmr_dir</span><span class="p">}</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_merged</span><span class="o">.</span><span class="n">bed</span> <span class="o">-</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">awk</span> <span class="s1">&#39;$7&lt;1000&#39;</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f1</span><span class="o">-</span><span class="mi">3</span> <span class="o">|</span> <span class="n">shuf</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="mi">100000</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">&gt;</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_overlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">awk</span> <span class="s1">&#39;$7&gt;=1000&#39;</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f1</span><span class="o">-</span><span class="mi">3</span> <span class="o">|</span> <span class="n">shuf</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="mi">100000</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">&gt;</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_nonoverlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">rm</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span>
-<span class="p">)</span> <span class="o">&amp;</span> <span class="k">if</span> <span class="p">((</span> <span class="o">++</span><span class="n">j</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">));</span> <span class="n">then</span> <span class="n">echo</span> <span class="s2">&quot;Waiting...&quot;</span><span class="p">;</span> <span class="n">wait</span><span class="p">;</span> <span class="n">fi</span><span class="p">;</span> <span class="n">done</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">2</span> <span class="mi">7</span> <span class="mi">36</span><span class="p">;</span> <span class="n">do</span> <span class="n">rm</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_nonoverlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_overlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span><span class="p">;</span> <span class="n">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx/</span>
+<span class="c1"># atac_dir=${indir}scATAC/peak/majortype</span>
+<span class="c1"># dmr_dir=${indir}analysis/DMR/overlap_atac/majortype_36groups</span>
+<span class="c1"># out_dir=${indir}analysis/DMR/bed</span>
+<span class="c1"># for i in `seq 0 36`</span>
+<span class="c1"># do (</span>
+<span class="c1"># bedtools closest -b ${atac_dir}/c${i}.bed -a ${dmr_dir}/c${i}_merged.bed -d &gt; c${i}_tmp.txt</span>
+<span class="c1"># awk &#39;$7&lt;1000&#39; c${i}_tmp.txt | cut -f1-3 | shuf | head -100000 | sort -k1,1 -k2,2n -u &gt; ${out_dir}/peak_overlapped_dmr/c${i}.bed</span>
+<span class="c1"># awk &#39;$7&gt;=1000&#39; c${i}_tmp.txt | cut -f1-3 | shuf | head -100000 | sort -k1,1 -k2,2n -u &gt; ${out_dir}/peak_nonoverlapped_dmr/c${i}.bed</span>
+<span class="c1"># rm c${i}_tmp.txt</span>
+<span class="c1"># ) &amp; if (( ++j % 20 == 0 )); then echo &quot;Waiting...&quot;; wait; fi; done</span>
+<span class="c1"># for i in 2 7 36; do rm ${out_dir}/peak_nonoverlapped_dmr/c${i}.bed ${out_dir}/peak_overlapped_dmr/c${i}.bed; done</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span><span class="o">=/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span>
-<span class="n">atac_dir</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="n">scATAC</span><span class="o">/</span><span class="n">peak</span><span class="o">/</span><span class="n">majortype</span>
-<span class="n">dmr_dir</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">overlap_atac</span><span class="o">/</span><span class="n">majortype_36groups</span>
-<span class="n">out_dir</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">indir</span><span class="p">}</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">bed</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="err">`</span><span class="n">seq</span> <span class="mi">0</span> <span class="mi">36</span><span class="err">`</span>
-<span class="n">do</span> <span class="p">(</span>
-<span class="n">bedtools</span> <span class="n">closest</span> <span class="o">-</span><span class="n">b</span> <span class="err">$</span><span class="p">{</span><span class="n">atac_dir</span><span class="p">}</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span> <span class="o">-</span><span class="n">a</span> <span class="err">$</span><span class="p">{</span><span class="n">dmr_dir</span><span class="p">}</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_merged</span><span class="o">.</span><span class="n">bed</span> <span class="o">-</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">awk</span> <span class="s1">&#39;$7&lt;1000 {printf(&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39;</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f1</span><span class="o">-</span><span class="mi">3</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">|</span> <span class="n">shuf</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="mi">100000</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">|</span> <span class="n">bedtools</span> <span class="n">slop</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="o">-</span><span class="n">b</span> <span class="mi">500</span> <span class="o">-</span><span class="n">g</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> <span class="o">&gt;</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_overlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">awk</span> <span class="s1">&#39;$7&gt;=1000 {printf(&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39;</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f1</span><span class="o">-</span><span class="mi">3</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">|</span> <span class="n">shuf</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="mi">100000</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">k1</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="n">k2</span><span class="p">,</span><span class="mi">2</span><span class="n">n</span> <span class="o">-</span><span class="n">u</span> <span class="o">|</span> <span class="n">bedtools</span> <span class="n">slop</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="o">-</span><span class="n">b</span> <span class="mi">500</span> <span class="o">-</span><span class="n">g</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> <span class="o">&gt;</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_nonoverlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span>
-<span class="n">rm</span> <span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_tmp</span><span class="o">.</span><span class="n">txt</span>
-<span class="p">)</span> <span class="o">&amp;</span> <span class="k">if</span> <span class="p">((</span> <span class="o">++</span><span class="n">j</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">));</span> <span class="n">then</span> <span class="n">echo</span> <span class="s2">&quot;Waiting...&quot;</span><span class="p">;</span> <span class="n">wait</span><span class="p">;</span> <span class="n">fi</span><span class="p">;</span> <span class="n">done</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">2</span> <span class="mi">7</span> <span class="mi">22</span> <span class="mi">36</span><span class="p">;</span> <span class="n">do</span> <span class="n">rm</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_nonoverlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span> <span class="err">$</span><span class="p">{</span><span class="n">out_dir</span><span class="p">}</span><span class="o">/</span><span class="n">peak_overlapped_dmr</span><span class="o">/</span><span class="n">c</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">bed</span><span class="p">;</span> <span class="n">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx/</span>
+<span class="c1"># atac_dir=${indir}scATAC/peak/majortype</span>
+<span class="c1"># dmr_dir=${indir}analysis/DMR/overlap_atac/majortype_36groups</span>
+<span class="c1"># out_dir=${indir}analysis/DMR/bed</span>
+<span class="c1"># for i in `seq 0 36`</span>
+<span class="c1"># do (</span>
+<span class="c1"># bedtools closest -b ${atac_dir}/c${i}.bed -a ${dmr_dir}/c${i}_merged.bed -d &gt; c${i}_tmp.txt</span>
+<span class="c1"># awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39; c${i}_tmp.txt | cut -f1-3 | uniq | shuf | head -100000 | sort -k1,1 -k2,2n -u | bedtools slop -i - -b 500 -g /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes &gt; ${out_dir}/peak_overlapped_dmr/c${i}.bed</span>
+<span class="c1"># awk &#39;$7&gt;=1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39; c${i}_tmp.txt | cut -f1-3 | uniq | shuf | head -100000 | sort -k1,1 -k2,2n -u | bedtools slop -i - -b 500 -g /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes &gt; ${out_dir}/peak_nonoverlapped_dmr/c${i}.bed</span>
+<span class="c1"># rm c${i}_tmp.txt</span>
+<span class="c1"># ) &amp; if (( ++j % 20 == 0 )); then echo &quot;Waiting...&quot;; wait; fi; done</span>
+<span class="c1"># for i in 2 7 22 36; do rm ${out_dir}/peak_nonoverlapped_dmr/c${i}.bed ${out_dir}/peak_overlapped_dmr/c${i}.bed; done</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenicplus</span> <span class="n">grn_inference</span> <span class="n">motif_enrichment_cistarget</span> \
-    <span class="o">--</span><span class="n">region_set_folder</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">bed</span> \
-    <span class="o">--</span><span class="n">cistarget_db_fname</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">concat_dmr_db</span><span class="o">/</span><span class="n">concat_dmr</span><span class="o">.</span><span class="n">regions_vs_motifs</span><span class="o">.</span><span class="n">rankings</span><span class="o">.</span><span class="n">feather</span> \
-    <span class="o">--</span><span class="n">output_fname_cistarget_result</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">scplus</span><span class="o">/</span><span class="n">ctx_results</span><span class="mf">.1</span><span class="n">kb</span><span class="o">.</span><span class="n">hdf5</span> \
-    <span class="o">--</span><span class="n">temp_dir</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">tmp</span> \
-    <span class="o">--</span><span class="n">species</span> <span class="s2">&quot;homo_sapiens&quot;</span> \
-    <span class="o">--</span><span class="n">fr_overlap_w_ctx_db</span> <span class="mf">1.0</span> \
-    <span class="o">--</span><span class="n">auc_threshold</span> <span class="mf">0.005</span> \
-    <span class="o">--</span><span class="n">nes_threshold</span> <span class="mf">3.0</span> \
-    <span class="o">--</span><span class="n">rank_threshold</span> <span class="mf">0.05</span> \
-    <span class="o">--</span><span class="n">path_to_motif_annotations</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">aertslab_motif_colleciton</span><span class="o">/</span><span class="n">v10nr_clust_public</span><span class="o">/</span><span class="n">snapshots</span><span class="o">/</span><span class="n">motifs</span><span class="o">-</span><span class="n">v10</span><span class="o">-</span><span class="n">nr</span><span class="o">.</span><span class="n">hgnc</span><span class="o">-</span><span class="n">m0</span><span class="mf">.00001</span><span class="o">-</span><span class="n">o0</span><span class="mf">.0</span><span class="o">.</span><span class="n">tbl</span> \
-    <span class="o">--</span><span class="n">annotation_version</span> <span class="s2">&quot;v10nr_clust&quot;</span> \
-    <span class="o">--</span><span class="n">motif_similarity_fdr</span> <span class="mf">0.001</span> \
-    <span class="o">--</span><span class="n">orthologous_identity_threshold</span> <span class="mf">0.0</span> \
-    <span class="o">--</span><span class="n">annotations_to_use</span> <span class="s2">&quot;Direct_annot Orthology_annot&quot;</span> \
-    <span class="o">--</span><span class="n">write_html</span> \
-    <span class="o">--</span><span class="n">output_fname_cistarget_html</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">zhoujt</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">ENTEx</span><span class="o">/</span><span class="n">analysis</span><span class="o">/</span><span class="n">DMR</span><span class="o">/</span><span class="n">scplus</span><span class="o">/</span><span class="n">ctx_results</span><span class="mf">.1</span><span class="n">kb</span><span class="o">.</span><span class="n">html</span> \
-    <span class="o">--</span><span class="n">n_cpu</span> <span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># scenicplus grn_inference motif_enrichment_cistarget \</span>
+<span class="c1">#     --region_set_folder /large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/bed \</span>
+<span class="c1">#     --cistarget_db_fname /large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/concat_dmr_db/concat_dmr.regions_vs_motifs.rankings.feather \</span>
+<span class="c1">#     --output_fname_cistarget_result /large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/ctx_results.1kb.hdf5 \</span>
+<span class="c1">#     --temp_dir /large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/tmp \</span>
+<span class="c1">#     --species &quot;homo_sapiens&quot; \</span>
+<span class="c1">#     --fr_overlap_w_ctx_db 1.0 \</span>
+<span class="c1">#     --auc_threshold 0.005 \</span>
+<span class="c1">#     --nes_threshold 3.0 \</span>
+<span class="c1">#     --rank_threshold 0.05 \</span>
+<span class="c1">#     --path_to_motif_annotations /large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl \</span>
+<span class="c1">#     --annotation_version &quot;v10nr_clust&quot; \</span>
+<span class="c1">#     --motif_similarity_fdr 0.001 \</span>
+<span class="c1">#     --orthologous_identity_threshold 0.0 \</span>
+<span class="c1">#     --annotations_to_use &quot;Direct_annot Orthology_annot&quot; \</span>
+<span class="c1">#     --write_html \</span>
+<span class="c1">#     --output_fname_cistarget_html /large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/ctx_results.1kb.html \</span>
+<span class="c1">#     --n_cpu 5</span>
     
 </pre></div>
 </div>
@@ -699,211 +704,214 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_set_folder</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/bed&quot;</span>
-<span class="n">ctx_db_fname</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.rankings.feather&quot;</span>
-<span class="n">dem_db_fname</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.scores.feather&quot;</span>
-<span class="n">path_to_motif_annotations</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># region_set_folder: f&quot;{ENTEX_ROOT}/analysis/DMR/bed&quot;</span>
+<span class="c1"># ctx_db_fname: f&quot;{ENTEX_ROOT}/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.rankings.feather&quot;</span>
+<span class="c1"># dem_db_fname: f&quot;{ENTEX_ROOT}/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.scores.feather&quot;</span>
+<span class="c1"># path_to_motif_annotations: f&quot;{REF_ROOT}/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot;</span>
 
-<span class="n">species</span><span class="p">:</span> <span class="s2">&quot;homo_sapiens&quot;</span>
-<span class="n">annotation_version</span><span class="p">:</span> <span class="s2">&quot;v10nr_clust&quot;</span>
-<span class="n">motif_similarity_fdr</span><span class="p">:</span> <span class="mf">0.001</span>
-<span class="n">orthologous_identity_threshold</span><span class="p">:</span> <span class="mf">0.0</span>
-<span class="n">annotations_to_use</span><span class="p">:</span> <span class="s2">&quot;Direct_annot Orthology_annot&quot;</span>
-<span class="n">fraction_overlap_w_dem_database</span><span class="p">:</span> <span class="mf">0.4</span>
-<span class="n">dem_max_bg_regions</span><span class="p">:</span> <span class="mi">500</span>
-<span class="n">dem_balance_number_of_promoters</span><span class="p">:</span> <span class="kc">True</span>
-<span class="n">dem_promoter_space</span><span class="p">:</span> <span class="mi">1_000</span>
-<span class="n">dem_adj_pval_thr</span><span class="p">:</span> <span class="mf">0.05</span>
-<span class="n">dem_log2fc_thr</span><span class="p">:</span> <span class="mf">1.0</span>
-<span class="n">dem_mean_fg_thr</span><span class="p">:</span> <span class="mf">0.0</span>
-<span class="n">dem_motif_hit_thr</span><span class="p">:</span> <span class="mf">3.0</span>
-<span class="n">fraction_overlap_w_ctx_database</span><span class="p">:</span> <span class="mf">0.4</span>
-<span class="n">ctx_auc_threshold</span><span class="p">:</span> <span class="mf">0.005</span>
-<span class="n">ctx_nes_threshold</span><span class="p">:</span> <span class="mf">3.0</span>
-<span class="n">ctx_rank_threshold</span><span class="p">:</span> <span class="mf">0.05</span>
+<span class="c1"># species: &quot;homo_sapiens&quot;</span>
+<span class="c1"># annotation_version: &quot;v10nr_clust&quot;</span>
+<span class="c1"># motif_similarity_fdr: 0.001</span>
+<span class="c1"># orthologous_identity_threshold: 0.0</span>
+<span class="c1"># annotations_to_use: &quot;Direct_annot Orthology_annot&quot;</span>
+<span class="c1"># fraction_overlap_w_dem_database: 0.4</span>
+<span class="c1"># dem_max_bg_regions: 500</span>
+<span class="c1"># dem_balance_number_of_promoters: True</span>
+<span class="c1"># dem_promoter_space: 1_000</span>
+<span class="c1"># dem_adj_pval_thr: 0.05</span>
+<span class="c1"># dem_log2fc_thr: 1.0</span>
+<span class="c1"># dem_mean_fg_thr: 0.0</span>
+<span class="c1"># dem_motif_hit_thr: 3.0</span>
+<span class="c1"># fraction_overlap_w_ctx_database: 0.4</span>
+<span class="c1"># ctx_auc_threshold: 0.005</span>
+<span class="c1"># ctx_nes_threshold: 3.0</span>
+<span class="c1"># ctx_rank_threshold: 0.05</span>
 
-<span class="n">temp_dir</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/tmp&quot;</span>
-<span class="n">n_cpu</span><span class="p">:</span> <span class="mi">96</span>
-<span class="n">seed</span><span class="p">:</span> <span class="mi">666</span>
+<span class="c1"># temp_dir: f&quot;{ENTEX_ROOT}/analysis/DMR/tmp&quot;</span>
+<span class="c1"># n_cpu: 96</span>
+<span class="c1"># seed: 666</span>
     
-<span class="c1"># output for motif enrichment results .hdf5</span>
-<span class="n">dem_result_fname</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/scplus/dem_results.hdf5&quot;</span>
-<span class="n">ctx_result_fname</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/scplus/ctx_results.hdf5&quot;</span>
-<span class="c1"># output html for motif enrichment results .html</span>
-<span class="n">output_fname_dem_html</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/scplus/dem_results.html&quot;</span>
-<span class="n">output_fname_ctx_html</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/DMR/scplus/ctx_results.html&quot;</span>
+<span class="c1"># # output for motif enrichment results .hdf5</span>
+<span class="c1"># dem_result_fname: f&quot;{ENTEX_ROOT}/analysis/DMR/scplus/dem_results.hdf5&quot;</span>
+<span class="c1"># ctx_result_fname: f&quot;{ENTEX_ROOT}/analysis/DMR/scplus/ctx_results.hdf5&quot;</span>
+<span class="c1"># # output html for motif enrichment results .html</span>
+<span class="c1"># output_fname_dem_html: f&quot;{ENTEX_ROOT}/analysis/DMR/scplus/dem_results.html&quot;</span>
+<span class="c1"># output_fname_ctx_html: f&quot;{ENTEX_ROOT}/analysis/DMR/scplus/ctx_results.html&quot;</span>
 
-<span class="n">region_set_folder</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_data&quot;</span><span class="p">][</span><span class="s2">&quot;region_set_folder&quot;</span><span class="p">],</span>
-<span class="n">ctx_db_fname</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_data&quot;</span><span class="p">][</span><span class="s2">&quot;ctx_db_fname&quot;</span><span class="p">],</span>
-<span class="n">path_to_motif_annotations</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_data&quot;</span><span class="p">][</span><span class="s2">&quot;path_to_motif_annotations&quot;</span><span class="p">]</span>
+<span class="c1"># region_set_folder=config[&quot;input_data&quot;][&quot;region_set_folder&quot;],</span>
+<span class="c1"># ctx_db_fname=config[&quot;input_data&quot;][&quot;ctx_db_fname&quot;],</span>
+<span class="c1"># path_to_motif_annotations=config[&quot;input_data&quot;][&quot;path_to_motif_annotations&quot;]</span>
 
-<span class="n">ctx_result_fname</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;ctx_result_fname&quot;</span><span class="p">],</span>
-<span class="n">output_fname_ctx_html</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;output_fname_ctx_html&quot;</span><span class="p">]</span>
+<span class="c1"># ctx_result_fname=config[&quot;output_data&quot;][&quot;ctx_result_fname&quot;],</span>
+<span class="c1"># output_fname_ctx_html=config[&quot;output_data&quot;][&quot;output_fname_ctx_html&quot;]</span>
 
-<span class="n">temp_dir</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_general&quot;</span><span class="p">][</span><span class="s2">&quot;temp_dir&quot;</span><span class="p">],</span>
-<span class="n">species</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;species&quot;</span><span class="p">],</span>
-<span class="n">fraction_overlap_w_ctx_database</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;fraction_overlap_w_ctx_database&quot;</span><span class="p">],</span>
-<span class="n">auc_threshold</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;ctx_auc_threshold&quot;</span><span class="p">],</span>
-<span class="n">nes_threshold</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;ctx_nes_threshold&quot;</span><span class="p">],</span>
-<span class="n">rank_threshold</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;ctx_rank_threshold&quot;</span><span class="p">],</span>
-<span class="n">annotation_version</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;annotation_version&quot;</span><span class="p">],</span>
-<span class="n">motif_similarity_fdr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;motif_similarity_fdr&quot;</span><span class="p">],</span>
-<span class="n">orthologous_identity_threshold</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;orthologous_identity_threshold&quot;</span><span class="p">],</span>
-<span class="n">annotations_to_use</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;annotations_to_use&quot;</span><span class="p">]</span>
+<span class="c1"># temp_dir=lambda wildcards: config[&quot;params_general&quot;][&quot;temp_dir&quot;],</span>
+<span class="c1"># species=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;species&quot;],</span>
+<span class="c1"># fraction_overlap_w_ctx_database=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;fraction_overlap_w_ctx_database&quot;],</span>
+<span class="c1"># auc_threshold=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;ctx_auc_threshold&quot;],</span>
+<span class="c1"># nes_threshold=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;ctx_nes_threshold&quot;],</span>
+<span class="c1"># rank_threshold=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;ctx_rank_threshold&quot;],</span>
+<span class="c1"># annotation_version=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;annotation_version&quot;],</span>
+<span class="c1"># motif_similarity_fdr=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;motif_similarity_fdr&quot;],</span>
+<span class="c1"># orthologous_identity_threshold=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;orthologous_identity_threshold&quot;],</span>
+<span class="c1"># annotations_to_use=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;annotations_to_use&quot;]</span>
 
-<span class="n">threads</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_general&quot;</span><span class="p">][</span><span class="s2">&quot;n_cpu&quot;</span><span class="p">]</span>
-<span class="n">shell</span><span class="p">:</span>
-    <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        scenicplus grn_inference motif_enrichment_cistarget </span><span class="se">\</span>
-<span class="s2">            --region_set_folder </span><span class="si">{input.region_set_folder}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --cistarget_db_fname </span><span class="si">{input.ctx_db_fname}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --output_fname_cistarget_result </span><span class="si">{output.ctx_result_fname}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --temp_dir </span><span class="si">{params.temp_dir}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --species </span><span class="si">{params.species}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --fr_overlap_w_ctx_db </span><span class="si">{params.fraction_overlap_w_ctx_database}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --auc_threshold </span><span class="si">{params.auc_threshold}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --nes_threshold </span><span class="si">{params.nes_threshold}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --rank_threshold </span><span class="si">{params.rank_threshold}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --path_to_motif_annotations </span><span class="si">{input.path_to_motif_annotations}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --annotation_version </span><span class="si">{params.annotation_version}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --motif_similarity_fdr </span><span class="si">{params.motif_similarity_fdr}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --orthologous_identity_threshold </span><span class="si">{params.orthologous_identity_threshold}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --annotations_to_use </span><span class="si">{params.annotations_to_use}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --write_html </span><span class="se">\</span>
-<span class="s2">            --output_fname_cistarget_html </span><span class="si">{output.output_fname_ctx_html}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">            --n_cpu </span><span class="si">{threads}</span>
+<span class="c1"># threads: config[&quot;params_general&quot;][&quot;n_cpu&quot;]</span>
+<span class="c1"># shell:</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#         scenicplus grn_inference motif_enrichment_cistarget \</span>
+<span class="c1">#             --region_set_folder {input.region_set_folder} \</span>
+<span class="c1">#             --cistarget_db_fname {input.ctx_db_fname} \</span>
+<span class="c1">#             --output_fname_cistarget_result {output.ctx_result_fname} \</span>
+<span class="c1">#             --temp_dir {params.temp_dir} \</span>
+<span class="c1">#             --species {params.species} \</span>
+<span class="c1">#             --fr_overlap_w_ctx_db {params.fraction_overlap_w_ctx_database} \</span>
+<span class="c1">#             --auc_threshold {params.auc_threshold} \</span>
+<span class="c1">#             --nes_threshold {params.nes_threshold} \</span>
+<span class="c1">#             --rank_threshold {params.rank_threshold} \</span>
+<span class="c1">#             --path_to_motif_annotations {input.path_to_motif_annotations} \</span>
+<span class="c1">#             --annotation_version {params.annotation_version} \</span>
+<span class="c1">#             --motif_similarity_fdr {params.motif_similarity_fdr} \</span>
+<span class="c1">#             --orthologous_identity_threshold {params.orthologous_identity_threshold} \</span>
+<span class="c1">#             --annotations_to_use {params.annotations_to_use} \</span>
+<span class="c1">#             --write_html \</span>
+<span class="c1">#             --output_fname_cistarget_html {output.output_fname_ctx_html} \</span>
+<span class="c1">#             --n_cpu {threads}</span>
 
 
-<span class="s2">scenicplus grn_inference motif_enrichment_cistarget </span><span class="se">\</span>
-<span class="s2">    --region_set_folder &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/bed&quot; </span><span class="se">\</span>
-<span class="s2">    --cistarget_db_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.rankings.feather&quot; </span><span class="se">\</span>
-<span class="s2">    --output_fname_cistarget_result &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/ctx_results.hdf5&quot; </span><span class="se">\</span>
-<span class="s2">    --temp_dir &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/tmp&quot; </span><span class="se">\</span>
-<span class="s2">    --species &quot;homo_sapiens&quot; </span><span class="se">\</span>
-<span class="s2">    --fr_overlap_w_ctx_db 0.4 </span><span class="se">\</span>
-<span class="s2">    --auc_threshold 0.005 </span><span class="se">\</span>
-<span class="s2">    --nes_threshold 3.0 </span><span class="se">\</span>
-<span class="s2">    --rank_threshold 0.05 </span><span class="se">\</span>
-<span class="s2">    --path_to_motif_annotations &quot;/large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; </span><span class="se">\</span>
-<span class="s2">    --annotation_version &quot;v10nr_clust&quot; </span><span class="se">\</span>
-<span class="s2">    --motif_similarity_fdr 0.001 </span><span class="se">\</span>
-<span class="s2">    --orthologous_identity_threshold 0.0 </span><span class="se">\</span>
-<span class="s2">    --annotations_to_use &quot;Direct_annot Orthology_annot&quot; </span><span class="se">\</span>
-<span class="s2">    --write_html </span><span class="se">\</span>
-<span class="s2">    --output_fname_cistarget_html &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/ctx_results.html&quot; </span><span class="se">\</span>
-<span class="s2">    --n_cpu 96</span>
-<span class="s2">    </span>
+<span class="c1"># scenicplus grn_inference motif_enrichment_cistarget \</span>
+<span class="c1">#     --region_set_folder &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/bed&quot; \</span>
+<span class="c1">#     --cistarget_db_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.rankings.feather&quot; \</span>
+<span class="c1">#     --output_fname_cistarget_result &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/ctx_results.hdf5&quot; \</span>
+<span class="c1">#     --temp_dir &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/tmp&quot; \</span>
+<span class="c1">#     --species &quot;homo_sapiens&quot; \</span>
+<span class="c1">#     --fr_overlap_w_ctx_db 0.4 \</span>
+<span class="c1">#     --auc_threshold 0.005 \</span>
+<span class="c1">#     --nes_threshold 3.0 \</span>
+<span class="c1">#     --rank_threshold 0.05 \</span>
+<span class="c1">#     --path_to_motif_annotations &quot;/large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; \</span>
+<span class="c1">#     --annotation_version &quot;v10nr_clust&quot; \</span>
+<span class="c1">#     --motif_similarity_fdr 0.001 \</span>
+<span class="c1">#     --orthologous_identity_threshold 0.0 \</span>
+<span class="c1">#     --annotations_to_use &quot;Direct_annot Orthology_annot&quot; \</span>
+<span class="c1">#     --write_html \</span>
+<span class="c1">#     --output_fname_cistarget_html &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/ctx_results.html&quot; \</span>
+<span class="c1">#     --n_cpu 96</span>
+    
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species</span><span class="p">:</span> <span class="s2">&quot;hsapiens&quot;</span>
-<span class="n">biomart_host</span><span class="p">:</span> <span class="s2">&quot;http://www.ensembl.org&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># species: &quot;hsapiens&quot;</span>
+<span class="c1"># biomart_host: &quot;http://www.ensembl.org&quot;</span>
 
-<span class="n">genome_annotation</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;genome_annotation&quot;</span><span class="p">],</span>
-<span class="n">chromsizes</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;chromsizes&quot;</span><span class="p">]</span>
-<span class="n">params</span><span class="p">:</span>
-<span class="n">species</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_data_preparation&quot;</span><span class="p">][</span><span class="s2">&quot;species&quot;</span><span class="p">],</span>
-<span class="n">biomart_host</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_data_preparation&quot;</span><span class="p">][</span><span class="s2">&quot;biomart_host&quot;</span><span class="p">]</span>
-<span class="n">shell</span><span class="p">:</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    scenicplus prepare_data download_genome_annotations </span><span class="se">\</span>
-<span class="s2">        --species </span><span class="si">{params.species}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">        --biomart_host </span><span class="si">{params.biomart_host}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">        --genome_annotation_out_fname </span><span class="si">{output.genome_annotation}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">        --chromsizes_out_fname </span><span class="si">{output.chromsizes}</span>
+<span class="c1"># genome_annotation=config[&quot;output_data&quot;][&quot;genome_annotation&quot;],</span>
+<span class="c1"># chromsizes=config[&quot;output_data&quot;][&quot;chromsizes&quot;]</span>
+<span class="c1"># params:</span>
+<span class="c1"># species=lambda wildcards: config[&quot;params_data_preparation&quot;][&quot;species&quot;],</span>
+<span class="c1"># biomart_host=lambda wildcards: config[&quot;params_data_preparation&quot;][&quot;biomart_host&quot;]</span>
+<span class="c1"># shell:</span>
+<span class="c1"># &quot;&quot;&quot;</span>
+<span class="c1">#     scenicplus prepare_data download_genome_annotations \</span>
+<span class="c1">#         --species {params.species} \</span>
+<span class="c1">#         --biomart_host {params.biomart_host} \</span>
+<span class="c1">#         --genome_annotation_out_fname {output.genome_annotation} \</span>
+<span class="c1">#         --chromsizes_out_fname {output.chromsizes}</span>
 
 
-<span class="s2">scenicplus prepare_data download_genome_annotations </span><span class="se">\</span>
-<span class="s2">    --species &quot;hsapiens&quot; </span><span class="se">\</span>
-<span class="s2">    --biomart_host &quot;http://www.ensembl.org&quot; </span><span class="se">\</span>
-<span class="s2">    --genome_annotation_out_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/genome_annotation&quot; </span><span class="se">\</span>
-<span class="s2">    --chromsizes_out_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/chromsizes&quot;</span>
-<span class="s2">    </span>
+<span class="c1"># scenicplus prepare_data download_genome_annotations \</span>
+<span class="c1">#     --species &quot;hsapiens&quot; \</span>
+<span class="c1">#     --biomart_host &quot;http://www.ensembl.org&quot; \</span>
+<span class="c1">#     --genome_annotation_out_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/genome_annotation&quot; \</span>
+<span class="c1">#     --chromsizes_out_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/chromsizes&quot;</span>
+    
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_set_folder</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_data&quot;</span><span class="p">][</span><span class="s2">&quot;region_set_folder&quot;</span><span class="p">],</span>
-<span class="n">dem_db_fname</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_data&quot;</span><span class="p">][</span><span class="s2">&quot;dem_db_fname&quot;</span><span class="p">],</span>
-<span class="n">genome_annotation_fname</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;genome_annotation&quot;</span><span class="p">],</span>
-<span class="n">path_to_motif_annotations</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;input_data&quot;</span><span class="p">][</span><span class="s2">&quot;path_to_motif_annotations&quot;</span><span class="p">]</span>
-<span class="n">output</span><span class="p">:</span>
-<span class="n">dem_result_fname</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;dem_result_fname&quot;</span><span class="p">],</span>
-<span class="n">output_fname_dem_html</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;output_data&quot;</span><span class="p">][</span><span class="s2">&quot;output_fname_dem_html&quot;</span><span class="p">]</span>
-<span class="n">params</span><span class="p">:</span>
-<span class="n">temp_dir</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_general&quot;</span><span class="p">][</span><span class="s2">&quot;temp_dir&quot;</span><span class="p">],</span>
-<span class="n">species</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;species&quot;</span><span class="p">],</span>
-<span class="n">fraction_overlap_w_dem_database</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;fraction_overlap_w_dem_database&quot;</span><span class="p">],</span>
-<span class="n">max_bg_regions</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;dem_max_bg_regions&quot;</span><span class="p">],</span>
-<span class="n">promoter_space</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;dem_promoter_space&quot;</span><span class="p">],</span>
-<span class="n">adj_pval_thr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;dem_adj_pval_thr&quot;</span><span class="p">],</span>
-<span class="n">log2fc_thr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;dem_log2fc_thr&quot;</span><span class="p">],</span>
-<span class="n">mean_fg_thr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;dem_mean_fg_thr&quot;</span><span class="p">],</span>
-<span class="n">motif_hit_thr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;dem_motif_hit_thr&quot;</span><span class="p">],</span>
-<span class="n">annotation_version</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;annotation_version&quot;</span><span class="p">],</span>
-<span class="n">motif_similarity_fdr</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;motif_similarity_fdr&quot;</span><span class="p">],</span>
-<span class="n">orthologous_identity_threshold</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;orthologous_identity_threshold&quot;</span><span class="p">],</span>
-<span class="n">annotations_to_use</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_motif_enrichment&quot;</span><span class="p">][</span><span class="s2">&quot;annotations_to_use&quot;</span><span class="p">],</span>
-<span class="n">seed</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_general&quot;</span><span class="p">][</span><span class="s2">&quot;seed&quot;</span><span class="p">],</span>
-<span class="n">n_cpu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_general&quot;</span><span class="p">][</span><span class="s2">&quot;n_cpu&quot;</span><span class="p">]</span>
-<span class="n">threads</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;params_general&quot;</span><span class="p">][</span><span class="s2">&quot;n_cpu&quot;</span><span class="p">]</span>
-        <span class="n">shell</span><span class="p">:</span>
-            <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                scenicplus grn_inference motif_enrichment_dem </span><span class="se">\</span>
-<span class="s2">                    --region_set_folder </span><span class="si">{input.region_set_folder}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --dem_db_fname </span><span class="si">{input.dem_db_fname}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --output_fname_dem_result </span><span class="si">{output.dem_result_fname}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --temp_dir </span><span class="si">{params.temp_dir}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --species </span><span class="si">{params.species}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                   --fraction_overlap_w_dem_database </span><span class="si">{params.fraction_overlap_w_dem_database}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --max_bg_regions </span><span class="si">{params.max_bg_regions}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --genome_annotation </span><span class="si">{input.genome_annotation_fname}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --balance_number_of_promoters </span><span class="se">\</span>
-<span class="s2">                    --promoter_space </span><span class="si">{params.promoter_space}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --adjpval_thr </span><span class="si">{params.adj_pval_thr}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --log2fc_thr </span><span class="si">{params.log2fc_thr}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --mean_fg_thr </span><span class="si">{params.mean_fg_thr}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --motif_hit_thr </span><span class="si">{params.motif_hit_thr}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --path_to_motif_annotations </span><span class="si">{input.path_to_motif_annotations}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --annotation_version </span><span class="si">{params.annotation_version}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --motif_similarity_fdr </span><span class="si">{params.motif_similarity_fdr}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --orthologous_identity_threshold </span><span class="si">{params.orthologous_identity_threshold}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --annotations_to_use </span><span class="si">{params.annotations_to_use}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --write_html </span><span class="se">\</span>
-<span class="s2">                    --output_fname_dem_html </span><span class="si">{output.output_fname_dem_html}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --seed </span><span class="si">{params.seed}</span><span class="s2"> </span><span class="se">\</span>
-<span class="s2">                    --n_cpu </span><span class="si">{threads}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
+<span class="c1"># region_set_folder=config[&quot;input_data&quot;][&quot;region_set_folder&quot;],</span>
+<span class="c1"># dem_db_fname=config[&quot;input_data&quot;][&quot;dem_db_fname&quot;],</span>
+<span class="c1"># genome_annotation_fname=config[&quot;output_data&quot;][&quot;genome_annotation&quot;],</span>
+<span class="c1"># path_to_motif_annotations=config[&quot;input_data&quot;][&quot;path_to_motif_annotations&quot;]</span>
+<span class="c1"># output:</span>
+<span class="c1"># dem_result_fname=config[&quot;output_data&quot;][&quot;dem_result_fname&quot;],</span>
+<span class="c1"># output_fname_dem_html=config[&quot;output_data&quot;][&quot;output_fname_dem_html&quot;]</span>
+<span class="c1"># params:</span>
+<span class="c1"># temp_dir=lambda wildcards: config[&quot;params_general&quot;][&quot;temp_dir&quot;],</span>
+<span class="c1"># species=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;species&quot;],</span>
+<span class="c1"># fraction_overlap_w_dem_database=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;fraction_overlap_w_dem_database&quot;],</span>
+<span class="c1"># max_bg_regions=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;dem_max_bg_regions&quot;],</span>
+<span class="c1"># promoter_space=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;dem_promoter_space&quot;],</span>
+<span class="c1"># adj_pval_thr=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;dem_adj_pval_thr&quot;],</span>
+<span class="c1"># log2fc_thr=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;dem_log2fc_thr&quot;],</span>
+<span class="c1"># mean_fg_thr=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;dem_mean_fg_thr&quot;],</span>
+<span class="c1"># motif_hit_thr=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;dem_motif_hit_thr&quot;],</span>
+<span class="c1"># annotation_version=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;annotation_version&quot;],</span>
+<span class="c1"># motif_similarity_fdr=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;motif_similarity_fdr&quot;],</span>
+<span class="c1"># orthologous_identity_threshold=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;orthologous_identity_threshold&quot;],</span>
+<span class="c1"># annotations_to_use=lambda wildcards: config[&quot;params_motif_enrichment&quot;][&quot;annotations_to_use&quot;],</span>
+<span class="c1"># seed=lambda wildcards: config[&quot;params_general&quot;][&quot;seed&quot;],</span>
+<span class="c1"># n_cpu=lambda wildcards: config[&quot;params_general&quot;][&quot;n_cpu&quot;]</span>
+<span class="c1"># threads: config[&quot;params_general&quot;][&quot;n_cpu&quot;]</span>
+<span class="c1">#         shell:</span>
+<span class="c1">#             &quot;&quot;&quot;</span>
+<span class="c1">#                 scenicplus grn_inference motif_enrichment_dem \</span>
+<span class="c1">#                     --region_set_folder {input.region_set_folder} \</span>
+<span class="c1">#                     --dem_db_fname {input.dem_db_fname} \</span>
+<span class="c1">#                     --output_fname_dem_result {output.dem_result_fname} \</span>
+<span class="c1">#                     --temp_dir {params.temp_dir} \</span>
+<span class="c1">#                     --species {params.species} \</span>
+<span class="c1">#                    --fraction_overlap_w_dem_database {params.fraction_overlap_w_dem_database} \</span>
+<span class="c1">#                     --max_bg_regions {params.max_bg_regions} \</span>
+<span class="c1">#                     --genome_annotation {input.genome_annotation_fname} \</span>
+<span class="c1">#                     --balance_number_of_promoters \</span>
+<span class="c1">#                     --promoter_space {params.promoter_space} \</span>
+<span class="c1">#                     --adjpval_thr {params.adj_pval_thr} \</span>
+<span class="c1">#                     --log2fc_thr {params.log2fc_thr} \</span>
+<span class="c1">#                     --mean_fg_thr {params.mean_fg_thr} \</span>
+<span class="c1">#                     --motif_hit_thr {params.motif_hit_thr} \</span>
+<span class="c1">#                     --path_to_motif_annotations {input.path_to_motif_annotations} \</span>
+<span class="c1">#                     --annotation_version {params.annotation_version} \</span>
+<span class="c1">#                     --motif_similarity_fdr {params.motif_similarity_fdr} \</span>
+<span class="c1">#                     --orthologous_identity_threshold {params.orthologous_identity_threshold} \</span>
+<span class="c1">#                     --annotations_to_use {params.annotations_to_use} \</span>
+<span class="c1">#                     --write_html \</span>
+<span class="c1">#                     --output_fname_dem_html {output.output_fname_dem_html} \</span>
+<span class="c1">#                     --seed {params.seed} \</span>
+<span class="c1">#                     --n_cpu {threads}</span>
 
-<span class="s2">scenicplus grn_inference motif_enrichment_dem </span><span class="se">\</span>
-<span class="s2">    --region_set_folder &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/bed&quot; </span><span class="se">\</span>
-<span class="s2">    --dem_db_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.scores.feather&quot; </span><span class="se">\</span>
-<span class="s2">    --output_fname_dem_result &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/dem_results.hdf5&quot; </span><span class="se">\</span>
-<span class="s2">    --temp_dir &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/tmp&quot; </span><span class="se">\</span>
-<span class="s2">    --species &quot;homo_sapiens&quot; </span><span class="se">\</span>
-<span class="s2">    --fraction_overlap_w_dem_database 0.4 </span><span class="se">\</span>
-<span class="s2">    --max_bg_regions 500 </span><span class="se">\</span>
-<span class="s2">    --genome_annotation &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/genome_annotation&quot; </span><span class="se">\</span>
-<span class="s2">    --balance_number_of_promoters </span><span class="se">\</span>
-<span class="s2">    --promoter_space 1000 </span><span class="se">\</span>
-<span class="s2">    --adjpval_thr 0.05 </span><span class="se">\</span>
-<span class="s2">    --log2fc_thr 1.0 </span><span class="se">\</span>
-<span class="s2">    --mean_fg_thr 0.0 </span><span class="se">\</span>
-<span class="s2">    --motif_hit_thr 3.0 </span><span class="se">\</span>
-<span class="s2">    --path_to_motif_annotations &quot;/large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; </span><span class="se">\</span>
-<span class="s2">    --annotation_version &quot;v10nr_clust&quot; </span><span class="se">\</span>
-<span class="s2">    --motif_similarity_fdr 0.001 </span><span class="se">\</span>
-<span class="s2">    --orthologous_identity_threshold 0.0 </span><span class="se">\</span>
-<span class="s2">    --annotations_to_use &quot;Direct_annot Orthology_annot&quot; </span><span class="se">\</span>
-<span class="s2">    --write_html </span><span class="se">\</span>
-<span class="s2">    --output_fname_dem_html &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/dem_results.html&quot; </span><span class="se">\</span>
-<span class="s2">    --seed 666 </span><span class="se">\</span>
-<span class="s2">    --n_cpu 96</span>
-<span class="s2">    </span>
+<span class="c1"># scenicplus grn_inference motif_enrichment_dem \</span>
+<span class="c1">#     --region_set_folder &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/bed&quot; \</span>
+<span class="c1">#     --dem_db_fname &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.scores.feather&quot; \</span>
+<span class="c1">#     --output_fname_dem_result &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/dem_results.hdf5&quot; \</span>
+<span class="c1">#     --temp_dir &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/tmp&quot; \</span>
+<span class="c1">#     --species &quot;homo_sapiens&quot; \</span>
+<span class="c1">#     --fraction_overlap_w_dem_database 0.4 \</span>
+<span class="c1">#     --max_bg_regions 500 \</span>
+<span class="c1">#     --genome_annotation &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/genome_annotation&quot; \</span>
+<span class="c1">#     --balance_number_of_promoters \</span>
+<span class="c1">#     --promoter_space 1000 \</span>
+<span class="c1">#     --adjpval_thr 0.05 \</span>
+<span class="c1">#     --log2fc_thr 1.0 \</span>
+<span class="c1">#     --mean_fg_thr 0.0 \</span>
+<span class="c1">#     --motif_hit_thr 3.0 \</span>
+<span class="c1">#     --path_to_motif_annotations &quot;/large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; \</span>
+<span class="c1">#     --annotation_version &quot;v10nr_clust&quot; \</span>
+<span class="c1">#     --motif_similarity_fdr 0.001 \</span>
+<span class="c1">#     --orthologous_identity_threshold 0.0 \</span>
+<span class="c1">#     --annotations_to_use &quot;Direct_annot Orthology_annot&quot; \</span>
+<span class="c1">#     --write_html \</span>
+<span class="c1">#     --output_fname_dem_html &quot;/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/scplus/dem_results.html&quot; \</span>
+<span class="c1">#     --seed 666 \</span>
+<span class="c1">#     --n_cpu 96</span>
+    
 </pre></div>
 </div>
 </div>

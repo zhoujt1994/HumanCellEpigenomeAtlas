@@ -750,6 +750,90 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Tissue&#39;</span><span class="p">)[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tissue
+LG           42.124317
+Sk           69.026878
+EG           92.588166
+ST          139.705450
+SkGcn       167.999282
+TrCo        177.609836
+M1C         188.945653
+B           268.943952
+NTb         293.576543
+PBMC        294.667301
+SB         1794.870558
+LV       156774.371775
+RAA      183522.280091
+P        367416.452626
+AG       499903.707733
+PI       689529.581702
+Name: cov, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">leg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;AG&#39;, &#39;B&#39;, &#39;EG&#39;, &#39;LG&#39;, &#39;LV&#39;, &#39;M1C&#39;, &#39;NTb&#39;, &#39;P&#39;, &#39;PBMC&#39;, &#39;PI&#39;,
+       &#39;RAA&#39;, &#39;SB&#39;, &#39;ST&#39;, &#39;Sk&#39;, &#39;SkGcn&#39;, &#39;TrCo&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">)]</span>
+
+    <span class="c1"># selc = (tmp[&#39;cov&#39;]&gt;100)</span>
+    <span class="c1"># ax.scatter(tmp.loc[selc, &#39;ratio&#39;], tmp.loc[selc, &#39;mCHFrac&#39;], c=&#39;C0&#39;, s=0.5, edgecolor=&#39;none&#39;)</span>
+    <span class="c1"># ax.scatter(tmp.loc[~selc, &#39;ratio&#39;], tmp.loc[~selc, &#39;mCHFrac&#39;], c=&#39;C1&#39;, s=0.5, edgecolor=&#39;none&#39;)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># cov[cov&gt;np.percentile(cov, 99)] = np.percentile(cov, 99)</span>
+    <span class="c1"># cov[cov&lt;np.percentile(cov, 1)] = np.percentile(cov, 1)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
+               <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># xlim, ylim = np.percentile(tmp[&#39;ratio&#39;], [1,99]), np.percentile(tmp[&#39;mCCCFrac&#39;], [1,99]) </span>
+    <span class="c1"># ax.set_xlim([xlim[0]-0.001, xlim[1]+0.001])</span>
+    <span class="c1"># ax.set_ylim([ylim[0]-0.001, ylim[1]+0.001])</span>
+    <span class="n">lim</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)]),</span> 
+           <span class="nb">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="mi">99</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="mi">99</span><span class="p">)])]</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="mf">0.05</span><span class="o">*</span><span class="p">(</span><span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">diff</span><span class="p">,</span> <span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">diff</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">diff</span><span class="p">,</span> <span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">diff</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Genome mCH/CH&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Lambda mCH/CH&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1f1b63a278bd9259db388c762a3c89971eba9514de3be2620c8675f211d9287a.png" src="../_images/1f1b63a278bd9259db388c762a3c89971eba9514de3be2620c8675f211d9287a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selcol</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">,</span> <span class="s1">&#39;Sample&#39;</span><span class="p">,</span> <span class="s1">&#39;Donor&#39;</span><span class="p">,</span> 
           <span class="s1">&#39;Cis/Trans&#39;</span><span class="p">,</span> <span class="s1">&#39;CisLongContact&#39;</span><span class="p">,</span> <span class="s1">&#39;FinalmCReads&#39;</span><span class="p">,</span> 
           <span class="s1">&#39;mCHmC&#39;</span><span class="p">,</span> <span class="s1">&#39;mCHCov&#39;</span><span class="p">,</span> <span class="s1">&#39;mCHFrac&#39;</span><span class="p">,</span> 
@@ -1070,90 +1154,6 @@
 </table>
 <p>86689 rows × 19 columns</p>
 </div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Tissue&#39;</span><span class="p">)[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tissue
-LG           42.124317
-Sk           69.026878
-EG           92.588166
-ST          139.705450
-SkGcn       167.999282
-TrCo        177.609836
-M1C         188.945653
-B           268.943952
-NTb         293.576543
-PBMC        294.667301
-SB         1794.870558
-LV       156774.371775
-RAA      183522.280091
-P        367416.452626
-AG       499903.707733
-PI       689529.581702
-Name: cov, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">leg</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;AG&#39;, &#39;B&#39;, &#39;EG&#39;, &#39;LG&#39;, &#39;LV&#39;, &#39;M1C&#39;, &#39;NTb&#39;, &#39;P&#39;, &#39;PBMC&#39;, &#39;PI&#39;,
-       &#39;RAA&#39;, &#39;SB&#39;, &#39;ST&#39;, &#39;Sk&#39;, &#39;SkGcn&#39;, &#39;TrCo&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">)]</span>
-
-    <span class="c1"># selc = (tmp[&#39;cov&#39;]&gt;100)</span>
-    <span class="c1"># ax.scatter(tmp.loc[selc, &#39;ratio&#39;], tmp.loc[selc, &#39;mCHFrac&#39;], c=&#39;C0&#39;, s=0.5, edgecolor=&#39;none&#39;)</span>
-    <span class="c1"># ax.scatter(tmp.loc[~selc, &#39;ratio&#39;], tmp.loc[~selc, &#39;mCHFrac&#39;], c=&#39;C1&#39;, s=0.5, edgecolor=&#39;none&#39;)</span>
-    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="c1"># cov[cov&gt;np.percentile(cov, 99)] = np.percentile(cov, 99)</span>
-    <span class="c1"># cov[cov&lt;np.percentile(cov, 1)] = np.percentile(cov, 1)</span>
-    
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
-               <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># xlim, ylim = np.percentile(tmp[&#39;ratio&#39;], [1,99]), np.percentile(tmp[&#39;mCCCFrac&#39;], [1,99]) </span>
-    <span class="c1"># ax.set_xlim([xlim[0]-0.001, xlim[1]+0.001])</span>
-    <span class="c1"># ax.set_ylim([ylim[0]-0.001, ylim[1]+0.001])</span>
-    <span class="n">lim</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)]),</span> 
-           <span class="nb">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="mi">99</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="mi">99</span><span class="p">)])]</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="mf">0.05</span><span class="o">*</span><span class="p">(</span><span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">diff</span><span class="p">,</span> <span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">diff</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">diff</span><span class="p">,</span> <span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">diff</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Genome mCH/CH&#39;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Lambda mCH/CH&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/1f1b63a278bd9259db388c762a3c89971eba9514de3be2620c8675f211d9287a.png" src="../_images/1f1b63a278bd9259db388c762a3c89971eba9514de3be2620c8675f211d9287a.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
