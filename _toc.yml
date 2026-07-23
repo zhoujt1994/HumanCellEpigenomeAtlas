@@ -42,7 +42,6 @@ parts:
           - file: fig2/08.PMD_calling_insulation
           - file: fig2/09.PMD_cell-by-site
           - file: fig2/11.PMD_Hema-Tmem
-          - file: fig2/12.PMD_Epi-TPB
           - file: fig2/14.PMD_DMR
           - file: fig2/17.geneCG_expr_corr
   - caption: "Fig. 3 — Non-CG methylation across cell types"
@@ -57,6 +56,7 @@ parts:
           - file: fig3/06.mCH_mCG_comp
           - file: fig3/07.mCH_clustering
           - file: fig3/04.mCH_mCG_corr
+          - file: fig3/10.mCH_geneexpr_corr
   - caption: "Fig. 4 — Chromatin contacts across cell types"
     chapters:
       - file: fig4/fig4
@@ -91,5 +91,6 @@ parts:
           - file: fig6/01.MusSkl_clustering
           - file: fig6/06.MusSkl_diff_7group
           - file: fig6/07.Epi-TPB
+          - file: fig2/12.PMD_Epi-TPB
           - file: fig6/09.NTbSchw_clustering
           - file: fig6/03.MusSkl_diffloop
