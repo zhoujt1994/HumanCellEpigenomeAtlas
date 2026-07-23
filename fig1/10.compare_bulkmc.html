@@ -684,20 +684,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>ls<span class="w"> </span>*allc.tsv.gz<span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">(</span>gzip<span class="w"> </span>-d<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="p">;</span><span class="w"> </span>bgzip<span class="w"> </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$f</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/.gz//g&#39;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span>allcools<span class="w"> </span>tabix-allc<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="p">;</span><span class="o">)</span><span class="w">  </span><span class="p">&amp;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">((</span><span class="w"> </span>++j<span class="w"> </span>%<span class="w"> </span><span class="nv">20</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Waiting...&quot;</span><span class="p">;</span><span class="w"> </span>wait<span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>allcools<span class="w"> </span>generate-dataset<span class="w"> </span>--allc_table<span class="w"> </span>allclist.tsv<span class="w"> </span>--output_path<span class="w"> </span>Loyfer2023_1kb.mcds<span class="w"> </span>--chrom_size_path<span class="w"> </span>/large_experiments/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes<span class="w"> </span>--obs_dim<span class="w"> </span>cell<span class="w"> </span>--cpu<span class="w"> </span><span class="m">48</span><span class="w"> </span>--chunk_size<span class="w"> </span><span class="m">1</span><span class="w"> </span>--regions<span class="w"> </span>chrom1k<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--quantifiers<span class="w"> </span>chrom1k<span class="w"> </span>count<span class="w"> </span>CGN
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span> 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>

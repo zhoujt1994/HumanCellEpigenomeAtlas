@@ -615,13 +615,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>hicluster<span class="w"> </span>domain<span class="w"> </span>--cell_table_path<span class="w"> </span>coollist_L1_impute25k.tsv<span class="w"> </span>--output_prefix<span class="w"> </span>L1_impute<span class="w"> </span>--resolution<span class="w"> </span><span class="m">25000</span><span class="w"> </span>--cpu<span class="w"> </span><span class="m">20</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_raw</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/domain/L1_raw.boundary.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata_impute</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/domain/L1_impute.boundary.h5ad&#39;</span><span class="p">)[</span><span class="n">adata_raw</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 </pre></div>

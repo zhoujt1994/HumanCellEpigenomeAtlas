@@ -527,6 +527,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-multi-resolution-mcg-histograms-cached">Generate multi-resolution mCG histograms (cached)</a></li>
 </ul>
             </nav>
         </div>
@@ -546,8 +547,7 @@
 <p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'</span></code>  ·  <em>joint summary obj</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/L2final_celltype_L2both_new.tsv'</span></code>  ·  <em>table</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/5kCG100k3C_summary.csv.gz'</span></code>  ·  <em>joint summary obj</em></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">f'mCG_distribution/multires/{ct}.npy'</span></code>  ·  <em>other</em></p></li>
 </ul>
 <div class="cell docutils container">
@@ -615,7 +615,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">obs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Public cell metadata (5kCG100k3C_summary.csv.gz): majortype=L1, subtype-&gt;subtype_meta, cluster=L2_final</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.csv.gz&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span>   <span class="c1"># adapter: public column name -&gt; the name used below</span>
 <span class="n">meta</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
@@ -631,11 +633,73 @@
 </div>
 </div>
 </div>
+</section>
+<section id="generate-multi-resolution-mcg-histograms-cached">
+<h2>Generate multi-resolution mCG histograms (cached)<a class="headerlink" href="#generate-multi-resolution-mcg-histograms-cached" title="Link to this heading">#</a></h2>
+<p>Produces <code class="docutils literal notranslate"><span class="pre">mCG_distribution/multires/{ct}.npy</span></code>, read by <code class="docutils literal notranslate"><span class="pre">fig2/02</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/02</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/08</span></code>. Cache-guarded: skipped when the files already exist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c7&#39;</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;c35&#39;</span>
-<span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c35&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L2_any&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c10&#39;</span><span class="p">,</span><span class="s1">&#39;c11&#39;</span><span class="p">]),</span> <span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;c36&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">multires_cghist</span><span class="p">(</span><span class="n">ct</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">reslist</span><span class="p">),</span> <span class="n">nbins</span><span class="p">))</span>
+    <span class="n">allc_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged_allc/L1/CGN/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.CGN-Merge.allc.tsv.gz&#39;</span>
+    <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">npos</span> <span class="o">=</span> <span class="p">(</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">chrom</span><span class="p">]</span> <span class="o">//</span> <span class="n">reslist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">reslist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># with gzip.open(allc_path, &#39;rt&#39;) as allc_lines:</span>
+        <span class="k">with</span> <span class="n">pysam</span><span class="o">.</span><span class="n">TabixFile</span><span class="p">(</span><span class="n">allc_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">allc</span><span class="p">:</span>
+            <span class="n">allc_lines</span> <span class="o">=</span> <span class="n">allc</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">allc_lines</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pos</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;mc&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">posfilter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bed</span> <span class="ow">in</span> <span class="n">rm_list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="n">bed</span><span class="p">[</span><span class="n">chrom</span><span class="p">]:</span>
+                <span class="n">posfilter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">xx</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">yy</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">posfilter</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">npos</span><span class="p">)]</span>
+        <span class="n">data_mc</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mc&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">npos</span><span class="p">])</span>
+        <span class="n">data_cov</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">],</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">npos</span><span class="p">])</span>
+        <span class="n">data_multires_hist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">res</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reslist</span><span class="p">):</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data_mc</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> <span class="o">/</span> <span class="n">data_cov</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">tmp</span><span class="p">)]</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tmp</span>
+        <span class="c1"># print(chrom)</span>
+    <span class="c1"># result = pd.DataFrame(result, index=reslist)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCG_distribution/multires/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Generate multi-resolution mCG histograms -&gt; mCG_distribution/multires/{ct}.npy</span>
+<span class="c1"># (cached; read by fig2/02, fig3/02, fig3/08). Runs only if missing.</span>
+<span class="n">REGENERATE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">REGENERATE</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;mCG_distribution/multires/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.npy&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_annot</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+    
+    <span class="n">cpu</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                <span class="n">multires_cghist</span><span class="p">,</span>
+                <span class="n">ct</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct</span>
+    
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[cached] multires/*.npy present, skipping generation&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -643,55 +707,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_list</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L1
-c2     0.588047
-c35    0.626935
-c22    0.673768
-c17    0.691413
-c19    0.693769
-c1     0.698092
-c4     0.711920
-c3     0.712255
-c9     0.713150
-c32    0.715011
-c28    0.715188
-c23    0.717301
-c11    0.719771
-c21    0.722778
-c5     0.729060
-c13    0.729830
-c12    0.733715
-c18    0.733815
-c20    0.734460
-c6     0.735536
-c33    0.738423
-c30    0.746282
-c29    0.748670
-c8     0.751361
-c34    0.751656
-c14    0.760122
-c26    0.762705
-c25    0.765780
-c31    0.773338
-c0     0.776169
-c24    0.776419
-c10    0.777363
-c27    0.782516
-c36    0.805974
-c15    0.805996
-c16    0.812916
-Name: mCGFrac, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -738,16 +753,6 @@ Name: mCGFrac, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/46f3d08633daee1167f8465764fa4116d5f9bdbc6a3743e602a66cfcf7a5a910.png" src="../_images/46f3d08633daee1167f8465764fa4116d5f9bdbc6a3743e602a66cfcf7a5a910.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L2final_celltype_L2both_new.tsv&#39;</span><span class="p">,</span> 
-                           <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
-                           <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">cluster_meta</span><span class="p">[</span><span class="s1">&#39;celltype_L2_both_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">cluster_meta</span><span class="p">[</span><span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">cluster_meta</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -940,80 +945,12 @@ Name: mCGFrac, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_list</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Epi TPB&#39;, &#39;Hema Bmem&#39;, &#39;Epi Aci&#39;, &#39;Fibro Brst&#39;, &#39;Fibro EndN&#39;,
-       &#39;Hema Tmem&#39;, &#39;Epi Gas&#39;, &#39;Endo Vsc&#39;, &#39;Epi AdrCtx&#39;, &#39;Fibro Mus&#39;,
-       &#39;Fibro EpiN&#39;, &#39;Fibro Sk&#39;, &#39;Fibro HT&#39;, &#39;Neu Schw&#39;, &#39;Mus Skl&#39;,
-       &#39;Epi Endcri&#39;, &#39;Perivascular&#39;, &#39;Epi Krt/Lum&#39;, &#39;Epi Alv&#39;, &#39;Fibro GI&#39;,
-       &#39;Endo Lym&#39;, &#39;Epi Duc&#39;, &#39;Fibro Adr&#39;, &#39;Epi Ent&#39;, &#39;Fibro Myo&#39;,
-       &#39;Glia Oligo&#39;, &#39;Mus Crd&#39;, &#39;Epi BrstBasal&#39;, &#39;Glia Astro&#39;, &#39;Hema Myeloid&#39;,
-       &#39;Hema Mast&#39;, &#39;Neu Exc&#39;, &#39;Hema NK&#39;, &#39;Hema Bnaive&#39;, &#39;Hema Tnaive&#39;,
-       &#39;Neu Inh&#39;],
-      dtype=&#39;object&#39;, name=&#39;L1&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="c1"># zscore(data, axis=1), </span>
-               <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">row_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
-               <span class="n">xticklabels</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">corder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/69bdcdf90db9cf01fbd46c76b95d0b4cba9d1e39da25586d437775d7fa0e4373.png" src="../_images/69bdcdf90db9cf01fbd46c76b95d0b4cba9d1e39da25586d437775d7fa0e4373.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">corder</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;c35&#39;, &#39;c2&#39;, &#39;c9&#39;, &#39;c3&#39;, &#39;c1&#39;, &#39;c22&#39;, &#39;c26&#39;, &#39;c20&#39;, &#39;c30&#39;, &#39;c33&#39;, &#39;c8&#39;,
-       &#39;c34&#39;, &#39;c32&#39;, &#39;c19&#39;, &#39;c17&#39;, &#39;c4&#39;, &#39;c23&#39;, &#39;c28&#39;, &#39;c21&#39;, &#39;c12&#39;, &#39;c6&#39;,
-       &#39;c11&#39;, &#39;c13&#39;, &#39;c5&#39;, &#39;c29&#39;, &#39;c18&#39;, &#39;c10&#39;, &#39;c31&#39;, &#39;c14&#39;, &#39;c25&#39;, &#39;c27&#39;,
-       &#39;c24&#39;, &#39;c0&#39;, &#39;c15&#39;, &#39;c36&#39;, &#39;c16&#39;],
-      dtype=&#39;object&#39;, name=&#39;L1&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg_order</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c35&#39;</span><span class="p">,</span> 
                       <span class="s1">&#39;c22&#39;</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c3&#39;</span><span class="p">,</span> <span class="s1">&#39;c9&#39;</span><span class="p">,</span> 
                       <span class="s1">&#39;c17&#39;</span><span class="p">,</span> <span class="s1">&#39;c32&#39;</span><span class="p">,</span> <span class="s1">&#39;c19&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> 
                       <span class="s1">&#39;c23&#39;</span><span class="p">,</span> <span class="s1">&#39;c28&#39;</span><span class="p">,</span> <span class="s1">&#39;c21&#39;</span><span class="p">,</span> <span class="s1">&#39;c12&#39;</span><span class="p">,</span> <span class="s1">&#39;c6&#39;</span><span class="p">,</span> <span class="s1">&#39;c11&#39;</span><span class="p">,</span> <span class="s1">&#39;c13&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> <span class="s1">&#39;c29&#39;</span><span class="p">,</span> <span class="s1">&#39;c18&#39;</span><span class="p">,</span> 
                       <span class="s1">&#39;c26&#39;</span><span class="p">,</span> <span class="s1">&#39;c20&#39;</span><span class="p">,</span> <span class="s1">&#39;c30&#39;</span><span class="p">,</span> <span class="s1">&#39;c33&#39;</span><span class="p">,</span> <span class="s1">&#39;c8&#39;</span><span class="p">,</span> <span class="s1">&#39;c34&#39;</span><span class="p">,</span> 
                       <span class="s1">&#39;c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c31&#39;</span><span class="p">,</span> <span class="s1">&#39;c14&#39;</span><span class="p">,</span> <span class="s1">&#39;c25&#39;</span><span class="p">,</span> <span class="s1">&#39;c27&#39;</span><span class="p">,</span> <span class="s1">&#39;c24&#39;</span><span class="p">,</span> <span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;c15&#39;</span><span class="p">,</span> <span class="s1">&#39;c36&#39;</span><span class="p">,</span> <span class="s1">&#39;c16&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg_order</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Epi TPB&#39;, &#39;Hema Bmem&#39;, &#39;Epi Aci&#39;, &#39;Hema Tmem&#39;, &#39;Endo Vsc&#39;,
-       &#39;Epi AdrCtx&#39;, &#39;Fibro Brst&#39;, &#39;Fibro Mus&#39;, &#39;Fibro EndN&#39;, &#39;Epi Gas&#39;,
-       &#39;Fibro Sk&#39;, &#39;Fibro EpiN&#39;, &#39;Neu Schw&#39;, &#39;Perivascular&#39;, &#39;Fibro GI&#39;,
-       &#39;Fibro HT&#39;, &#39;Epi Endcri&#39;, &#39;Mus Skl&#39;, &#39;Fibro Adr&#39;, &#39;Epi Krt/Lum&#39;,
-       &#39;Mus Crd&#39;, &#39;Epi Alv&#39;, &#39;Epi Duc&#39;, &#39;Endo Lym&#39;, &#39;Epi Ent&#39;, &#39;Fibro Myo&#39;,
-       &#39;Neu Exc&#39;, &#39;Glia Astro&#39;, &#39;Glia Oligo&#39;, &#39;Epi BrstBasal&#39;, &#39;Hema NK&#39;,
-       &#39;Hema Mast&#39;, &#39;Hema Myeloid&#39;, &#39;Hema Tnaive&#39;, &#39;Hema Bnaive&#39;, &#39;Neu Inh&#39;],
-      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -1048,37 +985,6 @@ Name: mCGFrac, dtype: float64
 <div class="cell_output docutils container">
 <img alt="../_images/7656d504b63f61288c84f5a60def9dcac8b40e9fcd18ac5d4db88ff5b626359d.png" src="../_images/7656d504b63f61288c84f5a60def9dcac8b40e9fcd18ac5d4db88ff5b626359d.png" />
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from scipy.stats import zscore</span>
-<span class="c1"># fig, ax = plt.subplots(figsize=(5,2), dpi=300)</span>
-<span class="c1"># i = 0</span>
-<span class="c1"># res = 10</span>
-<span class="c1"># # data = pd.DataFrame([result[ct][i] for ct in L1_list], index=L1_list)</span>
-<span class="c1"># # vmax = np.percentile(data, 99)</span>
-<span class="c1"># ax.imshow(np.log1p(data[L1_list]), cmap=&#39;vlag&#39;, aspect=&#39;auto&#39;, interpolation=&#39;none&#39;)</span>
-<span class="c1"># ax.set_yticks(np.arange(0, 101, 20)-0.5)</span>
-<span class="c1"># ax.set_yticklabels(np.around(np.arange(0, 1.1, 0.2), decimals=1))</span>
-<span class="c1"># ax.set_xticks(np.arange(len(L1_list)))</span>
-<span class="c1"># ax.set_xticklabels(L1_list.map(L1_annot), rotation=90, fontsize=8)</span>
-<span class="c1"># ax.set_ylabel(&#39;mCG/CG&#39;)</span>
-<span class="c1"># plt.tight_layout()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/8b7d75431318b2b8599f96d6e84667d6b5ddef375110154697707b678662f330.png" src="../_images/8b7d75431318b2b8599f96d6e84667d6b5ddef375110154697707b678662f330.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">reslist</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><svg  width="550" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#eaf7e6;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#d8f0d2;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#c1e6ba;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#a4da9e;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#84cc83;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#62bb6d;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#3fa85b;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#289049;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#107a37;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="495" y="0" width="55" height="55" style="fill:#006227;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1374,198 +1280,6 @@ c16
 <img alt="../_images/593608785b69104bddd30a4f7148ebd0cbe21df37e31f7d9eb99759c1767aadb.png" src="../_images/593608785b69104bddd30a4f7148ebd0cbe21df37e31f7d9eb99759c1767aadb.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">//</span><span class="mi">100</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>180000
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donor_palette</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span><span class="n">yy</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">))}</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1color.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">)[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">count</span><span class="o">&gt;=</span><span class="mi">20</span><span class="p">])]</span>
-    <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Donor&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">binrange</span><span class="o">=</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">),</span> 
-                 <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;proportion&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">donor_palette</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-    
-<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/0360235420fe94ca8136d5ec018a01d962a181188d67443a25ef08db10d69169.png" src="../_images/0360235420fe94ca8136d5ec018a01d962a181188d67443a25ef08db10d69169.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L2meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">L2meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1annot</span><span class="p">)</span>
-<span class="n">L2meta</span><span class="p">[</span><span class="s1">&#39;globalCG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_cg</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">border</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">]</span>
-<span class="n">yticks</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">L2meta</span><span class="p">[[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">,</span> <span class="s1">&#39;globalCG&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">)[</span><span class="s1">&#39;globalCG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">L2meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">L2meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">,</span> <span class="s1">&#39;globalCG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-    <span class="n">selc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-    <span class="n">yticks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">border</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">border</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">border</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
-    <span class="n">yticklabels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
-    
-<span class="n">selc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">selc</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># result = result.loc[data.mean(axis=1).sort_values().index]</span>
-<span class="c1"># result = result.loc[global_cg.sort_values().index]</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># order_frac = result.index.copy()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">result</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">row_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7fc0b753af20&gt;
-</pre></div>
-</div>
-<img alt="../_images/e829c8e881753e15422836cd598ae2356b2cb04ba4dcf92d8f59cff2f3aa281a.png" src="../_images/e829c8e881753e15422836cd598ae2356b2cb04ba4dcf92d8f59cff2f3aa281a.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row_colors</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
-<span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">result</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">row_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
-                    <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> 
-                    <span class="n">row_colors</span><span class="o">=</span><span class="n">row_colors</span><span class="p">)</span>
-<span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">xticklabels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">xticks</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">xticklabels</span><span class="p">)</span>
-<span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">yticklabels</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span>
-                            <span class="n">label</span><span class="o">=</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># cg.ax_heatmap.vlines(x=70, colors=&#39;k&#39;, ymin=-0.5, ymax=result.shape[0]-0.5, linewidths=0.5)</span>
-<span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">border</span><span class="p">:</span>
-    <span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">xx</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/0b578ee23c17199179314a96deed2578ab00a196d05210cf4080f8538d4c524f.png" src="../_images/0b578ee23c17199179314a96deed2578ab00a196d05210cf4080f8538d4c524f.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">result</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x7f381e2a7c40&gt;
-</pre></div>
-</div>
-<img alt="../_images/0ad969ed4426b148f15113c0d109b301534a6606b0c6994cd61934c8decb21a2.png" src="../_images/0ad969ed4426b148f15113c0d109b301534a6606b0c6994cd61934c8decb21a2.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22026.465794806718
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp2</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32768.0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">fcluster</span>
-
-<span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">result</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">))</span>
-<span class="n">row_linkage</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">linkage</span>
-<span class="n">nc</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">cluster</span> <span class="o">=</span> <span class="n">fcluster</span><span class="p">(</span><span class="n">row_linkage</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">nc</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;maxclust&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="c1"># cg.ax_heatmap.axes.set_xticks(cg.ax_heatmap.axes.get_xticks(), labels =xticklabel)</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
-<span class="n">cluster_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
-<span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">result</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">row_colors</span><span class="o">=</span><span class="n">cluster_colors</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;vlag&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">xticklabel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">xticks</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">xticklabel</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster</span><span class="p">):</span>
-    <span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">(</span><span class="n">label</span><span class="p">),</span>
-                            <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">cg</span><span class="o">.</span><span class="n">ax_col_dendrogram</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">cg</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.LineCollection at 0x7fbf1296b100&gt;
-</pre></div>
-</div>
-<img alt="../_images/bb67eec96f44d6bb04688f4c61c4eb1d973028cc94bdcb30c077a67cb7577180.png" src="../_images/bb67eec96f44d6bb04688f4c61c4eb1d973028cc94bdcb30c077a67cb7577180.png" />
-<img alt="../_images/56aa3fe5bcccb0a79133f42fe1d5ecb74293a663781212fd0e6818a9395925d0.png" src="../_images/56aa3fe5bcccb0a79133f42fe1d5ecb74293a663781212fd0e6818a9395925d0.png" />
-</div>
-</div>
 </section>
 </section>
 
@@ -1636,6 +1350,7 @@ c16
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-multi-resolution-mcg-histograms-cached">Generate multi-resolution mCG histograms (cached)</a></li>
 </ul>
   </nav></div>
 

@@ -1097,19 +1097,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>Rscript<span class="w"> </span>~/software/dcHiC/dchicf.r<span class="w"> </span>--file<span class="w"> </span>input.txt<span class="w"> </span>--pcatype<span class="w"> </span>analyze<span class="w"> </span>--dirovwt<span class="w"> </span>T<span class="w"> </span>--diffdir<span class="w"> </span>.
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in library(bigstatsr) : there is no package called ‘bigstatsr’
-Execution halted
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">DifferentialResult/fdr_result/differential.intra_sample_combined.pcQnm.bedGraph&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">comp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">comp</span><span class="p">[</span><span class="s1">&#39;chr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">comp</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">comp</span>
@@ -1860,9 +1847,9 @@ Execution halted
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7fbf419dad40&gt;,
- &lt;matplotlib.axis.XTick at 0x7fbf419f5300&gt;,
- &lt;matplotlib.axis.XTick at 0x7fbf4192ca60&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7fcfa4e88070&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fcfa4efe740&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fcfa4effcd0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/9c5f825938e05011c9f33362ac1ef0b94776d0a38d8f599bcd46bbe8e539dc24.png" src="../_images/9c5f825938e05011c9f33362ac1ef0b94776d0a38d8f599bcd46bbe8e539dc24.png" />
@@ -1881,9 +1868,9 @@ Execution halted
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7fbf416e1bd0&gt;,
- &lt;matplotlib.axis.XTick at 0x7fbf41739ed0&gt;,
- &lt;matplotlib.axis.XTick at 0x7fbf4173aaa0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.axis.XTick at 0x7fcfa4f3e440&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fcfa4da0d60&gt;,
+ &lt;matplotlib.axis.XTick at 0x7fcfa4da2e00&gt;]
 </pre></div>
 </div>
 <img alt="../_images/67f120b040e9e0570f92301943bc47ff9b9149af1ccde7088ec65b572154f445.png" src="../_images/67f120b040e9e0570f92301943bc47ff9b9149af1ccde7088ec65b572154f445.png" />

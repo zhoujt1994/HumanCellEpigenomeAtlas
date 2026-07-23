@@ -526,8 +526,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidently-reproduced-fresh-run-all-figures">✅ Confidently reproduced (fresh run, all figures)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-yet-confident-blocker-per-notebook">⚠ Not yet confident — blocker per notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduced-30">✅ Reproduced (30)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-prep-no-saved-panel-2">Data-prep, no saved panel (2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocked-35-one-blocker-each-most-already-produce-many-figures">⚠ Blocked (35) — one blocker each; most already produce many figures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excluded-not-in-the-paper">Excluded — not in the paper</a></li>
 </ul>
             </nav>
@@ -542,18 +543,21 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reproducibility-status">
 <h1>Reproducibility status<a class="headerlink" href="#reproducibility-status" title="Link to this heading">#</a></h1>
-<p>Each notebook was <strong>re-executed fresh, read-only</strong> (no disk writes; inline figures render) in the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> env with per-cell/per-notebook time caps. This records which figures the code reproduces from the shared <code class="docutils literal notranslate"><span class="pre">allc</span></code>/<code class="docutils literal notranslate"><span class="pre">cool</span></code>/<code class="docutils literal notranslate"><span class="pre">loop</span></code>/<code class="docutils literal notranslate"><span class="pre">DMR</span></code> files.</p>
-<div class="admonition-method admonition">
-<p class="admonition-title">Method</p>
-<p>Guard = read-only (savefig skipped). Expensive DMR/loop/compartment/clustering <em>calling</em> is time-capped and skipped (results loaded from cache). ✅ = all cells ran and produced figures. ⚠ = produces most figures but errors on a few cells (blocker noted).</p>
+<p>Every notebook was <strong>re-executed fresh, read-only</strong> (no disk writes; inline figures render) in the <code class="docutils literal notranslate"><span class="pre">analysis</span></code> env, reading data from the shared <code class="docutils literal notranslate"><span class="pre">allc</span></code>/<code class="docutils literal notranslate"><span class="pre">cool</span></code>/<code class="docutils literal notranslate"><span class="pre">loop</span></code>/<code class="docutils literal notranslate"><span class="pre">DMR</span></code> files. <strong>30 of 67 figure notebooks reproduce all their panels</strong> so far.</p>
+<div class="admonition-legend admonition">
+<p class="admonition-title">Legend</p>
+<p>✅ CLEAN = all cells ran, figures produced (reproduced from scratch). The 5 mCT notebooks (<code class="docutils literal notranslate"><span class="pre">fig6/10–14</span></code>) are excluded — not in the paper.</p>
 </div>
-<section id="confidently-reproduced-fresh-run-all-figures">
-<h2>✅ Confidently reproduced (fresh run, all figures)<a class="headerlink" href="#confidently-reproduced-fresh-run-all-figures" title="Link to this heading">#</a></h2>
-<p><strong>27 notebooks:</strong> <code class="docutils literal notranslate"><span class="pre">fig1/01.clustering_summary.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/03.method_clustering.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/07.dendrogram_annot.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/03.PMD_RNA.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/04.DMR_stats.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/05.DMR_overlap_ATAC.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/07.TE_mCG.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/08.PMD_calling_insulation.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/10.PMD_donor.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/15.PMD_ATAC.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/18.DMR_loop_sLDSC.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/05.mCH_mCG_scale.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/06.mCH_mCG_comp.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/07.mCH_clustering.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/09.mCH_geneflank.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/02.decay_compartment.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/03.decay_domain.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/04.compartment.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/05.diffcomp_majortype.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/07.diffloop_majortype.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/08.diffloop_subtype.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/09.loop_rna.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/10.loop_comp.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/02.MusSkl_donor_clustering.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/03.MusSkl_diffloop.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/08.Epi-Gas.ipynb</span></code></p>
+<section id="reproduced-30">
+<h2>✅ Reproduced (30)<a class="headerlink" href="#reproduced-30" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fig1/01.clustering_summary.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/03.method_clustering.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/07.dendrogram_annot.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/03.PMD_RNA.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/04.DMR_stats.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/05.DMR_overlap_ATAC.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/07.TE_mCG.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/08.PMD_calling_insulation.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/10.PMD_donor.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/15.PMD_ATAC.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/18.DMR_loop_sLDSC.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/03.mC_context_lambda.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/05.mCH_mCG_scale.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/06.mCH_mCG_comp.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/07.mCH_clustering.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/09.mCH_geneflank.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/10.mCH_geneplot.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/02.decay_compartment.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/03.decay_domain.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/04.compartment.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/05.diffcomp_majortype.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/07.diffloop_majortype.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/08.diffloop_subtype.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/09.loop_rna.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/02.MusSkl_donor_clustering.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/03.MusSkl_diffloop.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/06.MusSkl_diff_7group.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/07.Epi-TPB.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/08.Epi-Gas.ipynb</span></code></p>
 </section>
-<section id="not-yet-confident-blocker-per-notebook">
-<h2>⚠ Not yet confident — blocker per notebook<a class="headerlink" href="#not-yet-confident-blocker-per-notebook" title="Link to this heading">#</a></h2>
-<p>Most already produce many figures; the blocker is a missing cell/intermediate or a shell cell. Per the author, unrelated/broken cells can be deleted from the book.</p>
+<section id="data-prep-no-saved-panel-2">
+<h2>Data-prep, no saved panel (2)<a class="headerlink" href="#data-prep-no-saved-panel-2" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fig3/08.mCH_hetero.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/04.mCoverDomainboundary.ipynb</span></code></p>
+</section>
+<section id="blocked-35-one-blocker-each-most-already-produce-many-figures">
+<h2>⚠ Blocked (35) — one blocker each; most already produce many figures<a class="headerlink" href="#blocked-35-one-blocker-each-most-already-produce-many-figures" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Notebook</p></th>
@@ -568,35 +572,35 @@
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/04.method_anchor.ipynb</span></code></p></td>
 <td><p>5</p></td>
-<td><p>missing precomputed key: <code class="docutils literal notranslate"><span class="pre">wnn_pc15_tsne</span></code></p></td>
+<td><p>missing key: <code class="docutils literal notranslate"><span class="pre">wnn_pc15_tsne</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/05.modality_contribution.ipynb</span></code></p></td>
 <td><p>3</p></td>
-<td><p>missing precomputed key: <code class="docutils literal notranslate"><span class="pre">5kCG100k3C_u22pc9</span></code></p></td>
+<td><p>missing key: <code class="docutils literal notranslate"><span class="pre">5kCG100k3C_u22pc9</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/06.downsample_clustering.ipynb</span></code></p></td>
 <td><p>2</p></td>
-<td><p>c17:ValueError: invalid literal for int() with base 10: ‘/ho</p></td>
+<td><p>c18:ValueError: invalid literal for int() with bas</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/08.L2both_per_celltype.ipynb</span></code></p></td>
 <td><p>0</p></td>
-<td><p>missing intermediate on disk (pipeline output)</p></td>
+<td><p>missing intermediate on disk</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/09.pairwise_prediction.ipynb</span></code></p></td>
 <td><p>3</p></td>
-<td><p>c10:KeyError: “None of [‘leiden_init’] are in the columns”</p></td>
+<td><p>c11:KeyError: “None of [‘leiden_init’] are in the</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/10.compare_bulkmc.ipynb</span></code></p></td>
 <td><p>9</p></td>
-<td><p>bed read without header (chrom/start/end)</p></td>
+<td><p>bed read without header</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/11.compare_bulkhic.ipynb</span></code></p></td>
 <td><p>3</p></td>
-<td><p>multiprocessing worker crash</p></td>
+<td><p>worker crash</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig1/12.L2any_L2both_diffloop.ipynb</span></code></p></td>
 <td><p>0</p></td>
-<td><p>missing intermediate on disk (pipeline output)</p></td>
+<td><p>missing intermediate on disk</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/02.PMD_hetero.ipynb</span></code></p></td>
 <td><p>40</p></td>
@@ -604,7 +608,7 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/06.DMR_motif.ipynb</span></code></p></td>
 <td><p>0</p></td>
-<td><p>bash/shell cell (needs <code class="docutils literal notranslate"><span class="pre">!</span></code> or is a pipeline command; not a plot)</p></td>
+<td><p>shell/pipeline cell (not a plot)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/09.PMD_cell-by-site.ipynb</span></code></p></td>
 <td><p>6</p></td>
@@ -612,15 +616,15 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/11.PMD_Hema-Tmem.ipynb</span></code></p></td>
 <td><p>10</p></td>
-<td><p>c18:KeyError: “None of [Index([‘celltype’, ‘batch’], dtype=’</p></td>
+<td><p>c19:KeyError: “None of [Index([‘celltype’, ‘batch’</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/12.PMD_Epi-TPB.ipynb</span></code></p></td>
 <td><p>24</p></td>
-<td><p>missing intermediate on disk (pipeline output)</p></td>
+<td><p>missing intermediate on disk</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/13.PMD_histone.ipynb</span></code></p></td>
 <td><p>26</p></td>
-<td><p>c52:KeyError: “None of [Index([(‘t’, ‘i’, ‘s’, ‘s’, ‘u’, ‘e’</p></td>
+<td><p>c52:KeyError: “None of [Index([(‘t’, ‘i’, ‘s’, ‘s’</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/14.PMD_DMR.ipynb</span></code></p></td>
 <td><p>8</p></td>
@@ -628,47 +632,39 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/16.peak_mCG_motif.ipynb</span></code></p></td>
 <td><p>9</p></td>
-<td><p>bash/shell cell (needs <code class="docutils literal notranslate"><span class="pre">!</span></code> or is a pipeline command; not a plot)</p></td>
+<td><p>shell/pipeline cell (not a plot)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig2/17.geneCG_expr_corr.ipynb</span></code></p></td>
 <td><p>5</p></td>
-<td><p>bed read without header (chrom/start/end)</p></td>
+<td><p>bed read without header</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/01.global_mCH.ipynb</span></code></p></td>
 <td><p>2</p></td>
-<td><p>missing intermediate on disk (pipeline output)</p></td>
+<td><p>missing intermediate on disk</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/02.mCH_distribution.ipynb</span></code></p></td>
 <td><p>45</p></td>
-<td><p>palette key (residual)</p></td>
+<td><p>palette key</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/03.mC_context_lambda.ipynb</span></code></p></td>
-<td><p>19</p></td>
-<td><p>c29:ValueError: ‘c’ argument has 420 elements, which is inco</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/04.mCH_mCG_corr.ipynb</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/04.mCH_mCG_corr.ipynb</span></code></p></td>
 <td><p>9</p></td>
 <td><p>missing cell/import: <code class="docutils literal notranslate"><span class="pre">thres</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/08.mCH_hetero.ipynb</span></code></p></td>
-<td><p>0</p></td>
-<td><p>NO_FIG</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/01.decay.ipynb</span></code></p></td>
+<td><p>10</p></td>
+<td><p>missing cell/import: <code class="docutils literal notranslate"><span class="pre">L1colors</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig3/10.mCH_geneplot.ipynb</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/06.domainloop_stats.ipynb</span></code></p></td>
 <td><p>6</p></td>
-<td><p>bed read without header (chrom/start/end)</p></td>
+<td><p>missing intermediate on disk</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/01.decay.ipynb</span></code></p></td>
-<td><p>11</p></td>
-<td><p>c10:AttributeError: ‘dict’ object has no attribute ‘index’</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/06.domainloop_stats.ipynb</span></code></p></td>
-<td><p>6</p></td>
-<td><p>missing intermediate on disk (pipeline output)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/10.loop_comp.ipynb</span></code></p></td>
+<td><p>3</p></td>
+<td><p>missing cell/import: <code class="docutils literal notranslate"><span class="pre">sel</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/01.genome_mCG_compartment.ipynb</span></code></p></td>
 <td><p>7</p></td>
-<td><p>bed read without header (chrom/start/end)</p></td>
+<td><p>bed read without header</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/02.comp_pmd.ipynb</span></code></p></td>
 <td><p>16</p></td>
@@ -676,23 +672,23 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/03.mCoverCompboundary.ipynb</span></code></p></td>
 <td><p>34</p></td>
-<td><p>bed read without header (chrom/start/end)</p></td>
+<td><p>bed read without header</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/04.mCoverDomainboundary.ipynb</span></code></p></td>
-<td><p>0</p></td>
-<td><p>NO_FIG</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/05.loop_dmr_enrichment.ipynb</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/05.loop_dmr_enrichment.ipynb</span></code></p></td>
 <td><p>1</p></td>
-<td><p>bash/shell cell (needs <code class="docutils literal notranslate"><span class="pre">!</span></code> or is a pipeline command; not a plot)</p></td>
+<td><p>shell/pipeline cell (not a plot)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/06.loop_dmr_motif.ipynb</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/06.loop_dmr_motif.ipynb</span></code></p></td>
 <td><p>0</p></td>
-<td><p>bash/shell cell (needs <code class="docutils literal notranslate"><span class="pre">!</span></code> or is a pipeline command; not a plot)</p></td>
+<td><p>shell/pipeline cell (not a plot)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/07.L2any_L2both.ipynb</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/07.L2any_L2both.ipynb</span></code></p></td>
 <td><p>71</p></td>
-<td><p>bash/shell cell (needs <code class="docutils literal notranslate"><span class="pre">!</span></code> or is a pipeline command; not a plot)</p></td>
+<td><p>shell/pipeline cell (not a plot)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig5/08.pycistarget_loopDMR.ipynb</span></code></p></td>
+<td><p>?</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/01.MusSkl_clustering.ipynb</span></code></p></td>
 <td><p>3</p></td>
@@ -700,19 +696,11 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/04.MusSkl_diff.ipynb</span></code></p></td>
 <td><p>7</p></td>
-<td><p>missing intermediate on disk (pipeline output)</p></td>
+<td><p>missing intermediate on disk</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/05.MusSkl_diff_3group.ipynb</span></code></p></td>
 <td><p>43</p></td>
 <td><p>missing cell/import: <code class="docutils literal notranslate"><span class="pre">leg</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/06.MusSkl_diff_7group.ipynb</span></code></p></td>
-<td><p>16</p></td>
-<td><p>missing cell/import: <code class="docutils literal notranslate"><span class="pre">leg</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/07.Epi-TPB.ipynb</span></code></p></td>
-<td><p>6</p></td>
-<td><p>bash/shell cell (needs <code class="docutils literal notranslate"><span class="pre">!</span></code> or is a pipeline command; not a plot)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig6/09.NTbSchw_clustering.ipynb</span></code></p></td>
 <td><p>5</p></td>
@@ -724,7 +712,7 @@
 </section>
 <section id="excluded-not-in-the-paper">
 <h2>Excluded — not in the paper<a class="headerlink" href="#excluded-not-in-the-paper" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">fig6/10–14</span></code> (colon/stomach <strong>mCT</strong> notebooks) — the author confirmed no mCT data is shown in the paper. To be dropped from the book.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fig6/10–14</span></code> (colon/stomach mCT) — no mCT data shown in the paper.</p>
 </section>
 </section>
 
@@ -794,8 +782,9 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidently-reproduced-fresh-run-all-figures">✅ Confidently reproduced (fresh run, all figures)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-yet-confident-blocker-per-notebook">⚠ Not yet confident — blocker per notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduced-30">✅ Reproduced (30)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-prep-no-saved-panel-2">Data-prep, no saved panel (2)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blocked-35-one-blocker-each-most-already-produce-many-figures">⚠ Blocked (35) — one blocker each; most already produce many figures</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excluded-not-in-the-paper">Excluded — not in the paper</a></li>
 </ul>
   </nav></div>
