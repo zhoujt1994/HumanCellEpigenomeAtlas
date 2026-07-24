@@ -716,14 +716,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ens2gene</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="n">gene2ens</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_name&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;TSS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">selg</span> <span class="o">=</span> <span class="p">(</span><span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;strand&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="n">gene_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">,</span> <span class="s1">&#39;TSS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
@@ -733,13 +725,6 @@
 <span class="n">gene_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">,</span> <span class="s1">&#39;TES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
 
 <span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_meta</span><span class="p">[[</span><span class="s1">&#39;TSS&#39;</span><span class="p">,</span> <span class="s1">&#39;TES&#39;</span><span class="p">,</span> <span class="s1">&#39;strand&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -900,13 +885,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># region = pd.read_csv(f&#39;{peak_ct}.bed&#39;, sep=&#39;\t&#39;, header=None, index_col=3)</span>
 <span class="c1"># xx = bw_list[3]</span>
 <span class="c1"># mc_ct = xx.split(&#39;/&#39;)[-1]</span>
@@ -947,22 +925,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import pyBigWig</span>
-
-<span class="c1"># global_ch = []</span>
-<span class="c1"># for ct in L1_meta.index:</span>
-<span class="c1">#     bw_file = f&#39;{indir}merged_allc/L1/CHN/{ct}.CHN-both.frac.bw&#39;</span>
-<span class="c1">#     bw = pyBigWig.open(bw_file)</span>
-<span class="c1">#     info = bw.header()</span>
-<span class="c1">#     global_ch.append(info[&#39;sumData&#39;]/info[&#39;nBasesCovered&#39;])</span>
-    
-<span class="c1"># global_ch = pd.Series(global_ch, index=L1_meta.index)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c16&#39;</span><span class="p">,</span> <span class="s1">&#39;c14&#39;</span><span class="p">,</span> <span class="s1">&#39;c31&#39;</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c5&#39;</span><span class="p">,</span> 
              <span class="s1">&#39;c22&#39;</span><span class="p">,</span> <span class="s1">&#39;c9&#39;</span><span class="p">,</span> <span class="s1">&#39;c26&#39;</span><span class="p">,</span> <span class="s1">&#39;c3&#39;</span><span class="p">,</span> <span class="s1">&#39;c13&#39;</span><span class="p">,</span> <span class="s1">&#39;c12&#39;</span><span class="p">,</span> <span class="s1">&#39;c32&#39;</span><span class="p">,</span> <span class="s1">&#39;c27&#39;</span><span class="p">,</span> <span class="s1">&#39;c33&#39;</span><span class="p">,</span> 
              <span class="s1">&#39;c30&#39;</span><span class="p">,</span> <span class="s1">&#39;c24&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">,</span> <span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;c20&#39;</span><span class="p">,</span> <span class="s1">&#39;c18&#39;</span><span class="p">,</span> 
@@ -981,13 +943,6 @@
 <span class="n">region</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">peak_ct</span><span class="si">}</span><span class="s1">.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">selp</span> <span class="o">=</span> <span class="n">peak</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span><span class="s1">&#39;start&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">region</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">peak_matrix</span> <span class="o">=</span> <span class="n">peak_matrix</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peak_matrix</span>
 </pre></div>
 </div>
 </div>
@@ -1039,28 +994,6 @@
     <span class="c1"># else:</span>
     <span class="c1">#     ctcre[ct] = pd.Series(False, index=np.arange(region.shape[0]))</span>
         
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split = 0</span>
-<span class="c1"># ws = &#39;25k&#39;</span>
-<span class="c1"># w = &#39;500&#39;</span>
-
-<span class="c1"># data_all = []</span>
-<span class="c1"># for peak_ct in [&#39;tss&#39;, &#39;tes&#39;, &#39;CGI&#39;, &#39;cCREs_distal2k&#39;]:</span>
-<span class="c1">#     data = []</span>
-<span class="c1">#     for i,ct in enumerate(L1_meta.index):</span>
-<span class="c1">#         ratio = pd.read_hdf(f&#39;{outdir}{peak_ct}.split{split}.slop{ws}b.{w}b.{ct}.CHN-both.hdf&#39;, key=&#39;data&#39;)</span>
-<span class="c1">#         selr = (ratio.isna().sum(axis=1)&lt;(0.2*ratio.shape[1]))</span>
-<span class="c1">#         ratio = ratio.loc[selr]</span>
-<span class="c1">#         tmp = np.nanmean(ratio, axis=0)</span>
-<span class="c1">#         data.append(tmp)</span>
-<span class="c1">#     data = pd.DataFrame(data, index=L1_meta.index)</span>
-<span class="c1">#     data.to_hdf(f&#39;{outdir}{peak_ct}.split{split}.slop{ws}b.{w}b.hdf&#39;, key=&#39;data&#39;)</span>
-<span class="c1">#     data_all.append(data.loc[leg_order])</span>
 </pre></div>
 </div>
 </div>
@@ -1488,13 +1421,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gtf</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
@@ -1635,13 +1561,6 @@
 <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selg</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1000</span>
 <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">selg</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1000</span>
 <span class="n">tmp</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span><span class="s1">&#39;start&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tss1k.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span>
 </pre></div>
 </div>
 </div>

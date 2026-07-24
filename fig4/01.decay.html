@@ -595,17 +595,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># group_meta = pd.read_csv(f&#39;{indir}clustering/merged/group_meta.tsv&#39;, sep=&#39;\t&#39;, header=0, index_col=0)</span>
-<span class="c1"># # group_meta = group_meta[[&#39;L2_any&#39;, &#39;L1&#39;, &#39;count&#39;]]</span>
-<span class="c1"># group_meta[&#39;L1_annot&#39;] = group_meta[&#39;L1_annot&#39;].str.replace(&#39; &#39;,&#39;-&#39;).str.replace(&#39;/&#39;,&#39;_&#39;)</span>
-<span class="c1"># annot2L1 = group_meta[[&#39;L1&#39;,&#39;L1_annot&#39;]].set_index(&#39;L1_annot&#39;)[&#39;L1&#39;].to_dict()</span>
-<span class="c1"># L1annot = group_meta[[&#39;L1&#39;,&#39;L1_annot&#39;]].set_index(&#39;L1&#39;)[&#39;L1_annot&#39;].to_dict()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">obs</span>
 <span class="c1"># meta[&#39;L1&#39;] = meta[&#39;L1&#39;].astype(str)</span>
 <span class="c1"># meta.loc[meta[&#39;L1&#39;]==&#39;c7&#39;, &#39;L1&#39;] = &#39;c35&#39;</span>
@@ -630,13 +619,6 @@
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">([</span><span class="mi">200000</span><span class="p">,</span><span class="mi">2000000</span><span class="p">,</span><span class="mi">10000000</span><span class="p">,</span><span class="mi">100000000</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">2500</span><span class="p">))</span><span class="o">/</span><span class="mf">0.125</span>
 </pre></div>
 </div>
 </div>
@@ -753,119 +735,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_annot</span><span class="p">[</span><span class="s1">&#39;c21&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Glia Schw&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">germ_layer</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># Endothelium / vasculature</span>
-    <span class="s2">&quot;Endo Lymphatic&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Endo Vascular&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-
-    <span class="c1"># Epithelia</span>
-    <span class="s2">&quot;Epi Acinar&quot;</span><span class="p">:</span> <span class="s2">&quot;endoderm&quot;</span><span class="p">,</span>              <span class="c1"># e.g. pancreatic / digestive acini</span>
-    <span class="s2">&quot;Epi Adrenal&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>            <span class="c1"># adrenal cortex (epithelioid steroidogenic cells)</span>
-    <span class="s2">&quot;Epi Alveolar&quot;</span><span class="p">:</span> <span class="s2">&quot;endoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Epi Breast Basal&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Epi Ductal&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>             <span class="c1"># mammary duct epithelium</span>
-    <span class="s2">&quot;Epi Endocrine&quot;</span><span class="p">:</span> <span class="s2">&quot;endoderm&quot;</span><span class="p">,</span>          <span class="c1"># gut/pancreatic endocrine epithelia</span>
-    <span class="s2">&quot;Epi Enteric&quot;</span><span class="p">:</span> <span class="s2">&quot;endoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Epi Gastric&quot;</span><span class="p">:</span> <span class="s2">&quot;endoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Epi Keratinous/Luminal&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span> <span class="c1"># epidermis / keratinocytes</span>
-    <span class="s2">&quot;Epi Trophoblast&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>        <span class="c1"># strictly trophectoderm/extraembryonic, but ectoderm-derived</span>
-
-    <span class="c1"># Fibroblasts / myofibroblasts</span>
-    <span class="s2">&quot;Fibro Adrenal&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Breast&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Endoneurial&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Epineurial&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Gastrointestinal&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Heart&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Muscular&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Myofibroblast&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Fibro Skin&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-
-    <span class="c1"># Glia / neurons</span>
-    <span class="s2">&quot;Glia Astrocyte&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Glia Oligodendrocyte&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Neu Excitatory&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Neu Inhibitory&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Glia Schwann&quot;</span><span class="p">:</span> <span class="s2">&quot;ectoderm&quot;</span><span class="p">,</span>            <span class="c1"># neural crest–derived</span>
-
-    <span class="c1"># Hematopoietic / immune</span>
-    <span class="s2">&quot;Hema B&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Hema Mast&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Hema Myeloid&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Hema NK&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Hema Tmem&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Hema Tnaive&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-
-    <span class="c1"># Muscle / mural cells</span>
-    <span class="s2">&quot;Mus Cardiac&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Mus Skeletal&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Perivascular&quot;</span><span class="p">:</span> <span class="s2">&quot;mesoderm&quot;</span><span class="p">,</span>           <span class="c1"># pericytes / mural cells</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ratio_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
-<span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">)</span>
-<span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;germ_layer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">germ_layer</span><span class="p">)</span>
-<span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ranksums</span>
-<span class="k">for</span> <span class="n">ct1</span><span class="p">,</span><span class="n">ct2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="mi">2</span><span class="p">):</span>
-    <span class="n">data1</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">ct1</span><span class="p">,</span> <span class="s1">&#39;ratio&#39;</span><span class="p">]</span>
-    <span class="n">data2</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">ct2</span><span class="p">,</span> <span class="s1">&#39;ratio&#39;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="k">continue</span>
-    <span class="n">stat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">pval</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct1</span><span class="si">}</span><span class="s1"> vs </span><span class="si">{</span><span class="n">ct2</span><span class="si">}</span><span class="s1">: s=</span><span class="si">{</span><span class="n">stat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, p=</span><span class="si">{</span><span class="n">pval</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ranksums</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.sandbox.stats.multicomp</span><span class="w"> </span><span class="kn">import</span> <span class="n">multipletests</span> <span class="k">as</span> <span class="n">FDR</span>
-
-<span class="n">pv</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">mt</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-    <span class="n">data1</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">ct</span><span class="p">,</span> <span class="s1">&#39;ratio&#39;</span><span class="p">]</span>
-    <span class="n">data2</span> <span class="o">=</span> <span class="n">ratio_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio_df</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">!=</span><span class="n">ct</span><span class="p">,</span> <span class="s1">&#39;ratio&#39;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="k">continue</span>
-    <span class="n">stat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">pval</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">: s=</span><span class="si">{</span><span class="n">stat</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, p=</span><span class="si">{</span><span class="n">pval</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">pv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pval</span><span class="p">)</span>
-    <span class="n">mt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
-
-<span class="n">fdr</span> <span class="o">=</span> <span class="n">FDR</span><span class="p">(</span><span class="n">pv</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s2">&quot;fdr_bh&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">fdr</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">mt</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Short/Long&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
@@ -895,20 +764,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rnameta</span> <span class="o">=</span> <span class="n">rnameta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Study&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;10x&#39;</span><span class="p">]]</span>
 <span class="n">rnameta</span><span class="p">[</span><span class="s1">&#39;pred_from_mC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rnameta</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;pred_from_mC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rnameta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;pred_from_mC&#39;</span><span class="p">)[</span><span class="s1">&#39;BarcodeTotalUMIs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;MajorType&#39;</span><span class="p">)[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -956,42 +811,6 @@
     <span class="n">count</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="n">motifad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
     
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctmotif</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctmotif</span> <span class="o">=</span> <span class="n">ctmotif</span> <span class="o">/</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctmotif</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;MA0139.1&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;MajorType&#39;</span><span class="p">)[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">leg</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">spearmanr</span>
-<span class="n">pearsonr</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;MajorType&#39;</span><span class="p">)[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">leg</span><span class="p">],</span> <span class="n">ctmotif</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;MA0139.1&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1208,30 +1027,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">1500000</span><span class="p">,</span> <span class="mi">20000000</span><span class="p">,</span> <span class="mi">50000000</span><span class="p">])</span><span class="o">/</span><span class="mi">2500</span><span class="p">)</span><span class="o">/</span><span class="mf">0.125</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decay</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">(</span><span class="n">decay</span><span class="o">.</span><span class="n">columns</span> <span class="o">&gt;</span> <span class="mi">42</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">decay</span><span class="o">.</span><span class="n">columns</span> <span class="o">&lt;</span> <span class="mi">74</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decay</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">(</span><span class="n">decay</span><span class="o">.</span><span class="n">columns</span> <span class="o">&gt;</span> <span class="mi">103</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">decay</span><span class="o">.</span><span class="n">columns</span> <span class="o">&lt;</span> <span class="mi">114</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;short&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg0</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">leg0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1334,21 +1132,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/31066aa0e2cadac92b8466ef03315db14949103c7c824a1105868a122472bcd9.png" src="../_images/31066aa0e2cadac92b8466ef03315db14949103c7c824a1105868a122472bcd9.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">../plot/cell_</span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">_majortype_decay.pdf&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
-<span class="n">pearsonr</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Cis/Trans&#39;</span><span class="p">],</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">

@@ -667,26 +667,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># peak.to_csv(f&#39;{indir}scATAC/cCREs_selct.bed.gz&#39;, sep=&#39;\t&#39;, header=False, index=False)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split = 0</span>
-<span class="c1"># ws = &#39;2k&#39;</span>
-<span class="c1"># w = &#39;50&#39;</span>
-<span class="c1"># peak_ct = &#39;cCREs_distal2k&#39;</span>
-<span class="c1"># region = pd.read_csv(f&#39;{outdir}{peak_ct}.bed&#39;, sep=&#39;\t&#39;, header=None, index_col=None)</span>
-<span class="c1"># selp = peak.reset_index(drop=True).reset_index().set_index([&#39;chrom&#39;,&#39;start&#39;]).loc[region.set_index([0,1]).index, &#39;index&#39;].values</span>
-<span class="c1"># peak_matrix = peak_matrix[selp]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">atac2mt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/atac2majortype.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">atac2mt</span> <span class="o">=</span> <span class="n">atac2mt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">atac2mt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
 </pre></div>
@@ -899,20 +879,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">import_data</span><span class="p">(</span>
     <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/frag/pbmc_granulocyte_sorted_10k_atac_fragments.tsv.gz&#39;</span><span class="p">,</span>
     <span class="n">chrom_sizes</span><span class="o">=</span><span class="n">snap</span><span class="o">.</span><span class="n">genome</span><span class="o">.</span><span class="n">hg38</span><span class="p">,</span>
@@ -953,51 +919,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snap</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">add_tile_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">data</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_spectral&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_spectral&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_atac</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">obs_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_atac</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">obs_names</span><span class="p">,</span> <span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import h5py</span>
-<span class="c1"># from anndata._io.specs import read_elem</span>
-
-<span class="c1"># with h5py.File(f&#39;{indir}scATAC/PBMC/PBMC10k.h5ad&#39;) as f:</span>
-<span class="c1">#     tmp = read_elem(f[&#39;obs&#39;])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_atac</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/PBMC/PBMC10k.h5ad&#39;</span><span class="p">)</span>
-<span class="n">adata_atac</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">coord_base</span> <span class="o">=</span> <span class="s1">&#39;umap&#39;</span>
-<span class="n">dump_embedding</span><span class="p">(</span><span class="n">adata_atac</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1050,56 +974,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">legmap</span><span class="p">)</span>
-<span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">values</span>
-<span class="n">snap</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">macs3</span><span class="p">(</span><span class="n">adata_tmp</span><span class="p">,</span> <span class="n">groupby</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
-<span class="n">snap</span><span class="o">.</span><span class="n">ex</span><span class="o">.</span><span class="n">export_coverage</span><span class="p">(</span><span class="n">adata_tmp</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">out_dir</span><span class="o">=</span><span class="s1">&#39;PMD_ATAC/bigwig/&#39;</span><span class="p">)</span>
-<span class="n">adata_tmp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata_tmp = snap.read(&#39;PMD_ATAC/PBMC10k_CD4.h5ad&#39;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ct in adata_tmp.uns[&#39;macs3&#39;]:</span>
-<span class="c1">#     pd.DataFrame(adata_tmp.uns[&#39;macs3&#39;][ct]).to_csv(f&#39;PMD_ATAC/peak/{group_name}-{ct}.bed.gz&#39;, sep=&#39;\t&#39;, header=None)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># peaks = snap.tl.merge_peaks(adata_tmp.uns[&#39;macs3&#39;], snap.genome.hg38)</span>
-<span class="c1"># peak_mat = snap.pp.make_peak_matrix(adata_tmp, use_rep=peaks[&#39;Peaks&#39;])</span>
-<span class="c1"># marker_peaks = snap.tl.marker_regions(peak_mat, groupby=&#39;group&#39;, pvalue=0.05)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;PMD_ATAC/PBMC10k_Lym.h5ad&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># count = pd.Series(data.obs[&#39;cell_type&#39;]).value_counts()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># snap.tl.macs3(data, groupby=&#39;cell_type&#39;, n_jobs=32, selections=set(count.index[count&gt;50]))</span>
 </pre></div>
 </div>
 </div>
@@ -1164,29 +1039,6 @@
     <span class="n">peak</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">peak</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">])</span>
     <span class="n">peak</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">return</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for group_name in leg.keys():</span>
-<span class="c1">#     selc_naive = pd.Series(data.obs[&#39;cell_type&#39;]).isin(leg[group_name][0])</span>
-<span class="c1">#     selc_mem = pd.Series(data.obs[&#39;cell_type&#39;]).isin(leg[group_name][1])</span>
-<span class="c1">#     peaks_selected = np.bitwise_or.reduce([peaks[xx] for xx in np.concatenate(leg[group_name])], axis=0)</span>
-<span class="c1">#     print(peaks_selected.sum())</span>
-<span class="c1">#     diff_peaks = snap.tl.diff_test(</span>
-<span class="c1">#         peak_mat,</span>
-<span class="c1">#         cell_group1=selc_naive,</span>
-<span class="c1">#         cell_group2=selc_mem,</span>
-<span class="c1">#         features=peaks_selected,</span>
-<span class="c1">#     )</span>
-<span class="c1">#     diff_peaks = pd.DataFrame(diff_peaks, columns=[&#39;feature name&#39;, &#39;log2(fold_change)&#39;, &#39;p-value&#39;, &#39;adjusted p-value&#39;]).set_index(&#39;feature name&#39;)</span>
-<span class="c1">#     selp_naive = (diff_peaks[&#39;log2(fold_change)&#39;]&gt;1) &amp; (diff_peaks[&#39;adjusted p-value&#39;]&lt;1e-3)</span>
-<span class="c1">#     selp_mem = (diff_peaks[&#39;log2(fold_change)&#39;]&lt;-1) &amp; (diff_peaks[&#39;adjusted p-value&#39;]&lt;1e-3)</span>
-<span class="c1">#     print(selp_naive.sum(), selp_mem.sum())</span>
-<span class="c1">#     write_peak(diff_peaks.loc[selp_naive].index, f&#39;PMD_ATAC/peak/{group_name}-Naive_diff.bed&#39;)</span>
-<span class="c1">#     write_peak(diff_peaks.loc[selp_mem].index, f&#39;PMD_ATAC/peak/{group_name}-Mem_diff.bed&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -1349,13 +1201,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">w</span> <span class="o">=</span> <span class="mi">50</span>
 </pre></div>
@@ -1392,89 +1237,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># group_name, peak_ct, mc_ct = &#39;Tc&#39;, &#39;Memory&#39;, &#39;Naive&#39;</span>
-<span class="c1"># generate_flankmap(peak_group=f&#39;PMD_ATAC/peak/{group_name}-{peak_ct}_diff&#39;,</span>
-<span class="c1">#                   mc_group=f&#39;PMD_ATAC/bigwig/{group_name}-{mc_ct}&#39;,</span>
-<span class="c1">#                   window_size=500, window=50, split=0, min_split_size=1</span>
-<span class="c1">#                  )</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># group_name, peak_ct, mc_ct = &#39;Tc&#39;, &#39;Memory&#39;, &#39;Naive&#39;</span>
-<span class="c1"># generate_flankmap(peak_group=f&#39;PMD_ATAC/peak/{group_name}-{peak_ct}_diff&#39;,</span>
-<span class="c1">#                   mc_group=f&#39;PMD_ATAC/bigwig/{group_name}-{mc_ct}&#39;,</span>
-<span class="c1">#                   window_size=5000, window=50, split=1, min_split_size=1</span>
-<span class="c1">#                  )</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from concurrent.futures import ProcessPoolExecutor, as_completed</span>
-
-<span class="c1"># cpu = 32</span>
-<span class="c1"># with ProcessPoolExecutor(cpu) as executor:</span>
-<span class="c1">#     futures = {}</span>
-<span class="c1">#     for g in leg.keys():</span>
-<span class="c1">#         for peak_ct in [&#39;Naive&#39;, &#39;Mem&#39;]:</span>
-<span class="c1">#             for mc_ct in [&#39;Naive&#39;, &#39;Mem&#39;]:</span>
-<span class="c1">#                 future = executor.submit(</span>
-<span class="c1">#                     generate_flankmap,</span>
-<span class="c1">#                     peak_group=f&#39;PMD_ATAC/peak/{group_name}-{peak_ct}_diff&#39;,</span>
-<span class="c1">#                     mc_group=f&#39;PMD_ATAC/bigwig/{g}-{mc_ct}&#39;,</span>
-<span class="c1">#                     window_size=5000, window=50, split=1, min_split_size=1</span>
-<span class="c1">#                 )</span>
-<span class="c1">#                 futures[future] = f&#39;{group_name}-{peak_ct}-{mc_ct}&#39;</span>
-<span class="c1">#     result = {}</span>
-<span class="c1">#     for future in as_completed(futures):</span>
-<span class="c1">#         ct = futures[future]</span>
-<span class="c1">#         result[ct] = future.result()</span>
-<span class="c1">#         print(f&#39;{ct} finished&#39;)</span>
-        
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>Th-Memory.bed.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f2-4<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{printf(&quot;%s\t%d\t%d\n&quot;, $1, ($2+$3)/2, ($2+$3)/2)}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bedtools<span class="w"> </span>slop<span class="w"> </span>-b<span class="w"> </span><span class="m">25000</span><span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>-g<span class="w"> </span>/large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;($3-$2)==50000&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>Th-Memory.slop25k.bed
-
-<span class="n">cut</span> <span class="o">-</span><span class="n">f1</span><span class="o">-</span><span class="mi">3</span> <span class="n">Hema</span><span class="o">-</span><span class="n">Tmem</span><span class="o">.</span><span class="n">pmd</span><span class="o">.</span><span class="n">tsv</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{printf(&quot;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%d</span><span class="se">\t</span><span class="si">%d</span><span class="se">\n</span><span class="s1">&quot;, $1, ($2+$3)/2, ($2+$3)/2)}&#39;</span> <span class="o">|</span> <span class="n">bedtools</span> <span class="n">slop</span> <span class="o">-</span><span class="n">b</span> <span class="mi">25000</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="o">-</span><span class="n">g</span> <span class="o">/</span><span class="n">large_storage</span><span class="o">/</span><span class="n">zhoulab</span><span class="o">/</span><span class="n">ref</span><span class="o">/</span><span class="n">hg38</span><span class="o">/</span><span class="n">fasta</span><span class="o">/</span><span class="n">hg38</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">chrom</span><span class="o">.</span><span class="n">sizes</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;($3-$2)==50000&#39;</span> <span class="o">&gt;</span> <span class="n">Hema</span><span class="o">-</span><span class="n">Tmem</span><span class="o">.</span><span class="n">pmd</span><span class="o">.</span><span class="n">slop25k</span><span class="o">.</span><span class="n">bed</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/PMD_ATAC/peak/Th-Memory.slop25k.500bp.Th-Mem.CGN-Merge.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">data</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/PMD_ATAC/peak/Th-Memory_diff.slop25k.500bp.Th-Mem.CGN-Merge.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ratio</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">ratio</span><span class="p">[</span><span class="n">cov</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;PMD_ATAC/peak/Hema-Tmem.pmd.slop25k.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">])</span>
 <span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">])]</span>
 <span class="n">bed_new</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1491,30 +1253,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bed_new</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">bed_new</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;index&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;PMD_ATAC/peak/Hema-Tmem.pmd.slop25k.500bp.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/PMD_ATAC/peak/Hema-Tmem.pmd.slop25k.500bp.Th-Mem.CGN-Merge.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">data</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ratio</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<span class="n">ratio</span><span class="p">[</span><span class="n">cov</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ratio</span><span class="p">[:,</span> <span class="mi">49</span><span class="p">:</span><span class="mi">51</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

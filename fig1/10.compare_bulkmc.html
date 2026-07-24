@@ -576,37 +576,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># seq = {}</span>
-<span class="c1"># with gzip.open(&#39;/home/zhoujt/software/wgbs_tools/references/hg38/hg38.fa.gz&#39;, &#39;rt&#39;) as fin:</span>
-<span class="c1">#     for line in fin:</span>
-<span class="c1">#         if line[0]==&#39;&gt;&#39;:</span>
-<span class="c1">#             chrom = line[1:].strip()</span>
-<span class="c1">#             seq[chrom] = &#39;&#39;</span>
-<span class="c1">#         else:</span>
-<span class="c1">#             seq[chrom] += line.strip()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from bolero import Genome</span>
-<span class="c1"># genome = Genome(&#39;hg38&#39;)</span>
-<span class="c1"># seq = {}</span>
-<span class="c1"># ref = np.array([&#39;A&#39;,&#39;C&#39;,&#39;G&#39;,&#39;T&#39;])</span>
-<span class="c1"># for chrom in genome.chrom_sizes.keys():</span>
-<span class="c1">#     tmp = genome.get_region_one_hot(f&#39;{chrom}:0-{genome.chrom_sizes[chrom]}&#39;)</span>
-<span class="c1">#     idx = np.where(tmp)</span>
-<span class="c1">#     nn = np.array([&#39;N&#39; for i in range(tmp.shape[0])])</span>
-<span class="c1">#     nn[idx[0]] = ref[idx[1]]</span>
-<span class="c1">#     seq[chrom] = &#39;&#39;.join(nn)</span>
-<span class="c1">#     print(chrom)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/home/zhoujt/software/wgbs_tools/references/hg38/CpG.bed.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyfaidx</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fasta</span>
@@ -618,55 +587,6 @@
 
 <span class="n">ref</span><span class="p">[</span><span class="s1">&#39;seq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">xx</span><span class="p">][(</span><span class="n">yy</span><span class="o">-</span><span class="mi">1</span><span class="p">):(</span><span class="n">yy</span><span class="o">+</span><span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ref</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">ref</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
 <span class="n">ref</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;hg38.CpG.3bp.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;hg38.CpG.3bp.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">ref</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
-
-<span class="n">beta_list</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;raw/*.beta&#39;</span><span class="p">)</span>
-<span class="c1"># beta_file = &#39;raw/GSM5652382_Small-int-Endocrine-Z00000436.hg38.beta&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">beta2allc</span><span class="p">(</span><span class="n">beta_file</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">ref</span>
-    <span class="n">allc_file</span> <span class="o">=</span> <span class="n">beta_file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.hg38.beta&#39;</span><span class="p">,</span> <span class="s1">&#39;.allc.tsv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;raw/&#39;</span><span class="p">,</span> <span class="s1">&#39;allc/&#39;</span><span class="p">)</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">beta_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="n">allc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">ref</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mc&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">])],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">allc</span> <span class="o">=</span> <span class="n">allc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">allc</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">allc</span><span class="p">[</span><span class="s1">&#39;strand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;+&#39;</span>
-    <span class="n">allc</span><span class="p">[</span><span class="s1">&#39;last&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">allc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;strand&#39;</span><span class="p">,</span> <span class="s1">&#39;seq&#39;</span><span class="p">,</span> <span class="s1">&#39;mc&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">,</span> <span class="s1">&#39;last&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">allc_file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;bgzip -f </span><span class="si">{</span><span class="n">allc_file</span><span class="si">}</span><span class="s1">; allcools tabix-allc --reindex </span><span class="si">{</span><span class="n">allc_file</span><span class="si">}</span><span class="s1">.gz&#39;</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
-    <span class="k">return</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
-    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">beta_file</span> <span class="ow">in</span> <span class="n">beta_list</span><span class="p">:</span>
-        <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">beta2allc</span><span class="p">,</span> <span class="n">beta_file</span><span class="o">=</span><span class="n">beta_file</span><span class="p">)</span>
-        <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta_file</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
-        <span class="n">beta_file</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">beta_file</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -781,13 +701,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_norm_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="s1">&#39;chrom1k_da_frac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -868,13 +781,6 @@
 
 <span class="n">exclude_chromosome</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrX&#39;</span><span class="p">,</span> <span class="s1">&#39;chrY&#39;</span><span class="p">,</span> <span class="s1">&#39;chrM&#39;</span><span class="p">,</span> <span class="s1">&#39;chrL&#39;</span><span class="p">]</span>
 <span class="n">mcds_cluster</span> <span class="o">=</span> <span class="n">mcds_cluster</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds_cluster</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_norm_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1008,13 +914,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_norm_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="s1">&#39;chrom1k_da_frac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1101,13 +1000,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds_cluster</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clip_norm_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bulk_dir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/bulk_mC/Schultz2015/&#39;</span>
 <span class="n">data_bulk</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">bulk_dir</span><span class="si">}</span><span class="s1">Schultz2015_1kb_hg38.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1141,14 +1033,6 @@
 <span class="n">dist</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">data_bulk</span><span class="p">,</span> <span class="n">data_cluster</span><span class="p">,</span> <span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
 <span class="n">dist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">data_cluster</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">data_bulk</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">dist</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cosine_subtype_Schultz.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dist = pd.read_hdf(f&#39;{bulk_dir}cosine_L2any_Schultz.hdf&#39;, key=&#39;data&#39;)</span>
-<span class="c1"># sns.clustermap(dist, figsize=(20,8), xticklabels=4, yticklabels=1)</span>
 </pre></div>
 </div>
 </div>

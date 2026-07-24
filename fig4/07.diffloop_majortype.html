@@ -659,13 +659,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ctgroup</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># indir = &#39;/home/jzhou_salk_edu/sky_workdir/hba/loop_majortype/&#39;</span>
 <span class="c1"># outdir = &#39;/home/jzhou_salk_edu/sky_workdir/hba/loop_majortype/&#39;</span>
 <span class="n">res</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -757,18 +750,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ct in L1_meta.index:</span>
-<span class="c1">#     for matrix in &#39;QET&#39;:</span>
-<span class="c1">#         cool_e = cooler.Cooler(f&#39;{loopdir}{ct}/{ct}.{matrix}.cool&#39;)</span>
-<span class="c1">#         n = cool_e.info[&#39;group_n_cells&#39;]</span>
-<span class="c1">#         print(ct, matrix, n)</span>
-        
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">[]</span>
@@ -823,13 +804,6 @@
                                               <span class="p">),</span>
                          <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">dtypes</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;rm </span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">majortype_*pv_c*.npz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -977,32 +951,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loopall</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">loopq</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">loopt</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loopq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">loop_Q.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="n">loopt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">loop_T.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sell</span> <span class="o">=</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Eanova&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sell</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loopall = loopall.loc[~sell]</span>
-<span class="c1"># loopq = loopq.loc[~sell]</span>
-<span class="c1"># loopt = loopt.loc[~sell]</span>
 </pre></div>
 </div>
 </div>
@@ -1022,46 +972,6 @@
 <span class="c1"># print(selb.sum())</span>
 <span class="n">selb</span> <span class="o">=</span> <span class="p">((</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selb</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmpq</span> <span class="o">=</span> <span class="n">loopq</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">tmpq</span> <span class="o">=</span> <span class="n">zscore</span><span class="p">(</span><span class="n">tmpq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmpt</span> <span class="o">=</span> <span class="n">loopt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">tmpt</span> <span class="o">=</span> <span class="n">zscore</span><span class="p">(</span><span class="n">tmpt</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">sel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmpq</span><span class="p">)),</span> <span class="mi">2000</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cg</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">tmpq</span><span class="p">[</span><span class="n">sel</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">,</span> <span class="c1"># metric=&#39;cosine&#39;, </span>
-                    <span class="n">xticklabels</span><span class="o">=</span><span class="n">leg</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_meta</span><span class="p">[</span><span class="s1">&#39;L1_abbr&#39;</span><span class="p">]),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rorder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_row</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corder</span> <span class="o">=</span> <span class="n">cg</span><span class="o">.</span><span class="n">dendrogram_col</span><span class="o">.</span><span class="n">reordered_ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

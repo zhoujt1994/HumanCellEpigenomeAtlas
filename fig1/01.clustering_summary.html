@@ -696,13 +696,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loopl</span> <span class="o">*</span> <span class="n">resl</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_allc</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">indir</span>
     <span class="n">allc_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged_allc/L1/CGN/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.CGN-Merge.allc.tsv.gz&#39;</span>
@@ -879,49 +872,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># L1_color = [</span>
-<span class="c1">#     &quot;#dd7f87&quot;,</span>
-<span class="c1">#     &quot;#c43f52&quot;,</span>
-<span class="c1">#     &quot;#d33d33&quot;,</span>
-<span class="c1">#     &quot;#e37a5b&quot;,</span>
-<span class="c1">#     &quot;#a44b29&quot;,</span>
-<span class="c1">#     &quot;#e0742b&quot;,</span>
-<span class="c1">#     &quot;#d99d6c&quot;,</span>
-<span class="c1">#     &quot;#91652d&quot;,</span>
-<span class="c1">#     &quot;#d9a138&quot;,</span>
-<span class="c1">#     &quot;#9f892f&quot;,</span>
-<span class="c1">#     &quot;#aeb268&quot;,</span>
-<span class="c1">#     &quot;#a9b836&quot;,</span>
-<span class="c1">#     &quot;#63711c&quot;,</span>
-<span class="c1">#     &quot;#627037&quot;,</span>
-<span class="c1">#     &quot;#579232&quot;,</span>
-<span class="c1">#     &quot;#65bc3f&quot;,</span>
-<span class="c1">#     &quot;#3f8146&quot;,</span>
-<span class="c1">#     &quot;#53c067&quot;,</span>
-<span class="c1">#     &quot;#6fb685&quot;,</span>
-<span class="c1">#     &quot;#46cb97&quot;,</span>
-<span class="c1">#     &quot;#2b7f63&quot;,</span>
-<span class="c1">#     &quot;#41bfbf&quot;,</span>
-<span class="c1">#     &quot;#4aa5d4&quot;,</span>
-<span class="c1">#     &quot;#7199df&quot;,</span>
-<span class="c1">#     &quot;#5366a9&quot;,</span>
-<span class="c1">#     &quot;#657ce4&quot;,</span>
-<span class="c1">#     &quot;#695dd8&quot;,</span>
-<span class="c1">#     &quot;#b58edb&quot;,</span>
-<span class="c1">#     &quot;#7c4fa5&quot;,</span>
-<span class="c1">#     &quot;#af5ad1&quot;,</span>
-<span class="c1">#     &quot;#e36aca&quot;,</span>
-<span class="c1">#     &quot;#cc81b4&quot;,</span>
-<span class="c1">#     &quot;#ad398b&quot;,</span>
-<span class="c1">#     &quot;#984866&quot;,</span>
-<span class="c1">#     &quot;#e04986&quot;,</span>
-<span class="c1"># ]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
 <span class="n">adata</span>
 </pre></div>
@@ -988,60 +938,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># L1_meta = adata.obs[[&#39;L1&#39;,&#39;L1_annot&#39;]].drop_duplicates().set_index(&#39;L1&#39;).sort_values(&#39;L1_annot&#39;)</span>
-<span class="c1"># L1_meta[&#39;color&#39;] = L1_color</span>
-<span class="c1"># L1_meta.to_csv(f&#39;{indir}L1color.tsv&#39;, sep=&#39;\t&#39;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tissue_list = [&#39;AG&#39;, &#39;B&#39;, &#39;EG&#39;, &#39;LG&#39;, &#39;LV&#39;, &#39;RAA&#39;, &#39;PI&#39;, &#39;PBMC&#39;, &#39;P&#39;, &#39;M1C&#39;,</span>
-<span class="c1">#        &#39;SkGcn&#39;, &#39;Sk&#39;, &#39;SB&#39;, &#39;ST&#39;, &#39;NTb&#39;, &#39;TrCo&#39;]</span>
-<span class="c1"># tissue_annot = [&#39;Adrenal Gland&#39;, </span>
-<span class="c1">#                 &#39;Breast&#39;, </span>
-<span class="c1">#                 &#39;Esophagus&#39;, </span>
-<span class="c1">#                 &#39;Lung&#39;, </span>
-<span class="c1">#                 &#39;Left Ventricle&#39;, </span>
-<span class="c1">#                 &#39;Right Atrium Appendage&#39;, </span>
-<span class="c1">#                 &#39;Pancreatic Islet&#39;, </span>
-<span class="c1">#                 &#39;Peripheral Blood&#39;, </span>
-<span class="c1">#                 &#39;Placenta&#39;, </span>
-<span class="c1">#                 &#39;Primary Motor Cortex&#39;, </span>
-<span class="c1">#                 &#39;Skeletal Muscle&#39;, </span>
-<span class="c1">#                 &#39;Skin&#39;, </span>
-<span class="c1">#                 &#39;Small Intestine&#39;, </span>
-<span class="c1">#                 &#39;Stomach&#39;, </span>
-<span class="c1">#                 &#39;Tibial Nerve&#39;, </span>
-<span class="c1">#                 &#39;Transverse Colon&#39;</span>
-<span class="c1">#                ]</span>
-<span class="c1"># tissue_color = {xx:yy for xx,yy in zip(tissue_annot, sns.color_palette(&#39;tab20&#39;, len(tissue_annot)).as_hex())}</span>
-<span class="c1"># tissue_annot = {xx:yy for xx,yy in zip(tissue_list, tissue_annot)}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tissue_meta = pd.DataFrame(index=tissue_list)</span>
-<span class="c1"># tissue_meta[&#39;tissue_annot&#39;] = tissue_annot</span>
-<span class="c1"># tissue_meta[&#39;color&#39;] = tissue_meta[&#39;tissue_annot&#39;].map(tissue_color)</span>
-<span class="c1"># tissue_meta.index.name = &#39;tissue&#39;</span>
-<span class="c1"># tissue_meta.to_csv(f&#39;{indir}tissuecolor.tsv&#39;, sep=&#39;\t&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -1189,120 +1085,6 @@
 </section>
 <section id="merge-metadata-and-different-level-coordinates">
 <h2>Merge metadata and different level coordinates<a class="headerlink" href="#merge-metadata-and-different-level-coordinates" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.tsv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">meta</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;L1_joint_tsne_0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1_joint_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_u50pc50_tsne&#39;</span><span class="p">]</span>
-<span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;L1_5kCG_tsne_0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1_5kCG_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_u50_seuratL2_tsne&#39;</span><span class="p">]</span>
-<span class="n">meta</span><span class="p">[[</span><span class="s1">&#39;L1_100k3C_tsne_0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1_100k3C_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_pc50_seuratL2_tsne&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;L2&#39;</span><span class="p">,</span> <span class="s1">&#39;Tissue&#39;</span><span class="p">]:</span>
-    <span class="k">for</span> <span class="n">yy</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;joint&#39;</span><span class="p">,</span> <span class="s1">&#39;5kCG&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C&#39;</span><span class="p">]:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-            <span class="n">meta</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">yy</span><span class="si">}</span><span class="s1">_tsne_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c35&#39;</span><span class="p">,</span><span class="s1">&#39;c36&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;L2&#39;</span>
-<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">ctname</span> <span class="o">=</span> <span class="n">L1_annot</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
-    <span class="n">selc</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;majortype&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">ct</span><span class="p">]</span>
-    <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ctname</span><span class="si">}</span><span class="s1">/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
-    <span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ctname</span><span class="si">}</span><span class="s1">/5kCG_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
-    <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ctname</span><span class="si">}</span><span class="s1">/100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
-    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;Tissue&#39;</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tissue_meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">selc</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">t</span><span class="p">]</span>
-    <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
-    <span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">/mCG_5kb_lsi.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
-    <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/tissue/L1/</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">/HiC_100kb_pca.h5ad&#39;</span><span class="p">)[</span><span class="n">selc</span><span class="p">]</span>
-    <span class="n">npc_cg</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;_seuratL2_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">npc_3c</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;_seuratL2_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span><span class="p">)</span>
-    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_joint_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_5kCG_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_0&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">_100k3C_tsne_1&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot </span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">5kCG100k3C_summary.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">meta</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L2_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">subtype_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">L2_annot</span> <span class="o">=</span> <span class="n">L2_meta</span><span class="p">[</span><span class="s1">&#39;celltype_L2_both_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;subtype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L2_annot</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 

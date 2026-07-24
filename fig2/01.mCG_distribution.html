@@ -699,22 +699,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(8,3), dpi=300)</span>
-<span class="c1"># sns.violinplot(data=meta, x=&#39;L1_annot&#39;, y=&#39;mCGFrac&#39;, hue=&#39;L1&#39;, ax=ax, palette=colors, order=L1_list,</span>
-<span class="c1">#                # order=pd.Series(L1_list).str.replace(&#39;-&#39;, &#39; &#39;).str.replace(&#39;_&#39;, &#39;/&#39;)[idx]</span>
-<span class="c1">#               )</span>
-<span class="c1"># ax.set_xticklabels(ax.get_xticklabels(), fontsize=12, rotation=90)</span>
-<span class="c1"># ax.set_yticklabels(ax.get_yticklabels(), fontsize=12)</span>
-<span class="c1"># ax.set_ylabel(&#39;mCG/CG&#39;, fontsize=12)</span>
-<span class="c1"># ax.get_legend().set_visible(False)</span>
-<span class="c1"># fig.tight_layout()</span>
-<span class="c1"># fig.savefig(&#39;mCG_distribution/L1_cellglobalCG_violin.pdf&#39;, transparent=True)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">meta</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> 
             <span class="n">palette</span><span class="o">=</span><span class="n">L1_color</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">L1_list</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>

@@ -648,75 +648,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1">## write subtype DMR</span>
-<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx</span>
-<span class="c1"># dmr_dir=${indir}/DMR/majortype-subtype</span>
-<span class="c1"># out_dir=${indir}/analysis/DMR/overlap_atac/majortype_36groups</span>
-<span class="c1"># for i in `seq 0 35`; do awk -v i=$i &#39;{printf(&quot;%s\t%d\t%d\tc%d\n&quot;,$1,$2,$3,i)}&#39; ${dmr_dir}/c${i}_dmr.bed; done | sort -k1,1 -k2,2n | bedtools merge -i - -c 4 -o distinct &gt; ${outdir}/subtype_dms2.bed</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx</span>
-<span class="c1"># dmr_dir=${indir}/analysis/DMR</span>
-<span class="c1"># out_dir=${dmr_dir}/overlap_atac/majortype_36groups</span>
-<span class="c1"># bedtools intersect -wa -a ${dmr_dir}/merged_dmr.bed -b ${out_dir}/subtype_dms2.bed | sort -k1,1 -k2,2n -u | bedtools intersect -wa -a - -b ${out_dir}/majortype_dms4.bed | sort -k1,1 -k2,2n -u | wc -l</span>
-<span class="c1"># bedtools intersect -wa -a ${dmr_dir}/merged_dmr.bed -b ${out_dir}/subtype_dms2.bed | sort -k1,1 -k2,2n -u | wc -l</span>
-<span class="c1"># bedtools intersect -wa -a ${dmr_dir}/merged_dmr.bed -b ${out_dir}/majortype_dms4.bed | sort -k1,1 -k2,2n -u | wc -l</span>
-<span class="c1"># wc -l ${dmr_dir}/merged_dmr.bed</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="mi">535606</span><span class="o">/</span><span class="mi">1364566</span><span class="p">,</span> <span class="p">(</span><span class="mi">706191</span><span class="o">-</span><span class="mi">535606</span><span class="p">)</span><span class="o">/</span><span class="mi">1364566</span><span class="p">,</span> <span class="p">(</span><span class="mi">1193981</span><span class="o">-</span><span class="mi">535606</span><span class="p">)</span><span class="o">/</span><span class="mi">1364566</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx/</span>
-<span class="c1"># bulk_dir=${indir}bulk_mC/Schultz2015</span>
-<span class="c1"># out_dir=${indir}analysis/DMR</span>
-
-<span class="c1"># sort -m -k1,1 -k2,2n $(ls ${out_dir}/overlap_atac/majortype_36groups/*_merged.bed) | bedtools merge -i - &gt; ${out_dir}/merged_dmr.bed</span>
-
-<span class="c1"># bedtools closest -a ${bulk_dir}/DMR_hg38.autosomal.bed -b ${out_dir}/merged_dmr.bed -d | awk &#39;$7&lt;1000&#39; | sort -k1,1 -k2,2n -u | wc -l</span>
-<span class="c1"># bedtools closest -b ${bulk_dir}/DMR_hg38.autosomal.bed -a ${out_dir}/merged_dmr.bed -d | awk &#39;$7&lt;1000&#39; | sort -k1,1 -k2,2n -u | wc -l</span>
-<span class="c1"># wc -l ${bulk_dir}/DMR_hg38.autosomal.bed ${out_dir}/merged_dmr.bed</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib_venn</span><span class="w"> </span><span class="kn">import</span> <span class="n">venn2</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(583584/604218, 782349/1434606)</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">576691</span><span class="o">/</span><span class="mi">604218</span><span class="p">,</span> <span class="mi">776918</span><span class="o">/</span><span class="mi">1364566</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1364566</span><span class="o">-</span><span class="mi">776918</span>
 </pre></div>
 </div>
 </div>
@@ -737,33 +670,9 @@
 <img alt="../_images/6c55eb3532c48c2aa946c5e623c6f52494b3006c085af6239d311ddc1877d65f.png" src="../_images/6c55eb3532c48c2aa946c5e623c6f52494b3006c085af6239d311ddc1877d65f.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># bedtools closest -a /large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/merged_dmr.bed -b /large_storage/zhoulab/ref/hg38/gencode/v30/gencode.v30.tss.bed -d | awk &#39;$10&gt;2000&#39; | wc -l</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1249253</span><span class="o">/</span><span class="mi">1364566</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="subtype-dmr">
 <h2>subtype DMR<a class="headerlink" href="#subtype-dmr" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmr_file_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">DMR/majortype-subtype/*_dmr/dmr.bed&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dmr_file_list</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -812,14 +721,6 @@
 </section>
 <section id="merged-dmr-per-majortype">
 <h2>merged DMR per majortype<a class="headerlink" href="#merged-dmr-per-majortype" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmr_file_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/DMR/overlap_atac/majortype_36groups/*_merged.bed&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dmr_file_list</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -894,14 +795,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ens2gene</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="n">gene2ens</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_name&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_meta</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -941,22 +834,6 @@
         <span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">dmr</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="n">dmr</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_majortypedmr_center.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/dist/</span>
-<span class="c1"># for i in 1 2 3 9 22 35; do rm ${outdir}c${i}_majortypedmr_center.bed; done</span>
-<span class="c1"># for i in `seq 0 36`; do (</span>
-<span class="c1"># if test -e &quot;${outdir}c${i}_dmr_center.bed&quot;; then bedtools intersect -wa -wb -a ${outdir}c${i}_dmr_center.bed -b ${outdir}gene_slop1m.bed | cut -f4,8 | sort -u &gt; ${outdir}c${i}_dmr_gene_1m.txt; fi;</span>
-<span class="c1"># if test -e &quot;${outdir}c${i}_majortypedmr_center.bed&quot;; then bedtools intersect -wa -wb -a ${outdir}c${i}_majortypedmr_center.bed -b ${outdir}gene_slop1m.bed | cut -f4,8 | sort -u &gt; ${outdir}c${i}_majortypedmr_gene_1m.txt; fi;</span>
-<span class="c1"># if test -e &quot;${outdir}c${i}_subtypedmr_center.bed&quot;; then bedtools intersect -wa -wb -a ${outdir}c${i}_subtypedmr_center.bed -b ${outdir}gene_slop1m.bed | cut -f4,8 | sort -u &gt; ${outdir}c${i}_subtypedmr_gene_1m.txt; fi;</span>
-<span class="c1"># ) &amp; if (( ++j % 10 == 0 )); then echo &quot;Waiting...&quot;; wait; fi; </span>
-<span class="c1"># done</span>
 </pre></div>
 </div>
 </div>
@@ -1117,31 +994,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># black_list_path = f&#39;{REF_ROOT}/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
-<span class="c1"># mcds = mcds.remove_black_list_region(</span>
-<span class="c1">#     black_list_path=black_list_path, f=0.5</span>
-<span class="c1"># )</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mcds[&#39;DMR_da_frac&#39;] = mcds[&#39;DMR_da&#39;].sel({&#39;count_type&#39;:&#39;mc&#39;}) / mcds[&#39;DMR_da&#39;].sel({&#39;count_type&#39;:&#39;cov&#39;})</span>
-<span class="c1"># mcds</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_all</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="s1">&#39;DMR_da_frac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="c1"># data_all.to_hdf(f&#39;{outdir}subtype_dmr.hdf&#39;, key=&#39;data&#39;)</span>
 <span class="n">data_all</span>
@@ -1154,23 +1006,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">L2_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data_all</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span><span class="s1">&#39;c3&#39;</span><span class="p">,</span><span class="s1">&#39;c9&#39;</span><span class="p">,</span><span class="s1">&#39;c22&#39;</span><span class="p">,</span><span class="s1">&#39;c35&#39;</span><span class="p">]))</span>
 <span class="n">data_all</span> <span class="o">=</span> <span class="n">data_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data_all</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">data_sorted</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ll</span><span class="p">,</span> <span class="n">rr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">4</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">ave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data_sorted</span><span class="p">[</span><span class="n">ll</span><span class="p">:</span><span class="n">rr</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span> <span class="n">rr</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1194,50 +1029,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.9</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&lt;</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.9</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&lt;</span><span class="p">(</span><span class="n">data_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> 
-      <span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span><span class="o">/</span><span class="mf">5.38</span>
 </pre></div>
 </div>
 </div>
@@ -1264,13 +1056,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/e5c6f7200fcee757711c527ae4fec343bd028f97bb6429bde97108f300aebf2e.png" src="../_images/e5c6f7200fcee757711c527ae4fec343bd028f97bb6429bde97108f300aebf2e.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">data_all</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ave</span><span class="o">+</span><span class="mf">0.3</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">

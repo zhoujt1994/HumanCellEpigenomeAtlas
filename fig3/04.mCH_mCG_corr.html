@@ -627,20 +627,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">num2str</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">num</span><span class="o">&gt;=</span><span class="mf">1e6</span><span class="p">:</span>
-        <span class="n">num_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span><span class="si">}</span><span class="s1">M&#39;</span>
-    <span class="k">elif</span> <span class="n">num</span><span class="o">&gt;=</span><span class="mf">1e3</span><span class="p">:</span>
-        <span class="n">num_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="o">/</span><span class="mf">1e3</span><span class="p">)</span><span class="si">}</span><span class="s1">k&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">num_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="k">return</span> <span class="n">num_str</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
 <span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
 <span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -747,13 +733,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_mc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">result_mc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">result_cov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">result_cov</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result_mc</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">result_cov</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_mc</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">result_cov</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1326,38 +1305,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from scipy.stats import rankdata</span>
-
-<span class="c1"># for ct in L1_meta.index:</span>
-    <span class="c1"># mc = pd.read_hdf(f&#39;{outdir}{ct}_1kb.hdf&#39;, key=&#39;mc&#39;)</span>
-    <span class="c1"># cov = pd.read_hdf(f&#39;{outdir}{ct}_1kb.hdf&#39;, key=&#39;cov&#39;)</span>
-    <span class="c1"># bed = cooler.util.binnify(chrom_sizes, res)</span>
-    <span class="c1"># bed = bed.loc[bed[&#39;end&#39;]-bed[&#39;start&#39;]==res].reset_index(drop=True)</span>
-    <span class="c1"># bed[&#39;name&#39;] = bed[&#39;chrom&#39;].astype(str) + &#39;-&#39; + (bed[&#39;start&#39;]//res).astype(str)</span>
-    <span class="c1"># mc = mc.groupby(context_group, axis=1).sum()</span>
-    <span class="c1"># cov = cov.groupby(context_group, axis=1).sum()</span>
-    <span class="c1"># binfilter = ((cov&gt;10).sum(axis=1)==4)</span>
-    <span class="c1"># # print(binfilter.sum(), binfilter.shape[0])</span>
-    <span class="c1"># mc = mc.loc[binfilter]</span>
-    <span class="c1"># cov = cov.loc[binfilter]</span>
-    <span class="c1"># bed = bed.loc[binfilter]</span>
-    <span class="c1"># ratio = mc / cov</span>
-    <span class="c1"># thres = np.percentile(ratio[&#39;CG&#39;], 2)</span>
-    <span class="c1"># ratiotmp = ratio.loc[ratio[&#39;CG&#39;]&lt;thres]</span>
-    <span class="c1"># rank = rankdata(ratiotmp[&#39;CA&#39;])</span>
-    <span class="c1"># bed.loc[ratiotmp.index].loc[rank&lt;2000].sort_values([&#39;chrom&#39;,&#39;start&#39;]).to_csv(f&#39;{outdir}{ct}_lowCA_lowCG.bed&#39;, sep=&#39;\t&#39;, header=False, index=False)</span>
-    <span class="c1"># bed.loc[ratiotmp.index].loc[rank&gt;(len(rank)-2000)].sort_values([&#39;chrom&#39;,&#39;start&#39;]).to_csv(f&#39;{outdir}{ct}_highCA_lowCG.bed&#39;, sep=&#39;\t&#39;, header=False, index=False)</span>
-    <span class="c1"># print(ct, thres)</span>
-    <span class="c1"># cmd = f&#39;bedtools intersect -wa -a {REF_ROOT}/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz -b {outdir}{ct}_highCA_lowCG.bed | cut -f5 | sort | uniq &gt; {outdir}{ct}_highCA_lowCG.genebody.txt&#39;</span>
-    <span class="c1"># os.system(cmd)</span>
-    <span class="c1"># cmd = f&#39;bedtools intersect -wa -a {REF_ROOT}/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz -b {outdir}{ct}_lowCA_lowCG.bed | cut -f5 | sort | uniq &gt; {outdir}{ct}_lowCA_lowCG.genebody.txt&#39;</span>
-    <span class="c1"># os.system(cmd)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="s1">&#39;c10&#39;</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_1kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;mc&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">context_group</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">cov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_1kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;cov&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">context_group</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -1377,22 +1324,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ratio</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imprint_bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">ICR.bed&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span><span class="s1">&#39;start&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">])</span>
 <span class="n">imprint_bed</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">imprint_bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">((</span><span class="n">imprint_bed</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">imprint_bed</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span><span class="o">//</span><span class="mi">2</span><span class="o">//</span><span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">99.9</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1419,15 +1352,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># out_idx, edges = robust_bin_outliers(ratio[&#39;CG&#39;], ratio[&#39;CA&#39;])</span>
 <span class="c1"># out_idx, mod = quantile_outliers(ratio[&#39;CG&#39;], ratio[&#39;CA&#39;])</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">robust_bin_outliers_signed</span><span class="p">(</span><span class="n">ratio</span><span class="p">[</span><span class="s1">&#39;CG&#39;</span><span class="p">],</span> <span class="n">ratio</span><span class="p">[</span><span class="s1">&#39;CA&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(len(out_idx))</span>
-<span class="c1"># print(len(result[&#39;lowCG_highCA&#39;]), len(result[&#39;highCG_lowCA&#39;]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;high_outliers&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;low_outliers&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1517,13 +1441,6 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;CG&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CA&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span>
 </pre></div>
 </div>
 </div>
@@ -1646,13 +1563,6 @@
 <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">result</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 <span class="n">result</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;CTCF|BORIS&#39;</span><span class="p">)]</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

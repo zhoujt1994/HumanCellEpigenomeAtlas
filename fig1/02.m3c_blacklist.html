@@ -597,13 +597,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hiclist</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span>
 <span class="n">res</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">88000000</span><span class="p">,</span> <span class="mi">98000000</span>
@@ -623,13 +616,6 @@
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">reshape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prefilter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">dstall</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
     
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;svg.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -670,17 +656,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/77c969d0f3d2372b3f96320888c6bd3257358b297a2ccf0322be2d3b6e8e6d8b.png" src="../_images/77c969d0f3d2372b3f96320888c6bd3257358b297a2ccf0322be2d3b6e8e6d8b.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hicfile</span> <span class="o">=</span> <span class="n">hiclist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">hic</span> <span class="o">=</span> <span class="n">hicstraw</span><span class="o">.</span><span class="n">HiCFile</span><span class="p">(</span><span class="n">hicfile</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">hic</span><span class="o">.</span><span class="n">getMatrixZoomData</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="s2">&quot;observed&quot;</span><span class="p">,</span> <span class="s2">&quot;KR&quot;</span><span class="p">,</span> <span class="s2">&quot;BP&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
-
-<span class="c1"># result = hicstraw.straw(&#39;observed&#39;, &#39;NONE&#39;, hicfile, c, c, &#39;BP&#39;, res)</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>

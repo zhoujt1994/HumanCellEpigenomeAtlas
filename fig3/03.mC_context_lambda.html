@@ -868,13 +868,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selcg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">xx</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CG&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
 <span class="n">selch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">xx</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;CG&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
 <span class="n">mc_cg</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selcg</span><span class="p">]</span>
@@ -899,13 +892,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.025</span><span class="p">]</span>
 <span class="n">selc</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -970,13 +956,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mcds.add_mc_frac(normalize_per_cell=False)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data = mcds[&#39;chrom1k_da_frac&#39;].to_pandas()</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;count_type&#39;</span><span class="p">:</span><span class="s1">&#39;mc&#39;</span><span class="p">})[</span><span class="s1">&#39;chrom1k_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="n">cov</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;count_type&#39;</span><span class="p">:</span><span class="s1">&#39;cov&#39;</span><span class="p">})[</span><span class="s1">&#39;chrom1k_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
@@ -994,19 +973,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">betabinom</span><span class="p">,</span> <span class="n">chi2</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">beta_binomial_log_likelihood</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta_param</span> <span class="o">=</span> <span class="n">params</span>
-    <span class="n">log_likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">betabinom</span><span class="o">.</span><span class="n">logpmf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta_param</span><span class="p">))</span>
-    <span class="k">return</span> <span class="o">-</span><span class="n">log_likelihood</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any_mCA_025_top2_rawratio.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1014,68 +980,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span>
-    
-    <span class="n">cell_rate_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-    <span class="n">cell_rate_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanvar</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cell_rate_mean</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">cell_rate_mean</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">cell_rate_var</span> <span class="o">-</span> <span class="n">cell_rate_mean</span>
-    <span class="n">beta</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">cell_rate_mean</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    
-    <span class="n">initial_params</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">beta_binomial_log_likelihood</span><span class="p">,</span> <span class="n">initial_params</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">tmp</span><span class="p">,))</span>
-    <span class="n">fitted_params</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
-    <span class="n">n_fit</span><span class="p">,</span> <span class="n">alpha_fit</span><span class="p">,</span> <span class="n">beta_fit</span> <span class="o">=</span> <span class="n">fitted_params</span>
-    
-    <span class="c1"># Create a DataFrame of observed frequencies</span>
-    <span class="n">observed_freqs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-
-    <span class="c1"># Create a DataFrame of expected frequencies</span>
-    <span class="n">expected_freqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">betabinom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">alpha_fit</span><span class="p">,</span> <span class="n">beta_fit</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">observed_freqs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-
-    <span class="c1"># Chi-Square test</span>
-    <span class="n">observed</span> <span class="o">=</span> <span class="n">observed_freqs</span><span class="o">.</span><span class="n">values</span>
-    <span class="n">expected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected_freqs</span><span class="p">)</span>
-
-    <span class="c1"># Chi-square test statistic</span>
-    <span class="n">chi2_stat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(((</span><span class="n">observed</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">expected</span><span class="p">)</span>
-
-    <span class="c1"># Degrees of freedom</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">observed_freqs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-
-    <span class="c1"># p-value</span>
-    <span class="n">p_value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">chi2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">chi2_stat</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged_allc/L2any_mCGnorm.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_ch_L1</span> <span class="o">=</span> <span class="n">mc_ch</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">mc_ch</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">cov_ch_L1</span> <span class="o">=</span> <span class="n">cov_ch</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">cov_ch</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/group_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">L1annot</span> <span class="o">=</span> <span class="n">group_meta</span><span class="p">[[</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1annot</span>
 </pre></div>
 </div>
 </div>

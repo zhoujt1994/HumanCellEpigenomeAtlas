@@ -663,31 +663,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="s1">&#39;X_lsi&#39;</span><span class="p">)</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;igraph&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;Donor&#39;</span><span class="p">,</span><span class="s1">&#39;leiden&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">df</span> <span class="ow">in</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;leiden&#39;</span><span class="p">):</span>
     <span class="n">selc</span> <span class="o">=</span> <span class="n">indir</span> <span class="o">+</span> <span class="s1">&#39;allc/&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
     <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/allclist_mc</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">,</span> <span class="n">selc</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;celltype_abbr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

@@ -606,16 +606,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
-<span class="n">chrom_size_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
-<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">anndata._io.specs</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_elem</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span> <span class="k">as</span> <span class="n">ARI</span>
@@ -626,14 +616,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">rlt*h5ad&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/TE_mCG/goodcov.raw.LINE.h5ad&#39;</span><span class="p">)</span>
-<span class="n">adata</span>
 </pre></div>
 </div>
 </div>
@@ -730,36 +712,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/06ca4f5d7bcc61c1dfa1a972676e594ccfed743ec7369e3febfd7ae06ec0f3f5.png" src="../_images/06ca4f5d7bcc61c1dfa1a972676e594ccfed743ec7369e3febfd7ae06ec0f3f5.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># allcools generate-dataset --allc_table allclist_L1.tsv \</span>
-<span class="c1">#     --output_path L1_repeat.mcds \</span>
-<span class="c1">#     --chrom_size_path /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes \</span>
-<span class="c1">#     --obs_dim L1 \</span>
-<span class="c1">#     --cpu 36 \</span>
-<span class="c1">#     --chunk_size 1 \ </span>
-<span class="c1">#     --regions SINE /large_storage/zhoulab/ref/repeatmasker/hg38/hg38.repeatmasker.repClass-SINE.bed \</span>
-<span class="c1">#     --regions LINE /large_storage/zhoulab/ref/repeatmasker/hg38/hg38.repeatmasker.repClass-LINE.bed \</span>
-<span class="c1">#     --regions LTR /large_storage/zhoulab/ref/repeatmasker/hg38/hg38.repeatmasker.repClass-LTR.bed \</span>
-<span class="c1">#     --quantifiers SINE count CGN \</span>
-<span class="c1">#     --quantifiers LINE count CGN \</span>
-<span class="c1">#     --quantifiers LTR count CGN</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyranges</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pr</span>
-
-<span class="n">gene_bed_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.sorted.bed.gz&#39;</span>
-<span class="n">peak_bed_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scATAC/peak/majortype/merged_peak.bed&#39;</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">

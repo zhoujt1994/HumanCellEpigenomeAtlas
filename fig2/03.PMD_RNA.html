@@ -696,32 +696,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## mC level for all genes and all TSS using 11 cell groups</span>
-<span class="c1">## SCT, VCT, Aci, PBMC Th mem, PBMC Tc mem, PBMC Bmem</span>
-<span class="c1">## Duc, PBMC Th naive, PBMC Tc naive, PBMC Bnaive</span>
-
-<span class="c1">## SCT vs VCT</span>
-<span class="c1">## PBMC Th mem vs PBMC Tc mem</span>
-<span class="c1">## Aci vs Duc</span>
-<span class="c1">## PBMC Th naive vs PBMC Th mem</span>
-<span class="c1">## PBMC Tc naive vs PBMC Tc mem</span>
-<span class="c1">## PBMC B naive vs PBMC B mem</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ens2gene</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="n">gene2ens</span> <span class="o">=</span> <span class="n">gene_meta</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;gene_name&#39;</span><span class="p">)[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1068,30 +1044,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># for i in 1 2 22 35; do bedtools intersect -wa -a PMD_RNA/flank_bed/tss.bed -b PMD/c${i}.pmd.bed | cut -f4 | sort | uniq &gt; c${i}.pmd.tss.txt; done</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_name_list</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pmd_file_list = [&#39;Epi-TPB&#39;, &#39;Hema-Tmem&#39;]</span>
-<span class="n">pmd_file_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Epi-Exocri&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema-B-PBMC&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema-Th-PBMC&#39;</span><span class="p">,</span> <span class="s1">&#39;Hema-Tc-PBMC&#39;</span><span class="p">]</span>
 <span class="n">study_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fasolino2022&#39;</span><span class="p">,</span> <span class="s1">&#39;Hao2021&#39;</span><span class="p">,</span> <span class="s1">&#39;Hao2021&#39;</span><span class="p">,</span> <span class="s1">&#39;Hao2021&#39;</span><span class="p">]</span>
 <span class="n">selct_list</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Aci&#39;</span><span class="p">,</span> <span class="s1">&#39;Duc&#39;</span><span class="p">],</span> 
@@ -1179,41 +1131,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/46ae193c72c806dc9f2ccd07512b8e1dc8acb978af88dbc74ff63a74461a4600.png" src="../_images/46ae193c72c806dc9f2ccd07512b8e1dc8acb978af88dbc74ff63a74461a4600.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_name_list</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pmd_file_list = [&#39;Epi-Aci&#39;, &#39;B-memory&#39;, &#39;Hema-Tmem&#39;, &#39;Hema-Tmem&#39;]</span>
-<span class="n">pmd_file_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c22&#39;</span><span class="p">,</span> <span class="s1">&#39;c35&#39;</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [repro] disabled on re-run: raw shell command that regenerates an</span>
-<span class="c1"># existing on-disk file / prints diagnostics. Kept for provenance.</span>
-<span class="c1"># cat *donor_dmr/dmr.bed | sort -k1,1 -k2,2n -k3,3n -u | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;, $1,$2,$3,NR)}&#39; &gt; donor_dmr.bed</span>
-<span class="c1"># cat *celltype_dmr/dmr.bed | sort -k1,1 -k2,2n -k3,3n -u | awk &#39;{printf(&quot;%s\t%d\t%d\t%d\n&quot;, $1,$2,$3,NR)}&#39; &gt; celltype_dmr.bed</span>
-<span class="c1"># ls *.CGN-Merge.allc.tsv.gz | awk -v p=$PWD &#39;{printf(&quot;%s/%s\n&quot;, p, $1)}&#39; &gt; allclist_bulk.txt</span>
-<span class="c1"># paste &lt;(awk -F&#39;/&#39; &#39;{print $NF}&#39; allclist_bulk.txt | cut -d. -f1) allclist_bulk.txt &gt; allclist_bulk.tsv</span>
-<span class="c1"># allcools generate-dataset --allc_table allclist_bulk.tsv --output_path Hema-Tmem-PBMC_dmr.mcds --chrom_size_path /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes --obs_dim cell --cpu 20 --chunk_size 1 --regions donor_dmr donor_dmr.bed --regions celltype_dmr celltype_dmr.bed --quantifiers donor_dmr count CGN --quantifiers celltype_dmr count CGN</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>

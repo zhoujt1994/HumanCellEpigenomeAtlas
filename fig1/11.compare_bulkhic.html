@@ -694,24 +694,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hic_file = &#39;ENCFF736ITL&#39;</span>
-<span class="c1"># hic_path = f&#39;{hic_dir}{hic_file}.hic&#39;</span>
-<span class="c1"># chrom = &#39;chr2&#39;</span>
-<span class="c1"># tmp = load_loop_values(hic_path, chrom)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_A.loc[loop_all[chrom].index, hic_file] = tmp[0].copy()</span>
-<span class="c1"># loop_E.loc[loop_all[chrom].index, hic_file] = tmp[1].copy()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
 
 <span class="n">cpu</span> <span class="o">=</span> <span class="mi">24</span>
@@ -739,21 +721,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loop_A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">loop_E</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_A</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_raw.feather&#39;</span><span class="p">)</span>
-<span class="n">loop_E</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_norm.feather&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_raw.feather&#39;</span><span class="p">)</span>
 <span class="n">loop_E</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop_norm.feather&#39;</span><span class="p">)</span>
 </pre></div>
@@ -771,61 +738,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def load_loop(ct):</span>
-<span class="c1">#     global loop_subtype</span>
-<span class="c1">#     tmp = pd.read_csv(f&#39;{loop_dir}{ct}.loop.bedpe&#39;, header=None, index_col=None, sep=&#39;\t&#39;)</span>
-<span class="c1">#     idx = tmp[0].astype(str) + &#39;-&#39; + (tmp[1] // res).astype(str) + &#39;-&#39; + (tmp[4] // res).astype(str)</span>
-<span class="c1">#     return idx, tmp[6].values</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_subtype = pd.DataFrame(0, index=loop_all.index, columns=loop_meta.index)</span>
-
-<span class="c1"># cpu = 24</span>
-<span class="c1"># with ProcessPoolExecutor(cpu) as executor:</span>
-<span class="c1">#     futures = {}</span>
-<span class="c1">#     for ct in loop_meta.index:</span>
-<span class="c1">#         future = executor.submit(</span>
-<span class="c1">#             load_loop,</span>
-<span class="c1">#             ct=ct</span>
-<span class="c1">#         )</span>
-<span class="c1">#         futures[future] = ct</span>
-
-<span class="c1">#     for future in as_completed(futures):</span>
-<span class="c1">#         idx, tmp = future.result()</span>
-<span class="c1">#         ct = futures[future]</span>
-<span class="c1">#         loop_subtype.loc[idx, ct] = tmp.copy()</span>
-<span class="c1">#         print(f&#39;{ct} finished&#39;)</span>
-        
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_subtype = loop_subtype.reset_index(drop=True)</span>
-<span class="c1"># loop_subtype.to_feather(f&#39;{hic_dir}../merged_loop_subtype.feather&#39;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loop_fdr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hic_dir</span><span class="si">}</span><span class="s1">../merged_loop.fdr.hdf&#39;</span><span class="p">)</span>
 <span class="n">loop_fdr</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">loop_fdr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">loop_fdr</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">loop_fdr</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop_subtype = pd.read_feather(f&#39;{hic_dir}../merged_loop_subtype.feather&#39;)</span>
-<span class="c1"># ave = loop_subtype.mean(axis=1)</span>
-<span class="c1"># stdev = loop_subtype.std(axis=1)</span>
 </pre></div>
 </div>
 </div>
@@ -878,25 +793,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selp</span> <span class="o">=</span> <span class="n">selp</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">selp</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># result = pd.DataFrame(index=loop_E.columns)</span>
-<span class="c1"># for ct in loop_meta.index:</span>
-<span class="c1">#     selp = (loop_subtype[ct] - ave).nlargest(5000).index</span>
-<span class="c1">#     result[ct] = loop_E.loc[selp].mean(axis=0)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sklearn.metrics import pairwise_distances</span>
-<span class="c1"># selp = stdev.nlargest(100000).index</span>
-<span class="c1"># dist = pairwise_distances(loop_E.loc[selp].T, loop_subtype.loc[selp].T, metric=&#39;correlation&#39;)</span>
 </pre></div>
 </div>
 </div>

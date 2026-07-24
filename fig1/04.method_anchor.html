@@ -839,28 +839,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="k">for</span> <span class="n">dimred</span><span class="p">,</span><span class="n">tmp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;5kCG_u21_seuratL2&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C_pc14_seuratL2&#39;</span><span class="p">],</span> 
-                      <span class="p">[</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">adata_3c</span><span class="p">]):</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">knn</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="n">dimred</span><span class="p">)</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;igraph&#39;</span><span class="p">)</span>
-    <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dimred</span><span class="si">}</span><span class="s1">_leiden</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
 </pre></div>
 </div>
 </div>
@@ -894,59 +874,6 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/cd3fb3ce99ea04885b93cb8612da6a6308120aa30de9c22222a1ff0a7956e87b.png" src="../_images/cd3fb3ce99ea04885b93cb8612da6a6308120aa30de9c22222a1ff0a7956e87b.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_pc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_u15hm&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG_u15hm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> 
-                                        <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_u15hm&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;100k3C_u15hm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()])</span>
-<span class="n">tsne</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s1">&#39;5kCG100k3C_pc&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;5kCG100k3C_pc_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scanpy.neighbors.__init__</span><span class="w"> </span><span class="kn">import</span> <span class="n">_get_sparse_matrix_from_indices_distances_umap</span><span class="p">,</span> <span class="n">_compute_connectivities_umap</span>
-
-<span class="n">sample_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">]</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="o">-</span><span class="n">D</span><span class="p">,</span> <span class="n">knn</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">:</span><span class="n">knn</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">sample_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">D</span><span class="p">[</span><span class="n">sample_range</span><span class="p">,</span> <span class="n">indices</span><span class="p">])]</span>
-<span class="n">distances</span> <span class="o">=</span> <span class="o">-</span><span class="n">D</span><span class="p">[</span><span class="n">sample_range</span><span class="p">,</span> <span class="n">indices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]]</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span>
-<span class="n">distances</span><span class="p">,</span> <span class="n">connectivities</span> <span class="o">=</span> <span class="n">_compute_connectivities_umap</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">distances</span><span class="p">,</span> <span class="n">D</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">knn</span><span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsp</span><span class="p">[</span><span class="s1">&#39;connectivities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">connectivities</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsp</span><span class="p">[</span><span class="s1">&#39;distances&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">dump_embedding</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="s1">&#39;umap&#39;</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;wnn_umap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;wnn_leiden_</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;wnn_leiden_</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">res</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;wnn_pc15&#39;</span><span class="p">,</span> <span class="s1">&#39;5kCG100k3C_pc&#39;</span><span class="p">,</span> <span class="s1">&#39;5kCG_u15hm&#39;</span><span class="p">,</span> <span class="s1">&#39;100k3C_u15hm&#39;</span><span class="p">]:</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">knn</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="n">coord</span><span class="p">)</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">coord</span><span class="si">}</span><span class="s1">_leiden_</span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>

@@ -746,14 +746,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># chunk = bed.iloc[100:105]</span>
-<span class="c1"># tmp = matrixch(allc_path, chunk)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">24</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
@@ -906,14 +898,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">scRNA/pseudobulk/L1/L1.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">expr</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/gencode/v30/gencode.v30.annotation.gene.flat.tsv.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bed</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
 <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;gene_id_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bed</span><span class="p">[</span><span class="s1">&#39;gene_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -942,13 +926,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">bed</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;chunk&#39;</span><span class="p">):</span>
     <span class="k">break</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">center</span><span class="o">-</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span><span class="o">+</span><span class="n">slop</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1008,47 +985,6 @@
     <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">result</span><span class="p">[</span><span class="n">context</span><span class="p">]</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mC_geneslop100kb.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
     
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">shifted_correlations</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    X: array of shape (200, n)</span>
-<span class="sd">    Returns: array of shape (100,)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># ---- Step 1: fill NaNs per column ----</span>
-    <span class="n">col_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">col_means</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-
-    <span class="c1"># ---- Step 2: swap dimensions to n x 200 ----</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>                                     <span class="c1"># shape (n, 200)</span>
-
-    <span class="c1"># Precompute “baseline” (rows: n, cols: 100)</span>
-    <span class="n">base</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">100</span><span class="p">]</span>                           <span class="c1"># (n, 100)</span>
-    <span class="n">base_mean</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">base_std</span>  <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">seg</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">:</span><span class="n">k</span><span class="o">+</span><span class="mi">100</span><span class="p">]</span>                     <span class="c1"># (n, 100)</span>
-
-        <span class="n">seg_mean</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">seg_std</span>  <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-        <span class="c1"># covariance across the 100 positions (axis=1)</span>
-        <span class="n">cov</span> <span class="o">=</span> <span class="p">((</span><span class="n">seg</span> <span class="o">-</span> <span class="n">seg_mean</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">base</span> <span class="o">-</span> <span class="n">base_mean</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">coro</span> <span class="o">=</span> <span class="n">cov</span> <span class="o">/</span> <span class="p">(</span><span class="n">seg_std</span> <span class="o">*</span> <span class="n">base_std</span><span class="p">)</span>       <span class="c1"># correlation per row</span>
-        <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">coro</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                    <span class="c1"># average across n rows</span>
-
-    <span class="k">return</span> <span class="n">out</span>
 </pre></div>
 </div>
 </div>

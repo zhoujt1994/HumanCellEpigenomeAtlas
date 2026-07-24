@@ -560,22 +560,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># cd /large_storage/zhoulab/zhoujt/project/ENTEx/scATAC/peak/majortype/</span>
-<span class="c1"># allcools generate-dataset --allc_table /large_storage/zhoulab/zhoujt/project/ENTEx/merged_allc/L1/CGN/allclist_majortype.tsv \</span>
-<span class="c1"># --output_path peak_majortype_CGN.mcds \</span>
-<span class="c1"># --chrom_size_path /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes \</span>
-<span class="c1"># --obs_dim majortype \</span>
-<span class="c1"># --cpu 32 \</span>
-<span class="c1"># --chunk_size 1 \</span>
-<span class="c1"># --regions peak concat_peak.bed \</span>
-<span class="c1"># --quantifiers peak count CGN</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -658,13 +642,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span><span class="o">.</span><span class="n">add_mc_frac</span><span class="p">(</span><span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_all</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="s1">&#39;peak_da_frac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;c7&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">data_all</span>
 </pre></div>
@@ -676,15 +653,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peak</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[[</span><span class="s1">&#39;peak_chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_start&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_end&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;mc_type&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">peak</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
 <span class="n">peak</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypo</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_all</span><span class="o">&lt;</span><span class="p">(</span><span class="n">global_mc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data_all</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">-</span><span class="mf">0.3</span><span class="p">))</span>
-<span class="n">hyper</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_all</span><span class="o">&gt;</span><span class="p">(</span><span class="n">global_mc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data_all</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">+</span><span class="mf">0.1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">((</span><span class="n">hypo</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="p">(</span><span class="n">hyper</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -776,51 +744,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## summit/loop ATAC peak enriched motif</span>
-
-<span class="c1"># for i in `seq 1 35`; do (</span>
-<span class="c1"># ct=c${i}</span>
-<span class="c1"># dbdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_peak_motif</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/mCG_peak_motif</span>
-<span class="c1"># if test -e &quot;${outdir}/${ct}/bed/hypo/${ct}.bed&quot;; then </span>
-<span class="c1"># scenicplus grn_inference motif_enrichment_cistarget \</span>
-<span class="c1">#     --region_set_folder ${outdir}/${ct}/bed \</span>
-<span class="c1">#     --cistarget_db_fname ${dbdir}/${ct}/merge_peak.regions_vs_motifs.rankings.feather \</span>
-<span class="c1">#     --output_fname_cistarget_result ${outdir}/${ct}/ctx_results.hdf5 \</span>
-<span class="c1">#     --temp_dir ${outdir}/${ct}/tmp \</span>
-<span class="c1">#     --species &quot;homo_sapiens&quot; \</span>
-<span class="c1">#     --fr_overlap_w_ctx_db 0.9 \</span>
-<span class="c1">#     --auc_threshold 0.005 \</span>
-<span class="c1">#     --nes_threshold 3.0 \</span>
-<span class="c1">#     --rank_threshold 0.05 \</span>
-<span class="c1">#     --path_to_motif_annotations f&quot;{REF_ROOT}/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&quot; \</span>
-<span class="c1">#     --annotation_version &quot;v10nr_clust&quot; \</span>
-<span class="c1">#     --motif_similarity_fdr 0.001 \</span>
-<span class="c1">#     --orthologous_identity_threshold 0.0 \</span>
-<span class="c1">#     --annotations_to_use &quot;Direct_annot Orthology_annot&quot; \</span>
-<span class="c1">#     --write_html \</span>
-<span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.html \</span>
-<span class="c1">#     --n_cpu 32</span>
-<span class="c1"># fi</span>
-<span class="c1"># )</span>
-<span class="c1"># done</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">motif</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># /large_storage/zhoulab/ref/motif_databases/JASPAR/JASPAR2024_CORE_non-redundant_pfms.meme</span>
 </pre></div>
 </div>
 </div>
@@ -843,22 +768,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif_list</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">motif</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif</span> <span class="o">=</span> <span class="n">motif</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">motif</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">motif_list</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">motif</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">motif</span><span class="p">[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CTCF&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">motif</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;gene is directly annotated&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -921,65 +832,9 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif</span><span class="p">[</span><span class="s1">&#39;gene_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif_mc_annot</span><span class="p">[</span><span class="s1">&#39;Call&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif_mc_dict</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="ame-hocomoco">
 <h2>AME HOCOMOCO<a class="headerlink" href="#ame-hocomoco" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># for ct in $(ls -d c*); do (</span>
-<span class="c1"># bedtools getfasta -fi /large_storage/zhoulab/ref/hg38/fasta/hg38.fa -fo ${ct}/bed/hypo/${ct}.fa -bed ${ct}/bed/hypo/${ct}.bed</span>
-<span class="c1"># bedtools getfasta -fi /large_storage/zhoulab/ref/hg38/fasta/hg38.fa -fo ${ct}/bed/hyper/${ct}.fa -bed ${ct}/bed/hyper/${ct}.bed</span>
-<span class="c1"># ame --control ${ct}/bed/hyper/${ct}.fa --o ${ct}/out_hypo ${ct}/bed/hypo/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
-<span class="c1"># ame --control ${ct}/bed/hypo/${ct}.fa --o ${ct}/out_hyper ${ct}/bed/hyper/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
-<span class="c1"># ) &amp; </span>
-<span class="c1"># done</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># indir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis</span>
-<span class="c1"># for ct in $(ls -d c*); do (</span>
-<span class="c1"># bedtools getfasta -fi /large_storage/zhoulab/ref/hg38/fasta/hg38.fa -fo ${ct}/bed/${ct}.fa -bed ${indir}/loop_peak_motif/${ct}/merge_peak.slop1kb.bed</span>
-<span class="c1"># ame --control ${ct}/bed/${ct}.fa --o ${ct}/out_hyper_all ${ct}/bed/hyper/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
-<span class="c1"># ame --control ${ct}/bed/${ct}.fa --o ${ct}/out_hypo_all ${ct}/bed/hypo/${ct}.fa /large_storage/zhoulab/ref/motif_databases/HUMAN/HOCOMOCOv11_core_HUMAN_mono_meme_format.meme</span>
-<span class="c1"># ) &amp; </span>
-<span class="c1"># done</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">HOCOMOCOv11_core_motif_list.txt&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
@@ -1021,20 +876,6 @@
 
 <span class="n">count</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">pv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pv</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">motif_mc_dict</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span>
 </pre></div>
 </div>
 </div>

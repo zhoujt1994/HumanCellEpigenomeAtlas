@@ -680,13 +680,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_type</span> <span class="o">=</span> <span class="s1">&#39;CHN&#39;</span>
 <span class="n">adata</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_adata</span><span class="p">(</span><span class="n">mc_type</span><span class="o">=</span><span class="n">mc_type</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="n">var_dim</span><span class="p">,</span> <span class="n">select_hvf</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -780,13 +773,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_regions</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">n_cell</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cell_</span><span class="si">{</span><span class="n">mcad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">_5kCG.h5ad&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -795,24 +781,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">cell_</span><span class="si">{</span><span class="n">meta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">_5kCG.h5ad&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LSI</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
-            <span class="n">n_components</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">,</span>
-            <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">downsample</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm_name</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

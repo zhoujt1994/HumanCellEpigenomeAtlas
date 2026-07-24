@@ -636,14 +636,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nct</span> <span class="o">=</span> <span class="mi">35</span>
-<span class="n">ncell</span> <span class="o">=</span> <span class="mi">86689</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
 <span class="n">cpu</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
@@ -674,31 +666,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sell = (loopall[&#39;Qanova&#39;]==0) | (loopall[&#39;Eanova&#39;]==0) | (loopall[&#39;Tanova&#39;]==0)</span>
-<span class="c1"># loopall = loopall.loc[~sell]</span>
-<span class="c1"># loopq = loopq.loc[~sell, leg]</span>
-<span class="c1"># loopt = loopt.loc[~sell, leg]</span>
-<span class="c1"># print(loopall.shape)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thres1</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
 <span class="n">thres2</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.15</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">thres1</span><span class="p">,</span> <span class="n">thres2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fdrthres</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">statfilter</span> <span class="o">=</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span>
-<span class="n">fdrfilter</span> <span class="o">=</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qfdr&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">fdrthres</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Efdr&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">fdrthres</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tfdr&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">fdrthres</span><span class="p">)</span>
-<span class="n">selloop</span> <span class="o">=</span> <span class="n">statfilter</span> <span class="o">&amp;</span> <span class="n">fdrfilter</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">statfilter</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">fdrfilter</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">selloop</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -709,16 +679,6 @@
 <span class="c1"># print(selb.sum())</span>
 <span class="n">selb</span> <span class="o">=</span> <span class="p">((</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Qanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">zscore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">loopall</span><span class="p">[</span><span class="s1">&#39;Tanova&#39;</span><span class="p">]))</span><span class="o">&gt;</span><span class="n">thres2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selb</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tmpq = loopq.loc[selb].values</span>
-<span class="c1"># tmpq = zscore(tmpq, axis=1)</span>
-<span class="c1"># tmpt = loopt.loc[selb].values</span>
-<span class="c1"># tmpt = zscore(tmpt, axis=1)</span>
 </pre></div>
 </div>
 </div>
