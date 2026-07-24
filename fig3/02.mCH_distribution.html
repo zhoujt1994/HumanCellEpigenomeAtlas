@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Global mCH &amp; trinucleotide context (Fig 3A, S17, S18, S20) &#8212; Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</title>
+    <title>Global &amp; per-context mCH (Fig 3A, 3B) (Fig 3A, S17, S18, S20) &#8212; Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mCH trinucleotide context (Fig 3B)" href="03.mC_context_lambda.html" />
+    <link rel="next" title="mCH spatial autocorrelation across the genome (Fig 3C, S19)" href="05.mCH_mCG_scale.html" />
     <link rel="prev" title="Fig. 3 — Non-CG methylation across cell types" href="fig3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -276,8 +276,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 3 — Non-CG methylation across cell types</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="fig3.html">Fig. 3 — Non-CG methylation across cell types</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Global mCH &amp; trinucleotide context (Fig 3A, S17, S18, S20)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03.mC_context_lambda.html">mCH trinucleotide context (Fig 3B)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Global &amp; per-context mCH (Fig 3A, 3B) (Fig 3A, S17, S18, S20)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.mCH_mCG_scale.html">mCH spatial autocorrelation across the genome (Fig 3C, S19)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09.mCH_geneflank.html">mCH at genes &amp; regulatory elements (Fig 3D,E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06.mCH_mCG_comp.html">mCH vs mCG methylation compartments (Fig 3F)</a></li>
@@ -516,7 +515,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Global mCH & trinucleotide context (Fig 3A, S17, S18, S20)</h1>
+    <h1>Global & per-context mCH (Fig 3A, 3B) (Fig 3A, S17, S18, S20)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -526,7 +525,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-3b-mch-by-trinucleotide-context-across-major-types">Fig 3B — mCH by trinucleotide context across major types</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -538,8 +540,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="global-mch-trinucleotide-context-fig-3a-s17-s18-s20">
-<h1>Global mCH &amp; trinucleotide context (Fig 3A, S17, S18, S20)<a class="headerlink" href="#global-mch-trinucleotide-context-fig-3a-s17-s18-s20" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="global-per-context-mch-fig-3a-3b-fig-3a-s17-s18-s20">
+<h1>Global &amp; per-context mCH (Fig 3A, 3B) (Fig 3A, S17, S18, S20)<a class="headerlink" href="#global-per-context-mch-fig-3a-3b-fig-3a-s17-s18-s20" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
 <section id="required-input-files">
 <h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
@@ -743,6 +745,53 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/63d5e57fc9b8fcc7d1c41e268300e11a40e4c1b68d10c5c22e43bb4bfca4a95d.png" src="../_images/63d5e57fc9b8fcc7d1c41e268300e11a40e4c1b68d10c5c22e43bb4bfca4a95d.png" />
+</div>
+</div>
+<section id="fig-3b-mch-by-trinucleotide-context-across-major-types">
+<h3>Fig 3B — mCH by trinucleotide context across major types<a class="headerlink" href="#fig-3b-mch-by-trinucleotide-context-across-major-types" title="Link to this heading">#</a></h3>
+<p>Per-cluster trinucleotide-context counts aggregated to major-type level (CH contexts),
+plotted as mC/C per context (one dot per non-neuronal major type). <em>(Self-contained block; variables prefixed <code class="docutils literal notranslate"><span class="pre">_</span></code> to avoid clashing with the rest of the notebook.)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+<span class="n">_gm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/group_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_files</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/mC_context/L2any-donor/*.context.tsv&#39;</span><span class="p">))</span>
+<span class="n">_mc</span><span class="p">,</span> <span class="n">_cov</span><span class="p">,</span> <span class="n">_cl</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_f</span> <span class="ow">in</span> <span class="n">_files</span><span class="p">:</span>
+    <span class="n">_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">_f</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">,</span><span class="s1">&#39;mc&#39;</span><span class="p">,</span><span class="s1">&#39;cov&#39;</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">_mc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_t</span><span class="p">[</span><span class="s1">&#39;mc&#39;</span><span class="p">]);</span> <span class="n">_cov</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_t</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]);</span> <span class="n">_cl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">_mc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">_mc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span> <span class="n">_mc</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">_cl</span>
+<span class="n">_cov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">_cov</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span> <span class="n">_cov</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">_cl</span>
+<span class="n">_keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;N&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">_mc</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+<span class="n">_mc</span> <span class="o">=</span> <span class="n">_mc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">_keep</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span> <span class="n">_cov</span> <span class="o">=</span> <span class="n">_cov</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">_keep</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">_selch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;CG&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">_mc</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+<span class="n">_gL1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">_mc</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">_mc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">_mcL1</span> <span class="o">=</span> <span class="n">_mc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">_gL1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">_selch</span><span class="p">]</span>
+<span class="n">_covL1</span> <span class="o">=</span> <span class="n">_cov</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">_gL1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">_selch</span><span class="p">]</span>
+<span class="n">_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1color.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">_mcL1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">_covL1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">_r</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+<span class="n">_r</span> <span class="o">=</span> <span class="n">_r</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">_neu</span> <span class="o">=</span> <span class="n">_r</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c16&#39;</span><span class="p">,</span> <span class="s1">&#39;c31&#39;</span><span class="p">])</span>   <span class="c1"># neurons, plotted separately</span>
+<span class="n">_order</span> <span class="o">=</span> <span class="n">_r</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;context&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">_r</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">_neu</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">_col</span><span class="p">,</span>
+              <span class="n">order</span><span class="o">=</span><span class="n">_order</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.045</span><span class="p">]);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">_selch</span><span class="o">.</span><span class="n">sum</span><span class="p">()));</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">_order</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;mC/C&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">();</span> <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;mCH_distribution/L1_context_scatter.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># Fig 3B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6ba1d835751d7fc8d1ae3b93047eae30447de172cadcc8451ba7c7dc982dd732.png" src="../_images/6ba1d835751d7fc8d1ae3b93047eae30447de172cadcc8451ba7c7dc982dd732.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1493,6 +1542,7 @@
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1534,11 +1584,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="03.mC_context_lambda.html"
+       href="05.mCH_mCG_scale.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">mCH trinucleotide context (Fig 3B)</p>
+        <p class="prev-next-title">mCH spatial autocorrelation across the genome (Fig 3C, S19)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1560,7 +1610,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-3b-mch-by-trinucleotide-context-across-major-types">Fig 3B — mCH by trinucleotide context across major types</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
