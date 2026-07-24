@@ -1,0 +1,17 @@
+/* Number each code cell so readers can reference a location by "cell N". */
+.bd-article, main { counter-reset: cellnum; }
+div.cell { counter-increment: cellnum; position: relative; }
+div.cell > div.cell_input::before {
+  content: "cell " counter(cellnum);
+  position: absolute;
+  top: -0.85em;
+  right: 0.3em;
+  font-size: 0.7rem;
+  font-family: var(--pst-font-family-monospace, monospace);
+  color: #6c757d;
+  background: #eef1f5;
+  border: 1px solid #d5dae0;
+  border-radius: 4px;
+  padding: 0 5px;
+  z-index: 3;
+}

@@ -46,3 +46,5 @@ sphinx:
     nb_execution_mode: "off"
     # allow large notebooks and long output blocks
     nb_output_stderr: "remove"
+    html_static_path: ["_static"]
+    html_css_files: ["custom.css"]

@@ -12,7 +12,7 @@ panel *after* it is blank until resolved.
 |----------|---------|--------------|
 | `fig1/04.method_anchor` | `obsm['wnn_pc45_tsne']` absent — the WNN joint embedding was never saved | Fig S2C/D/E render (earlier cells); the WNN-vs-Concat QC after it does not |
 | `fig1/08.L2both_per_celltype` | `FileNotFoundError` opening a per-celltype `L2/{ct}/…embed.h5ad` | **Fig S5 blank** (per-tissue subtype tSNE) |
-| `fig4/01.decay` (c24) | hardcoded path to another host: `/gale/netapp/home/wtian/…` | Fig 4A/4B/4C render; **Fig S24B** (after c24) blank |
+| `fig4/01.decay` | Fig 4A/4B reproduce cleanly. **Fig S24B removed** — its code was entangled leftover (CEMBA cell types + a non-existent `saddle_*_mergerawpca.npy`); needs proper wiring to the compartment saddle-strength output. Not wtian-related. | 4A/4B render; S24B dropped |
 | `fig4/06.domainloop_stats` (c11) | `FileNotFoundError` on a domain/loop `.h5ad` | some of Fig 4D/S25 render; the rest blank |
 | `fig5/07.L2any_L2both` (c21) | `FileNotFoundError` on an `.h5ad` | **Fig 5I** (the violin, after c21) blank |
 | `fig5/08.pycistarget_loopDMR` (c15) | missing `loop_peak_motif/majortype_merged_loop_TF_all.hdf` | **Fig 5H** (Homer dot-plot) blank |
