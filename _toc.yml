@@ -15,6 +15,7 @@ parts:
     chapters:
       - file: fig1/fig1
         sections:
+          - file: fig1/00.clustering_template
           - file: fig1/01.clustering_summary
           - file: fig1/02.m3c_blacklist
           - file: fig1/03.method_clustering
