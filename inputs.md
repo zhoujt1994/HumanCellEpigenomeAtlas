@@ -18,11 +18,16 @@ upstream products, **assumed to exist with its generating tool documented here**
 | Intermediate | Generator notebook | From |
 |---|---|---|
 | **Compartments** (`comp.raw.hdf`, `comp.impute.hdf`, `merged_comp.hdf`, dcHiC `DifferentialResult`) | `fig4/04.compartment`, `fig4/05.diffcomp_majortype` | cell-type `Q.cool` (100 kb) → **cworld/dcHiC** |
-| **Loop hdfs** (`loop_Q.hdf`, `loop_T.hdf`, `merged_loop.hdf`) | loop-loading step — `analysis/diff_loop/02.load` (concat `{ct}.loop.bedpe` → `merged_loop`, then read Q/T at each loop from the cools). *To be ported into a `fig4` prerequisite notebook; currently referenced.* | the provided `{ct}.loop.bedpe` + `Q/T.cool` |
+| **Loop hdfs** (`loop_Q.hdf`, `loop_T.hdf`, `merged_loop.hdf`) | `fig4/07.diffloop_majortype` — concat `{ct}.loop.bedpe` → `merged_loop`, then `load_Q` reads Q/T at each loop anchor from `{ct}.{Q,T}.cool` (cache-guarded `to_hdf`) | the provided `{ct}.loop.bedpe` + `Q/T.cool` |
 | **PMD calls** (`*.pmd.bed`, `*_10kb_hist.h5ad`) | `fig2/08.PMD_calling_insulation`, `fig2/02` | mcds |
 | **DMR flank / slop matrices** (`*.split*.slop*.CGN-Merge.tsv`, `cCREs_distal2k…`) | in-notebook `bigWigAverageOverBed` cells (cache-guarded) | per-type `.frac.bw` bigwigs (assumed) |
 | **multi-resolution mCG/mCH histograms** (`multires/*.npy`, `chrom1k_*`) | `fig2/01`, `fig3/02` (cache-guarded `np.save`) | merged allc |
-| **decay** (`cell_*_decay.hdf5`) | `fig4/01.decay` | contact cools |
+| **PMD-flank / gene-flank slop matrices** | `fig2/03` etc. via `bigWigAverageOverBed` `os.system` (cache-guarded) | per-type `.frac.bw` |
+
+**Read from upstream (assume exist; generated outside these figure notebooks):**
+`cell_*_decay.hdf5` (per-cell contact-distance decay from the cools — scHiCluster-style),
+`*_embed.h5ad` / `*_lsi.h5ad` / `*_pca.h5ad` (clustering embeddings — see Deferred), and the
+`*.boundary.h5ad` / `cell×binpair npz` above.
 
 ## External datasets (documented, not regenerable from the raw types)
 | Input | Source |
