@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=66b7747d" />
   
   <!-- So that users can add custom icons -->
   <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
@@ -556,9 +557,9 @@ panel <em>after</em> it is blank until resolved.</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> opening a per-celltype <code class="docutils literal notranslate"><span class="pre">L2/{ct}/…embed.h5ad</span></code></p></td>
 <td><p><strong>Fig S5 blank</strong> (per-tissue subtype tSNE)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/01.decay</span></code> (c24)</p></td>
-<td><p>hardcoded path to another host: <code class="docutils literal notranslate"><span class="pre">/gale/netapp/home/wtian/…</span></code></p></td>
-<td><p>Fig 4A/4B/4C render; <strong>Fig S24B</strong> (after c24) blank</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/01.decay</span></code></p></td>
+<td><p>Fig 4A/4B reproduce cleanly. <strong>Fig S24B removed</strong> — its code was entangled leftover (CEMBA cell types + a non-existent <code class="docutils literal notranslate"><span class="pre">saddle_*_mergerawpca.npy</span></code>); needs proper wiring to the compartment saddle-strength output. Not wtian-related.</p></td>
+<td><p>4A/4B render; S24B dropped</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fig4/06.domainloop_stats</span></code> (c11)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> on a domain/loop <code class="docutils literal notranslate"><span class="pre">.h5ad</span></code></p></td>
