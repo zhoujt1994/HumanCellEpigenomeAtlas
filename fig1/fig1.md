@@ -26,7 +26,7 @@ features into 35 major types and 206 subtypes, with the major-type dendrogram.
 | S2A–B | [03.method_clustering](03.method_clustering.ipynb) | c36 | Mouse-brain (A) & PBMC (B): 5kb-mCG LSI vs 100kb-mCG PCA t-SNE |
 | S2C–D | [04.method_anchor](04.method_anchor.ipynb) | c5, c20 | Esophagus (C) / colon (D) t-SNE under anchor-filter batch-correction variants |
 | S2E | [05.modality_contribution](05.modality_contribution.ipynb) | c10, c14 | Per-major-type mCG vs 3C vs joint clustering consistency (**inline; not saved**) |
-| S2 (validation) | [06.downsample_clustering](06.downsample_clustering.ipynb) | c18, c19 | Clustering precision & AUROC vs cells per group |
+| S2 (validation) | downsampling benchmark (removed) | c18, c19 | Clustering precision & AUROC vs cells per group |
 | S5 | [01](01.clustering_summary.ipynb) / [08](08.L2both_per_celltype.ipynb) | 01:c53 / 08:c21 | Per-tissue joint-embedding t-SNE by subtype (08 = final-annotation version) |
 | S6A–C ⚠ | [09.pairwise_prediction](09.pairwise_prediction.ipynb)? | — | Subtype-donor mCG (A) & loop-strength (B) correlation heatmaps + donor/subtype/majortype violins (C). **Attribution unconfirmed** (see REVIEW_NEEDED) |
 | S7A–B | [10.compare_bulkmc](10.compare_bulkmc.ipynb) | c39 (Loyfer), c69 (Schultz) | mCG correlation of subtypes vs prior WGBS studies |

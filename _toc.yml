@@ -33,7 +33,6 @@ parts:
           - file: fig1/07.dendrogram_annot
           - file: fig1/10.compare_bulkmc
           - file: fig1/11.compare_bulkhic
-          - file: fig1/08.L2both_per_celltype
   - caption: "Fig. 2 — CG methylation across cell types"
     chapters:
       - file: fig2/fig2
