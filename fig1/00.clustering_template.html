@@ -1,0 +1,1722 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clustering template — mC + 3C embedding &amp; integration (one major type) &#8212; Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fig1/00.clustering_template';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cell atlas overview: joint mC + 3C clustering (Fig 1A,C,D,E)" href="01.clustering_summary.html" />
+    <link rel="prev" title="Fig. 1 — Single-cell atlas of DNA methylation and 3D genome structure" href="fig1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Environment &amp; build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Data availability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs.html">Data provenance &amp; how to regenerate</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../reproduce.html">Reproduction guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PANEL_MAP.html">Panel ↔ output-PDF ↔ notebook map (authoritative)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reproducibility.html">Reproducibility status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NONCONFIDENT.html">Not-confidently-reproducible notebooks — to discuss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gaps.html">Coverage &amp; gaps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="fig1.html">Fig. 1 — Single-cell atlas of DNA methylation and 3D genome structure</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Clustering template — mC + 3C embedding &amp; integration (one major type)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01.clustering_summary.html">Cell atlas overview: joint mC + 3C clustering (Fig 1A,C,D,E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.m3c_blacklist.html">Read-exclusion list for methyl-3C (Fig S1A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.method_clustering.html">Clustering benchmark: 5kb-LSI vs 100kb-PCA (Fig S2A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.method_anchor.html">Integration anchors &amp; WNN-vs-concat embedding (Fig S2C–E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07.dendrogram_annot.html">Cell-type dendrogram &amp; modality separability (Fig 1F)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10.compare_bulkmc.html">Concordance with bulk methylomes (Fig S7)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11.compare_bulkhic.html">Concordance with bulk Hi-C (Fig S8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08.L2both_per_celltype.html">Per-tissue subtype embeddings (Fig S5)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 2 — CG methylation across cell types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fig2/fig2.html">Fig. 2 — CG methylation across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/00.demo_fig2A.html">Demo: reproduce Fig 2A from the public inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/01.mCG_distribution.html">Global &amp; per-CpG mCG across cell types (Fig 2A–C, S9C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/02.PMD_hetero.html">Partially methylated domains: cross-cell-type heterogeneity (Fig 2D–G, S9, S10D/E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/10.PMD_donor.html">PMD reproducibility across donors (Fig S10A–C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/15.PMD_ATAC.html">Compartment fractions at cCREs (Fig 2H)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/03.PMD_RNA.html">Methylation compartments vs gene expression (Fig 2I–L, S11A–F)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/13.PMD_histone.html">Compartments vs histone marks (Fig S11G/H)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/04.DMR_stats.html">Differentially methylated regions: statistics (Fig 2M, S12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/05.DMR_overlap_ATAC.html">DMRs vs ATAC-seq peaks (Fig 2N, S13, S14A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/06.DMR_motif.html">TF-motif enrichment in DMRs — compute (Fig 2O, S13E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/16.peak_mCG_motif.html">mCG at ATAC peaks &amp; motif methyl-preference (Fig S14C–E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/07.TE_mCG.html">Methylation at transposable elements (Fig 2P, S15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/18.DMR_loop_sLDSC.html">GWAS heritability at loop-anchor DMRs (Fig S29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/08.PMD_calling_insulation.html">Pipeline: PMD calling &amp; insulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/09.PMD_cell-by-site.html">Pipeline: PMD cell-by-site matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/11.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/14.PMD_DMR.html">Pipeline: PMD-based DMR calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/17.geneCG_expr_corr.html">Gene-body mCG vs expression (supporting)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 3 — Non-CG methylation across cell types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fig3/fig3.html">Fig. 3 — Non-CG methylation across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/02.mCH_distribution.html">Global mCH &amp; trinucleotide context (Fig 3A, S17, S18, S20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/03.mC_context_lambda.html">mCH context vs lambda spike-in control (Fig 3B, S16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/05.mCH_mCG_scale.html">mCH spatial autocorrelation across the genome (Fig 3C, S19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/09.mCH_geneflank.html">mCH at genes &amp; regulatory elements (Fig 3D,E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/06.mCH_mCG_comp.html">mCH vs mCG methylation compartments (Fig 3F)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/04.mCH_mCG_corr.html">mCH–mCG covariation &amp; sequence motifs (Fig S21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/07.mCH_clustering.html">Cell clustering from mCH (Fig 3G,H, S22, S23A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/10.mCH_geneexpr_corr.html">mCH vs gene expression correlation (Fig 3I, S23B)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/01.global_mCH.html">Global mCH quantification (supporting)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 4 — Chromatin contacts across cell types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fig4/fig4.html">Fig. 4 — Chromatin contacts across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/01.decay.html">Contact-distance decay by cell type (Fig 4A,B, S24B)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/02.decay_compartment.html">Short/long-range contacts vs compartment (Fig 4C, S24A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/06.domainloop_stats.html">Domain &amp; loop statistics (Fig 4D, S25A–C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/10.loop_comp.html">Differential loops vs compartment (Fig 4E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/07.diffloop_majortype.html">Major-type differential-loop APA (Fig S25D)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../fig4/09.loop_rna.html">Differential loops vs gene expression (Fig 4F,G)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/03.decay_domain.html">Pipeline: domain calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/04.compartment.html">Pipeline: compartment calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/05.diffcomp_majortype.html">Pipeline: differential compartments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/08.diffloop_subtype.html">Pipeline: subtype differential loops</a></li>
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 5 — DNA methylation vs 3D genome</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fig5/fig5.html">Fig. 5 — Comparison of DNA methylation and 3D genome structure</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/01.genome_mCG_compartment.html">DNA methylation vs compartment score (Fig 5A,B, S26A/B)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/02.comp_pmd.html">Methylation compartments vs A/B compartments (Fig 5C–E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/03.mCoverCompboundary.html">Methylation at compartment boundaries (Fig 5F,G, S26C/D)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">DMR enrichment at loop anchors (Fig S27A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">TF motifs at loop-anchor DMRs (Fig 5H)</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">DMR–differential-loop correlation (Fig 5I)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">Pipeline: loop-DMR motif compute</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 6 — Discrepant methylation- vs contact-defined types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fig6/fig6.html">Fig. 6 — Discrepant methylation- vs contact-defined cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/00.mc3c_ARI.html">mC-vs-3C clustering agreement &amp; Mus-Skl confusion (Fig 6A,D)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/02.MusSkl_donor_clustering.html">Skeletal muscle: donor-corrected mC/3C embedding (Fig 6B,C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/06.MusSkl_diff_7group.html">Skeletal muscle: differential DMRs &amp; loops (Fig 6E,F, S32A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/09.NTbSchw_clustering.html">Schwann cells: discrepant mC/3C clustering (Fig S32B,C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/07.Epi-TPB.html">Trophoblast: mC/3C clustering &amp; DMR compartments (Fig 6H,K)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/12.PMD_Epi-TPB.html">Trophoblast: subtype DMRs, expression &amp; flanking mCH (Fig 6I,J)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/01.MusSkl_clustering.html">Skeletal muscle: base clustering (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig6/03.MusSkl_diffloop.html">Pipeline: Mus-Skl differential loops</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zhoujt1994/HumanCellEpigenomeAtlas" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zhoujt1994/HumanCellEpigenomeAtlas/issues/new?title=Issue%20on%20page%20%2Ffig1/00.clustering_template.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/fig1/00.clustering_template.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clustering template — mC + 3C embedding & integration (one major type)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-upstream-provenance">📥 Inputs &amp; upstream provenance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mc-embedding-seurat-anchor-integration-of-the-5-kb-cg-lsi-across-donors-cell-types">1 · mC embedding — Seurat-anchor integration of the 5-kb CG LSI across donors &amp; cell types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-embedding-seurat-anchor-integration-of-the-100-kb-contact-pca">2 · 3C embedding — Seurat-anchor integration of the 100-kb contact PCA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-mc-3c-embedding">3 · Joint mC + 3C embedding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consensus-leiden-clustering-on-the-joint-embedding">4 · Consensus Leiden clustering on the joint embedding</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="clustering-template-mc-3c-embedding-integration-one-major-type">
+<h1>Clustering template — mC + 3C embedding &amp; integration (one major type)<a class="headerlink" href="#clustering-template-mc-3c-embedding-integration-one-major-type" title="Link to this heading">#</a></h1>
+<p>This is the <strong>per-major-type template</strong> used to build the joint methylation + chromatin-contact
+embedding and the consensus Leiden clusters. It is run once per major type; shown here for one
+example (<strong>Mus-Skl</strong>). Each figure notebook reads the resulting <code class="docutils literal notranslate"><span class="pre">5kCG100k3C_embed.h5ad</span></code> /
+<code class="docutils literal notranslate"><span class="pre">5kCG_embed.h5ad</span></code> / <code class="docutils literal notranslate"><span class="pre">100k3C_embed.h5ad</span></code>; this template shows how those are generated.</p>
+<section id="inputs-upstream-provenance">
+<h2>📥 Inputs &amp; upstream provenance<a class="headerlink" href="#inputs-upstream-provenance" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">5kCG_embed.h5ad</span></code></strong> (input) — per-cell <strong>5-kb CG LSI</strong> (<code class="docutils literal notranslate"><span class="pre">tf-idf</span></code>→<code class="docutils literal notranslate"><span class="pre">TruncatedSVD</span></code>), computed from the single-cell <strong>mcds</strong> by <strong>ALLCools</strong> (upstream <code class="docutils literal notranslate"><span class="pre">01.5kCG_clustering</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">100k3C_embed.h5ad</span></code></strong> (input) — per-cell <strong>100-kb contact PCA</strong>, from the <strong>cell×binpair npz</strong> by <strong>scHiCluster</strong>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tissue/L2/*/mCG_5kb_seurat_anchor_*.hdf</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">HiC_100kb_seurat_anchor_*.hdf</span></code></strong> — cross-donor/cross-cell-type <strong>Seurat integration anchors</strong>, computed with <strong>biosketch-based downsampling</strong> (upstream anchor step).</p></li>
+<li><p>Integration uses <code class="docutils literal notranslate"><span class="pre">ALLCools.integration.SeuratIntegration</span></code>; clustering uses <code class="docutils literal notranslate"><span class="pre">ALLCools.clustering.ConsensusClustering</span></code> (repeated Leiden + consensus).</p></li>
+</ul>
+<p><em>Writes (cache-guarded by <code class="docutils literal notranslate"><span class="pre">repro_guard</span></code>): <code class="docutils literal notranslate"><span class="pre">5kCG_embed.h5ad</span></code>, <code class="docutils literal notranslate"><span class="pre">100k3C_embed.h5ad</span></code>, <code class="docutils literal notranslate"><span class="pre">5kCG100k3C_embed.h5ad</span></code>.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
+<span class="n">BOOK_ROOT</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BOOK_ROOT&#39;</span><span class="p">,</span>  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/HumanCellEpigenomeAtlas&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">);</span> <span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>
+<span class="n">group_name</span> <span class="o">=</span> <span class="s1">&#39;Mus-Skl&#39;</span>   <span class="c1"># example major type; the template is run once per major type</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/L2/</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mc-embedding-seurat-anchor-integration-of-the-5-kb-cg-lsi-across-donors-cell-types">
+<h2>1 · mC embedding — Seurat-anchor integration of the 5-kb CG LSI across donors &amp; cell types<a class="headerlink" href="#mc-embedding-seurat-anchor-integration-of-the-5-kb-cg-lsi-across-donors-cell-types" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy.external</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sce</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.integration.seurat_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeuratIntegration</span>
+
+<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ps.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sans-serif&#39;</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Helvetica&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;Mus-Skl&quot;</span>
+<span class="n">mem_gb</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">mcad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/npc.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">group_name</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">npc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">sample_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor_index</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">adata</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sample_list</span><span class="p">,</span> <span class="n">adata_list</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">anchor_index</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/&#39;</span>
+<span class="n">ct_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tissue/L2/*-*/mCG_5kb_seurat_anchor_*.hdf&#39;</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">ct_list</span><span class="p">:</span>
+    <span class="n">anchor_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tissue/L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/mCG_5kb_seurat_anchor_*.hdf&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">adata_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">tissue/L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/mCG_5kb_lsi.h5ad&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">anchor_file</span><span class="p">)</span>
+    <span class="n">adata_tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">adata_file</span><span class="p">)</span>
+    <span class="n">sample_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">cell_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_tmp</span><span class="p">]</span>
+    <span class="n">thres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">],</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">thres</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">anchor</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">)</span>
+    
+<span class="n">anchor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="p">[[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">,</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">anchor_df</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sample_list</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span>
+        <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span>
+            <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">:</span><span class="s1">&#39;x1&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span> <span class="o">=</span> <span class="n">SeuratIntegration</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">adata_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">))),</span> <span class="n">adata_list</span><span class="p">)}</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_dataset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]</span>
+
+<span class="c1"># intra-dataset KNN for scoring the anchors</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">k_local</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">key_local</span> <span class="o">=</span> <span class="s1">&#39;X_lsi&#39;</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_calculate_local_knn</span><span class="p">()</span>
+
+<span class="c1"># alignments and all_pairs</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">anchor_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">key_correct</span><span class="o">=</span><span class="s1">&#39;5kCG_lsi&#39;</span><span class="p">,</span>
+                                 <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span>
+                                 <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                 <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+                         <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]))</span>
+
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tsne</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-embedding-seurat-anchor-integration-of-the-100-kb-contact-pca">
+<h2>2 · 3C embedding — Seurat-anchor integration of the 100-kb contact PCA<a class="headerlink" href="#c-embedding-seurat-anchor-integration-of-the-100-kb-contact-pca" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;Mus-Skl&quot;</span>
+<span class="n">mem_gb</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chromsize</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/ref/hg38/fasta/hg38.main.chrom.sizes&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">chromsize</span> <span class="o">=</span> <span class="n">chromsize</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">mcad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/npc.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">group_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">npc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">sample_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor_index</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">adata</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sample_list</span><span class="p">,</span> <span class="n">adata_list</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">anchor_index</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">)[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ct_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">tissue/L2/*-*/HiC_100kb_seurat_anchor_*.hdf&#39;</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ct_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">ct_list</span><span class="p">:</span>
+    <span class="n">anchor_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">tissue/L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/HiC_100kb_seurat_anchor_*.hdf&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">adata_file</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">tissue/L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/HiC_100kb_pca.h5ad&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">anchor_file</span><span class="p">)</span>
+    <span class="n">adata_tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">adata_file</span><span class="p">)</span>
+    <span class="n">sample_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">cell_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_tmp</span><span class="p">]</span>
+    <span class="n">thres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">],</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;dist_pc&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">thres</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell_list</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]]</span>
+    <span class="n">anchor_tmp</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">anchor_tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">anchor_index</span><span class="p">[</span><span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">anchor_tmp</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">anchor</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchor_tmp</span><span class="p">)</span>
+    
+<span class="n">anchor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="p">[[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">,</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">anchor_df</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sample_list</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span>
+        <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x1_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s1">&#39;x2_donor&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">x1</span><span class="p">)</span>
+            <span class="n">anchor_df</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span><span class="s1">&#39;x2&#39;</span><span class="p">,</span><span class="s1">&#39;x2&#39;</span><span class="p">:</span><span class="s1">&#39;x1&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]]</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span> <span class="o">=</span> <span class="n">SeuratIntegration</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">adata_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">))),</span> <span class="n">adata_list</span><span class="p">)}</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_dataset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]</span>
+
+<span class="c1"># intra-dataset KNN for scoring the anchors</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">k_local</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">key_local</span> <span class="o">=</span> <span class="s1">&#39;X_pca&#39;</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_calculate_local_knn</span><span class="p">()</span>
+
+<span class="c1"># alignments and all_pairs</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">anchor_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">key_correct</span><span class="o">=</span><span class="s1">&#39;100k3C_pca&#39;</span><span class="p">,</span>
+                                 <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span>
+                                 <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                 <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+                         <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]))</span>
+
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tsne</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s1">_seuratL2_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="joint-mc-3c-embedding">
+<h2>3 · Joint mC + 3C embedding<a class="headerlink" href="#joint-mc-3c-embedding" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;Mus-Skl&quot;</span>
+<span class="n">mem_gb</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata_3c</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># npc_cg = [int(xx.split(&#39;_&#39;)[1][1:]) for xx in adata_mc.obsm.keys() if &#39;_seuratL2_tsne&#39; in xx][0]</span>
+<span class="c1"># # npc_3c = [int(xx.split(&#39;_&#39;)[1][1:]) for xx in adata_3c.obsm.keys() if &#39;100k3C_u&#39; in xx][0]</span>
+<span class="c1"># npc_3c = [int(xx.split(&#39;_&#39;)[1][2:]) for xx in adata_3c.obsm.keys() if &#39;_seuratL2_tsne&#39; in xx][0]</span>
+<span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/npc.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">)</span>
+<span class="c1"># adata.obsm[f&#39;5kCG100k3C_u{npc_cg}u{npc_3c}&#39;] = np.hstack([normalize(adata_mc.obsm[f&#39;5kCG_u{npc_cg}hm&#39;], axis=1),</span>
+<span class="c1">#                                                           normalize(adata_3c.obsm[&#39;X_pca&#39;], axis=1)])</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                                                           <span class="n">normalize</span><span class="p">(</span><span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">tsne</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_tsne&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_tsne&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">coord_base</span> <span class="o">=</span> <span class="s1">&#39;tsne&#39;</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">coord_base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">coord_base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Donor&#39;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="c1"># palette=&#39;tab20&#39;,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Tissue&#39;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span>
+                       <span class="p">)</span>
+
+<span class="c1"># ax = axes[0, 2]</span>
+<span class="c1"># _ = categorical_scatter(data=tmp,</span>
+<span class="c1">#                         ax=ax,</span>
+<span class="c1">#                         coord_base=coord_base,</span>
+<span class="c1">#                         hue=&#39;leiden_cons&#39;,</span>
+<span class="c1">#                         text_anno=&#39;leiden_cons&#39;, </span>
+<span class="c1">#                         s=ds,</span>
+<span class="c1">#                         labelsize=8,</span>
+<span class="c1">#                         max_points=None,</span>
+<span class="c1">#                         palette=&#39;tab20&#39;,</span>
+<span class="c1">#                         scatter_kws={&#39;rasterized&#39;:True},</span>
+<span class="c1">#                         # legend_kws={&#39;ncol&#39;:1}, </span>
+<span class="c1">#                         # show_legend=True</span>
+<span class="c1">#                        )</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span> 
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># legend_kws={&#39;ncol&#39;:1}, </span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">continuous_scatter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                       <span class="n">hue</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;FinalmCReads&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                       <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                       <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                       <span class="n">s</span><span class="o">=</span><span class="n">ds</span>
+                  <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">continuous_scatter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                       <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;mCGFrac&#39;</span><span class="p">,</span>
+                       <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                       <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                       <span class="n">s</span><span class="o">=</span><span class="n">ds</span>
+                  <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">continuous_scatter</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                       <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">,</span>
+                       <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                       <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                       <span class="n">s</span><span class="o">=</span><span class="n">ds</span>
+                  <span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+
+<span class="c1"># ConsensusClustering</span>
+<span class="c1"># Important factores</span>
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
+<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
+<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># Other ConsensusClustering parameters</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
+<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">cv_predicted_label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ConcensusClustering.model.lib&#39;</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span> <span class="k">as</span> <span class="n">ARI</span>
+<span class="n">ARI</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">],</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cv&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cc</span><span class="o">.</span><span class="n">step_data</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">cc</span><span class="o">.</span><span class="n">target_accuracy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cc</span><span class="o">.</span><span class="n">supervise_learning</span><span class="p">()</span>
+    <span class="n">cc</span><span class="o">.</span><span class="n">final_evaluation</span><span class="p">()</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">coord_base</span> <span class="o">=</span> <span class="s1">&#39;tsne&#39;</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">coord_base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">coord_base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;leiden_cv&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;leiden_cv&#39;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Tissue&#39;</span><span class="p">,</span>
+                        <span class="c1"># text_anno=&#39;celltype&#39;, </span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="n">legend_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ncol&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> 
+                        <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span> 
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># legend_kws={&#39;ncol&#39;:1}, </span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+<span class="c1"># plt.savefig(f&#39;{group_name}_5kCG100k3C_cluster.pdf&#39;, transparent=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_mc</span><span class="p">,</span> <span class="n">adata_3c</span><span class="p">]):</span>
+    <span class="n">dump_embedding</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                            <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                            <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Donor&#39;</span><span class="p">,</span>
+                            <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                            <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                            <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="c1"># palette=&#39;tab20&#39;,</span>
+                            <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                            <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                            <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                            <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">,</span>
+                            <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;leiden_init&#39;</span><span class="p">,</span> 
+                            <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                            <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                            <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                            <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                            <span class="n">legend_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ncol&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> 
+                            <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                            <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                            <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span>
+                            <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span> 
+                            <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                            <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                            <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                            <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                            <span class="c1"># legend_kws={&#39;ncol&#39;:1}, </span>
+                            <span class="c1"># show_legend=False</span>
+                           <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="consensus-leiden-clustering-on-the-joint-embedding">
+<h2>4 · Consensus Leiden clustering on the joint embedding<a class="headerlink" href="#consensus-leiden-clustering-on-the-joint-embedding" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="c1"># put manifold coordinates into adata.obs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters</span>
+<span class="n">cpu</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;Mus-Skl&quot;</span>
+<span class="n">mem_gb</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata_3c</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">npc_cg</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;seuratfilter60_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># npc_3c = [int(xx.split(&#39;_&#39;)[1][1:]) for xx in adata_3c.obsm.keys() if &#39;100k3C_u&#39; in xx][0]</span>
+<span class="n">npc_3c</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;seuratfilter60_tsne&#39;</span> <span class="ow">in</span> <span class="n">xx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+
+<span class="c1"># ConsensusClustering</span>
+<span class="c1"># Important factores</span>
+<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
+<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
+<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># Other ConsensusClustering parameters</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
+<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cons_acc90&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cv_acc90&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">cv_predicted_label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;ConcensusClustering_acc90.model.lib&#39;</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjusted_rand_score</span> <span class="k">as</span> <span class="n">ARI</span>
+<span class="n">ARI</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cons_acc90&#39;</span><span class="p">],</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cv_acc90&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">coord_base</span> <span class="o">=</span> <span class="s1">&#39;tsne&#39;</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">coord_base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG100k3C_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">coord_base</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;leiden_cons_acc90&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;leiden_cons_acc90&#39;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;leiden_cv_acc90&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;leiden_cv_acc90&#39;</span><span class="p">,</span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Tissue&#39;</span><span class="p">,</span>
+                        <span class="c1"># text_anno=&#39;celltype&#39;, </span>
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="n">legend_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ncol&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> 
+                        <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span>
+                       <span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                        <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                        <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span>
+                        <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;ClusterTissue&#39;</span><span class="p">,</span> 
+                        <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                        <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                        <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                        <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                        <span class="c1"># legend_kws={&#39;ncol&#39;:1}, </span>
+                        <span class="c1"># show_legend=True</span>
+                       <span class="p">)</span>
+
+<span class="c1"># plt.savefig(f&#39;{group_name}_5kCG100k3C_cluster.pdf&#39;, transparent=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_mc</span><span class="p">,</span> <span class="n">adata_3c</span><span class="p">]):</span>
+    <span class="n">dump_embedding</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">coord_base</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_cons_acc90&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                            <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                            <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Donor&#39;</span><span class="p">,</span>
+                            <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                            <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                            <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                            <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                            <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">categorical_scatter</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                            <span class="n">coord_base</span><span class="o">=</span><span class="n">coord_base</span><span class="p">,</span>
+                            <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">,</span>
+                            <span class="n">text_anno</span><span class="o">=</span><span class="s1">&#39;leiden_cons&#39;</span><span class="p">,</span> 
+                            <span class="n">s</span><span class="o">=</span><span class="n">ds</span><span class="p">,</span>
+                            <span class="n">labelsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                            <span class="n">max_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                            <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span>
+                            <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rasterized&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">},</span>
+                            <span class="n">legend_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ncol&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> 
+                            <span class="n">show_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./fig1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fig1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fig. 1 — Single-cell atlas of DNA methylation and 3D genome structure</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01.clustering_summary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cell atlas overview: joint mC + 3C clustering (Fig 1A,C,D,E)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-upstream-provenance">📥 Inputs &amp; upstream provenance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mc-embedding-seurat-anchor-integration-of-the-5-kb-cg-lsi-across-donors-cell-types">1 · mC embedding — Seurat-anchor integration of the 5-kb CG LSI across donors &amp; cell types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-embedding-seurat-anchor-integration-of-the-100-kb-contact-pca">2 · 3C embedding — Seurat-anchor integration of the 100-kb contact PCA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-mc-3c-embedding">3 · Joint mC + 3C embedding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consensus-leiden-clustering-on-the-joint-embedding">4 · Consensus Leiden clustering on the joint embedding</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Zhou et al.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
