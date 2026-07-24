@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>mCH context vs lambda spike-in control (Fig 3B, S16) &#8212; Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</title>
+    <title>mCH trinucleotide context (Fig 3B) &#8212; Human Body Single-Cell Atlas of 3D Genome Organization and DNA Methylation</title>
   
   
   
@@ -235,7 +235,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../clustering/04.L1_allcell.html">Stage 4 · All-cell L1 clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../clustering/05.L2_subtype.html">Stage 5 · Per-major-type L2 clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../clustering/06.L2both_merge.html">Stage 6 · L2any → L2both merge / consolidation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clustering/07.annotation.html">Stage 7 · Cell-type annotation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../clustering/08.clustering_figures.html">Stage 8 · Clustering figures — S5, S30, S31</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
@@ -278,7 +277,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="fig3.html">Fig. 3 — Non-CG methylation across cell types</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="02.mCH_distribution.html">Global mCH &amp; trinucleotide context (Fig 3A, S17, S18, S20)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">mCH context vs lambda spike-in control (Fig 3B, S16)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">mCH trinucleotide context (Fig 3B)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.mCH_mCG_scale.html">mCH spatial autocorrelation across the genome (Fig 3C, S19)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09.mCH_geneflank.html">mCH at genes &amp; regulatory elements (Fig 3D,E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06.mCH_mCG_comp.html">mCH vs mCG methylation compartments (Fig 3F)</a></li>
@@ -517,7 +516,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>mCH context vs lambda spike-in control (Fig 3B, S16)</h1>
+    <h1>mCH trinucleotide context (Fig 3B)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -528,6 +527,9 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-trinucleotide-context-methylation-matrix">Build the trinucleotide-context methylation matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-3b-mch-by-trinucleotide-context-across-major-types">Fig 3B — mCH by trinucleotide context across major types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-mca-cell-types-per-bin-ca-methylation-ratio">High-mCA cell types → per-bin CA methylation ratio</a></li>
 </ul>
             </nav>
         </div>
@@ -539,22 +541,20 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mch-context-vs-lambda-spike-in-control-fig-3b-s16">
-<h1>mCH context vs lambda spike-in control (Fig 3B, S16)<a class="headerlink" href="#mch-context-vs-lambda-spike-in-control-fig-3b-s16" title="Link to this heading">#</a></h1>
-<p>Part of the <strong><a class="reference internal" href="fig3.html"><span class="std std-doc">Fig. 3 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="mch-trinucleotide-context-fig-3b">
+<h1>mCH trinucleotide context (Fig 3B)<a class="headerlink" href="#mch-trinucleotide-context-fig-3b" title="Link to this heading">#</a></h1>
+<p>Non-CG methylation broken down by trinucleotide context (CAC, CAG, …) across major
+cell types, and identification of the cell types with the highest mCA.</p>
+<p><em>Note: the lambda-spike-in-normalized context heatmaps (a tentative Fig S16) are not
+reproduced here — the published values/styling could not be matched, so that analysis
+is omitted.</em></p>
 <section id="required-input-files">
 <h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
-<p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/group_meta.tsv'</span></code>  ·  <em>metadata</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}clustering/merged/5kCG100k3C_summary.h5ad'</span></code>  ·  <em>joint summary obj</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'mC_context/cell_93350_lambda_context_mc.tsv.gz'</span></code>  ·  <em>lambda control</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'mC_context/cell_93350_lambda_context_cov.tsv.gz'</span></code>  ·  <em>lambda control</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'mC_context/L2any-donor_context.hdf'</span></code>  ·  <em>other</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'mC_context/L2any-donor_lambda_context.hdf'</span></code>  ·  <em>lambda control</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}L1color.tsv'</span></code>  ·  <em>metadata: color</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f'{indir}merged_allc/cluster_donor.mcds'</span></code>  ·  <em>sc/pseudobulk mC (allc)</em></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'mC_context/L2any_mCA_025_top2_rawratio.hdf'</span></code>  ·  <em>other</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{ENTEX_ROOT}/analysis/mC_context/L2any-donor/*.context.tsv</span></code> · <em>per-cluster trinucleotide-context counts</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{ENTEX_ROOT}/clustering/merged/group_meta.tsv</span></code> · <em>cluster → major-type map</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{ENTEX_ROOT}/L1color.tsv</span></code> · <em>major-type colors (provided)</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{ENTEX_ROOT}/merged_allc/cluster_donor.mcds</span></code> · <em>single-cell mC matrix (for the mCA-region step)</em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -566,6 +566,11 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[repro_guard] active — READ-ONLY (all writes skipped; inline figures still render)
 </pre></div>
 </div>
 </div>
@@ -605,6 +610,10 @@
 </div>
 </div>
 </div>
+</section>
+<section id="build-the-trinucleotide-context-methylation-matrix">
+<h2>Build the trinucleotide-context methylation matrix<a class="headerlink" href="#build-the-trinucleotide-context-methylation-matrix" title="Link to this heading">#</a></h2>
+<p>Read per-cluster context counts and assemble cluster × context <code class="docutils literal notranslate"><span class="pre">mc</span></code>/<code class="docutils literal notranslate"><span class="pre">cov</span></code> tables (non-<code class="docutils literal notranslate"><span class="pre">N</span></code> contexts), cached to <code class="docutils literal notranslate"><span class="pre">L2any-donor_context.hdf</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/group_meta.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -656,56 +665,10 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/5kCG100k3C_summary.h5ad&#39;</span><span class="p">)</span>
-<span class="n">adata</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_lambda</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;mC_context/cell_93350_lambda_context_mc.tsv.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-<span class="n">cov_lambda</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;mC_context/cell_93350_lambda_context_cov.tsv.gz&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_lambda</span> <span class="o">=</span> <span class="n">mc_lambda</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-<span class="n">cov_lambda</span> <span class="o">=</span> <span class="n">cov_lambda</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_lambda</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">mc_lambda</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">cov_lambda</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">cov_lambda</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_lambda</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any-donor_lambda_context.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;mc&#39;</span><span class="p">)</span>
-<span class="n">cov_lambda</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any-donor_lambda_context.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;cov&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any-donor_context.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;mc&#39;</span><span class="p">)</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any-donor_context.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;cov&#39;</span><span class="p">)</span>
-<span class="n">mc_lambda</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any-donor_lambda_context.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;mc&#39;</span><span class="p">)</span>
-<span class="n">cov_lambda</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;mC_context/L2any-donor_lambda_context.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;cov&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="fig-3b-mch-by-trinucleotide-context-across-major-types">
+<h2>Fig 3B — mCH by trinucleotide context across major types<a class="headerlink" href="#fig-3b-mch-by-trinucleotide-context-across-major-types" title="Link to this heading">#</a></h2>
+<p>Aggregate to major-type level (CH contexts only) and plot mC/C per context, one dot per non-neuronal major type.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">xx</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;CG&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
@@ -715,72 +678,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(((</span><span class="n">mc</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">mc_lambda</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_lambda</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
-<span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">+</span> <span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groupL2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[:</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">mc_L2</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">cov_L2</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">mc_lambda_L2</span> <span class="o">=</span> <span class="n">mc_lambda</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">cov_lambda_L2</span> <span class="o">=</span> <span class="n">cov_lambda</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(((</span><span class="n">mc_L2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_L2</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">mc_lambda_L2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_lambda_L2</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
-<span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">+</span> <span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groupL1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">mc_L1</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span>
 <span class="n">cov_L1</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span>
-<span class="n">mc_lambda_L1</span> <span class="o">=</span> <span class="n">mc_lambda</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span>
-<span class="n">cov_lambda_L1</span> <span class="o">=</span> <span class="n">cov_lambda</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupL1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(((</span><span class="n">mc_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">mc_lambda_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_lambda_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
-<span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">+</span> <span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_plt</span><span class="p">;</span> <span class="n">_plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;mC_context/L1_mCH_lambda_log2fc_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Fig S16A tentative</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/005466925716914926cea98235eb43c5a66af3bc17f84032f7acb804279ccd06.png" src="../_images/005466925716914926cea98235eb43c5a66af3bc17f84032f7acb804279ccd06.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">mc_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">+</span> <span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_plt</span><span class="p">;</span> <span class="n">_plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;mC_context/L1_mCH_heatmap.pdf&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Fig S16B tentative</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/49cec419839ece1b022058e3b913800e3f2ab124aad8e104b7c6ec3ef332099c.png" src="../_images/49cec419839ece1b022058e3b913800e3f2ab124aad8e104b7c6ec3ef332099c.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">mc_lambda_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cov_lambda_L1</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">L1annot</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">+</span> <span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -794,26 +694,20 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">mc_L1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">cov_L1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># per-major-type (L1) mCH/CH by context, reshaped long for plotting</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">mc_L1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">cov_L1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">selc</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c16&#39;</span><span class="p">,</span> <span class="s1">&#39;c31&#39;</span><span class="p">])</span>
+<span class="n">selc</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c16&#39;</span><span class="p">,</span> <span class="s1">&#39;c31&#39;</span><span class="p">])</span>   <span class="c1"># exclude neurons (plotted separately)</span>
 <span class="n">leg_order</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;context&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tmp = (mc_L1+1)/(cov_L1+1)</span>
-<span class="c1"># tmp.index.name = &#39;L1&#39;</span>
-<span class="c1"># tmp = tmp.stack().reset_index()</span>
-<span class="c1"># selc = tmp[&#39;L1&#39;].isin([&#39;c10&#39;, &#39;c16&#39;, &#39;c31&#39;])</span>
-<span class="c1"># leg_order = tmp.groupby(&#39;context&#39;)[0].mean().sort_values().index[::-1]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mf">2.5</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">selc</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">selc</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
               <span class="n">order</span><span class="o">=</span><span class="n">leg_order</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.045</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
@@ -827,69 +721,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4be7f4bc775d97cff2fb6387e72f5137928f2ba7ffa7bf4e12a142d1aca7ae30.png" src="../_images/4be7f4bc775d97cff2fb6387e72f5137928f2ba7ffa7bf4e12a142d1aca7ae30.png" />
+<img alt="../_images/e0efbdd8e337237baa4cdb3f9f39fce22716b36940e0f19e5493bd9c7d52e4e6.png" src="../_images/e0efbdd8e337237baa4cdb3f9f39fce22716b36940e0f19e5493bd9c7d52e4e6.png" />
 </div>
 </div>
+</section>
+<section id="high-mca-cell-types-per-bin-ca-methylation-ratio">
+<h2>High-mCA cell types → per-bin CA methylation ratio<a class="headerlink" href="#high-mca-cell-types-per-bin-ca-methylation-ratio" title="Link to this heading">#</a></h2>
+<p>Identify the L2any clusters with the highest non-CG methylation (top-2 per major type, mCA/CA &gt; 0.025, above the lambda spike-in background) and extract their genome-wide per-1 kb-bin CA methylation ratio. The output <strong><code class="docutils literal notranslate"><span class="pre">L2any_mCA_025_top2_rawratio.hdf</span></code></strong> feeds the downstream characterization of high-mCA genomic regions (high-CA vs low-CA domains).</p>
+<p><em>(Re-run caveat: this step reads the cluster-donor <code class="docutils literal notranslate"><span class="pre">mcds</span></code>, whose cell index differs from <code class="docutils literal notranslate"><span class="pre">group_meta</span></code>; it documents the method but needs the matching index to re-execute from scratch.)</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_ch_L2</span> <span class="o">=</span> <span class="n">mc_L2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span><span class="c1">#.sum(axis=1)</span>
-<span class="n">cov_ch_L2</span> <span class="o">=</span> <span class="n">cov_L2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span><span class="c1">#.sum(axis=1)</span>
-<span class="n">mc_lambda_ch_L2</span> <span class="o">=</span> <span class="n">mc_lambda_L2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span><span class="c1">#.sum(axis=1)</span>
-<span class="n">cov_lambda_ch_L2</span> <span class="o">=</span> <span class="n">cov_lambda_L2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span><span class="c1">#.sum(axis=1)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_color</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1color.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="o">=</span> <span class="n">mc_ch_L2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_color</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
-<span class="n">lambda_ch_L2</span> <span class="o">=</span> <span class="n">mc_lambda_ch_L2</span> <span class="o">/</span> <span class="n">cov_lambda_ch_L2</span>
-<span class="n">ch_L2</span> <span class="o">=</span> <span class="n">mc_ch_L2</span> <span class="o">/</span> <span class="n">cov_ch_L2</span>
-<span class="n">selc</span> <span class="o">=</span> <span class="n">ch_L2</span><span class="o">.</span><span class="n">index</span><span class="p">[(</span><span class="n">ch_L2</span> <span class="o">-</span> <span class="n">lambda_ch_L2</span> <span class="o">&gt;</span> <span class="mf">0.005</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ch_L2</span> <span class="o">&lt;</span> <span class="mf">0.025</span><span class="p">)]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selcg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">xx</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CG&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
-<span class="n">selch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">xx</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;CG&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
-<span class="n">mc_cg</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selcg</span><span class="p">]</span>
-<span class="n">cov_cg</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selcg</span><span class="p">]</span>
-<span class="n">mc_ch</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span>
-<span class="n">cov_ch</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">selch</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">mc_ch</span> <span class="o">/</span> <span class="n">cov_ch</span><span class="p">)</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1annot</span><span class="p">)</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.025</span><span class="p">]</span>
-<span class="n">selc</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;c12-c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c13-c5&#39;</span><span class="p">,</span> <span class="s1">&#39;c13-c9&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c3&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c6&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the 24 clusters selected above (top-2 highest-mCA per major type)</span>
+<span class="n">selc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;c12-c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c13-c5&#39;</span><span class="p">,</span> <span class="s1">&#39;c13-c9&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c3&#39;</span><span class="p">,</span> <span class="s1">&#39;c14-c6&#39;</span><span class="p">,</span>
        <span class="s1">&#39;c14-c7&#39;</span><span class="p">,</span> <span class="s1">&#39;c21-c8&#39;</span><span class="p">,</span> <span class="s1">&#39;c25-c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c26-c10&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c0&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c2&#39;</span><span class="p">,</span>
        <span class="s1">&#39;c31-c3&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c4&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c5&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c6&#39;</span><span class="p">,</span> <span class="s1">&#39;c31-c7&#39;</span><span class="p">,</span> <span class="s1">&#39;c32-c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c5-c1&#39;</span><span class="p">,</span>
        <span class="s1">&#39;c5-c2&#39;</span><span class="p">,</span> <span class="s1">&#39;c5-c5&#39;</span><span class="p">,</span> <span class="s1">&#39;c5-c9&#39;</span><span class="p">])</span>
@@ -906,12 +749,626 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.MCDS&gt; Size: 93GB
+Dimensions:        (cell: 940, chrom1k: 3088298, count_type: 2, mc_type: 4)
+Coordinates:
+  * cell           (cell) &lt;U16 60kB &#x27;c0-c0-PT-1JKYN&#x27; ... &#x27;c9-c9-STL003&#x27;
+  * chrom1k        (chrom1k) &lt;U12 148MB &#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;
+    chrom1k_chrom  (chrom1k) &lt;U5 62MB ...
+    chrom1k_end    (chrom1k) int64 25MB ...
+    chrom1k_start  (chrom1k) int64 25MB ...
+  * count_type     (count_type) &lt;U3 24B &#x27;mc&#x27; &#x27;cov&#x27;
+  * mc_type        (mc_type) &lt;U3 48B &#x27;CAN&#x27; &#x27;CCN&#x27; &#x27;CGN&#x27; &#x27;CTN&#x27;
+Data variables:
+    chrom1k_da     (cell, chrom1k, mc_type, count_type) uint32 93GB dask.array&lt;chunksize=(1, 386038, 1, 1), meta=np.ndarray&gt;
+Attributes:
+    obs_dim:  cell
+    var_dim:  chrom1k</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.MCDS</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-9dc89ed3-5649-4691-85a6-8fc8b2eb92ac' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9dc89ed3-5649-4691-85a6-8fc8b2eb92ac' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>cell</span>: 940</li><li><span class='xr-has-index'>chrom1k</span>: 3088298</li><li><span class='xr-has-index'>count_type</span>: 2</li><li><span class='xr-has-index'>mc_type</span>: 4</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-4c13aa84-ea75-44ef-91ab-8e33d1f6927c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4c13aa84-ea75-44ef-91ab-8e33d1f6927c' class='xr-section-summary' >Coordinates: <span>(7)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>cell</span></div><div class='xr-var-dims'>(cell)</div><div class='xr-var-dtype'>&lt;U16</div><div class='xr-var-preview xr-preview'>&#x27;c0-c0-PT-1JKYN&#x27; ... &#x27;c9-c9-STL003&#x27;</div><input id='attrs-aa47daab-3916-4a24-b346-ebbdf7e79971' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-aa47daab-3916-4a24-b346-ebbdf7e79971' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9f0207f4-2b17-4a3b-9f70-f4b9c01c5785' class='xr-var-data-in' type='checkbox'><label for='data-9f0207f4-2b17-4a3b-9f70-f4b9c01c5785' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;c0-c0-PT-1JKYN&#x27;, &#x27;c0-c0-PT-1K2DA&#x27;, &#x27;c0-c0-PT-1LGRB&#x27;, ...,
+       &#x27;c9-c8-STL003&#x27;, &#x27;c9-c9-PT-1K2DA&#x27;, &#x27;c9-c9-STL003&#x27;], dtype=&#x27;&lt;U16&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>chrom1k</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U12</div><div class='xr-var-preview xr-preview'>&#x27;chr1_0&#x27; &#x27;chr1_1&#x27; ... &#x27;chrY_57227&#x27;</div><input id='attrs-e8c1e698-707d-44a9-88e9-d58efcd853c5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-e8c1e698-707d-44a9-88e9-d58efcd853c5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5d1ebb9d-d4da-4414-a98f-7392e9f2a127' class='xr-var-data-in' type='checkbox'><label for='data-5d1ebb9d-d4da-4414-a98f-7392e9f2a127' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, ..., &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;,
+       &#x27;chrY_57227&#x27;], dtype=&#x27;&lt;U12&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_chrom</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>&lt;U5</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-9f26fdc0-e091-443a-baae-e86870c5dd5e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9f26fdc0-e091-443a-baae-e86870c5dd5e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cca70743-9031-460b-97ab-b2fdee8ecfa9' class='xr-var-data-in' type='checkbox'><label for='data-cca70743-9031-460b-97ab-b2fdee8ecfa9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088298 values with dtype=&lt;U5]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_end</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-8b30aa80-0f62-4619-8ccd-abfedc367c8b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-8b30aa80-0f62-4619-8ccd-abfedc367c8b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-aa7900e7-c878-4c12-819a-8060563d1887' class='xr-var-data-in' type='checkbox'><label for='data-aa7900e7-c878-4c12-819a-8060563d1887' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088298 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_start</span></div><div class='xr-var-dims'>(chrom1k)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0a41e5c7-78fe-4747-8406-8dafb5fd8cee' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0a41e5c7-78fe-4747-8406-8dafb5fd8cee' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-24a99792-1f70-4c7d-b511-4e3e462e1c55' class='xr-var-data-in' type='checkbox'><label for='data-24a99792-1f70-4c7d-b511-4e3e462e1c55' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>[3088298 values with dtype=int64]</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>count_type</span></div><div class='xr-var-dims'>(count_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;mc&#x27; &#x27;cov&#x27;</div><input id='attrs-d4c55bc1-63b2-4f10-a926-2e7face658c7' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d4c55bc1-63b2-4f10-a926-2e7face658c7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-928a4878-f146-48f1-93e1-7375dfe6a34a' class='xr-var-data-in' type='checkbox'><label for='data-928a4878-f146-48f1-93e1-7375dfe6a34a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>mc_type</span></div><div class='xr-var-dims'>(mc_type)</div><div class='xr-var-dtype'>&lt;U3</div><div class='xr-var-preview xr-preview'>&#x27;CAN&#x27; &#x27;CCN&#x27; &#x27;CGN&#x27; &#x27;CTN&#x27;</div><input id='attrs-6ba9d653-c9a6-4632-bc8e-2a64afda99bd' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-6ba9d653-c9a6-4632-bc8e-2a64afda99bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d77ddf4a-32c3-4b0a-8473-cbf8d53f0f87' class='xr-var-data-in' type='checkbox'><label for='data-d77ddf4a-32c3-4b0a-8473-cbf8d53f0f87' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;CAN&#x27;, &#x27;CCN&#x27;, &#x27;CGN&#x27;, &#x27;CTN&#x27;], dtype=&#x27;&lt;U3&#x27;)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-48312a5f-b123-4b9d-809a-063f22c8e4d5' class='xr-section-summary-in' type='checkbox'  checked><label for='section-48312a5f-b123-4b9d-809a-063f22c8e4d5' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>chrom1k_da</span></div><div class='xr-var-dims'>(cell, chrom1k, mc_type, count_type)</div><div class='xr-var-dtype'>uint32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 386038, 1, 1), meta=np.ndarray&gt;</div><input id='attrs-d2850540-9c57-4516-aff7-b12d8b75a84f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d2850540-9c57-4516-aff7-b12d8b75a84f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-22f47ee3-1c60-4429-a04a-2ed627f545b6' class='xr-var-data-in' type='checkbox'><label for='data-22f47ee3-1c60-4429-a04a-2ed627f545b6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 86.52 GiB </td>
+                        <td> 1.47 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (940, 3088298, 4, 2) </td>
+                        <td> (1, 386038, 1, 1) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 60160 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> uint32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="336" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="25" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="0" y1="0" x2="0" y2="25" />
+  <line x1="1" y1="0" x2="1" y2="25" />
+  <line x1="2" y1="0" x2="2" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="3" y1="0" x2="3" y2="25" />
+  <line x1="4" y1="0" x2="4" y2="25" />
+  <line x1="5" y1="0" x2="5" y2="25" />
+  <line x1="6" y1="0" x2="6" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="7" y1="0" x2="7" y2="25" />
+  <line x1="8" y1="0" x2="8" y2="25" />
+  <line x1="9" y1="0" x2="9" y2="25" />
+  <line x1="10" y1="0" x2="10" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="11" y1="0" x2="11" y2="25" />
+  <line x1="12" y1="0" x2="12" y2="25" />
+  <line x1="13" y1="0" x2="13" y2="25" />
+  <line x1="14" y1="0" x2="14" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="15" y1="0" x2="15" y2="25" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="17" y1="0" x2="17" y2="25" />
+  <line x1="18" y1="0" x2="18" y2="25" />
+  <line x1="19" y1="0" x2="19" y2="25" />
+  <line x1="19" y1="0" x2="19" y2="25" />
+  <line x1="20" y1="0" x2="20" y2="25" />
+  <line x1="21" y1="0" x2="21" y2="25" />
+  <line x1="22" y1="0" x2="22" y2="25" />
+  <line x1="23" y1="0" x2="23" y2="25" />
+  <line x1="23" y1="0" x2="23" y2="25" />
+  <line x1="24" y1="0" x2="24" y2="25" />
+  <line x1="25" y1="0" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 25.412616514582485,0.0 25.412616514582485,25.412616514582485 0.0,25.412616514582485" style="fill:#8B4903A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="12.706308" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >940</text>
+  <text x="45.412617" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,45.412617,12.706308)">1</text>
+
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="95" y1="6" x2="165" y2="76" />
+  <line x1="95" y1="12" x2="165" y2="83" />
+  <line x1="95" y1="19" x2="165" y2="89" />
+  <line x1="95" y1="25" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="95" y2="25" style="stroke-width:2" />
+  <line x1="103" y1="8" x2="103" y2="34" />
+  <line x1="112" y1="17" x2="112" y2="43" />
+  <line x1="121" y1="26" x2="121" y2="51" />
+  <line x1="130" y1="35" x2="130" y2="60" />
+  <line x1="139" y1="44" x2="139" y2="69" />
+  <line x1="147" y1="52" x2="147" y2="78" />
+  <line x1="156" y1="61" x2="156" y2="87" />
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 165.58823529411765,70.58823529411765 165.58823529411765,96.00085180870013 95.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="103" y1="8" x2="129" y2="8" />
+  <line x1="112" y1="17" x2="138" y2="17" />
+  <line x1="121" y1="26" x2="146" y2="26" />
+  <line x1="130" y1="35" x2="155" y2="35" />
+  <line x1="139" y1="44" x2="164" y2="44" />
+  <line x1="147" y1="52" x2="173" y2="52" />
+  <line x1="156" y1="61" x2="182" y2="61" />
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="107" y1="0" x2="178" y2="70" />
+  <line x1="120" y1="0" x2="191" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 120.41261651458248,0.0 191.00085180870013,70.58823529411765 165.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="165" y1="70" x2="191" y2="70" style="stroke-width:2" />
+  <line x1="165" y1="76" x2="191" y2="76" />
+  <line x1="165" y1="83" x2="191" y2="83" />
+  <line x1="165" y1="89" x2="191" y2="89" />
+  <line x1="165" y1="96" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+  <line x1="178" y1="70" x2="178" y2="96" />
+  <line x1="191" y1="70" x2="191" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="165.58823529411765,70.58823529411765 191.00085180870013,70.58823529411765 191.00085180870013,96.00085180870013 165.58823529411765,96.00085180870013" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="178.294544" y="116.000852" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="211.000852" y="83.294544" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,211.000852,83.294544)">4</text>
+  <text x="120.294118" y="80.706734" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,120.294118,80.706734)">3088298</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-2252d14d-e2f7-469e-8483-7c11256330e3' class='xr-section-summary-in' type='checkbox'  ><label for='section-2252d14d-e2f7-469e-8483-7c11256330e3' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>cell</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-756a31cf-79aa-4c7d-8c95-4e280b780878' class='xr-index-data-in' type='checkbox'/><label for='index-756a31cf-79aa-4c7d-8c95-4e280b780878' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;c0-c0-PT-1JKYN&#x27;, &#x27;c0-c0-PT-1K2DA&#x27;, &#x27;c0-c0-PT-1LGRB&#x27;, &#x27;c0-c0-PT-1LVAN&#x27;,
+       &#x27;c0-c0-STL003&#x27;, &#x27;c0-c1-Other&#x27;, &#x27;c0-c1-PT-1LGRB&#x27;, &#x27;c0-c1-PT-1LVAN&#x27;,
+       &#x27;c0-c1-STL003&#x27;, &#x27;c0-c10-Other&#x27;,
+       ...
+       &#x27;c9-c5-PT-1K2DA&#x27;, &#x27;c9-c5-STL003&#x27;, &#x27;c9-c6-PT-1K2DA&#x27;, &#x27;c9-c6-STL003&#x27;,
+       &#x27;c9-c7-PT-1K2DA&#x27;, &#x27;c9-c7-STL003&#x27;, &#x27;c9-c8-PT-1K2DA&#x27;, &#x27;c9-c8-STL003&#x27;,
+       &#x27;c9-c9-PT-1K2DA&#x27;, &#x27;c9-c9-STL003&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;cell&#x27;, length=940))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>chrom1k</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2bbb2338-30bb-4e3d-9399-1e5b0d070387' class='xr-index-data-in' type='checkbox'/><label for='index-2bbb2338-30bb-4e3d-9399-1e5b0d070387' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;chr1_0&#x27;, &#x27;chr1_1&#x27;, &#x27;chr1_2&#x27;, &#x27;chr1_3&#x27;, &#x27;chr1_4&#x27;, &#x27;chr1_5&#x27;, &#x27;chr1_6&#x27;,
+       &#x27;chr1_7&#x27;, &#x27;chr1_8&#x27;, &#x27;chr1_9&#x27;,
+       ...
+       &#x27;chrY_57218&#x27;, &#x27;chrY_57219&#x27;, &#x27;chrY_57220&#x27;, &#x27;chrY_57221&#x27;, &#x27;chrY_57222&#x27;,
+       &#x27;chrY_57223&#x27;, &#x27;chrY_57224&#x27;, &#x27;chrY_57225&#x27;, &#x27;chrY_57226&#x27;, &#x27;chrY_57227&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;chrom1k&#x27;, length=3088298))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>count_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-dc55f7f6-cde3-48e8-9eee-502286035125' class='xr-index-data-in' type='checkbox'/><label for='index-dc55f7f6-cde3-48e8-9eee-502286035125' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;mc&#x27;, &#x27;cov&#x27;], dtype=&#x27;object&#x27;, name=&#x27;count_type&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>mc_type</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-85f3e641-4ced-4f59-ad7e-f67233d19b1f' class='xr-index-data-in' type='checkbox'/><label for='index-85f3e641-4ced-4f59-ad7e-f67233d19b1f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;CAN&#x27;, &#x27;CCN&#x27;, &#x27;CGN&#x27;, &#x27;CTN&#x27;], dtype=&#x27;object&#x27;, name=&#x27;mc_type&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0a696a18-9b9f-4841-8739-ad930581fb60' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0a696a18-9b9f-4841-8739-ad930581fb60' class='xr-section-summary' >Attributes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>obs_dim :</span></dt><dd>cell</dd><dt><span>var_dim :</span></dt><dd>chrom1k</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">L2_any</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="n">group_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">),</span> <span class="s1">&#39;L2_any&#39;</span><span class="p">]))</span>
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L2_any&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="p">(</span><span class="n">mcds</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">=</span><span class="s1">&#39;L2_any&#39;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">L2_any</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">,</span> <span class="n">group_meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s1">&#39;cell&#39;</span><span class="p">),</span> <span class="s1">&#39;L2_any&#39;</span><span class="p">]))</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L2_any&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="p">(</span><span class="n">mcds</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">=</span><span class="s1">&#39;L2_any&#39;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1097,</span> in <span class="ni">_LocationIndexer.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1095</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_scalar_access</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1096</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="n">takeable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_takeable</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1097</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_tuple</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1098</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1099</span>     <span class="c1"># we by definition only have the 0th axis</span>
+<span class="g g-Whitespace">   </span><span class="mi">1100</span>     <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span> <span class="ow">or</span> <span class="mi">0</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1280,</span> in <span class="ni">_LocIndexer._getitem_tuple</span><span class="nt">(self, tup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1278</span> <span class="k">with</span> <span class="n">suppress</span><span class="p">(</span><span class="n">IndexingError</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span>     <span class="n">tup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expand_ellipsis</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1280</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_lowerdim</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1282</span> <span class="c1"># no multi-index, so validate all of the indexers</span>
+<span class="g g-Whitespace">   </span><span class="mi">1283</span> <span class="n">tup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_tuple_indexer</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1024,</span> in <span class="ni">_LocationIndexer._getitem_lowerdim</span><span class="nt">(self, tup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>             <span class="k">return</span> <span class="n">section</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span>         <span class="c1"># This is an elided recursive call to iloc/loc</span>
+<span class="ne">-&gt; </span><span class="mi">1024</span>         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="n">new_key</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span> <span class="k">raise</span> <span class="n">IndexingError</span><span class="p">(</span><span class="s2">&quot;not applicable&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1103,</span> in <span class="ni">_LocationIndexer.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1100</span> <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span> <span class="ow">or</span> <span class="mi">0</span>
+<span class="g g-Whitespace">   </span><span class="mi">1102</span> <span class="n">maybe_callable</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">apply_if_callable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1103</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_axis</span><span class="p">(</span><span class="n">maybe_callable</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1332,</span> in <span class="ni">_LocIndexer._getitem_axis</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1329</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;ndim&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">key</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1330</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot index with multidimensional key&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1332</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_iterable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1334</span> <span class="c1"># nested tuple slicing</span>
+<span class="g g-Whitespace">   </span><span class="mi">1335</span> <span class="k">if</span> <span class="n">is_nested_tuple</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1272,</span> in <span class="ni">_LocIndexer._getitem_iterable</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1269</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="c1"># A collection of keys</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span> <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_listlike_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1273</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>     <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_dups</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span> <span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexing.py:1462,</span> in <span class="ni">_LocIndexer._get_listlike_indexer</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span> <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1460</span> <span class="n">axis_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_get_axis_name</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1462</span> <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">_get_indexer_strict</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1464</span> <span class="k">return</span> <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:5877,</span> in <span class="ni">Index._get_indexer_strict</span><span class="nt">(self, key, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5874</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5875</span>     <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">new_indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_non_unique</span><span class="p">(</span><span class="n">keyarr</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5877</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raise_if_missing</span><span class="p">(</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">axis_name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5879</span> <span class="n">keyarr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5880</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5881</span>     <span class="c1"># GH 42790 - Preserve name from an Index</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:5938,</span> in <span class="ni">Index._raise_if_missing</span><span class="nt">(self, key, indexer, axis_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5936</span>     <span class="k">if</span> <span class="n">use_interval_msg</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5937</span>         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5938</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of [</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">] are in the [</span><span class="si">{</span><span class="n">axis_name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5940</span> <span class="n">not_found</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ensure_index</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="n">missing_mask</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">5941</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">not_found</span><span class="si">}</span><span class="s2"> not in index&quot;</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &quot;None of [Index([&#39;c0-c0-PT-1JKYN&#39;, &#39;c0-c0-PT-1K2DA&#39;, &#39;c0-c0-PT-1LGRB&#39;, &#39;c0-c0-PT-1LVAN&#39;,\n       &#39;c0-c0-STL003&#39;, &#39;c0-c1-Other&#39;, &#39;c0-c1-PT-1LGRB&#39;, &#39;c0-c1-PT-1LVAN&#39;,\n       &#39;c0-c1-STL003&#39;, &#39;c0-c10-Other&#39;,\n       ...\n       &#39;c9-c5-PT-1K2DA&#39;, &#39;c9-c5-STL003&#39;, &#39;c9-c6-PT-1K2DA&#39;, &#39;c9-c6-STL003&#39;,\n       &#39;c9-c7-PT-1K2DA&#39;, &#39;c9-c7-STL003&#39;, &#39;c9-c8-PT-1K2DA&#39;, &#39;c9-c8-STL003&#39;,\n       &#39;c9-c9-PT-1K2DA&#39;, &#39;c9-c9-STL003&#39;],\n      dtype=&#39;object&#39;, name=&#39;cell&#39;, length=940)] are in the [index]&quot;
 </pre></div>
 </div>
 </div>
@@ -929,12 +1386,103 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/namedarray/core.py:680,</span> in <span class="ni">NamedArray._get_axis_num</span><span class="nt">(self, dim)</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">680</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>  <span class="c1"># type: ignore[no-any-return]</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: tuple.index(x): x not in tuple
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[</span><span class="s1">&#39;chrom1k_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">count_type</span><span class="o">=</span><span class="s1">&#39;cov&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;L2_any&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/core/_aggregations.py:1664,</span> in <span class="ni">DataArrayAggregations.mean</span><span class="nt">(self, dim, skipna, keep_attrs, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span> <span class="k">def</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="n">dim</span><span class="p">:</span> <span class="n">Dims</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1595</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1596</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1597</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1598</span><span class="sd">     Reduce this DataArray&#39;s data by applying ``mean`` along some dimension(s).</span>
+<span class="g g-Whitespace">   </span><span class="mi">1599</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1662</span><span class="sd">     array(nan)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1663</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1664</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1665</span>         <span class="n">duck_array_ops</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1666</span>         <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1667</span>         <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1668</span>         <span class="n">keep_attrs</span><span class="o">=</span><span class="n">keep_attrs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1669</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1670</span>     <span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/core/dataarray.py:3782,</span> in <span class="ni">DataArray.reduce</span><span class="nt">(self, func, dim, axis, keep_attrs, keepdims, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3738</span> <span class="k">def</span><span class="w"> </span><span class="nf">reduce</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3739</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3740</span>     <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3746</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3747</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3748</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Reduce this array by applying `func` along some dimension(s).</span>
+<span class="g g-Whitespace">   </span><span class="mi">3749</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3750</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3779</span><span class="sd">         summarized data and the indicated dimension(s) removed.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3780</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">3782</span>     <span class="n">var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keep_attrs</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3783</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replace_maybe_drop_dims</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/core/variable.py:1643,</span> in <span class="ni">Variable.reduce</span><span class="nt">(self, func, dim, axis, keep_attrs, keepdims, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1636</span> <span class="n">keep_attrs_</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1637</span>     <span class="n">_get_keep_attrs</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">if</span> <span class="n">keep_attrs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">keep_attrs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1638</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1640</span> <span class="c1"># Noe that the call order for Variable.mean is</span>
+<span class="g g-Whitespace">   </span><span class="mi">1641</span> <span class="c1">#    Variable.mean -&gt; NamedArray.mean -&gt; Variable.reduce</span>
+<span class="g g-Whitespace">   </span><span class="mi">1642</span> <span class="c1">#    -&gt; NamedArray.reduce</span>
+<span class="ne">-&gt; </span><span class="mi">1643</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1644</span>     <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">   </span><span class="mi">1645</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span> <span class="c1"># return Variable always to support IndexVariable</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span> <span class="k">return</span> <span class="n">Variable</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1649</span>     <span class="n">result</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">_attrs</span> <span class="k">if</span> <span class="n">keep_attrs_</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1650</span> <span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/namedarray/core.py:876,</span> in <span class="ni">NamedArray.reduce</span><span class="nt">(self, func, dim, axis, keepdims, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">873</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot supply both &#39;axis&#39; and &#39;dim&#39; arguments&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span> <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">876</span>     <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_axis_num</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span> <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>         <span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Mean of empty slice&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>     <span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/namedarray/core.py:675,</span> in <span class="ni">NamedArray.get_axis_num</span><span class="nt">(self, dim)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_num</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dim</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">675</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_num</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/xarray/namedarray/core.py:682,</span> in <span class="ni">NamedArray._get_axis_num</span><span class="nt">(self, dim)</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>  <span class="c1"># type: ignore[no-any-return]</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">682</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dim</span><span class="si">!r}</span><span class="s2"> not found in array dimensions </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nn">ValueError: &#39;L2_any&#39; not found</span> in <span class="ni">array dimensions </span><span class="nt">(&#39;cell&#39;, &#39;chrom1k&#39;)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;L2_any&#39;</span><span class="p">:</span><span class="n">selc</span><span class="p">,</span> <span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">]})</span>
 
-<span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
+<span class="n">black_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
     <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>
@@ -944,11 +1492,31 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;L2_any&#39;</span><span class="p">:</span><span class="n">selc</span><span class="p">,</span> <span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">]})</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">black_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_black_list_region</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">black_list_path</span><span class="o">=</span><span class="n">black_list_path</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="p">)</span>
+
+<span class="nn">File ~/.conda/envs/analysis/lib/python3.10/site-packages/pandas/core/indexes/base.py:5196,</span> in <span class="ni">Index.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5193</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5194</span>         <span class="n">key</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5196</span> <span class="n">result</span> <span class="o">=</span> <span class="n">getitem</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5197</span> <span class="c1"># Because we ruled out integer above, we always get an arraylike here</span>
+<span class="g g-Whitespace">   </span><span class="mi">5198</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+<span class="ne">IndexError</span>: too many indices for array: array is 1-dimensional, but 2 were indexed
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data = mcds[&#39;chrom1k_da_frac&#39;].to_pandas()</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;count_type&#39;</span><span class="p">:</span><span class="s1">&#39;mc&#39;</span><span class="p">})[</span><span class="s1">&#39;chrom1k_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span>  <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;count_type&#39;</span><span class="p">:</span><span class="s1">&#39;mc&#39;</span><span class="p">})[</span><span class="s1">&#39;chrom1k_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="n">cov</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;count_type&#39;</span><span class="p">:</span><span class="s1">&#39;cov&#39;</span><span class="p">})[</span><span class="s1">&#39;chrom1k_da&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">mc</span> <span class="o">/</span> <span class="n">cov</span>
 </pre></div>
@@ -1032,6 +1600,9 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-trinucleotide-context-methylation-matrix">Build the trinucleotide-context methylation matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fig-3b-mch-by-trinucleotide-context-across-major-types">Fig 3B — mCH by trinucleotide context across major types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-mca-cell-types-per-bin-ca-methylation-ratio">High-mCA cell types → per-bin CA methylation ratio</a></li>
 </ul>
   </nav></div>
 
