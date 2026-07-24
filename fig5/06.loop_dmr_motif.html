@@ -548,44 +548,36 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
-<span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
-<span class="n">BOOK_ROOT</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BOOK_ROOT&#39;</span><span class="p">,</span>  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/HumanCellEpigenomeAtlas&#39;</span><span class="p">)</span>
+
+<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ENTEX_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/zhoujt/project/ENTEx&quot;</span><span class="p">)</span>
+<span class="n">REF_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REF_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/ref&quot;</span><span class="p">)</span>
+<span class="n">BOOK_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BOOK_ROOT&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/HumanCellEpigenomeAtlas&quot;</span><span class="p">)</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>  <span class="c1"># original working directory</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>  <span class="c1"># no-overwrite guard (default: skip existing)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy.external</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sce</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">zscore</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.integration.seurat_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeuratIntegration</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span><span class="p">,</span> <span class="n">roc_auc_score</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize</span>
-
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
 
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -593,70 +585,10 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/&#39;</span>
-<span class="n">dmrdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/DMR/&#39;</span>
-<span class="n">loopdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">loop/majortype/&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">analysis/loop_dmr_motif/&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ctx_db_fname = f&#39;{dmrdir}merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.rankings.feather&#39;</span>
-<span class="c1"># dem_db_fname = f&#39;{dmrdir}merged_dmr_db/merged_dmr_slop1kb.regions_vs_motifs.scores.feather&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># score = pd.read_feather(dem_db_fname)</span>
-<span class="c1"># score</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rank = pd.read_feather(ctx_db_fname)</span>
-<span class="c1"># rank</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import time</span>
-<span class="c1"># from scipy.stats import rankdata</span>
-
-<span class="c1"># start_time = time.time()</span>
-<span class="c1"># for i in range(37):</span>
-<span class="c1">#     if i==7:</span>
-<span class="c1">#         continue</span>
-<span class="c1">#     ct = f&#39;c{i}&#39;</span>
-<span class="c1">#     print(ct)</span>
-<span class="c1">#     os.makedirs(f&#39;{outdir}{ct}/&#39;, exist_ok=True)</span>
-<span class="c1">#     cmd = f&#39;bedtools intersect -wa -a {dmrdir}merged_dmr.bed -b {dmrdir}overlap_atac/majortype_36groups/{ct}_merged.bed &gt; {outdir}{ct}/dmr.bed&#39;</span>
-<span class="c1">#     os.system(cmd)</span>
-<span class="c1">#     tmp = pd.read_csv(f&#39;{outdir}{ct}/dmr.bed&#39;, sep=&#39;\t&#39;, names=[&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;])</span>
-<span class="c1">#     seldmr = tmp[&#39;chrom&#39;].astype(str) + &#39;:&#39; + tmp[&#39;start&#39;].astype(str) + &#39;-&#39; + tmp[&#39;end&#39;].astype(str)</span>
-<span class="c1">#     seldmr = score.columns.isin(seldmr)</span>
-<span class="c1">#     # seldmr[-1] = True</span>
-<span class="c1">#     score_tmp = score.loc[:, seldmr]</span>
-<span class="c1">#     rank_tmp = rank.loc[:, seldmr]</span>
-<span class="c1">#     print(&#39;Filter DMR&#39;, time.time()-start_time)</span>
-<span class="c1">#     if i&gt;0:</span>
-<span class="c1">#         score_tmp[&#39;motifs&#39;] = score[&#39;motifs&#39;]</span>
-<span class="c1">#         score_tmp.to_feather(f&#39;{outdir}{ct}/regions_vs_motifs.scores.feather&#39;)</span>
-<span class="c1">#         print(&#39;Write score&#39;, time.time()-start_time)</span>
-<span class="c1">#     rank_tmp = rankdata(rank_tmp, axis=1)</span>
-<span class="c1">#     rank_tmp = pd.DataFrame(rank_tmp, index=rank.index, columns=score_tmp.columns)</span>
-<span class="c1">#     print(&#39;Compute rank&#39;, time.time()-start_time)</span>
-<span class="c1">#     rank_tmp[&#39;motifs&#39;] = rank[&#39;motifs&#39;]</span>
-<span class="c1">#     rank_tmp.to_feather(f&#39;{outdir}{ct}/regions_vs_motifs.rankings.feather&#39;)</span>
-<span class="c1">#     print(&#39;Write rank&#39;, time.time()-start_time)</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/&quot;</span>
+<span class="n">dmrdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">analysis/DMR/&quot;</span>
+<span class="n">loopdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">loop/majortype/&quot;</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">analysis/loop_dmr_motif/&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -664,14 +596,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## DMR given size slop1k createdb</span>
-<span class="c1"># ct=c0</span>
-<span class="c1"># REGION_BED=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/overlap_atac/majortype_36groups/${ct}_merged.bed</span>
-<span class="c1"># GENOME_FASTA=/large_storage/zhoulab/ref/hg38/fasta/hg38.fa</span>
-<span class="c1"># CHROMSIZES=/large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes</span>
-<span class="c1"># DATABASE_PREFIX=merge_dmr</span>
-<span class="c1"># SCRIPT_DIR=/home/zhoujt/software/create_cisTarget_databases</span>
-<span class="c1"># OUT_DIR=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_dmr_motif/${ct}</span>
 <span class="c1"># mkdir $OUT_DIR</span>
 <span class="c1"># ${SCRIPT_DIR}/create_fasta_with_padded_bg_from_bed.sh \</span>
 <span class="c1">#         ${GENOME_FASTA} \</span>
@@ -679,13 +603,8 @@
 <span class="c1">#         ${REGION_BED} \</span>
 <span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.slop1kb.fa \</span>
 <span class="c1">#         1000 \</span>
-<span class="c1">#         yes</span>
 
 <span class="c1"># export PATH=$PATH:~/software/</span>
-<span class="c1"># REF_DIR=/large_storage/zhoulab/ref/aertslab_motif_colleciton</span>
-<span class="c1"># CBDIR=${REF_DIR}/v10nr_clust_public/singletons</span>
-<span class="c1"># FASTA_FILE=${OUT_DIR}/${DATABASE_PREFIX}.slop1kb.fa</span>
-<span class="c1"># MOTIF_LIST=${REF_DIR}/motifs.txt</span>
 
 <span class="c1"># ${SCRIPT_DIR}/create_cistarget_motif_databases.py \</span>
 <span class="c1">#     -f ${FASTA_FILE} \</span>
@@ -701,14 +620,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## DMR 1kb createdb</span>
-<span class="c1"># ct=c0</span>
-<span class="c1"># REGION_BED=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR/overlap_atac/majortype_36groups/${ct}_merged.bed</span>
-<span class="c1"># GENOME_FASTA=/large_storage/zhoulab/ref/hg38/fasta/hg38.fa</span>
-<span class="c1"># CHROMSIZES=/large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes</span>
-<span class="c1"># DATABASE_PREFIX=merge_dmr</span>
-<span class="c1"># SCRIPT_DIR=/home/zhoujt/software/create_cisTarget_databases</span>
-<span class="c1"># OUT_DIR=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_dmr_motif/${ct}</span>
 <span class="c1"># mkdir $OUT_DIR</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39; $REGION_BED | bedtools slop -i - -b 500 -g /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes &gt; ${OUT_DIR}/${DATABASE_PREFIX}.1kb.bed</span>
 <span class="c1"># ${SCRIPT_DIR}/create_fasta_with_padded_bg_from_bed.sh \</span>
@@ -717,13 +628,8 @@
 <span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.1kb.bed \</span>
 <span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.1kb.fa \</span>
 <span class="c1">#         0 \</span>
-<span class="c1">#         yes</span>
 
 <span class="c1"># export PATH=$PATH:~/software/</span>
-<span class="c1"># REF_DIR=/large_storage/zhoulab/ref/aertslab_motif_colleciton</span>
-<span class="c1"># CBDIR=${REF_DIR}/v10nr_clust_public/singletons</span>
-<span class="c1"># FASTA_FILE=${OUT_DIR}/${DATABASE_PREFIX}.1kb.fa</span>
-<span class="c1"># MOTIF_LIST=${REF_DIR}/motifs.txt</span>
 
 <span class="c1"># ${SCRIPT_DIR}/create_cistarget_motif_databases.py \</span>
 <span class="c1">#     -f ${FASTA_FILE} \</span>
@@ -739,16 +645,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## summit/loop DMR enriched motif</span>
 
-<span class="c1"># for i in 1 3; do (</span>
-<span class="c1"># ct=c${i}</span>
-<span class="c1"># loopdir=/large_storage/zhoulab/zhoujt/project/ENTEx/loop/majortype</span>
-<span class="c1"># dmrdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_dmr_motif</span>
 <span class="c1"># mkdir -p ${outdir}/${ct}/bed/loop_dmr/ ${outdir}/${ct}/bed/summit_dmr/</span>
-<span class="c1"># # awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${dmrdir}/overlap_atac/majortype_36groups/${ct}_merged.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_dmr/${ct}.bed</span>
-<span class="c1"># # awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${dmrdir}/overlap_atac/majortype_36groups/${ct}_merged.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_dmr/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${outdir}/${ct}/merge_dmr.1kb.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_dmr/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${outdir}/${ct}/merge_dmr.1kb.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_dmr/${ct}.bed</span>
 
@@ -771,7 +669,6 @@
 <span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.1kb.html \</span>
 <span class="c1">#     --n_cpu 32</span>
 
-<span class="c1"># # for f in $(grep &quot;&lt;th&gt;&quot; ${outdir}/${ct}/ctx_results.1kb.html | sed &#39;s|&lt;th&gt;||g&#39; | sed &#39;s|&lt;/th&gt;||g&#39;); do grep $f /large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl; echo; done | cut -f6 | sort -k1,1 -u | less</span>
 <span class="c1"># ) done</span>
 </pre></div>
 </div>
@@ -780,16 +677,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## summit/loop DMR peak enriched motif</span>
 
-<span class="c1"># for i in `seq 35 36`; do (</span>
-<span class="c1"># ct=c${i}</span>
-<span class="c1"># loopdir=/large_storage/zhoulab/zhoujt/project/ENTEx/loop/majortype</span>
-<span class="c1"># dmrdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_dmr_motif</span>
 <span class="c1"># mkdir -p ${outdir}/${ct}/bed/loop_dmr/ ${outdir}/${ct}/bed/summit_dmr/</span>
-<span class="c1"># # awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${dmrdir}/overlap_atac/majortype_36groups/${ct}_merged.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_dmr/${ct}.bed</span>
-<span class="c1"># # awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${dmrdir}/overlap_atac/majortype_36groups/${ct}_merged.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_dmr/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/c7/c7.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${outdir}/${ct}/merge_dmr.1kb.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_dmr/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/c7/c7.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${outdir}/${ct}/merge_dmr.1kb.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_dmr/${ct}.bed</span>
 
@@ -812,7 +701,6 @@
 <span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.1kb.html \</span>
 <span class="c1">#     --n_cpu 32</span>
 
-<span class="c1"># # for f in $(grep &quot;&lt;th&gt;&quot; ${outdir}/${ct}/ctx_results.1kb.html | sed &#39;s|&lt;th&gt;||g&#39; | sed &#39;s|&lt;/th&gt;||g&#39;); do grep $f /large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl; echo; done | cut -f6 | sort -k1,1 -u | less</span>
 <span class="c1"># ) done</span>
 </pre></div>
 </div>
@@ -821,11 +709,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># for i in `seq 8 34`; do (</span>
-<span class="c1"># ct=c${i}</span>
-<span class="c1"># loopdir=/large_storage/zhoulab/zhoujt/project/ENTEx/loop/majortype</span>
-<span class="c1"># dmrdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/DMR</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_dmr_motif</span>
 <span class="c1"># mkdir -p ${outdir}/${ct}/bed/loop_dmr/ ${outdir}/${ct}/bed/summit_dmr/</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${dmrdir}/overlap_atac/majortype_36groups/${ct}_merged.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_dmr/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${dmrdir}/overlap_atac/majortype_36groups/${ct}_merged.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_dmr/${ct}.bed</span>
@@ -849,7 +732,6 @@
 <span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.html \</span>
 <span class="c1">#     --n_cpu 32</span>
 
-<span class="c1"># # for f in $(grep &quot;&lt;th&gt;&quot; ${outdir}/${ct}/ctx_results.html | sed &#39;s|&lt;th&gt;||g&#39; | sed &#39;s|&lt;/th&gt;||g&#39;); do grep $f /large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl; done | cut -f6 | sort -k1,1 -u | less</span>
 <span class="c1"># ) done</span>
 </pre></div>
 </div>
@@ -858,15 +740,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## ATAC 1kb createdb</span>
 
-<span class="c1"># ct=c0</span>
-<span class="c1"># REGION_BED=/large_storage/zhoulab/zhoujt/project/ENTEx/scATAC/peak/majortype/${ct}.bed</span>
-<span class="c1"># GENOME_FASTA=/large_storage/zhoulab/ref/hg38/fasta/hg38.fa</span>
-<span class="c1"># CHROMSIZES=/large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes</span>
-<span class="c1"># DATABASE_PREFIX=merge_peak</span>
-<span class="c1"># SCRIPT_DIR=/home/zhoujt/software/create_cisTarget_databases</span>
-<span class="c1"># OUT_DIR=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_peak_motif/${ct}</span>
 <span class="c1"># mkdir $OUT_DIR</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n&quot;,$1,($2+$3)/2,($2+$3)/2)}&#39; $REGION_BED | bedtools slop -i - -b 500 -g /large_storage/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes &gt; ${OUT_DIR}/${DATABASE_PREFIX}.slop1kb.bed</span>
 <span class="c1"># ${SCRIPT_DIR}/create_fasta_with_padded_bg_from_bed.sh \</span>
@@ -875,13 +749,8 @@
 <span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.slop1kb.bed \</span>
 <span class="c1">#         ${OUT_DIR}/${DATABASE_PREFIX}.slop1kb.fa \</span>
 <span class="c1">#         0 \</span>
-<span class="c1">#         yes</span>
 
 <span class="c1"># export PATH=$PATH:~/software/</span>
-<span class="c1"># REF_DIR=/large_storage/zhoulab/ref/aertslab_motif_colleciton</span>
-<span class="c1"># CBDIR=${REF_DIR}/v10nr_clust_public/singletons</span>
-<span class="c1"># FASTA_FILE=${OUT_DIR}/${DATABASE_PREFIX}.slop1kb.fa</span>
-<span class="c1"># MOTIF_LIST=${REF_DIR}/motifs.txt</span>
 
 <span class="c1"># &quot;${SCRIPT_DIR}/create_cistarget_motif_databases.py&quot; \</span>
 <span class="c1">#     -f ${FASTA_FILE} \</span>
@@ -897,13 +766,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ## summit/loop ATAC peak enriched motif</span>
 
-<span class="c1"># for i in `seq 3 34`; do (</span>
-<span class="c1"># ct=c${i}</span>
-<span class="c1"># loopdir=/large_storage/zhoulab/zhoujt/project/ENTEx/loop/majortype</span>
-<span class="c1"># atacdir=/large_storage/zhoulab/zhoujt/project/ENTEx/scATAC/peak/majortype</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_peak_motif</span>
 <span class="c1"># mkdir -p ${outdir}/${ct}/bed/loop_peak/ ${outdir}/${ct}/bed/summit_peak/</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${atacdir}/${ct}.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_peak/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/${ct}/${ct}.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${atacdir}/${ct}.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_peak/${ct}.bed</span>
@@ -927,9 +790,6 @@
 <span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.html \</span>
 <span class="c1">#     --n_cpu 32</span>
 <span class="c1"># )</span>
-<span class="c1"># done</span>
-
-<span class="c1"># for f in $(grep &quot;&lt;th&gt;&quot; ${outdir}/${ct}/ctx_results.html | sed &#39;s|&lt;th&gt;||g&#39; | sed &#39;s|&lt;/th&gt;||g&#39;); do grep $f /large_storage/zhoulab/ref/aertslab_motif_colleciton/v10nr_clust_public/snapshots/motifs-v10-nr.hgnc-m0.00001-o0.0.tbl; done | cut -f6 | sort -k1,1 -u | less</span>
 </pre></div>
 </div>
 </div>
@@ -937,10 +797,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [pipeline/shell command — commented out; output is cached on disk]</span>
-<span class="c1"># ct=c35</span>
-<span class="c1"># loopdir=/large_storage/zhoulab/zhoujt/project/ENTEx/loop/majortype</span>
-<span class="c1"># atacdir=/large_storage/zhoulab/zhoujt/project/ENTEx/scATAC/peak/majortype</span>
-<span class="c1"># outdir=/large_storage/zhoulab/zhoujt/project/ENTEx/analysis/loop_peak_motif</span>
 <span class="c1"># mkdir -p ${outdir}/${ct}/bed/loop_peak/ ${outdir}/${ct}/bed/summit_peak/</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/c7/c7.loop.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${atacdir}/${ct}.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/loop_peak/${ct}.bed</span>
 <span class="c1"># awk &#39;{printf(&quot;%s\t%d\t%d\n%s\t%d\t%d\n&quot;,$1,$2,$3,$4,$5,$6)}&#39; ${loopdir}/c7/c7.loop_summit.bedpe | sort -k1,1 -k2,2n -u | bedtools closest -a ${atacdir}/${ct}.bed -b - -d | awk &#39;$7&lt;1000 {printf(&quot;%s\t%d\t%d\n&quot;,$1,$2,$3)}&#39; | sort -k1,1 -k2,2n -u &gt; ${outdir}/${ct}/bed/summit_peak/${ct}.bed</span>
@@ -964,7 +820,6 @@
 <span class="c1">#     --output_fname_cistarget_html ${outdir}/${ct}/ctx_results.html \</span>
 <span class="c1">#     --n_cpu 32</span>
 <span class="c1"># )</span>
-<span class="c1"># done</span>
 </pre></div>
 </div>
 </div>

@@ -556,42 +556,38 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
-<span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
-<span class="n">BOOK_ROOT</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BOOK_ROOT&#39;</span><span class="p">,</span>  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/HumanCellEpigenomeAtlas&#39;</span><span class="p">)</span>
+
+<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ENTEX_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/zhoujt/project/ENTEx&quot;</span><span class="p">)</span>
+<span class="n">REF_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REF_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/ref&quot;</span><span class="p">)</span>
+<span class="n">BOOK_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BOOK_ROOT&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/HumanCellEpigenomeAtlas&quot;</span><span class="p">)</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>  <span class="c1"># original working directory</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>  <span class="c1"># no-overwrite guard (default: skip existing)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy.external</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sce</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.integration.seurat_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeuratIntegration</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span><span class="p">,</span> <span class="n">roc_auc_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize</span>
-
-<span class="c1"># mpl.use(&#39;agg&#39;)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -602,7 +598,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="c1"># put manifold coordinates into adata.obs</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
-        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">adata</span>
 </pre></div>
 </div>
@@ -610,30 +606,30 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/clustering/merged/&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/pairwise_prediction/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/clustering/merged/&quot;</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/pairwise_prediction/&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="s1">&#39;Mus-Skl&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="s2">&quot;Mus-Skl&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">npc.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;npc_cg&#39;</span><span class="p">,</span> <span class="s1">&#39;npc_3c&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">npc.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;npc_cg&quot;</span><span class="p">,</span> <span class="s2">&quot;npc_3c&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/5kCG_embed.h5ad&#39;</span><span class="p">)</span>
-<span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_mc</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">/5kCG_embed.h5ad&quot;</span><span class="p">)</span>
+<span class="n">adata_3c</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">/100k3C_embed.h5ad&quot;</span><span class="p">)</span>
 <span class="n">adata_3c</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="p">[</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -641,12 +637,11 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coord_base</span> <span class="o">=</span> <span class="s1">&#39;tsne&#39;</span>
-<span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coord_base</span> <span class="o">=</span> <span class="s2">&quot;tsne&quot;</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L2/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">/5kCG100k3C_embed.h5ad&quot;</span><span class="p">)</span>
 <span class="n">npc_cg</span><span class="p">,</span> <span class="n">npc_3c</span> <span class="o">=</span> <span class="n">npc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">labelany</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">_mergeany_rocpr.npy&#39;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># labelboth = np.load(f&#39;{outdir}{ct}_mergeboth_rocpr.npy&#39;, allow_pickle=True)</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="mi">150</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">labelany</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s2">_mergeany_rocpr.npy&quot;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="mi">150</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -654,9 +649,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
-<span class="n">clustering_name</span> <span class="o">=</span> <span class="s1">&#39;L1&#39;</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="s2">&quot;L1&quot;</span>
 
-<span class="c1"># ConsensusClustering</span>
 <span class="c1"># Important factores</span>
 <span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
 <span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">0.5</span>
@@ -666,7 +660,7 @@
 <span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">50</span>
 
 <span class="c1"># Other ConsensusClustering parameters</span>
-<span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span>
 <span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
 <span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
@@ -677,45 +671,47 @@
 
 <span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
 <span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">method_dist</span> <span class="o">=</span> <span class="s1">&#39;correlation&#39;</span>
-<span class="n">method_hclust</span> <span class="o">=</span> <span class="s1">&#39;average&#39;</span>
+<span class="n">method_dist</span> <span class="o">=</span> <span class="s2">&quot;correlation&quot;</span>
+<span class="n">method_hclust</span> <span class="o">=</span> <span class="s2">&quot;average&quot;</span>
 
-<span class="n">plot_type</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span>
+<span class="n">plot_type</span> <span class="o">=</span> <span class="s2">&quot;static&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                         <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
-                         <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
-                         <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
-                         <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
-                         <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
-                         <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
-                         <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
-                         <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
-                         <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
-                         <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
-                         <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
-                         <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+    <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
+    <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
+    <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
+    <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
+    <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
+    <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+    <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_3c</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s2">_seuratL2&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s2">_leiden_init&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_seuratL2&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">adata_mc</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s2">_seuratL2&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s2">_leiden_init&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -730,35 +726,35 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s1">_leiden_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="c1"># leiden_group_mc = [[0], [3,5,8,10,11,13,15,17,19], [1,2,4,6,7,9,14,18]]</span>
-<span class="c1"># leiden_group_mc = [[2], [0,5,8,9],[1,3,4,6,7]]</span>
-<span class="n">leiden_group_mc</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">]]</span>
-<span class="n">leiden_group_3c</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
-<span class="n">leiden_map</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;mc</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leiden_group_mc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
-<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">leiden_map</span><span class="p">)</span>
-<span class="n">leiden_map</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="sa">f</span><span class="s1">&#39;3c</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leiden_group_3c</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
-<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_init_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">leiden_map</span><span class="p">)</span>
-<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">,</span> <span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_init_mc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;5kCG_u</span><span class="si">{</span><span class="n">npc_cg</span><span class="si">}</span><span class="s2">_leiden_init&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_init_3c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc_3c</span><span class="si">}</span><span class="s2">_leiden_init&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">leiden_group_mc</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">]]</span>
+<span class="n">leiden_group_3c</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">leiden_map</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;c</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;mc</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leiden_group_mc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_init_mc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">leiden_map</span><span class="p">)</span>
+<span class="n">leiden_map</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;c</span><span class="si">{</span><span class="n">xx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;3c</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leiden_group_3c</span><span class="p">)</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">}</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_init_3c&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">leiden_map</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group_mc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_mc</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group_3c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_3c</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s2">&quot;leiden_group_mc&quot;</span><span class="p">,</span> <span class="s2">&quot;leiden_group_3c&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;group_mc_3c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_mc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;leiden_group_3c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;group_mc_3c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group_mc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;leiden_group_3c&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
-<span class="n">adata_mc</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/5kCG_embed.h5ad&#39;</span><span class="p">)</span>
-<span class="n">adata_3c</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s1">&#39;Mus-Skl/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s2">&quot;Mus-Skl/5kCG100k3C_embed.h5ad&quot;</span><span class="p">)</span>
+<span class="n">adata_mc</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s2">&quot;Mus-Skl/5kCG_embed.h5ad&quot;</span><span class="p">)</span>
+<span class="n">adata_3c</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s2">&quot;Mus-Skl/100k3C_embed.h5ad&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

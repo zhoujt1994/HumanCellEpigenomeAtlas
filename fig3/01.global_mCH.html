@@ -566,11 +566,11 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.integration.seurat_class</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeuratIntegration</span>
 
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ps.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sans-serif&#39;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Helvetica&#39;</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -580,7 +580,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="c1"># put manifold coordinates into adata.obs</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
-        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">adata</span>
 </pre></div>
 </div>
@@ -588,15 +588,15 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="s1">&#39;/data/ENTEx/&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="s1">&#39;/mnt/disks/jupyter/home/jzhou_salk_edu/sky_workdir/ENTEx/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="s2">&quot;/data/ENTEx/&quot;</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="s2">&quot;/mnt/disks/jupyter/home/jzhou_salk_edu/sky_workdir/ENTEx/&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">clustering/merged/L1pre/5kCG_lsi.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">clustering/merged/L1pre/5kCG_lsi.h5ad&quot;</span><span class="p">)</span>
 <span class="n">tmp</span>
 </pre></div>
 </div>
@@ -604,7 +604,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">clustering/merged/L1/5kCG100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">clustering/merged/L1/5kCG100k3C_embed.h5ad&quot;</span><span class="p">)</span>
 <span class="n">adata</span>
 </pre></div>
 </div>
@@ -612,7 +612,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged/ALL_lambda.csv.gz&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">merged/ALL_lambda.csv.gz&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lam</span>
 </pre></div>
 </div>
@@ -620,7 +620,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;Tissue&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 <span class="n">leg</span>
 </pre></div>
 </div>
@@ -629,9 +629,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">]</span>
-    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">lim</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)]),</span> <span class="nb">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">],</span> <span class="mi">99</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">],</span> <span class="mi">99</span><span class="p">)])]</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;Tissue&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">]</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;cov&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">lim</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;ratio&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;mCHFrac&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)]),</span>
+        <span class="nb">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;ratio&quot;</span><span class="p">],</span> <span class="mi">99</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;mCHFrac&quot;</span><span class="p">],</span> <span class="mi">99</span><span class="p">)]),</span>
+    <span class="p">]</span>
     <span class="n">diff</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -639,13 +642,25 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selcol</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">,</span> <span class="s1">&#39;Sample&#39;</span><span class="p">,</span> <span class="s1">&#39;Donor&#39;</span><span class="p">,</span> 
-          <span class="s1">&#39;Cis/Trans&#39;</span><span class="p">,</span> <span class="s1">&#39;CisLongContact&#39;</span><span class="p">,</span> <span class="s1">&#39;FinalmCReads&#39;</span><span class="p">,</span> 
-          <span class="s1">&#39;mCHmC&#39;</span><span class="p">,</span> <span class="s1">&#39;mCHCov&#39;</span><span class="p">,</span> <span class="s1">&#39;mCHFrac&#39;</span><span class="p">,</span> 
-          <span class="s1">&#39;mCGmC&#39;</span><span class="p">,</span> <span class="s1">&#39;mCGCov&#39;</span><span class="p">,</span> <span class="s1">&#39;mCGFrac&#39;</span><span class="p">,</span> 
-          <span class="s1">&#39;mCCCmC&#39;</span><span class="p">,</span> <span class="s1">&#39;mCCCCov&#39;</span><span class="p">,</span> <span class="s1">&#39;mCCCFrac&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selcol</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Tissue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sample&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Donor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Cis/Trans&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CisLongContact&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FinalmCReads&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCHmC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCHCov&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCHFrac&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCGmC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCGCov&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCGFrac&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCCCmC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCCCCov&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mCCCFrac&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 <span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">selcol</span><span class="p">],</span> <span class="n">lam</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">meta</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="n">meta</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">meta</span>
 </pre></div>
 </div>
@@ -653,11 +668,11 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mch_df</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[[</span><span class="s1">&#39;mCHmC&#39;</span><span class="p">,</span> <span class="s1">&#39;mCHCov&#39;</span><span class="p">,</span> <span class="s1">&#39;mc&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;LambdamCHFrac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;mc&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]</span>
-<span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;BulkmCHFrac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;mCHmC&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;mCHCov&#39;</span><span class="p">]</span>
-<span class="n">mch_df</span><span class="p">[</span><span class="s1">&#39;AvemCHFrac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">)[</span><span class="s1">&#39;mCHFrac&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">mch_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;AvemCHFrac&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mch_df</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)[[</span><span class="s2">&quot;mCHmC&quot;</span><span class="p">,</span> <span class="s2">&quot;mCHCov&quot;</span><span class="p">,</span> <span class="s2">&quot;mc&quot;</span><span class="p">,</span> <span class="s2">&quot;cov&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;LambdamCHFrac&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;mc&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;cov&quot;</span><span class="p">]</span>
+<span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;BulkmCHFrac&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;mCHmC&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;mCHCov&quot;</span><span class="p">]</span>
+<span class="n">mch_df</span><span class="p">[</span><span class="s2">&quot;AvemCHFrac&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)[</span><span class="s2">&quot;mCHFrac&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mch_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AvemCHFrac&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -665,10 +680,18 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mch_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">colordict</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span> <span class="n">yy</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">)))}</span>
+<span class="n">colordict</span> <span class="o">=</span> <span class="p">{</span><span class="n">xx</span><span class="p">:</span> <span class="n">yy</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">)))}</span>
 <span class="n">ylim</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.056</span><span class="p">,</span> <span class="mf">0.061</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.021</span><span class="p">]]</span>
 <span class="n">d</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">d</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">mew</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">marker</span><span class="o">=</span><span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">d</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)],</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">mec</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">mew</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>

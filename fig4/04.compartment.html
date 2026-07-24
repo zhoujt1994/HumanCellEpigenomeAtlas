@@ -558,39 +558,43 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
-<span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
-<span class="n">BOOK_ROOT</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BOOK_ROOT&#39;</span><span class="p">,</span>  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/HumanCellEpigenomeAtlas&#39;</span><span class="p">)</span>
+
+<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ENTEX_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/zhoujt/project/ENTEx&quot;</span><span class="p">)</span>
+<span class="n">REF_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REF_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/ref&quot;</span><span class="p">)</span>
+<span class="n">BOOK_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BOOK_ROOT&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/HumanCellEpigenomeAtlas&quot;</span><span class="p">)</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>  <span class="c1"># original working directory</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>  <span class="c1"># no-overwrite guard (default: skip existing)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cooler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">coo_matrix</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
 
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ps.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sans-serif&#39;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Helvetica&#39;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -598,18 +602,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir_raw</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/merged_cool_raw/&#39;</span>
-<span class="n">indir_impute</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/merged_cool_impute/100K/&#39;</span>
-<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/compartment/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir_raw</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/merged_cool_raw/&quot;</span>
+<span class="n">indir_impute</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/merged_cool_impute/100K/&quot;</span>
+<span class="n">outdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/compartment/&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># indir = indir_impute</span>
-<span class="n">indir</span> <span class="o">=</span> <span class="n">indir_raw</span>
-<span class="n">coollist</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L2any/c*-c*.cool&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="n">indir_raw</span>
+<span class="n">coollist</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L2any/c*-c*.cool&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coollist</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -617,11 +620,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cool_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">coollist</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cool_path&#39;</span><span class="p">])</span>
-<span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L2any&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;cool_path&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-<span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L2any&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">cool_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c7&#39;</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;c35&#39;</span>
-<span class="n">cool_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c35&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L2any&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c10&#39;</span><span class="p">,</span><span class="s1">&#39;c11&#39;</span><span class="p">]),</span> <span class="s1">&#39;L1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;c36&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cool_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">coollist</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cool_path&quot;</span><span class="p">])</span>
+<span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L2any&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;cool_path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L2any&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cool_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;c7&quot;</span><span class="p">,</span> <span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;c35&quot;</span>
+<span class="n">cool_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;c35&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L2any&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span> <span class="s2">&quot;c10&quot;</span><span class="p">,</span> <span class="s2">&quot;c11&quot;</span><span class="p">]),</span>
+    <span class="s2">&quot;L1&quot;</span><span class="p">,</span>
+<span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;c36&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -629,34 +635,31 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">merge_impute_cool</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">cool_path</span><span class="p">):</span>
-    <span class="c1"># os.makedirs(f&#39;{indir}L1/&#39;, exist_ok=True)</span>
-    <span class="n">cool_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1/coollist_</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">.txt&#39;</span>
+    <span class="n">cool_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1/coollist_</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">.txt&quot;</span>
     <span class="n">cool_path</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">cool_list_path</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;hicluster merge-cool --input_cool_tsv_file </span><span class="si">{</span><span class="n">cool_list_path</span><span class="si">}</span><span class="s1"> --output_cool </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">.cool&#39;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;hicluster merge-cool --input_cool_tsv_file </span><span class="si">{</span><span class="n">cool_list_path</span><span class="si">}</span><span class="s2"> --output_cool </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">.cool&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">.cool&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">.cool&quot;</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">merge_raw_cool</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">cool_path</span><span class="p">):</span>
-    <span class="c1"># os.makedirs(f&#39;{outdir}chunk{group}/&#39;, exist_ok=True)</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cooler merge </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">.cool &#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cool_path</span><span class="p">))</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;cooler merge </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">.cool &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cool_path</span><span class="p">))</span>
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1">.cool&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">.cool&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
-
-<span class="n">cpu</span> <span class="o">=</span> <span class="mi">30</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">group</span><span class="p">,</span><span class="n">df</span> <span class="ow">in</span> <span class="n">cool_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cool_df</span><span class="p">[</span><span class="s1">&#39;L1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;c35&#39;</span><span class="p">,</span><span class="s1">&#39;c36&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;L1&#39;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">cool_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cool_df</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;c35&quot;</span><span class="p">,</span> <span class="s2">&quot;c36&quot;</span><span class="p">])]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">):</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">merge_raw_cool</span><span class="p">,</span>
             <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
-            <span class="n">cool_path</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cool_path&#39;</span><span class="p">],</span>
+            <span class="n">cool_path</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cool_path&quot;</span><span class="p">],</span>
         <span class="p">)</span>
         <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
 
@@ -664,29 +667,18 @@
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
         <span class="n">group</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2"> finished&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## raw</span>
-<span class="c1"># cmd = f&#39;cooler merge {outdir}merged.raw.cool &#39; + &#39; &#39;.join(list(result))</span>
-<span class="c1"># os.system(cmd)</span>
-<span class="c1"># cmd = f&#39;cooler zoomify -r 5000N -n 32 {outdir}merged.raw.cool&#39;</span>
-<span class="c1"># os.system(cmd)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## impute</span>
-<span class="n">cool_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">coollist.txt&#39;</span>
-<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">cool_list_path</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;hicluster merge-cool --input_cool_tsv_file </span><span class="si">{</span><span class="n">cool_list_path</span><span class="si">}</span><span class="s1"> --output_cool </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">merged.cool&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cool_list_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">coollist.txt&quot;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">cool_list_path</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;hicluster merge-cool --input_cool_tsv_file </span><span class="si">{</span><span class="n">cool_list_path</span><span class="si">}</span><span class="s2"> --output_cool </span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">merged.cool&quot;</span>
+<span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -695,7 +687,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="mi">100000</span>
-<span class="n">chrom_size_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes&#39;</span>
+<span class="n">chrom_size_path</span> <span class="o">=</span> <span class="s2">&quot;/large_experiments/zhoulab/ref/hg38/fasta/hg38.main.chrom.sizes&quot;</span>
 <span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">read_chromsizes</span><span class="p">(</span><span class="n">chrom_size_path</span><span class="p">,</span> <span class="n">all_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">chrom_sizes</span> <span class="o">=</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">22</span><span class="p">]</span>
 </pre></div>
@@ -704,11 +696,11 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">merged_comp.hdf&#39;</span><span class="p">):</span>
-    <span class="n">bin_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">merged_comp.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">merged_comp.hdf&quot;</span><span class="p">):</span>
+    <span class="n">bin_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">merged_comp.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">bin_df</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">binnify</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
-    <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
 <span class="n">bin_df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
@@ -717,8 +709,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/hg38.100kbin.CpG.txt&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">cpg</span><span class="p">[</span><span class="s1">&#39;CpG_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpg</span><span class="p">[</span><span class="s1">&#39;14_user_patt_count&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">cpg</span><span class="p">[</span><span class="s1">&#39;13_seq_len&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">cpg</span><span class="p">[</span><span class="s1">&#39;11_num_N&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/hg38/hg38.100kbin.CpG.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">cpg</span><span class="p">[</span><span class="s2">&quot;CpG_density&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cpg</span><span class="p">[</span><span class="s2">&quot;14_user_patt_count&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">cpg</span><span class="p">[</span><span class="s2">&quot;13_seq_len&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">cpg</span><span class="p">[</span><span class="s2">&quot;11_num_N&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -730,11 +722,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qall</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">binall</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;impute&#39;</span>
-<span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;raw&#39;</span><span class="p">:</span>
-    <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s1">merged.mcool::resolutions/100000&#39;</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;impute&#39;</span><span class="p">:</span>
-    <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s1">merged.cool&#39;</span><span class="p">)</span>
+<span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;impute&quot;</span>
+<span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;raw&quot;</span><span class="p">:</span>
+    <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s2">merged.mcool::resolutions/100000&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;impute&quot;</span><span class="p">:</span>
+    <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s2">merged.cool&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
     <span class="n">Q</span> <span class="o">=</span> <span class="n">cool</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
     <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span>
@@ -747,41 +739,7 @@
     <span class="n">Qall</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># coollist = pd.read_csv(f&#39;{ENTEX_ROOT}/clustering/merged/coollist_group.csv&#39;, header=None, index_col=0)</span>
-<span class="c1"># coollist.columns = [&#39;coolpath&#39;, &#39;group&#39;]</span>
-<span class="c1"># coollist[&#39;L2any&#39;] = [&#39;-&#39;.join(xx.split(&#39;-&#39;)[:2]) for xx in coollist[&#39;group&#39;].values]</span>
-<span class="c1"># coollist[&#39;L1&#39;] = coollist[&#39;L2any&#39;].str.split(&#39;-&#39;).str[0]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for xx,df in coollist.groupby(&#39;L2any&#39;):</span>
-<span class="c1">#     cool = cooler.Cooler(f&#39;{indir}L2any/{xx}.cool&#39;)</span>
-<span class="c1">#     if df.shape[0]!=cool.info[&#39;group_n_cells&#39;]:</span>
-<span class="c1">#         print(xx, df.shape[0])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tot = 0</span>
-<span class="c1"># for xx,df in coollist.groupby(&#39;L1&#39;):</span>
-<span class="c1">#     cool = cooler.Cooler(f&#39;{indir}L1/{xx}.cool&#39;)</span>
-<span class="c1">#     tot += cool.info[&#39;group_n_cells&#39;]</span>
-<span class="c1">#     if df.shape[0]!=cool.info[&#39;group_n_cells&#39;]:</span>
-<span class="c1">#         print(xx, df.shape[0], cool.info[&#39;group_n_cells&#39;])</span>
-
-<span class="c1"># print(tot)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -800,19 +758,17 @@
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">n_bins</span><span class="p">))</span>
     <span class="n">tmp</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">binall</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">binall</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">Qall</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comp = pd.read_hdf(f&#39;{indir}compartment_majortype/comp_raw_merged.hdf&#39;, key=&#39;data&#39;)</span>
-
-<span class="n">Call</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">pcall</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">modelall</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
     <span class="n">Q</span> <span class="o">=</span> <span class="n">Qall</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">decay</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
     <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -823,39 +779,36 @@
     <span class="n">E</span> <span class="o">=</span> <span class="n">E</span> <span class="o">+</span> <span class="n">E</span><span class="o">.</span><span class="n">T</span>
     <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">E</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">))</span>
     <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
-    <span class="n">C</span><span class="p">[</span><span class="n">C</span><span class="o">&lt;</span><span class="n">vmin</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmin</span>
-    <span class="n">C</span><span class="p">[</span><span class="n">C</span><span class="o">&gt;</span><span class="n">vmax</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmax</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">C</span> <span class="o">&lt;</span> <span class="n">vmin</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmin</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">C</span> <span class="o">&gt;</span> <span class="n">vmax</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmax</span>
     <span class="n">Call</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
     <span class="n">binfilter</span> <span class="o">=</span> <span class="n">binall</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-<span class="c1">#     tmp = comp.loc[ct, (comp.columns.str.split(&#39;_&#39;).str[0]==chrom)]</span>
-<span class="c1">#     tmp.index = [int(xx.split(&#39;_&#39;)[1]) for xx in tmp.index]</span>
-<span class="c1">#     pcall.append(tmp[np.where(binfilter)[0]].values)</span>
-    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s2">&quot;arpack&quot;</span><span class="p">)</span>
     <span class="n">pc</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
-    <span class="n">cpgtmp</span> <span class="o">=</span> <span class="n">cpg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cpg</span><span class="p">[</span><span class="s1">&#39;#1_usercol&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">chrom</span><span class="p">,</span> <span class="s1">&#39;CpG_density&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">binfilter</span><span class="p">]</span>
-    <span class="c1"># i = 0</span>
-    <span class="c1"># if np.abs(pearsonr(cpgtmp, pc[:,0])[0])&gt;np.abs(pearsonr(cpgtmp, pc[:,1])[0]):</span>
-    <span class="c1">#     i = 0</span>
-    <span class="c1"># else:</span>
-    <span class="c1">#     i = 1</span>
+    <span class="n">cpgtmp</span> <span class="o">=</span> <span class="n">cpg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cpg</span><span class="p">[</span><span class="s2">&quot;#1_usercol&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">chrom</span><span class="p">,</span> <span class="s2">&quot;CpG_density&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">binfilter</span><span class="p">]</span>
     <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-        <span class="n">labels</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">pc</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">sad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">E</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">labels</span><span class="o">==</span><span class="n">i</span><span class="p">,</span> <span class="n">labels</span><span class="o">==</span><span class="n">j</span><span class="p">)]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[(</span><span class="n">labels</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="n">labels</span><span class="o">==</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
+        <span class="n">labels</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">pc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">sad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[[</span><span class="n">E</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="n">labels</span> <span class="o">==</span> <span class="n">j</span><span class="p">)]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[[(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+        <span class="p">)</span>
         <span class="n">sad</span> <span class="o">=</span> <span class="n">sad</span> <span class="o">/</span> <span class="n">count</span>
-        <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sad</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span> <span class="o">-</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">sad</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
-    <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">sad</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span> <span class="o">-</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+            <span class="o">/</span> <span class="p">(</span><span class="n">sad</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1"># if chrom==&#39;chr3&#39;:</span>
-    <span class="c1">#     i = 1</span>
-    <span class="k">if</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">cpgtmp</span><span class="p">,</span> <span class="n">pc</span><span class="p">[:,</span><span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">cpgtmp</span><span class="p">,</span> <span class="n">pc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pc</span> <span class="o">=</span> <span class="n">pc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
         <span class="n">modelall</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">pc</span> <span class="o">=</span> <span class="o">-</span><span class="n">pc</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">pc</span> <span class="o">=</span> <span class="o">-</span><span class="n">pc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
         <span class="n">modelall</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">pcall</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pc</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">chrom</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
@@ -891,19 +844,16 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_binfilter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">binall</span><span class="p">)</span>
-<span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_pcloading&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_binfilter&#39;</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_pcloading&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">modelall</span><span class="p">)</span>
-
-<span class="c1"># np.save(f&#39;{outdir}binfilter_impute.npy&#39;, binall)</span>
-<span class="c1"># np.save(f&#39;{outdir}pcloading_impute.npy&#39;, modelall)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_binfilter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">binall</span><span class="p">)</span>
+<span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_pcloading&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_binfilter&quot;</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_pcloading&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">modelall</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selb</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;impute_binfilter&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selb</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;impute_binfilter&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selb</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -911,7 +861,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">merged_comp.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">merged_comp.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -922,7 +872,7 @@
     <span class="n">pcall</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">Call</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="n">cool_path</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
         <span class="n">Q</span> <span class="o">=</span> <span class="n">cool</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
         <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span>
         <span class="n">pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -937,9 +887,9 @@
         <span class="n">E</span> <span class="o">=</span> <span class="n">E</span> <span class="o">+</span> <span class="n">E</span><span class="o">.</span><span class="n">T</span>
         <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">E</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">))</span>
         <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
-        <span class="n">C</span><span class="p">[</span><span class="n">C</span><span class="o">&lt;</span><span class="n">vmin</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmin</span>
-        <span class="n">C</span><span class="p">[</span><span class="n">C</span><span class="o">&gt;</span><span class="n">vmax</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmax</span>
-        <span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">modelall</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">C</span> <span class="o">&lt;</span> <span class="n">vmin</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmin</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">C</span> <span class="o">&gt;</span> <span class="n">vmax</span><span class="p">]</span> <span class="o">=</span> <span class="n">vmax</span>
+        <span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">modelall</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
         <span class="n">pcall</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pc</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">keep_mat</span><span class="p">:</span>
             <span class="n">Call</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
@@ -953,16 +903,19 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">merged_comp.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">binall</span> <span class="o">=</span> <span class="p">[</span><span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">chrom</span><span class="p">,</span> <span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-<span class="n">modelall</span> <span class="o">=</span> <span class="p">[</span><span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">chrom</span><span class="p">),</span> <span class="s1">&#39;raw_pcloading&#39;</span><span class="p">][</span><span class="n">binall</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">merged_comp.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">binall</span> <span class="o">=</span> <span class="p">[</span><span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">chrom</span><span class="p">,</span> <span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">modelall</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">chrom</span><span class="p">),</span> <span class="s2">&quot;raw_pcloading&quot;</span><span class="p">][</span><span class="n">binall</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s1">merged.cool&#39;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s2">merged.cool&quot;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
     <span class="n">n_bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">n_bins</span><span class="p">))</span>
@@ -976,20 +929,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;impute&#39;</span>
-<span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_binfilter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">binall</span><span class="p">)</span>
-<span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_pcloading&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_binfilter&#39;</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_pcloading&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">modelall</span><span class="p">)</span>
-
-<span class="c1"># np.save(f&#39;{outdir}binfilter_impute.npy&#39;, binall)</span>
-<span class="c1"># np.save(f&#39;{outdir}pcloading_impute.npy&#39;, modelall)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;impute&quot;</span>
+<span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_binfilter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">binall</span><span class="p">)</span>
+<span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_pcloading&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_binfilter&quot;</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_pcloading&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">modelall</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selb</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;impute_binfilter&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selb</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;impute_binfilter&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selb</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -997,7 +947,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s1">L1/c34.cool&#39;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s2">L1/c34.cool&quot;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pc_impute</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">pcall</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
     <span class="n">n_bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
@@ -1012,7 +962,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s1">L1/c34.mcool::resolutions/100000&#39;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s2">L1/c34.mcool::resolutions/100000&quot;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pc_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">pcall</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
     <span class="n">n_bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
@@ -1027,9 +977,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]]</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;raw_pc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;impute_pc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_impute</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]]</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;raw_pc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;impute_pc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_impute</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">pc_raw</span><span class="p">,</span> <span class="n">pc_impute</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1037,9 +987,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]]</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;raw_pc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;impute_pc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_impute</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]]</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;raw_pc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;impute_pc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pc_impute</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">pc_raw</span><span class="p">,</span> <span class="n">pc_impute</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1048,9 +998,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">raw_impute_corr</span><span class="p">(</span><span class="n">ct</span><span class="p">):</span>
-    <span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.cool&#39;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_impute</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.cool&quot;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">pc_impute</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">pcall</span><span class="p">)</span>
-    <span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.mcool::resolutions/100000&#39;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.mcool::resolutions/100000&quot;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">pc_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">pcall</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">pc_raw</span><span class="p">,</span> <span class="n">pc_impute</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
@@ -1072,18 +1022,17 @@
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
         <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">ct</span><span class="p">,</span> <span class="n">L1meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ct</span><span class="p">,</span> <span class="s1">&#39;L1_annot&#39;</span><span class="p">],</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="n">ct</span><span class="p">,</span> <span class="n">L1meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ct</span><span class="p">,</span> <span class="s2">&quot;L1_annot&quot;</span><span class="p">],</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()]</span>
         <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished </span><span class="si">{</span><span class="n">tmp</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2"> finished </span><span class="si">{</span><span class="n">tmp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/L1color.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">L1meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">L1meta</span><span class="p">[</span><span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/L1color.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">L1meta</span><span class="p">[</span><span class="s2">&quot;L1_annot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">L1meta</span><span class="p">[</span><span class="s2">&quot;L1_annot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1096,8 +1045,7 @@
     <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">L1meta</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">compute_comp</span><span class="p">,</span>
-            <span class="c1"># cool_path=f&#39;{indir_impute}L1/{ct}.cool&#39;,</span>
-            <span class="n">cool_path</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.mcool::resolutions/100000&#39;</span><span class="p">,</span>
+            <span class="n">cool_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.mcool::resolutions/100000&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">ct</span>
 
@@ -1105,77 +1053,66 @@
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
         <span class="n">ct</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">result</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2"> finished&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span><span class="s1">&#39;start&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">,</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">binfilter</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s1">&#39;raw_binfilter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[[</span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">binfilter</span> <span class="o">=</span> <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-    <span class="n">ct</span> <span class="o">=</span> <span class="n">L1meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">xx</span><span class="p">,</span> <span class="s1">&#39;L1_annot&#39;</span><span class="p">]</span>
-    <span class="c1"># tmp = bin_df[[&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]].copy()</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="n">L1meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">xx</span><span class="p">,</span> <span class="s2">&quot;L1_annot&quot;</span><span class="p">]</span>
     <span class="n">comp</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">comp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">binfilter</span><span class="p">,</span> <span class="n">xx</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span>
-    <span class="n">comp</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span><span class="s1">&#39;start&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">,</span><span class="n">xx</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.raw.bedgraph&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">comp</span><span class="p">[[</span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="n">xx</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.raw.bedgraph&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">L1/comp.raw.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">L1/comp.raw.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="s1">&#39;c2&#39;</span>
-<span class="c1"># Call, pcall = compute_comp(f&#39;{indir_impute}L1/{ct}.cool&#39;, keep_mat=True)</span>
-<span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s1">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.mcool::resolutions/100000&#39;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="s2">&quot;c2&quot;</span>
+<span class="n">Call</span><span class="p">,</span> <span class="n">pcall</span> <span class="o">=</span> <span class="n">compute_comp</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir_raw</span><span class="si">}</span><span class="s2">L1/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.mcool::resolutions/100000&quot;</span><span class="p">,</span> <span class="n">keep_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">coo_matrix</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">schicluster.cool</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_chrom_offsets</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">chrom_sum_iterator</span><span class="p">(</span><span class="n">Call</span><span class="p">,</span>
-                       <span class="n">binall</span><span class="p">,</span>
-                       <span class="n">chrom_sizes</span><span class="p">,</span>
-                       <span class="n">chrom_offset</span>
-                      <span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">chrom_sum_iterator</span><span class="p">(</span><span class="n">Call</span><span class="p">,</span> <span class="n">binall</span><span class="p">,</span> <span class="n">chrom_sizes</span><span class="p">,</span> <span class="n">chrom_offset</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
         <span class="n">n_bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">n_bins</span><span class="p">))</span>
         <span class="n">tmp</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">binall</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">binall</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">Call</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">matrix</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
-        <span class="n">pixel_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-            <span class="s1">&#39;bin1_id&#39;</span><span class="p">:</span> <span class="n">matrix</span><span class="o">.</span><span class="n">row</span><span class="p">,</span>
-            <span class="s1">&#39;bin2_id&#39;</span><span class="p">:</span> <span class="n">matrix</span><span class="o">.</span><span class="n">col</span><span class="p">,</span>
-            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">matrix</span><span class="o">.</span><span class="n">data</span>
-        <span class="p">})</span>
+        <span class="n">pixel_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;bin1_id&quot;</span><span class="p">:</span> <span class="n">matrix</span><span class="o">.</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;bin2_id&quot;</span><span class="p">:</span> <span class="n">matrix</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">matrix</span><span class="o">.</span><span class="n">data</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="n">pixel_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">chrom_offset</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
         <span class="k">yield</span> <span class="n">pixel_df</span>
 
+
 <span class="n">bin_tmp</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">chrom_offset</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">bin_tmp</span><span class="p">[</span><span class="n">bin_tmp</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">}</span>
-<span class="n">chrom_iter</span> <span class="o">=</span> <span class="n">chrom_sum_iterator</span><span class="p">(</span><span class="n">Call</span><span class="p">,</span>
-                                <span class="n">binall</span><span class="p">,</span>
-                                <span class="n">chrom_sizes</span><span class="p">,</span>
-                                <span class="n">chrom_offset</span>
-                               <span class="p">)</span>
-<span class="n">cooler</span><span class="o">.</span><span class="n">create_cooler</span><span class="p">(</span><span class="n">cool_uri</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.raw.corr.cool&#39;</span><span class="p">,</span>
-                     <span class="n">bins</span><span class="o">=</span><span class="n">bin_df</span><span class="p">[[</span><span class="s1">&#39;chrom&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]],</span>
-                     <span class="n">pixels</span><span class="o">=</span><span class="n">chrom_iter</span><span class="p">,</span>
-                     <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                     <span class="n">dtypes</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">})</span>
+<span class="n">chrom_offset</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">bin_tmp</span><span class="p">[</span><span class="n">bin_tmp</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">}</span>
+<span class="n">chrom_iter</span> <span class="o">=</span> <span class="n">chrom_sum_iterator</span><span class="p">(</span><span class="n">Call</span><span class="p">,</span> <span class="n">binall</span><span class="p">,</span> <span class="n">chrom_sizes</span><span class="p">,</span> <span class="n">chrom_offset</span><span class="p">)</span>
+<span class="n">cooler</span><span class="o">.</span><span class="n">create_cooler</span><span class="p">(</span>
+    <span class="n">cool_uri</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.raw.corr.cool&quot;</span><span class="p">,</span>
+    <span class="n">bins</span><span class="o">=</span><span class="n">bin_df</span><span class="p">[[</span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">]],</span>
+    <span class="n">pixels</span><span class="o">=</span><span class="n">chrom_iter</span><span class="p">,</span>
+    <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dtypes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">},</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1192,23 +1129,70 @@
 <h2>Saddle plot of merged raw pc transformed compartment<a class="headerlink" href="#saddle-plot-of-merged-raw-pc-transformed-compartment" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;L23_IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L4_IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L56_NP&#39;</span><span class="p">,</span> <span class="s1">&#39;L5_ET&#39;</span><span class="p">,</span> <span class="s1">&#39;L5_IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L6_CT&#39;</span><span class="p">,</span> <span class="s1">&#39;L6_IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L6_IT_Car3&#39;</span><span class="p">,</span> <span class="s1">&#39;L6b&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;Lamp5&#39;</span><span class="p">,</span> <span class="s1">&#39;Lamp5_LHX6&#39;</span><span class="p">,</span> <span class="s1">&#39;Sncg&#39;</span><span class="p">,</span> <span class="s1">&#39;Vip&#39;</span><span class="p">,</span> <span class="s1">&#39;Pvalb&#39;</span><span class="p">,</span> <span class="s1">&#39;Pvalb_ChC&#39;</span><span class="p">,</span> <span class="s1">&#39;Sst&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;MSN_D1&#39;</span><span class="p">,</span> <span class="s1">&#39;MSN_D2&#39;</span><span class="p">,</span> <span class="s1">&#39;SubCtx&#39;</span><span class="p">,</span> <span class="s1">&#39;Amy&#39;</span><span class="p">,</span> <span class="s1">&#39;CHD7&#39;</span><span class="p">,</span> <span class="s1">&#39;Foxp2&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;ASC&#39;</span><span class="p">,</span> <span class="s1">&#39;ODC&#39;</span><span class="p">,</span> <span class="s1">&#39;OPC&#39;</span><span class="p">,</span> <span class="s1">&#39;MGC&#39;</span><span class="p">,</span> <span class="s1">&#39;EC&#39;</span><span class="p">,</span> <span class="s1">&#39;PC&#39;</span><span class="p">,</span> <span class="s1">&#39;VLMC&#39;</span><span class="p">,</span> <span class="s1">&#39;merged&#39;</span><span class="p">]</span>
-<span class="n">legname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;L2/3-IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L4-IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L5/6-NP&#39;</span><span class="p">,</span> <span class="s1">&#39;L5-ET&#39;</span><span class="p">,</span> <span class="s1">&#39;L5-IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L6-CT&#39;</span><span class="p">,</span> <span class="s1">&#39;L6-IT&#39;</span><span class="p">,</span> <span class="s1">&#39;L6-IT-Car3&#39;</span><span class="p">,</span> <span class="s1">&#39;L6b&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;Lamp5&#39;</span><span class="p">,</span> <span class="s1">&#39;Lamp5-Lhx6&#39;</span><span class="p">,</span> <span class="s1">&#39;Sncg&#39;</span><span class="p">,</span> <span class="s1">&#39;Vip&#39;</span><span class="p">,</span> <span class="s1">&#39;Pvalb&#39;</span><span class="p">,</span> <span class="s1">&#39;Pvalb-ChC&#39;</span><span class="p">,</span> <span class="s1">&#39;Sst&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;MSN-D1&#39;</span><span class="p">,</span> <span class="s1">&#39;MSN-D2&#39;</span><span class="p">,</span> <span class="s1">&#39;SubCtx-Cplx&#39;</span><span class="p">,</span> <span class="s1">&#39;Amy-Exc&#39;</span><span class="p">,</span> <span class="s1">&#39;Chd7&#39;</span><span class="p">,</span> <span class="s1">&#39;Foxp2&#39;</span><span class="p">,</span> 
-       <span class="s1">&#39;ASC&#39;</span><span class="p">,</span> <span class="s1">&#39;ODC&#39;</span><span class="p">,</span> <span class="s1">&#39;OPC&#39;</span><span class="p">,</span> <span class="s1">&#39;MGC&#39;</span><span class="p">,</span> <span class="s1">&#39;EC&#39;</span><span class="p">,</span> <span class="s1">&#39;PC&#39;</span><span class="p">,</span> <span class="s1">&#39;VLMC&#39;</span><span class="p">,</span> <span class="s1">&#39;merged&#39;</span>
-      <span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># binall = np.load(f&#39;{outdir}binfilter_raw.npy&#39;, allow_pickle=True)</span>
-<span class="c1"># modelall = np.load(f&#39;{outdir}pcloading_raw.npy&#39;, allow_pickle=True)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leg</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;L23_IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L4_IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L56_NP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L5_ET&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L5_IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6_CT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6_IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6_IT_Car3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lamp5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lamp5_LHX6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sncg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Vip&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pvalb&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pvalb_ChC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sst&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MSN_D1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MSN_D2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SubCtx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Amy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CHD7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Foxp2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ASC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ODC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OPC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MGC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VLMC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;merged&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">legname</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;L2/3-IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L4-IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L5/6-NP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L5-ET&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L5-IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6-CT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6-IT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6-IT-Car3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;L6b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lamp5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lamp5-Lhx6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sncg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Vip&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pvalb&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pvalb-ChC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sst&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MSN-D1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MSN-D2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SubCtx-Cplx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Amy-Exc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Chd7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Foxp2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ASC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ODC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OPC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MGC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VLMC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;merged&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1219,7 +1203,7 @@
     <span class="n">sad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
     <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
     <span class="n">comptmp</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
         <span class="n">Q</span> <span class="o">=</span> <span class="n">cool</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">balance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">chrom</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
         <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span>
         <span class="n">pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1233,11 +1217,15 @@
             <span class="n">E</span><span class="p">[</span><span class="n">row</span><span class="p">[:</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">:]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q</span><span class="p">[</span><span class="n">row</span><span class="p">[:</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">col</span><span class="p">[</span><span class="n">i</span><span class="p">:]]</span> <span class="o">+</span> <span class="mf">1e-5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">decay</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-5</span><span class="p">)</span>
         <span class="n">E</span> <span class="o">=</span> <span class="n">E</span> <span class="o">+</span> <span class="n">E</span><span class="o">.</span><span class="n">T</span>
         <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">E</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">))</span>
-        <span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">modelall</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">modelall</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
         <span class="n">comptmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pc</span><span class="p">)</span>
         <span class="n">labels</span><span class="p">,</span> <span class="n">groups</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">sad</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">E</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">labels</span><span class="o">==</span><span class="n">i</span><span class="p">,</span> <span class="n">labels</span><span class="o">==</span><span class="n">j</span><span class="p">)]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
-        <span class="n">count</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[(</span><span class="n">labels</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="n">labels</span><span class="o">==</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
+        <span class="n">sad</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[[</span><span class="n">E</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ix_</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="n">labels</span> <span class="o">==</span> <span class="n">j</span><span class="p">)]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[[(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">comptmp</span><span class="p">),</span> <span class="n">sad</span><span class="p">,</span> <span class="n">count</span>
 </pre></div>
 </div>
@@ -1245,9 +1233,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;raw&#39;</span>
-<span class="n">sad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
-<span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">),</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;raw&quot;</span>
+<span class="n">sad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 <span class="n">comp</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
@@ -1258,11 +1246,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">t</span><span class="p">,</span><span class="n">ct</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leg</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">mode</span><span class="o">==</span><span class="s1">&#39;impute&#39;</span><span class="p">:</span>
-            <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.Q.cool&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">mode</span><span class="o">==</span><span class="s1">&#39;raw&#39;</span><span class="p">:</span>
-            <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1">.raw.mcool::resolutions/100000&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">ct</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">leg</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;impute&quot;</span><span class="p">:</span>
+            <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.Q.cool&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;raw&quot;</span><span class="p">:</span>
+            <span class="n">cool</span> <span class="o">=</span> <span class="n">cooler</span><span class="o">.</span><span class="n">Cooler</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}{</span><span class="n">ct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2">.raw.mcool::resolutions/100000&quot;</span><span class="p">)</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">compsaddle</span><span class="p">,</span>
             <span class="n">cool</span><span class="o">=</span><span class="n">cool</span><span class="p">,</span>
@@ -1276,8 +1264,7 @@
         <span class="n">comp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">ct</span><span class="p">))</span>
         <span class="n">sad</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">yy</span>
         <span class="n">count</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+=</span> <span class="n">zz</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s1"> finished&#39;</span><span class="p">)</span>
-        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ct</span><span class="si">}</span><span class="s2"> finished&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1285,8 +1272,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins_df</span> <span class="o">=</span> <span class="n">cool</span><span class="o">.</span><span class="n">bins</span><span class="p">()[:]</span>
-<span class="n">bins_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">bins_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="n">bins_df</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">compidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">bins_df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">bins_df</span><span class="p">[</span><span class="s1">&#39;chrom&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">][</span><span class="n">binall</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])])</span>
+<span class="n">bins_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">bins_df</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">bins_df</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">compidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">bins_df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">bins_df</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">][</span><span class="n">binall</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1295,7 +1284,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">comp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">compidx</span>
-<span class="n">comp</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">comp_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_mergerawpca.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">comp</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">comp_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_mergerawpca.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1303,7 +1292,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sad</span> <span class="o">=</span> <span class="n">sad</span> <span class="o">/</span> <span class="n">count</span>
-<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s1">saddle_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s1">_mergerawpca.npy&#39;</span><span class="p">,</span> <span class="n">sad</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}</span><span class="s2">saddle_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_mergerawpca.npy&quot;</span><span class="p">,</span> <span class="n">sad</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1311,11 +1300,19 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">compstr</span> <span class="o">=</span> <span class="p">[[</span><span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> 
-            <span class="p">(</span><span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())]</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">))]</span>
-<span class="n">compstr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">compstr</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">leg</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;AA&#39;</span><span class="p">,</span> <span class="s1">&#39;BA&#39;</span><span class="p">,</span> <span class="s1">&#39;AB&#39;</span><span class="p">,</span> <span class="s1">&#39;strength&#39;</span><span class="p">])</span>
-<span class="n">compstr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;strength&#39;</span><span class="p">)</span>
+<span class="n">compstr</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="p">(</span><span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="o">/</span> <span class="p">(</span><span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">ws</span><span class="p">,</span> <span class="o">-</span><span class="n">ws</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">sad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">ws</span><span class="p">:,</span> <span class="p">:</span><span class="n">ws</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">leg</span><span class="p">))</span>
+<span class="p">]</span>
+<span class="n">compstr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">compstr</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">leg</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;BB&quot;</span><span class="p">,</span> <span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="s2">&quot;BA&quot;</span><span class="p">,</span> <span class="s2">&quot;AB&quot;</span><span class="p">,</span> <span class="s2">&quot;strength&quot;</span><span class="p">])</span>
+<span class="n">compstr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;strength&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

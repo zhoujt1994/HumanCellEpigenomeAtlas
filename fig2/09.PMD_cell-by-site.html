@@ -552,38 +552,41 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ENTEX_ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/large_storage/zhoulab/zhoujt/project/ENTEx&#39;</span><span class="p">)</span>
-<span class="n">REF_ROOT</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REF_ROOT&#39;</span><span class="p">,</span>   <span class="s1">&#39;/large_storage/zhoulab/ref&#39;</span><span class="p">)</span>
-<span class="n">BOOK_ROOT</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BOOK_ROOT&#39;</span><span class="p">,</span>  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis/HumanCellEpigenomeAtlas&#39;</span><span class="p">)</span>
+
+<span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ENTEX_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/zhoujt/project/ENTEx&quot;</span><span class="p">)</span>
+<span class="n">REF_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REF_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/ref&quot;</span><span class="p">)</span>
+<span class="n">BOOK_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BOOK_ROOT&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/HumanCellEpigenomeAtlas&quot;</span><span class="p">)</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/analysis&#39;</span><span class="p">)</span>   <span class="c1"># original working directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>                    <span class="c1"># no-overwrite guard (default: skip existing)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>  <span class="c1"># original working directory</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>  <span class="c1"># no-overwrite guard (default: skip existing)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">csr_matrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">pysam</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pysam</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">csr_matrix</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
 
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ps.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;sans-serif&#39;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Helvetica&#39;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -591,22 +594,22 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="mi">1800000</span><span class="p">,</span> <span class="mi">3800000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&quot;chr1&quot;</span><span class="p">,</span> <span class="mi">1800000</span><span class="p">,</span> <span class="mi">3800000</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s1">/hg38/fasta/hg38.altseq.bed&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">chrom</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">REF_ROOT</span><span class="si">}</span><span class="s2">/hg38/fasta/hg38.altseq.bed&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">chrom</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">bed</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">bed</span> <span class="o">=</span> <span class="n">bed</span> <span class="o">-</span> <span class="n">start</span>
 </pre></div>
 </div>
@@ -614,7 +617,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L2_hiconly/Epi-TPB/100k3C_embed.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">clustering/merged/L2_hiconly/Epi-TPB/100k3C_embed.h5ad&quot;</span><span class="p">)</span>
 <span class="n">adata</span>
 </pre></div>
 </div>
@@ -622,22 +625,24 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s1">clustering/merged/L2_hiconly/Epi-TPB/mergehic_rocpr.npy&#39;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L2hic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_reorder</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">clustering/merged/L2_hiconly/Epi-TPB/mergehic_rocpr.npy&quot;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;L2hic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_reorder</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;allcpath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s1">/allc/&#39;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s1">&#39;.CGN-Both.allc.tsv.gz&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;allcpath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/allc/&quot;</span> <span class="o">+</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s2">&quot;.CGN-Both.allc.tsv.gz&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;L2hic&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c0&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selc</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;L2hic&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;c0&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -661,23 +666,21 @@
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">allc_lines</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">pos</span><span class="p">,</span> <span class="n">mc</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">mc</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">cov</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cov</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="n">idy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
+            <span class="n">idy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
             <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mc</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">idy</span><span class="p">,</span><span class="n">data</span>
+    <span class="k">return</span> <span class="n">idy</span><span class="p">,</span> <span class="n">data</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
-
-<span class="n">cpu</span> <span class="o">=</span> <span class="mi">32</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">allc_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="s1">&#39;allcpath&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">allc_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="s2">&quot;allcpath&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">load_allc</span><span class="p">,</span>
             <span class="n">allc_path</span><span class="o">=</span><span class="n">allc_path</span><span class="p">,</span>
@@ -688,11 +691,9 @@
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="n">idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">yy</span><span class="p">))</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">yy</span><span class="p">))</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
         <span class="n">idy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">zz</span><span class="p">)</span>
-        <span class="c1"># print(f&#39;cell {i} finished&#39;)</span>
-        
 </pre></div>
 </div>
 </div>
@@ -703,8 +704,8 @@
 <span class="n">idy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">idy</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">((</span><span class="n">data</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">])</span>
-<span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idy</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">selc</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="n">pos</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -713,10 +714,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">posfilter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="ow">in</span> <span class="n">bed</span><span class="p">:</span>
-    <span class="n">posfilter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">pos</span><span class="o">&gt;=</span><span class="n">xx</span><span class="p">,</span> <span class="n">pos</span><span class="o">&lt;=</span><span class="n">yy</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="ow">in</span> <span class="n">bed</span><span class="p">:</span>
+    <span class="n">posfilter</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">xx</span><span class="p">,</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="n">yy</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posfilter</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">posfilter</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">posfilter</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">posfilter</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -733,16 +734,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(15,1), dpi=300)</span>
-<span class="c1"># tmp = (data==1).sum(axis=0).A1</span>
-<span class="c1"># tmp = tmp / (tmp + (data==-1).sum(axis=0).A1)</span>
-<span class="c1"># tmp[data.getnnz(axis=0)&gt;500] = 0</span>
-<span class="c1"># bs = 25</span>
-<span class="c1"># nbins = tmp.shape[0] // bs</span>
-<span class="c1"># tmp = tmp[:(nbins*bs)].reshape((nbins, bs)).mean(axis=1)</span>
-<span class="c1"># x = np.arange(tmp.shape[0])</span>
-<span class="c1"># ax.plot(x, tmp, linewidth=1)</span>
-<span class="c1"># ax.set_xlim([0, nbins])</span>
-<span class="c1"># ax.fill_between(x, tmp, 0, where=tmp &gt;= 0, facecolor=&#39;C0&#39;, interpolate=True)</span>
 </pre></div>
 </div>
 </div>
@@ -751,18 +742,19 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_simi</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">nbins</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">inter_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">inter_neg</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
     <span class="n">inter_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
     <span class="n">simi</span> <span class="o">=</span> <span class="p">(</span><span class="n">inter_pos</span> <span class="o">+</span> <span class="n">inter_neg</span><span class="p">)</span> <span class="o">/</span> <span class="n">inter_cov</span>
     <span class="n">simi</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbins</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbins</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">simi</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">nbins</span> <span class="o">*</span> <span class="n">nbins</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">simi</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">nbins</span><span class="p">)</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">expect_simi</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">nbins</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">simi</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tmp</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tmp</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>
     <span class="n">simi</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbins</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nbins</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">simi</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">nbins</span> <span class="o">*</span> <span class="n">nbins</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">simi</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">nbins</span><span class="p">)</span>
@@ -775,10 +767,10 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">)):</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">compute_simi</span><span class="p">,</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span> <span class="n">xx</span><span class="p">:(</span><span class="n">xx</span><span class="o">+</span><span class="mi">50</span><span class="p">)],</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span> <span class="n">xx</span> <span class="p">:</span> <span class="p">(</span><span class="n">xx</span> <span class="o">+</span> <span class="mi">50</span><span class="p">)],</span>
         <span class="p">)</span>
         <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
 
@@ -786,8 +778,6 @@
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">simi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="c1"># print(f&#39;chunk {i} finished&#39;)</span>
-        
 </pre></div>
 </div>
 </div>
@@ -797,10 +787,10 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">cpu</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
     <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">)):</span>
         <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
             <span class="n">expect_simi</span><span class="p">,</span>
-            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span> <span class="n">xx</span><span class="p">:(</span><span class="n">xx</span><span class="o">+</span><span class="mi">50</span><span class="p">)],</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span> <span class="n">xx</span> <span class="p">:</span> <span class="p">(</span><span class="n">xx</span> <span class="o">+</span> <span class="mi">50</span><span class="p">)],</span>
         <span class="p">)</span>
         <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
 
@@ -808,8 +798,6 @@
     <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
         <span class="n">simi_exp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="c1"># print(f&#39;chunk {i} finished&#39;)</span>
-        
 </pre></div>
 </div>
 </div>
@@ -824,7 +812,7 @@
 <span class="n">bs</span> <span class="o">=</span> <span class="mi">25</span>
 <span class="n">nbins</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">bs</span>
 <span class="n">exp</span> <span class="o">=</span> <span class="n">tmp</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[:</span><span class="n">nbins</span> <span class="o">*</span> <span class="n">bs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nbins</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[:</span> <span class="n">nbins</span> <span class="o">*</span> <span class="n">bs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nbins</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -833,19 +821,19 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nbins</span> <span class="o">=</span> <span class="n">simi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[:</span><span class="n">nbins</span> <span class="o">*</span> <span class="n">bs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nbins</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[:</span> <span class="n">nbins</span> <span class="o">*</span> <span class="n">bs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nbins</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">tmp</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[:</span><span class="n">nbins</span> <span class="o">*</span> <span class="n">bs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nbins</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[:</span> <span class="n">nbins</span> <span class="o">*</span> <span class="n">bs</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nbins</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">data_neg</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">data_neg</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">data_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">ratio</span> <span class="o">=</span> <span class="n">data_pos</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> <span class="o">/</span> <span class="n">data_cov</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span>
 
@@ -859,19 +847,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simi</span> <span class="o">=</span> <span class="p">(</span><span class="n">interpos</span> <span class="o">+</span> <span class="n">interneg</span><span class="p">)</span> <span class="o">/</span> <span class="n">intercov</span>
-<span class="n">simi_exp</span> <span class="o">=</span> <span class="n">ratio</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ratio</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def compute_simi(i):</span>
-<span class="c1">#     result = (data_pos[:,i].T.dot(data_pos[:,i+1]) + data_neg[:,i].T.dot(data_neg[:,i+1])) / data_cov[:,i].T.dot(data_cov[:,i+1])</span>
-<span class="c1">#     return result.A1[0]</span>
-
-<span class="c1"># def expect_simi(i):</span>
-<span class="c1">#     return ratio[i]*ratio[i+1] + (1-ratio[i])*(1-ratio[i+1])</span>
+<span class="n">simi_exp</span> <span class="o">=</span> <span class="n">ratio</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 </pre></div>
 </div>
 </div>
@@ -880,9 +856,9 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bintrack</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">bs</span><span class="p">):</span>
     <span class="n">nnz</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">nbins</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span> <span class="o">//</span> <span class="n">bs</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nnz</span><span class="p">),</span> <span class="n">pos</span><span class="p">)),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">])</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:(</span><span class="n">bs</span><span class="o">*</span><span class="n">nbins</span><span class="p">)]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span>
+    <span class="n">nbins</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">//</span> <span class="n">bs</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nnz</span><span class="p">),</span> <span class="n">pos</span><span class="p">)),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span> <span class="p">(</span><span class="n">bs</span> <span class="o">*</span> <span class="n">nbins</span><span class="p">)]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">bs</span><span class="p">))</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">A1</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">getnnz</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">data</span>
@@ -900,8 +876,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
-<span class="n">pearsonr</span><span class="p">(</span><span class="n">simi</span><span class="p">,</span> <span class="n">simi_exp</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pearsonr</span><span class="p">(</span><span class="n">simi</span><span class="p">,</span> <span class="n">simi_exp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
