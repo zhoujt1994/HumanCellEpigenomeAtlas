@@ -685,7 +685,7 @@ upstream products, <strong>assumed to exist with its generating tool documented 
 <td><p>cell-type <code class="docutils literal notranslate"><span class="pre">Q.cool</span></code> (100 kb) → <strong>cworld/dcHiC</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Loop hdfs</strong> (<code class="docutils literal notranslate"><span class="pre">loop_Q.hdf</span></code>, <code class="docutils literal notranslate"><span class="pre">loop_T.hdf</span></code>, <code class="docutils literal notranslate"><span class="pre">merged_loop.hdf</span></code>)</p></td>
-<td><p>loop-loading step — <code class="docutils literal notranslate"><span class="pre">analysis/diff_loop/02.load</span></code> (concat <code class="docutils literal notranslate"><span class="pre">{ct}.loop.bedpe</span></code> → <code class="docutils literal notranslate"><span class="pre">merged_loop</span></code>, then read Q/T at each loop from the cools). <em>To be ported into a <code class="docutils literal notranslate"><span class="pre">fig4</span></code> prerequisite notebook; currently referenced.</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fig4/07.diffloop_majortype</span></code> — concat <code class="docutils literal notranslate"><span class="pre">{ct}.loop.bedpe</span></code> → <code class="docutils literal notranslate"><span class="pre">merged_loop</span></code>, then <code class="docutils literal notranslate"><span class="pre">load_Q</span></code> reads Q/T at each loop anchor from <code class="docutils literal notranslate"><span class="pre">{ct}.{Q,T}.cool</span></code> (cache-guarded <code class="docutils literal notranslate"><span class="pre">to_hdf</span></code>)</p></td>
 <td><p>the provided <code class="docutils literal notranslate"><span class="pre">{ct}.loop.bedpe</span></code> + <code class="docutils literal notranslate"><span class="pre">Q/T.cool</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><strong>PMD calls</strong> (<code class="docutils literal notranslate"><span class="pre">*.pmd.bed</span></code>, <code class="docutils literal notranslate"><span class="pre">*_10kb_hist.h5ad</span></code>)</p></td>
@@ -700,13 +700,17 @@ upstream products, <strong>assumed to exist with its generating tool documented 
 <td><p><code class="docutils literal notranslate"><span class="pre">fig2/01</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/02</span></code> (cache-guarded <code class="docutils literal notranslate"><span class="pre">np.save</span></code>)</p></td>
 <td><p>merged allc</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>decay</strong> (<code class="docutils literal notranslate"><span class="pre">cell_*_decay.hdf5</span></code>)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">fig4/01.decay</span></code></p></td>
-<td><p>contact cools</p></td>
+<tr class="row-odd"><td><p><strong>PMD-flank / gene-flank slop matrices</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fig2/03</span></code> etc. via <code class="docutils literal notranslate"><span class="pre">bigWigAverageOverBed</span></code> <code class="docutils literal notranslate"><span class="pre">os.system</span></code> (cache-guarded)</p></td>
+<td><p>per-type <code class="docutils literal notranslate"><span class="pre">.frac.bw</span></code></p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p><strong>Read from upstream (assume exist; generated outside these figure notebooks):</strong>
+<code class="docutils literal notranslate"><span class="pre">cell_*_decay.hdf5</span></code> (per-cell contact-distance decay from the cools — scHiCluster-style),
+<code class="docutils literal notranslate"><span class="pre">*_embed.h5ad</span></code> / <code class="docutils literal notranslate"><span class="pre">*_lsi.h5ad</span></code> / <code class="docutils literal notranslate"><span class="pre">*_pca.h5ad</span></code> (clustering embeddings — see Deferred), and the
+<code class="docutils literal notranslate"><span class="pre">*.boundary.h5ad</span></code> / <code class="docutils literal notranslate"><span class="pre">cell×binpair</span> <span class="pre">npz</span></code> above.</p>
 </section>
 <section id="external-datasets-documented-not-regenerable-from-the-raw-types">
 <h2>External datasets (documented, not regenerable from the raw types)<a class="headerlink" href="#external-datasets-documented-not-regenerable-from-the-raw-types" title="Link to this heading">#</a></h2>
