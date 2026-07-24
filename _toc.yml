@@ -11,11 +11,21 @@ parts:
       - file: reproducibility
       - file: NONCONFIDENT
       - file: gaps
+  - caption: "Clustering & cell-type annotation"
+    chapters:
+      - file: clustering/00.overview
+      - file: clustering/01.tissue_anchors
+      - file: clustering/02.L1pre_allcell
+      - file: clustering/03.tissue_refine
+      - file: clustering/04.L1_allcell
+      - file: clustering/05.L2_subtype
+      - file: clustering/06.L2both_merge
+      - file: clustering/07.annotation
+      - file: clustering/08.clustering_figures
   - caption: "Fig. 1 — Single-cell atlas of methylation & 3D genome"
     chapters:
       - file: fig1/fig1
         sections:
-          - file: fig1/00.clustering_template
           - file: fig1/01.clustering_summary
           - file: fig1/02.m3c_blacklist
           - file: fig1/03.method_clustering
@@ -28,7 +38,6 @@ parts:
     chapters:
       - file: fig2/fig2
         sections:
-          - file: fig2/00.demo_fig2A
           - file: fig2/01.mCG_distribution
           - file: fig2/02.PMD_hetero
           - file: fig2/10.PMD_donor
