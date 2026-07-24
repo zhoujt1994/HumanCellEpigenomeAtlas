@@ -20,7 +20,6 @@ parts:
       - file: clustering/04.L1_allcell
       - file: clustering/05.L2_subtype
       - file: clustering/06.L2both_merge
-      - file: clustering/07.annotation
       - file: clustering/08.clustering_figures
   - caption: "Fig. 1 — Single-cell atlas of methylation & 3D genome"
     chapters:
