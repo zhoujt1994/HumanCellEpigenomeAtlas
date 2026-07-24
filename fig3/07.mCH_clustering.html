@@ -1071,27 +1071,6 @@
 <img alt="../_images/55b7b59cb20567273e9e5015d772861f3ee507f954c2c870465771972fa19ceb.png" src="../_images/55b7b59cb20567273e9e5015d772861f3ee507f954c2c870465771972fa19ceb.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gliderport.preset</span><span class="w"> </span><span class="kn">import</span> <span class="n">notebook_snakemake</span>
-
-<span class="n">group_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tissue_meta</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="c1"># group_list = list(L1_meta.index)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group_list</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">group_list</span><span class="p">:</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">mch_adata</span><span class="p">[</span><span class="n">mch_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">tmp</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outdir</span><span class="si">}{</span><span class="n">xx</span><span class="si">}</span><span class="s1">/100kCH.h5ad&#39;</span><span class="p">)</span>
-    
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 

@@ -919,13 +919,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">&#39;mCH_distribution/chrom1k_L2any_cov.hdf&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s1">&#39;chrom1k&#39;</span><span class="p">:</span><span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">]})</span>
 
 <span class="n">black_list_path</span> <span class="o">=</span> <span class="s1">&#39;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&#39;</span>
