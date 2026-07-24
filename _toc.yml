@@ -58,7 +58,6 @@ parts:
       - file: fig3/fig3
         sections:
           - file: fig3/02.mCH_distribution
-          - file: fig3/03.mC_context_lambda
           - file: fig3/05.mCH_mCG_scale
           - file: fig3/09.mCH_geneflank
           - file: fig3/06.mCH_mCG_comp
