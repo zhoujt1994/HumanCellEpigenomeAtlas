@@ -568,7 +568,9 @@
 <p><em>Source: <code class="docutils literal notranslate"><span class="pre">clustering/tissue/L1/TrCo/_01.5kCG_clustering.ipynb</span></code></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.clustering</span><span class="w"> </span><span class="kn">import</span> <span class="n">LSI</span><span class="p">,</span> <span class="n">filter_regions</span><span class="p">,</span> <span class="n">remove_black_list_region</span><span class="p">,</span> <span class="n">remove_chromosomes</span><span class="p">,</span> <span class="n">significant_pc_test</span><span class="p">,</span> <span class="n">tsne</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">categorical_scatter</span><span class="p">,</span> <span class="n">continuous_scatter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
