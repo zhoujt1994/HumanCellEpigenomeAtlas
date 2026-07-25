@@ -558,152 +558,20 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ENTEX_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/zhoujt/project/ENTEx&quot;</span><span class="p">)</span>
-<span class="n">REF_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REF_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/ref&quot;</span><span class="p">)</span>
+
 <span class="n">BOOK_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BOOK_ROOT&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/HumanCellEpigenomeAtlas&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>  <span class="c1"># original working directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>  <span class="c1"># no-overwrite guard (default: skip existing)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
-
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">clustering/merged/group_meta.tsv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">meta</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dmr_group</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l1_df</span> <span class="ow">in</span> <span class="n">meta</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1_annot&quot;</span><span class="p">):</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l1_df</span><span class="p">[</span><span class="s2">&quot;L2_both&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">dmr_group</span><span class="p">[</span><span class="n">l1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">l2b</span><span class="p">,</span> <span class="n">l2b_df</span> <span class="ow">in</span> <span class="n">l1_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L2_both&quot;</span><span class="p">):</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">l2b_df</span><span class="p">[</span><span class="s2">&quot;L2_any&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">dmr_group</span><span class="p">[</span><span class="n">l1</span><span class="p">][</span><span class="n">l2b</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;-b&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">tmp</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1annot</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;L1_annot&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)[</span><span class="s2">&quot;L1_annot&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l1name</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">[[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;L1_annot&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
-    <span class="n">l1annot</span> <span class="o">=</span> <span class="n">l1name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="n">corr_path_l2both</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">analysis/L2any_L2both/dmr_loop_corr/L2both/</span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">l1annot</span><span class="si">}</span><span class="s2">_corr.npz&quot;</span>
-    <span class="n">corr_path_l2any</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">analysis/L2any_L2both/dmr_loop_corr/L2any/</span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">l1annot</span><span class="si">}</span><span class="s2">_corr.npz&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">corr_path_l2both</span><span class="p">):</span>
-        <span class="k">continue</span>
-    <span class="n">corr_l2both</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">corr_path_l2both</span><span class="p">)</span>
-    <span class="n">corr_l2any</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">corr_path_l2any</span><span class="p">)</span>
-    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">l1</span><span class="p">,</span>
-            <span class="n">l1annot</span><span class="p">,</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">corr_l2both</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">]),</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">corr_l2any</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">]),</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">corr_l2both</span><span class="p">[</span><span class="s2">&quot;corr_colnorm&quot;</span><span class="p">]),</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">corr_l2any</span><span class="p">[</span><span class="s2">&quot;corr_colnorm&quot;</span><span class="p">]),</span>
-        <span class="p">]</span>
-    <span class="p">)</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">result</span><span class="p">,</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;L1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;L1annot&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;corr_L2both&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;corr_L2any&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;corr_colnorm_L2both&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;corr_colnorm_L2any&quot;</span><span class="p">,</span>
-    <span class="p">],</span>
-<span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_l2any_dmr</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">corr_l2any_bin</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">l1</span><span class="p">,</span> <span class="n">l1name</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">[[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;L1_annot&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
-    <span class="n">l1annot</span> <span class="o">=</span> <span class="n">l1name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="n">corr_path_l2any</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">analysis/L2any_L2both/dmr_loop_corr/L2any/</span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">l1annot</span><span class="si">}</span><span class="s2">_corr.npz&quot;</span>
-    <span class="n">corr_l2any_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">corr_path_l2any</span><span class="p">)</span>
-    <span class="n">corr_l2any_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">corr_l2any_tmp</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">])</span>
-    <span class="n">corr_l2any_tmp</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">l1</span>
-    <span class="n">corr_l2any_tmp</span><span class="p">[</span><span class="s2">&quot;L1annot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">l1name</span>
-    <span class="n">corr_l2any_dmr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corr_l2any_tmp</span><span class="p">)</span>
-    <span class="n">corr_path_l2any</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">analysis/L2any_L2both/dmr_loop_corr/L2any/</span><span class="si">{</span><span class="n">l1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">l1annot</span><span class="si">}</span><span class="s2">_10kmcg_corr.npz&quot;</span>
-    <span class="p">)</span>
-    <span class="n">corr_l2any_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">corr_path_l2any</span><span class="p">)</span>
-    <span class="n">corr_l2any_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">corr_l2any_tmp</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">][:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">])</span>
-    <span class="n">corr_l2any_tmp</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">l1</span>
-    <span class="n">corr_l2any_tmp</span><span class="p">[</span><span class="s2">&quot;L1annot&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">l1name</span>
-    <span class="n">corr_l2any_bin</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">corr_l2any_tmp</span><span class="p">)</span>
-
-<span class="n">corr_l2any_dmr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">corr_l2any_dmr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">corr_l2any_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">corr_l2any_bin</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1color.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span>
-<span class="n">colors</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -712,27 +580,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">legorder</span> <span class="o">=</span> <span class="n">corr_l2any_dmr</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)[</span><span class="s2">&quot;corr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">corr_l2any_dmr</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;corr&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">legorder</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1annot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">legorder</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">legorder</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">legorder</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">])</span>
-
-<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">legorder</span> <span class="o">=</span> <span class="n">corr_l2any_bin</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)[</span><span class="s2">&quot;corr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">corr_l2any_bin</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;corr&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">legorder</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">L1annot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">legorder</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">legorder</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">legorder</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;L2any_DMR_diffloop_corr_violin.pdf&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Fig 5I</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;L2any_DMR_diffloop_corr_violin.pdf&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e7490e7626e8cd0ebf75b571bdc0bd42821466109f31250a1a4e6daff8af1127.png" src="../_images/e7490e7626e8cd0ebf75b571bdc0bd42821466109f31250a1a4e6daff8af1127.png" />
+<img alt="../_images/c5e37d70e0e6c5def557439f63ecdc614ee740f7ec4c1efd4235ad175bc5f43c.png" src="../_images/c5e37d70e0e6c5def557439f63ecdc614ee740f7ec4c1efd4235ad175bc5f43c.png" />
 </div>
 </div>
 </section>

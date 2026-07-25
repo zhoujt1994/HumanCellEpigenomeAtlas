@@ -555,44 +555,26 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Reproduction setup — edit ENTEX_ROOT / REF_ROOT for your machine ===</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="n">ENTEX_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ENTEX_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/zhoujt/project/ENTEx&quot;</span><span class="p">)</span>
-<span class="n">REF_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REF_ROOT&quot;</span><span class="p">,</span> <span class="s2">&quot;/large_storage/zhoulab/ref&quot;</span><span class="p">)</span>
+
 <span class="n">BOOK_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;BOOK_ROOT&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis/HumanCellEpigenomeAtlas&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BOOK_ROOT</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>  <span class="c1"># original working directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">repro_guard</span>  <span class="c1"># no-overwrite guard (default: skip existing)</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/analysis&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pybedtools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_pbt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.mcds</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCDS</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ALLCools.mcds.utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_posterior_mc_frac</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
-
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -607,10 +589,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1_meta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">L1color.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
 <span class="n">L1_meta</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;c35&quot;</span><span class="p">,</span> <span class="s2">&quot;c36&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
 <span class="n">L1_annot</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s2">&quot;L1_abbr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
 <span class="n">L1_color</span> <span class="o">=</span> <span class="n">L1_meta</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="n">L1_color</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">L1_annot</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="n">L1_color</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_annot</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">L1_color</span><span class="p">})</span>  <span class="c1"># also key by name</span>
 </pre></div>
 </div>
 </div>
@@ -621,7 +605,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">merged_allc/subtype1k.mcds&quot;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span>
-<span class="n">mcds</span>
 </pre></div>
 </div>
 </div>
@@ -629,10 +612,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[[</span><span class="s2">&quot;chrom1k_chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom1k_start&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom1k_end&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
 <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom100k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom1k_chrom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom1k_start&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="n">bin_df</span>
 </pre></div>
 </div>
 </div>
@@ -640,6 +623,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">L1</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cell&quot;</span><span class="p">,</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">&quot;cell&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -648,8 +632,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;mc_type&quot;</span><span class="p">:</span> <span class="s2">&quot;CGN&quot;</span><span class="p">})</span>
+
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="p">(</span><span class="n">mcds</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">=</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span>
-<span class="n">mcds</span>
 </pre></div>
 </div>
 </div>
@@ -657,7 +641,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_chromosome</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chrX&quot;</span><span class="p">,</span> <span class="s2">&quot;chrY&quot;</span><span class="p">,</span> <span class="s2">&quot;chrM&quot;</span><span class="p">,</span> <span class="s2">&quot;chrL&quot;</span><span class="p">]</span>
+
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>213335 chrom1k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
 </pre></div>
 </div>
 </div>
@@ -675,19 +665,16 @@
 
 <span class="n">black_list_path</span> <span class="o">=</span> <span class="s2">&quot;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&quot;</span>
 
-<span class="c1"># --- robust black-list removal (inline replacement) ---</span>
-<span class="c1"># MCDS.remove_black_list_region intersects with pybedtools and calls</span>
-<span class="c1"># .to_dataframe().set_index([&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]). In pybedtools&gt;=0.12 an</span>
-<span class="c1"># EMPTY intersect returns a column-less DataFrame, so set_index raises</span>
-<span class="c1"># EmptyDataError. Reproduce the same result robustly by building the feature</span>
-<span class="c1"># bed from the mcds bin coords and dropping bins overlapping the black list.</span>
 <span class="n">_feat</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_feature_bed</span><span class="p">(</span><span class="n">var_dim</span><span class="o">=</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
 <span class="n">_feat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">]</span>
+
 <span class="n">_black</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">_feat</span><span class="p">[[</span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom1k&quot;</span><span class="p">]])</span>
     <span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="p">(</span><span class="n">black_list_path</span><span class="p">),</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="p">)</span>
+
 <span class="k">if</span> <span class="n">_black</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
     <span class="n">_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_black</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
     <span class="n">_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_drop</span><span class="p">]</span>
@@ -698,10 +685,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50020 chrom1k features removed due to overlapping black list regions.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;count_type&quot;</span><span class="p">:</span> <span class="s2">&quot;mc&quot;</span><span class="p">})[</span><span class="s2">&quot;chrom1k_da&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
 <span class="n">cov</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;count_type&quot;</span><span class="p">:</span> <span class="s2">&quot;cov&quot;</span><span class="p">})[</span><span class="s2">&quot;chrom1k_da&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -710,7 +703,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
 <span class="n">mc</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom100k&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
 <span class="n">cov</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom100k&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -719,6 +714,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcg</span> <span class="o">=</span> <span class="n">calculate_posterior_mc_frac</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">cov</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mcg</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -734,6 +730,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s2">&quot;mCG_distribution/L1_chrom100k_mCG.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">mcg</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
@@ -742,8 +739,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;raw&quot;</span>
+
 <span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;compartment/L1/comp.</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
 <span class="n">comp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">comp</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">comp</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
 <span class="n">comp</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">comp</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -752,7 +752,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selb</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">mcg</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selb</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -760,6 +759,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span>
+
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">mcg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -772,8 +772,8 @@
     <span class="n">index</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;corr&quot;</span><span class="p">],</span>
 <span class="p">)</span>
+
 <span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;corr&quot;</span><span class="p">)</span>
-<span class="n">corr</span>
 </pre></div>
 </div>
 </div>
@@ -785,8 +785,8 @@
     <span class="n">index</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;corr&quot;</span><span class="p">],</span>
 <span class="p">)</span>
+
 <span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;corr&quot;</span><span class="p">)</span>
-<span class="n">corr</span>
 </pre></div>
 </div>
 </div>
@@ -794,6 +794,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ct</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mcg</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">comp</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -809,43 +810,50 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Comp Score&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;compartment/mCG_comp_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_corr_example_scatter.pdf&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3f62d0e80d484f09af9a7f2a94cca1d89b275e913a9ba95f7d074b35fc4ac2cd.png" src="../_images/3f62d0e80d484f09af9a7f2a94cca1d89b275e913a9ba95f7d074b35fc4ac2cd.png" />
+<img alt="../_images/f440d39d9d97350067e43a0b42d4a3dc748adeef1d7a7779f4fc1c2996712f83.png" src="../_images/f440d39d9d97350067e43a0b42d4a3dc748adeef1d7a7779f4fc1c2996712f83.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;bottom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s2">&quot;zero&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;right&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">height</span><span class="o">=</span><span class="n">corr</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_color</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
-
 <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
 <span class="n">inward_ticks</span> <span class="o">=</span> <span class="n">xticks</span><span class="p">[</span><span class="n">corr</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
 <span class="n">xticklabels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">()</span>
+
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tick</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xticks</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">inward_ticks</span><span class="p">:</span>
         <span class="n">xticklabels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_va</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">)</span>
         <span class="n">xticklabels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">])</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Pearson r&quot;</span><span class="p">)</span>
+
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;compartment/mCG_comp_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_corr.pdf&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a6f5dee52f255ebeff0870b01231432878bbc57506df4274b0ab27192128a57c.png" src="../_images/a6f5dee52f255ebeff0870b01231432878bbc57506df4274b0ab27192128a57c.png" />
+<img alt="../_images/510d1e65b1e628222a3e48d50ce0154f206cb6acfa8406a69a58da007e758a98.png" src="../_images/510d1e65b1e628222a3e48d50ce0154f206cb6acfa8406a69a58da007e758a98.png" />
 </div>
 </div>
 </section>
@@ -854,7 +862,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indir</span><span class="si">}</span><span class="s2">merged_allc/subtype1k.mcds&quot;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span>
-<span class="n">mcds</span>
 </pre></div>
 </div>
 </div>
@@ -862,10 +869,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">mcds</span><span class="p">[[</span><span class="s2">&quot;chrom1k_chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom1k_start&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom1k_end&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
 <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom100k&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom1k_chrom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom1k_start&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="n">bin_df</span>
 </pre></div>
 </div>
 </div>
@@ -873,6 +880,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">L1</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cell&quot;</span><span class="p">,</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">&quot;cell&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;L1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -881,16 +889,20 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;mc_type&quot;</span><span class="p">:</span> <span class="s2">&quot;CHN&quot;</span><span class="p">})</span>
+
 <span class="n">mcds</span> <span class="o">=</span> <span class="n">MCDS</span><span class="p">(</span><span class="n">mcds</span><span class="p">,</span> <span class="n">obs_dim</span><span class="o">=</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="n">var_dim</span><span class="o">=</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span>
-<span class="n">mcds</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_chromosome</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chrX&quot;</span><span class="p">,</span> <span class="s2">&quot;chrY&quot;</span><span class="p">,</span> <span class="s2">&quot;chrM&quot;</span><span class="p">,</span> <span class="s2">&quot;chrL&quot;</span><span class="p">]</span>
-<span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">remove_chromosome</span><span class="p">(</span><span class="n">exclude_chromosome</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>213335 chrom1k features in [&#39;chrX&#39;, &#39;chrY&#39;, &#39;chrM&#39;, &#39;chrL&#39;] removed.
 </pre></div>
 </div>
 </div>
@@ -906,21 +918,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcds</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">:</span> <span class="n">cov</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">cov</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">]})</span>
 
-<span class="n">black_list_path</span> <span class="o">=</span> <span class="s2">&quot;/large_experiments/zhoulab/ref/blacklist/hg38-blacklist.v2.bed.gz&quot;</span>
-
-<span class="c1"># --- robust black-list removal (inline replacement) ---</span>
-<span class="c1"># MCDS.remove_black_list_region intersects with pybedtools and calls</span>
-<span class="c1"># .to_dataframe().set_index([&#39;chrom&#39;,&#39;start&#39;,&#39;end&#39;]). In pybedtools&gt;=0.12 an</span>
-<span class="c1"># EMPTY intersect returns a column-less DataFrame, so set_index raises</span>
-<span class="c1"># EmptyDataError. Reproduce the same result robustly by building the feature</span>
-<span class="c1"># bed from the mcds bin coords and dropping bins overlapping the black list.</span>
 <span class="n">_feat</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_feature_bed</span><span class="p">(</span><span class="n">var_dim</span><span class="o">=</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
 <span class="n">_feat</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">]</span>
-<span class="n">_black</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">_feat</span><span class="p">[[</span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;chrom1k&quot;</span><span class="p">]])</span>
-    <span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">_pbt</span><span class="o">.</span><span class="n">BedTool</span><span class="p">(</span><span class="n">black_list_path</span><span class="p">),</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">wa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
-<span class="p">)</span>
+
 <span class="k">if</span> <span class="n">_black</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
     <span class="n">_drop</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_black</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
     <span class="n">_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">mcds</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">&quot;chrom1k&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_drop</span><span class="p">]</span>
@@ -931,10 +932,16 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50020 chrom1k features removed due to overlapping black list regions.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;count_type&quot;</span><span class="p">:</span> <span class="s2">&quot;mc&quot;</span><span class="p">})[</span><span class="s2">&quot;chrom1k_da&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
 <span class="n">cov</span> <span class="o">=</span> <span class="n">mcds</span><span class="o">.</span><span class="n">sel</span><span class="p">({</span><span class="s2">&quot;count_type&quot;</span><span class="p">:</span> <span class="s2">&quot;cov&quot;</span><span class="p">})[</span><span class="s2">&quot;chrom1k_da&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -943,7 +950,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">bin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
 <span class="n">mc</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom100k&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
 <span class="n">cov</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">bin_df</span><span class="p">[</span><span class="s2">&quot;chrom100k&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -952,6 +961,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcg</span> <span class="o">=</span> <span class="n">calculate_posterior_mc_frac</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">cov</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">normalize_per_cell</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mcg</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mc</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -967,6 +977,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mcg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s2">&quot;mCH_distribution/L1_chrom100k_mCH.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">mcg</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
@@ -975,8 +986,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;impute&quot;</span>
+
 <span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;compartment/L1/comp.</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">.hdf&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
 <span class="n">comp</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">comp</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">comp</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
 <span class="n">comp</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">comp</span><span class="p">[</span><span class="s2">&quot;raw_binfilter&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -985,7 +999,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selb</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">mcg</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selb</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -993,6 +1006,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span>
+
 <span class="n">mcg</span> <span class="o">=</span> <span class="n">mcg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selb</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1005,8 +1019,8 @@
     <span class="n">index</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;corr&quot;</span><span class="p">],</span>
 <span class="p">)</span>
+
 <span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;corr&quot;</span><span class="p">)</span>
-<span class="n">corr</span>
 </pre></div>
 </div>
 </div>
@@ -1018,8 +1032,8 @@
     <span class="n">index</span><span class="o">=</span><span class="n">L1_meta</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="s2">&quot;corr&quot;</span><span class="p">],</span>
 <span class="p">)</span>
+
 <span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;corr&quot;</span><span class="p">)</span>
-<span class="n">corr</span>
 </pre></div>
 </div>
 </div>
@@ -1027,6 +1041,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ct</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">:])):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mcg</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">comp</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1042,43 +1057,27 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Comp Score&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;compartment/mCH_comp_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_corr_example_scatter.pdf&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8eb03d805dbb79f9412186fee98fe0dff43c78b98b780fa61df9160149546a74.png" src="../_images/8eb03d805dbb79f9412186fee98fe0dff43c78b98b780fa61df9160149546a74.png" />
+<img alt="../_images/d34727fad77033fdaa6e995fdbb68a5dcf13d48cef0540749e3a40c7ecc5110b.png" src="../_images/d34727fad77033fdaa6e995fdbb68a5dcf13d48cef0540749e3a40c7ecc5110b.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;bottom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s2">&quot;zero&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;right&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">height</span><span class="o">=</span><span class="n">corr</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_color</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
-
-<span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">inward_ticks</span> <span class="o">=</span> <span class="n">xticks</span><span class="p">[</span><span class="n">corr</span><span class="p">[</span><span class="s2">&quot;corr&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">L1_annot</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">xticklabels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tick</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xticks</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">inward_ticks</span><span class="p">:</span>
-        <span class="n">xticklabels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_va</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">)</span>
-        <span class="n">xticklabels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">corr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Pearson r&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;compartment/mCH_comp_</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">_corr.pdf&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8faf7d5a17dfda54fb92e1337df44d2e536ab87a351a4aa9820c11b648d2b54c.png" src="../_images/8faf7d5a17dfda54fb92e1337df44d2e536ab87a351a4aa9820c11b648d2b54c.png" />
+<img alt="../_images/d62b1134c92497c1ac0e9406e5b0a8f1e05b22656704782e41915347b1c4daac.png" src="../_images/d62b1134c92497c1ac0e9406e5b0a8f1e05b22656704782e41915347b1c4daac.png" />
 </div>
 </div>
 </section>
