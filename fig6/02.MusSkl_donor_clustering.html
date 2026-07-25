@@ -526,7 +526,6 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-uncorrected-embedding">Using uncorrected embedding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-donor-separated-embedding">Using donor separated embedding</a></li>
 </ul>
             </nav>
@@ -655,9 +654,6 @@
 </div>
 </div>
 </div>
-</section>
-<section id="using-uncorrected-embedding">
-<h2>Using uncorrected embedding<a class="headerlink" href="#using-uncorrected-embedding" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rename_cluster</span><span class="p">(</span><span class="n">xx</span><span class="p">):</span>
@@ -677,102 +673,6 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">color_palette</span><span class="p">[</span><span class="n">rename_cluster</span><span class="p">(</span><span class="n">xx</span><span class="p">)]</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="n">k2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
         <span class="n">k2</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">obsm_key</span><span class="p">,</span> <span class="n">raw_key</span><span class="p">,</span> <span class="n">adata_tmp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">&quot;X_lsi&quot;</span><span class="p">,</span> <span class="s2">&quot;X_pca&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;5kCG_lsi&quot;</span><span class="p">,</span> <span class="s2">&quot;100k3C_pca&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">adata_mc</span><span class="p">,</span> <span class="n">adata_3c</span><span class="p">]</span>
-<span class="p">):</span>
-    <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_tmp</span><span class="p">[</span><span class="n">adata_tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">tsne</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="n">obsm_key</span><span class="p">)</span>
-        <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;igraph&quot;</span><span class="p">)</span>
-        <span class="n">adata_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">obsm_key</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># clustering name</span>
-<span class="n">clustering_name</span> <span class="o">=</span> <span class="s2">&quot;L1&quot;</span>
-
-<span class="c1"># Important factores</span>
-<span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">leiden_resolution</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="c1"># this parameter is the final target that limit the total number of clusters</span>
-<span class="c1"># Higher accuracy means more conservative clustering results and less number of clusters</span>
-<span class="n">target_accuracy</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="n">min_cluster_size</span> <span class="o">=</span> <span class="mi">50</span>
-
-<span class="c1"># Other ConsensusClustering parameters</span>
-<span class="n">metric</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span>
-<span class="n">consensus_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="n">leiden_repeats</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">train_max_n</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">32</span>
-
-<span class="c1"># Dendrogram via Multiscale Bootstrap Resampling</span>
-<span class="n">nboot</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">method_dist</span> <span class="o">=</span> <span class="s2">&quot;correlation&quot;</span>
-<span class="n">method_hclust</span> <span class="o">=</span> <span class="s2">&quot;average&quot;</span>
-
-<span class="n">plot_type</span> <span class="o">=</span> <span class="s2">&quot;static&quot;</span>
-<span class="n">cc</span> <span class="o">=</span> <span class="n">ConsensusClustering</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
-    <span class="n">min_cluster_size</span><span class="o">=</span><span class="n">min_cluster_size</span><span class="p">,</span>
-    <span class="n">leiden_repeats</span><span class="o">=</span><span class="n">leiden_repeats</span><span class="p">,</span>
-    <span class="n">leiden_resolution</span><span class="o">=</span><span class="n">leiden_resolution</span><span class="p">,</span>
-    <span class="n">consensus_rate</span><span class="o">=</span><span class="n">consensus_rate</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span>
-    <span class="n">train_frac</span><span class="o">=</span><span class="n">train_frac</span><span class="p">,</span>
-    <span class="n">train_max_n</span><span class="o">=</span><span class="n">train_max_n</span><span class="p">,</span>
-    <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
-    <span class="n">target_accuracy</span><span class="o">=</span><span class="n">target_accuracy</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">tmp</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">:</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;igraph&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">obsm_key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;X_lsi&quot;</span><span class="p">,</span> <span class="s2">&quot;X_pca&quot;</span><span class="p">]):</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span>
-        <span class="n">cc</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="n">obsm_key</span><span class="p">])</span>
-        <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;consensus_leiden_init&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cc</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">adata_list</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span>
-        <span class="n">tmp</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;consensus_leiden_other&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">adata_list</span><span class="p">[(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;consensus_leiden_init&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1243,7 +1143,6 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-input-files">📥 Required input files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-uncorrected-embedding">Using uncorrected embedding</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-donor-separated-embedding">Using donor separated embedding</a></li>
 </ul>
   </nav></div>
