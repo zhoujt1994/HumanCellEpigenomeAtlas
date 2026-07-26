@@ -26,7 +26,7 @@ cells are still open — see `REVIEW_NEEDED.md`.
 | 6D | [01.MusSkl_clustering](01.MusSkl_clustering.ipynb) | c42 | Confusion matrix mC-subtypes × 3C-subtypes |
 | 6E | [04](04.MusSkl_diff.ipynb) / [06](06.MusSkl_diff_7group.ipynb) | c53 (c55 zoom) | Contact + mCG browser at chr14 *MYH7* + zoomed DMR regions i/ii (see variant note) |
 | 6F | [04](04.MusSkl_diff.ipynb) / [06](06.MusSkl_diff_7group.ipynb) | c32/c40 | Diff-loop strength (left, 18,646 loops) + mCG of DMRs at anchors (right, 19,647 DMRs), 7 groups, k-means |
-| 6G | [Fig5/08.pycistarget_loopDMR](../fig5/08.pycistarget_loopDMR.ipynb) | `TF_overlapped_nes_mus_long` | Motif **dot plot** (NES/‌#hits) per Mus Skl loop-DMR group ✅ **recovered** |
+| 6G | [Fig5/08.pycistarget_loopDMR](../fig5/06.pycistarget_loopDMR.ipynb) | `TF_overlapped_nes_mus_long` | Motif **dot plot** (NES/‌#hits) per Mus Skl loop-DMR group ✅ **recovered** |
 | 6H | [07.Epi-TPB](07.Epi-TPB.ipynb) | c17 | Epi-TPB t-SNE contact (top) / mCG (bottom) by subtype-donor (VCT/SCT) |
 | 6I | [07](07.Epi-TPB.ipynb) | c28 (+DEG expr) | mCG of DMRs between subtypes (left) + DEG expression (right) |
 | 6J ⚠ | [07](07.Epi-TPB.ipynb) | — | mCG at flanking regions of subtype vs donor DMRs — flank cell not pinned |
@@ -47,7 +47,7 @@ Verified against the figure: A = Skeletal Muscle, B–D = Schwann, **E–F = Ent
 | S32B | [09.NTbSchw_clustering](09.NTbSchw_clustering.ipynb) | c51 | Tibial-nerve Schwann t-SNE mCG / contact by cluster (black = inconsistent) ✅ |
 | S32C | [09](09.NTbSchw_clustering.ipynb) | c57 | Correlation matrix of 5 Schwann clusters, mCG (top) / contact (bottom) ✅ |
 | S32D ⚠ | [09](09.NTbSchw_clustering.ipynb) | — | Schwann DMR mCG (6460) + diff-loop strength (10845), k-means — cell not pinned |
-| S32E–F ⚠ | **Enteric (Epi-Ent)** | — | Enteric DMR mCG + DEG (E), Loop Strength + DEG (F) — **producer NOT in code_share** (analogous to `07.Epi-TPB` + `fig4/09.loop_rna`) |
+| S32E–F ⚠ | **Enteric (Epi-Ent)** | — | Enteric DMR mCG + DEG (E), Loop Strength + DEG (F) — **producer NOT in code_share** (analogous to `07.Epi-TPB` + `fig4/06.loop_rna`) |
 | S32G–H ⚠ | **Gastric (Epi-Gas)** | — | Gastric DMR mCG + DEG (G), Loop Strength + DEG (H) — `08.Epi-Gas` only makes t-SNEs; **DMR/loop/DEG producer NOT in code_share** |
 
 ```{admonition} mCT notebooks are NOT in the published paper

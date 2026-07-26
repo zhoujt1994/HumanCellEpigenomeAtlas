@@ -20,15 +20,15 @@ notebooks — the highest-value category to recover.
 
 | Panel | Notebook (compute) | Missing |
 |-------|--------------------|---------|
-| Fig 2O / Fig S13E | `fig2/06.DMR_motif` | TF-motif NES heatmap / dot plot; SCENIC+ NES tables (Table S2) are written, the heatmap cell is not in the release. |
+| Fig 2O / Fig S13E | `fig2/09.DMR_motif` | TF-motif NES heatmap / dot plot; SCENIC+ NES tables (Table S2) are written, the heatmap cell is not in the release. |
 
 Skip for now.
 
 | Fig 6A | elsewhere (`clustering/merged/L2_hiconly/summary`) | mC-vs-3C ARI barplot; ARI computed, barplot cell not in the fig notebooks. |
 
-✅ **RESOLVED** — recovered as `fig6/00.mc3c_ARI.ipynb`, verified (all 35 major types render).
+✅ **RESOLVED** — recovered as `fig6/02.mc3c_ARI.ipynb`, verified (all 35 major types render).
 
-| Fig 6D | `fig6/01.MusSkl_clustering` | Donor-corrected 3×3 confusion matrix; nb01's table has the **pre-donor** counts, the published version is generated elsewhere. |
+| Fig 6D | `fig6/06.MusSkl_clustering` | Donor-corrected 3×3 confusion matrix; nb01's table has the **pre-donor** counts, the published version is generated elsewhere. |
 
 You can just sum up the per donor counts.
 
@@ -38,12 +38,12 @@ You can just sum up the per donor counts.
 
 Skip for now.
 
-| Fig 6I | `fig6/07.Epi-TPB` (c28 related) | Subtype-DMR mCG + DEG heatmap (3,774 DMR); nb07 c28 is a related but different (3534/96686-DMR) heatmap. |
+| Fig 6I | `fig6/05.Epi-TPB` (c28 related) | Subtype-DMR mCG + DEG heatmap (3,774 DMR); nb07 c28 is a related but different (3534/96686-DMR) heatmap. |
 | Fig 6J | elsewhere | Flanking-mCG line plots. |
 
 Those are in PMD analysis. Search the analysis directory further.
 
-✅ **RESOLVED** — both in `fig2/12.PMD_Epi-TPB` (6I = c81, verified 3,774 unique DMRs; 6J = c95); moved into the Fig 6 chapter.
+✅ **RESOLVED** — both in `fig2/15.PMD_Epi-TPB` (6I = c81, verified 3,774 unique DMRs; 6J = c95); moved into the Fig 6 chapter.
 
 | Fig S32D–H | elsewhere | Schwann DMR/loop heatmaps; enteric/gastric DMR·loop·DEG heatmaps (`fig6/08.Epi-Gas`, dropped, only made t-SNEs). |
 
@@ -63,9 +63,9 @@ You can replot it. This should be straight forward. If you cannot just skip it.
 
 Search analysis subfolder more carefully. Should be in mch_rna so something similar.
 
-✅ **RESOLVED** — found in `analysis/mCH_geneexpr/{L1}/`; recovered both as `fig3/10.mCH_geneexpr_corr.ipynb` (3I violin + S23B distance scatter), baked.
+✅ **RESOLVED** — found in `analysis/mCH_geneexpr/{L1}/`; recovered both as `fig3/07.mCH_geneexpr_corr.ipynb` (3I violin + S23B distance scatter), baked.
 
-| Fig S3A/B | `fig4/09.loop_rna` (breast only) | DEG↔loop / DEG↔mCG-at-DMR cosine across colon/stomach/skin/heart; multi-tissue producer not in the release. |
+| Fig S3A/B | `fig4/06.loop_rna` (breast only) | DEG↔loop / DEG↔mCG-at-DMR cosine across colon/stomach/skin/heart; multi-tissue producer not in the release. |
 
 Skip for now.
 

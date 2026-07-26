@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mC-vs-3C clustering agreement &amp; Mus-Skl confusion (Fig 6A,D)" href="00.mc3c_ARI.html" />
+    <link rel="next" title="Skeletal muscle: donor-corrected mC/3C embedding (Fig 6B,C)" href="01.MusSkl_donor_clustering.html" />
     <link rel="prev" title="DMR–differential-loop correlation (Fig 5I)" href="../fig5/07.L2any_L2both.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -235,7 +235,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../clustering/04.L1_allcell.html">Stage 4 · All-cell L1 clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../clustering/05.L2_subtype.html">Stage 5 · Per-major-type L2 clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../clustering/06.L2both_merge.html">Stage 6 · L2any → L2both merge / consolidation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../clustering/08.clustering_figures.html">Stage 8 · Clustering figures — S5, S30, S31</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clustering/07.clustering_figures.html">Stage 8 · Clustering figures — S5, S30, S31</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 1 — Single-cell atlas of methylation &amp; 3D genome</span></p>
 <ul class="nav bd-sidenav">
@@ -244,9 +244,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig1/02.m3c_blacklist.html">Read-exclusion list for methyl-3C (Fig S1A)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig1/03.method_clustering.html">Clustering benchmark: 5kb-LSI vs 100kb-PCA (Fig S2A)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig1/04.method_anchor.html">Integration anchors &amp; WNN-vs-concat embedding (Fig S2C–E)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig1/07.dendrogram_annot.html">Cell-type dendrogram &amp; modality separability (Fig 1F)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig1/10.compare_bulkmc.html">Concordance with bulk methylomes (Fig S7)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig1/11.compare_bulkhic.html">Concordance with bulk Hi-C (Fig S8)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig1/05.dendrogram_annot.html">Cell-type dendrogram &amp; modality separability (Fig 1F)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig1/06.compare_bulkmc.html">Concordance with bulk methylomes (Fig S7)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig1/07.compare_bulkhic.html">Concordance with bulk Hi-C (Fig S8)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -255,32 +255,33 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../fig2/fig2.html">Fig. 2 — CG methylation across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../fig2/01.mCG_distribution.html">Global &amp; per-CpG mCG across cell types (Fig 2A–C, S9C)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig2/02.PMD_hetero.html">Partially methylated domains: cross-cell-type heterogeneity (Fig 2D–G, S9, S10D/E)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/10.PMD_donor.html">PMD reproducibility across donors (Fig S10A–C)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/15.PMD_ATAC.html">Compartment fractions at cCREs (Fig 2H)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/03.PMD_RNA.html">Methylation compartments vs gene expression (Fig 2I–L, S11A–F)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/13.PMD_histone.html">Compartments vs histone marks (Fig S11G/H)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/04.DMR_stats.html">Differentially methylated regions: statistics (Fig 2M, S12)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/05.DMR_overlap_ATAC.html">DMRs vs ATAC-seq peaks (Fig 2N, S13, S14A)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/06.DMR_motif.html">TF-motif enrichment in DMRs — compute (Fig 2O, S13E)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/16.peak_mCG_motif.html">mCG at ATAC peaks &amp; motif methyl-preference (Fig S14C–E)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/07.TE_mCG.html">Methylation at transposable elements (Fig 2P, S15)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/18.DMR_loop_sLDSC.html">GWAS heritability at loop-anchor DMRs (Fig S29)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/14.PMD_DMR.html">Pipeline: PMD-based DMR calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/11.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/03.PMD_donor.html">PMD reproducibility across donors (Fig S10A–C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/04.PMD_ATAC.html">Compartment fractions at cCREs (Fig 2H)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/05.PMD_RNA.html">Methylation compartments vs gene expression (Fig 2I–L, S11A–F)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/06.PMD_histone.html">Compartments vs histone marks (Fig S11G/H)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/07.DMR_stats.html">Differentially methylated regions: statistics (Fig 2M, S12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/08.DMR_overlap_ATAC.html">DMRs vs ATAC-seq peaks (Fig 2N, S13, S14A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/09.DMR_motif.html">TF-motif enrichment in DMRs — compute (Fig 2O, S13E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/10.peak_mCG_motif.html">mCG at ATAC peaks &amp; motif methyl-preference (Fig S14C–E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/11.TE_mCG.html">Methylation at transposable elements (Fig 2P, S15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/12.DMR_loop_sLDSC.html">GWAS heritability at loop-anchor DMRs (Fig S29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/13.PMD_DMR.html">Pipeline: PMD-based DMR calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/14.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/15.PMD_Epi-TPB.html">Trophoblast: subtype DMRs, expression &amp; flanking mCH (Fig 6I,J)</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 3 — Non-CG methylation across cell types</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../fig3/fig3.html">Fig. 3 — Non-CG methylation across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/02.mCH_distribution.html">Global &amp; per-context mCH (Fig 3A, 3B) (Fig 3A, S17, S18, S20)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/05.mCH_mCG_scale.html">mCH spatial autocorrelation across the genome (Fig 3C, S19)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/09.mCH_geneflank.html">mCH at genes &amp; regulatory elements (Fig 3D,E)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/06.mCH_mCG_comp.html">mCH vs mCG methylation compartments (Fig 3F)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/04.mCH_mCG_corr.html">mCH–mCG covariation &amp; sequence motifs (Fig S21)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/07.mCH_clustering.html">Cell clustering from mCH (Fig 3G,H, S22, S23A)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/10.mCH_geneexpr_corr.html">mCH vs gene expression correlation (Fig 3I, S23B)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig3/01.global_mCH.html">Global mCH quantification (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/01.mCH_distribution.html">Global &amp; per-context mCH (Fig 3A, 3B) (Fig 3A, S17, S18, S20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/02.mCH_mCG_scale.html">mCH spatial autocorrelation across the genome (Fig 3C, S19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/03.mCH_geneflank.html">mCH at genes &amp; regulatory elements (Fig 3D,E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/04.mCH_mCG_comp.html">mCH vs mCG methylation compartments (Fig 3F)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/05.mCH_mCG_corr.html">mCH–mCG covariation &amp; sequence motifs (Fig S21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/06.mCH_clustering.html">Cell clustering from mCH (Fig 3G,H, S22, S23A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/07.mCH_geneexpr_corr.html">mCH vs gene expression correlation (Fig 3I, S23B)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig3/08.global_mCH.html">Global mCH quantification (supporting)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -289,15 +290,15 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../fig4/fig4.html">Fig. 4 — Chromatin contacts across cell types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../fig4/01.decay.html">Contact-distance decay by cell type (Fig 4A,B, S24B)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig4/02.decay_compartment.html">Short/long-range contacts vs compartment (Fig 4C, S24A)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/06.domainloop_stats.html">Domain &amp; loop statistics (Fig 4D, S25A–C)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/10.loop_comp.html">Differential loops vs compartment (Fig 4E)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/07.diffloop_majortype.html">Major-type differential-loop APA (Fig S25D)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/03.domainloop_stats.html">Domain &amp; loop statistics (Fig 4D, S25A–C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/04.loop_comp.html">Differential loops vs compartment (Fig 4E)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/05.diffloop_majortype.html">Major-type differential-loop APA (Fig S25D)</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="../fig4/09.loop_rna.html">Differential loops vs gene expression (Fig 4F,G)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/03.decay_domain.html">Pipeline: domain calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/04.compartment.html">Compartment calling (generator) — <code class="docutils literal notranslate"><span class="pre">comp.impute.hdf</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/05.diffcomp_majortype.html">Pipeline: differential compartments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig4/08.diffloop_subtype.html">Pipeline: subtype differential loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/06.loop_rna.html">Differential loops vs gene expression (Fig 4F,G)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/07.decay_domain.html">Pipeline: domain calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/08.compartment.html">Compartment calling (generator) — <code class="docutils literal notranslate"><span class="pre">comp.impute.hdf</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/09.diffcomp_majortype.html">Pipeline: differential compartments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig4/10.diffloop_subtype.html">Pipeline: subtype differential loops</a></li>
 
 </ul>
 </details></li>
@@ -308,9 +309,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/01.genome_mCG_compartment.html">DNA methylation vs compartment score (Fig 5A,B, S26A/B)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/02.comp_pmd.html">Methylation compartments vs A/B compartments (Fig 5C–E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/03.mCoverCompboundary.html">Methylation at compartment boundaries (Fig 5F,G, S26C/D)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">DMR enrichment at loop anchors (Fig S27A)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">Pipeline: loop-DMR motif compute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">TF motifs at loop-anchor DMRs (Fig 5H)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/04.loop_dmr_enrichment.html">DMR enrichment at loop anchors (Fig S27A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_motif.html">Pipeline: loop-DMR motif compute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/06.pycistarget_loopDMR.html">TF motifs at loop-anchor DMRs (Fig 5H)</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">DMR–differential-loop correlation (Fig 5I)</a></li>
@@ -320,14 +321,13 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fig. 6 — Discrepant methylation- vs contact-defined types</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Fig. 6 — Discrepant methylation- vs contact-defined cell types</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="00.mc3c_ARI.html">mC-vs-3C clustering agreement &amp; Mus-Skl confusion (Fig 6A,D)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02.MusSkl_donor_clustering.html">Skeletal muscle: donor-corrected mC/3C embedding (Fig 6B,C)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06.MusSkl_diff_7group.html">Skeletal muscle: differential DMRs &amp; loops (Fig 6E,F, S32A)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09.NTbSchw_clustering.html">Schwann cells: discrepant mC/3C clustering (Fig S32B,C)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07.Epi-TPB.html">Trophoblast: mC/3C clustering &amp; DMR compartments (Fig 6H,K)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/12.PMD_Epi-TPB.html">Trophoblast: subtype DMRs, expression &amp; flanking mCH (Fig 6I,J)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01.MusSkl_clustering.html">Skeletal muscle: base clustering (supporting)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03.MusSkl_diffloop.html">Pipeline: Mus-Skl differential loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01.MusSkl_donor_clustering.html">Skeletal muscle: donor-corrected mC/3C embedding (Fig 6B,C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.mc3c_ARI.html">mC-vs-3C clustering agreement &amp; Mus-Skl confusion (Fig 6A,D)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.MusSkl_diff_7group.html">Skeletal muscle: differential DMRs &amp; loops (Fig 6E,F, S32A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.NTbSchw_clustering.html">Schwann cells: discrepant mC/3C clustering (Fig S32B,C)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.Epi-TPB.html">Trophoblast: mC/3C clustering &amp; DMR compartments (Fig 6H,K)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06.MusSkl_clustering.html">Skeletal muscle: base clustering (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07.MusSkl_diffloop.html">Pipeline: Mus-Skl differential loops</a></li>
 </ul>
 </details></li>
 </ul>
@@ -570,52 +570,52 @@ cells are still open — see <code class="docutils literal notranslate"><span cl
 <td><p>ARI per major type barplot ✅ <strong>located</strong> (<code class="docutils literal notranslate"><span class="pre">ax.bar(x,</span> <span class="pre">score,</span> <span class="pre">color=L1_meta['color'])</span></code> → <code class="docutils literal notranslate"><span class="pre">mc_3c_L2_ARI.pdf</span></code>); to add to fig5/07</p></td>
 </tr>
 <tr class="row-odd"><td><p>6B</p></td>
-<td><p><a class="reference internal" href="02.MusSkl_donor_clustering.html"><span class="std std-doc">02.MusSkl_donor_clustering</span></a></p></td>
+<td><p><a class="reference internal" href="#02.MusSkl_donor_clustering.ipynb"><span class="xref myst">02.MusSkl_donor_clustering</span></a></p></td>
 <td><p>c49</p></td>
 <td><p>Mus Skl t-SNE mCG (left) &amp; contact (right) — <strong>donor-joint coordinates, colored by donor-separate cell-group labels</strong></p></td>
 </tr>
 <tr class="row-even"><td><p>6C</p></td>
-<td><p><a class="reference internal" href="02.MusSkl_donor_clustering.html"><span class="std std-doc">02</span></a></p></td>
+<td><p><a class="reference internal" href="#02.MusSkl_donor_clustering.ipynb"><span class="xref myst">02</span></a></p></td>
 <td><p>c49</p></td>
 <td><p>Same (donor-joint) coordinates colored by global mCG</p></td>
 </tr>
 <tr class="row-odd"><td><p>6D</p></td>
-<td><p><a class="reference internal" href="01.MusSkl_clustering.html"><span class="std std-doc">01.MusSkl_clustering</span></a></p></td>
+<td><p><a class="reference internal" href="#01.MusSkl_clustering.ipynb"><span class="xref myst">01.MusSkl_clustering</span></a></p></td>
 <td><p>c42</p></td>
 <td><p>Confusion matrix mC-subtypes × 3C-subtypes</p></td>
 </tr>
 <tr class="row-even"><td><p>6E</p></td>
-<td><p><a class="reference internal" href="#04.MusSkl_diff.ipynb"><span class="xref myst">04</span></a> / <a class="reference internal" href="06.MusSkl_diff_7group.html"><span class="std std-doc">06</span></a></p></td>
+<td><p><a class="reference internal" href="#04.MusSkl_diff.ipynb"><span class="xref myst">04</span></a> / <a class="reference internal" href="#06.MusSkl_diff_7group.ipynb"><span class="xref myst">06</span></a></p></td>
 <td><p>c53 (c55 zoom)</p></td>
 <td><p>Contact + mCG browser at chr14 <em>MYH7</em> + zoomed DMR regions i/ii (see variant note)</p></td>
 </tr>
 <tr class="row-odd"><td><p>6F</p></td>
-<td><p><a class="reference internal" href="#04.MusSkl_diff.ipynb"><span class="xref myst">04</span></a> / <a class="reference internal" href="06.MusSkl_diff_7group.html"><span class="std std-doc">06</span></a></p></td>
+<td><p><a class="reference internal" href="#04.MusSkl_diff.ipynb"><span class="xref myst">04</span></a> / <a class="reference internal" href="#06.MusSkl_diff_7group.ipynb"><span class="xref myst">06</span></a></p></td>
 <td><p>c32/c40</p></td>
 <td><p>Diff-loop strength (left, 18,646 loops) + mCG of DMRs at anchors (right, 19,647 DMRs), 7 groups, k-means</p></td>
 </tr>
 <tr class="row-even"><td><p>6G</p></td>
-<td><p><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html"><span class="std std-doc">Fig5/08.pycistarget_loopDMR</span></a></p></td>
+<td><p><a class="reference internal" href="../fig5/06.pycistarget_loopDMR.html"><span class="std std-doc">Fig5/08.pycistarget_loopDMR</span></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">TF_overlapped_nes_mus_long</span></code></p></td>
 <td><p>Motif <strong>dot plot</strong> (NES/‌#hits) per Mus Skl loop-DMR group ✅ <strong>recovered</strong></p></td>
 </tr>
 <tr class="row-odd"><td><p>6H</p></td>
-<td><p><a class="reference internal" href="07.Epi-TPB.html"><span class="std std-doc">07.Epi-TPB</span></a></p></td>
+<td><p><a class="reference internal" href="#07.Epi-TPB.ipynb"><span class="xref myst">07.Epi-TPB</span></a></p></td>
 <td><p>c17</p></td>
 <td><p>Epi-TPB t-SNE contact (top) / mCG (bottom) by subtype-donor (VCT/SCT)</p></td>
 </tr>
 <tr class="row-even"><td><p>6I</p></td>
-<td><p><a class="reference internal" href="07.Epi-TPB.html"><span class="std std-doc">07</span></a></p></td>
+<td><p><a class="reference internal" href="#07.Epi-TPB.ipynb"><span class="xref myst">07</span></a></p></td>
 <td><p>c28 (+DEG expr)</p></td>
 <td><p>mCG of DMRs between subtypes (left) + DEG expression (right)</p></td>
 </tr>
 <tr class="row-odd"><td><p>6J ⚠</p></td>
-<td><p><a class="reference internal" href="07.Epi-TPB.html"><span class="std std-doc">07</span></a></p></td>
+<td><p><a class="reference internal" href="#07.Epi-TPB.ipynb"><span class="xref myst">07</span></a></p></td>
 <td><p>—</p></td>
 <td><p>mCG at flanking regions of subtype vs donor DMRs — flank cell not pinned</p></td>
 </tr>
 <tr class="row-even"><td><p>6K</p></td>
-<td><p><a class="reference internal" href="07.Epi-TPB.html"><span class="std std-doc">07</span></a></p></td>
+<td><p><a class="reference internal" href="#07.Epi-TPB.ipynb"><span class="xref myst">07</span></a></p></td>
 <td><p>c32</p></td>
 <td><p>Fraction of subtype- vs mCG-cluster DMRs per methylation compartment</p></td>
 </tr>
@@ -639,29 +639,29 @@ see the caution below.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>S32A</p></td>
-<td><p><a class="reference internal" href="#04.MusSkl_diff.ipynb"><span class="xref myst">04</span></a> / <a class="reference internal" href="06.MusSkl_diff_7group.html"><span class="std std-doc">06</span></a></p></td>
+<td><p><a class="reference internal" href="#04.MusSkl_diff.ipynb"><span class="xref myst">04</span></a> / <a class="reference internal" href="#06.MusSkl_diff_7group.ipynb"><span class="xref myst">06</span></a></p></td>
 <td><p>c41</p></td>
 <td><p>Skeletal-muscle loop strength + DMR mCG (7-group columns) split into k-means groups</p></td>
 </tr>
 <tr class="row-odd"><td><p>S32B</p></td>
-<td><p><a class="reference internal" href="09.NTbSchw_clustering.html"><span class="std std-doc">09.NTbSchw_clustering</span></a></p></td>
+<td><p><a class="reference internal" href="#09.NTbSchw_clustering.ipynb"><span class="xref myst">09.NTbSchw_clustering</span></a></p></td>
 <td><p>c51</p></td>
 <td><p>Tibial-nerve Schwann t-SNE mCG / contact by cluster (black = inconsistent) ✅</p></td>
 </tr>
 <tr class="row-even"><td><p>S32C</p></td>
-<td><p><a class="reference internal" href="09.NTbSchw_clustering.html"><span class="std std-doc">09</span></a></p></td>
+<td><p><a class="reference internal" href="#09.NTbSchw_clustering.ipynb"><span class="xref myst">09</span></a></p></td>
 <td><p>c57</p></td>
 <td><p>Correlation matrix of 5 Schwann clusters, mCG (top) / contact (bottom) ✅</p></td>
 </tr>
 <tr class="row-odd"><td><p>S32D ⚠</p></td>
-<td><p><a class="reference internal" href="09.NTbSchw_clustering.html"><span class="std std-doc">09</span></a></p></td>
+<td><p><a class="reference internal" href="#09.NTbSchw_clustering.ipynb"><span class="xref myst">09</span></a></p></td>
 <td><p>—</p></td>
 <td><p>Schwann DMR mCG (6460) + diff-loop strength (10845), k-means — cell not pinned</p></td>
 </tr>
 <tr class="row-even"><td><p>S32E–F ⚠</p></td>
 <td><p><strong>Enteric (Epi-Ent)</strong></p></td>
 <td><p>—</p></td>
-<td><p>Enteric DMR mCG + DEG (E), Loop Strength + DEG (F) — <strong>producer NOT in code_share</strong> (analogous to <code class="docutils literal notranslate"><span class="pre">07.Epi-TPB</span></code> + <code class="docutils literal notranslate"><span class="pre">fig4/09.loop_rna</span></code>)</p></td>
+<td><p>Enteric DMR mCG + DEG (E), Loop Strength + DEG (F) — <strong>producer NOT in code_share</strong> (analogous to <code class="docutils literal notranslate"><span class="pre">07.Epi-TPB</span></code> + <code class="docutils literal notranslate"><span class="pre">fig4/06.loop_rna</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p>S32G–H ⚠</p></td>
 <td><p><strong>Gastric (Epi-Gas)</strong></p></td>
@@ -777,11 +777,11 @@ fix). <code class="docutils literal notranslate"><span class="pre">10–14</span
       </div>
     </a>
     <a class="right-next"
-       href="00.mc3c_ARI.html"
+       href="01.MusSkl_donor_clustering.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">mC-vs-3C clustering agreement &amp; Mus-Skl confusion (Fig 6A,D)</p>
+        <p class="prev-next-title">Skeletal muscle: donor-corrected mC/3C embedding (Fig 6B,C)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
