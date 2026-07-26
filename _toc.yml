@@ -91,8 +91,8 @@ parts:
     chapters:
       - file: fig6/fig6
         sections:
-          - file: fig6/00.mc3c_ARI
           - file: fig6/02.MusSkl_donor_clustering
+          - file: fig6/00.mc3c_ARI
           - file: fig6/06.MusSkl_diff_7group
           - file: fig6/09.NTbSchw_clustering
           - file: fig6/07.Epi-TPB
