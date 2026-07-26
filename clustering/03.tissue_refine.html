@@ -526,14 +526,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downsample-with-geosketch">Downsample with geosketch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-anchor-distance-in-pc-space">Compute anchor distance in PC space</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-geosketch-distance-on-pc-space">Integrate with geosketch distance on PC space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-anchor-distance-in-u-space">Compute anchor distance in U space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-geosketch-distance-on-u-space">Integrate with geosketch distance on U space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-leiden-refinement-anchor-re-scoring">3b · leiden refinement + anchor re-scoring</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downsample-with-leiden">Downsample with Leiden</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Compute anchor distance in PC space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-leiden-distance-in-pc-space">Integrate with leiden distance in PC space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Compute anchor distance in U space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-leiden-distance-on-u-space">Integrate with leiden distance on U space</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-aggregate-refined-mcg-anchors">3c · aggregate refined mCG anchors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-aggregate-refined-3c-anchors">3d · aggregate refined 3C anchors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-refined-per-tissue-joint-embedding">3e · refined per-tissue joint embedding</a></li>
@@ -550,7 +542,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="stage-3-tissue-cluster-level-refinement-refined-anchors">
 <h1>Stage 3 · Tissue-cluster-level refinement → refined anchors<a class="headerlink" href="#stage-3-tissue-cluster-level-refinement-refined-anchors" title="Link to this heading">#</a></h1>
-<p>Using the preliminary clusters, re-cluster at the tissue-cluster level with geosketch downsampling and leiden, re-scoring anchors (<code class="docutils literal notranslate"><span class="pre">dist_pc</span></code>) to produce <strong>refined</strong> anchors. Example tissue: <strong>TrCo</strong>.</p>
+<p>Using the preliminary clusters, re-cluster at the tissue-cluster level with geosketch downsampling, re-scoring anchors (<code class="docutils literal notranslate"><span class="pre">dist_geosk_pc</span></code>) to produce <strong>refined</strong> anchors, then aggregate the per-cell-type anchors into the final <code class="docutils literal notranslate"><span class="pre">seuratL2</span></code> set. Example tissue: <strong>TrCo</strong>.</p>
 <p>These are the original pipeline notebooks, concatenated in execution order with paths normalized to <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>. They document the method and run per tissue / major type across the full raw dataset (heavy compute); they are shown for reference and are <strong>not re-executed in the book</strong>. Example group shown where templated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -657,13 +649,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sketch_index</span><span class="p">][</span><span class="s2">&quot;celltype&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;arpack&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -726,8 +711,7 @@
 <h2>Integrate with geosketch distance on PC space<a class="headerlink" href="#integrate-with-geosketch-distance-on-pc-space" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thres1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_pc&quot;</span><span class="p">],</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">thres2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_pc&quot;</span><span class="p">],</span> <span class="mi">60</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thres2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_pc&quot;</span><span class="p">],</span> <span class="mi">60</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -748,43 +732,6 @@
 
 <span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_pc&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_geosk_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -826,522 +773,9 @@
 </div>
 </div>
 </div>
-</section>
-<section id="compute-anchor-distance-in-u-space">
-<h2>Compute anchor distance in U space<a class="headerlink" href="#compute-anchor-distance-in-u-space" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_geosk_pca&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;100k3C_geosk_all&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">]</span> <span class="o">/</span> <span class="n">mcad</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s2">&quot;100k3C_geosk_eigen&quot;</span><span class="p">][:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coord1</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_geosk_pca&quot;</span><span class="p">][</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]]</span>
-<span class="n">coord2</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_geosk_pca&quot;</span><span class="p">][</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]]</span>
-<span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_u&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">((</span><span class="n">coord1</span> <span class="o">-</span> <span class="n">coord2</span><span class="p">),</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="integrate-with-geosketch-distance-on-u-space">
-<h2>Integrate with geosketch distance on U space<a class="headerlink" href="#integrate-with-geosketch-distance-on-u-space" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thres1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_u&quot;</span><span class="p">],</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">thres2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_u&quot;</span><span class="p">],</span> <span class="mi">60</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
-
-<span class="n">integrator</span> <span class="o">=</span> <span class="n">SeuratIntegration</span><span class="p">()</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">adata_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">))),</span> <span class="n">adata_list</span><span class="p">)}</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">n_dataset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]</span>
-
-<span class="c1"># intra-dataset KNN for scoring the anchors</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">k_local</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">key_local</span> <span class="o">=</span> <span class="s2">&quot;X_pca&quot;</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">_calculate_local_knn</span><span class="p">()</span>
-
-<span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_u&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_geosk_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter80_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_geosk_u&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres2</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_geosk_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter60&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter60&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">geofilter60_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s2">&quot;HiC_100kb_pca.h5ad&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="b-leiden-refinement-anchor-re-scoring">
-<h2>3b · leiden refinement + anchor re-scoring<a class="headerlink" href="#b-leiden-refinement-anchor-re-scoring" title="Link to this heading">#</a></h2>
-<p><em>Source: <code class="docutils literal notranslate"><span class="pre">clustering/tissue/L1/TrCo/03b.100k3C_leiden.ipynb</span></code></em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;TrCo&quot;</span>
-<span class="n">mem_gb</span> <span class="o">=</span> <span class="mi">20</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;pdf.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ps.fonttype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.family&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sans-serif&quot;</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.sans-serif&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Helvetica&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump_embedding</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="c1"># put manifold coordinates into adata.obs</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dim</span><span class="p">):</span>
-        <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;X_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][:,</span> <span class="n">i</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">adata</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="downsample-with-leiden">
-<h2>Downsample with Leiden<a class="headerlink" href="#downsample-with-leiden" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s2">&quot;HiC_100kb_pca.h5ad&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s2">&quot;100k3C_pca&quot;</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_pca&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;100k3C_pca&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">:</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="s2">&quot;X_pca&quot;</span><span class="p">)</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ncell</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">selc</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;leiden&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ncell</span><span class="p">:</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">selc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ncell</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">selc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-
-<span class="n">selc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">selc</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">selc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="s2">&quot;celltype&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;ds_leiden&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selc</span><span class="p">,</span> <span class="s2">&quot;ds_leiden&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;arpack&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mcad</span><span class="p">[</span><span class="n">selc</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;100k3C_leiden_all&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s2">&quot;100k3C_leiden_eigen&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">singular_values_</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">npc</span> <span class="o">=</span> <span class="n">significant_pc_test</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">p_cutoff</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s2">&quot;100k3C_leiden_all&quot;</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;100k3C_leiden_all&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">tsne</span><span class="p">(</span><span class="n">mcad</span><span class="p">,</span> <span class="n">obsm</span><span class="o">=</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span> <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_leiden_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id1">
-<h2>Compute anchor distance in PC space<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;HiC_100kb_seurat_anchor_</span><span class="si">{</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_list</span><span class="p">)</span><span class="si">}</span><span class="s1">.hdf&#39;</span>
-<span class="n">anchor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">anchor_file</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coord1</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">][</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]]</span>
-<span class="n">coord2</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">][</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]]</span>
-<span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_pc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">((</span><span class="n">coord1</span> <span class="o">-</span> <span class="n">coord2</span><span class="p">),</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="integrate-with-leiden-distance-in-pc-space">
-<h2>Integrate with leiden distance in PC space<a class="headerlink" href="#integrate-with-leiden-distance-in-pc-space" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thres1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_pc&quot;</span><span class="p">],</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">thres2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_pc&quot;</span><span class="p">],</span> <span class="mi">60</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">adata_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">mcad</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">xx</span><span class="p">]</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">]</span>
-
-<span class="n">integrator</span> <span class="o">=</span> <span class="n">SeuratIntegration</span><span class="p">()</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">adata_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">))),</span> <span class="n">adata_list</span><span class="p">)}</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">n_dataset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">adata_list</span><span class="p">)</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">n_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">adata</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]</span>
-
-<span class="c1"># intra-dataset KNN for scoring the anchors</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">k_local</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">key_local</span> <span class="o">=</span> <span class="s2">&quot;X_leiden_pca&quot;</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">_calculate_local_knn</span><span class="p">()</span>
-
-<span class="n">integrator</span><span class="o">.</span><span class="n">alignments</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">integrator</span><span class="o">.</span><span class="n">_get_all_pairs</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_pc&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_pc&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres2</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_pc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id2">
-<h2>Compute anchor distance in U space<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;100k3C_leiden_all&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">]</span> <span class="o">/</span> <span class="n">mcad</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s2">&quot;100k3C_leiden_eigen&quot;</span><span class="p">][:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coord1</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">][</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">]]</span>
-<span class="n">coord2</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">][</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;Donor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">]]</span>
-<span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_u&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">((</span><span class="n">coord1</span> <span class="o">-</span> <span class="n">coord2</span><span class="p">),</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="integrate-with-leiden-distance-on-u-space">
-<h2>Integrate with leiden distance on U space<a class="headerlink" href="#integrate-with-leiden-distance-on-u-space" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">thres1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_u&quot;</span><span class="p">],</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">thres2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_u&quot;</span><span class="p">],</span> <span class="mi">60</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_u&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres1</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter80_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">integrator</span><span class="o">.</span><span class="n">anchor</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="n">anchor</span><span class="p">[</span><span class="s2">&quot;dist_leiden_u&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">thres2</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">corrected</span> <span class="o">=</span> <span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-    <span class="n">key_correct</span><span class="o">=</span><span class="s2">&quot;X_leiden_pca&quot;</span><span class="p">,</span> <span class="n">row_normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="n">npc</span><span class="p">,</span> <span class="n">k_weight</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">normalize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">corrected</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">xx</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">adata_list</span><span class="p">]),</span>
-<span class="p">)</span>
-
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mcad</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">][:,</span> <span class="p">:</span><span class="n">npc</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-<span class="p">)</span>
-
-<span class="n">tsne</span><span class="p">(</span>
-    <span class="n">mcad</span><span class="p">,</span>
-    <span class="n">obsm</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60&quot;</span><span class="p">,</span>
-    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-    <span class="n">exaggeration</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">perplexity</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;100k3C_u</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">_seuratcc</span><span class="si">{</span><span class="n">npc</span><span class="si">}</span><span class="s2">ldnfilter60_tsne&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mcad</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_tsne&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">anchor</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">anchor_file</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1892,8 +1326,10 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meta</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/clustering/merged/5kCG100k3C_summary.h5ad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">obs</span>
-<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;L1_new&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;L1_annot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Supervise the tissue refinement with the PREVIOUS-STEP L1pre cell types</span>
+<span class="c1"># (from clustering/02.L1pre_allcell), NOT the final summary (which would be circular).</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/clustering/merged/5kCG100k3C_embed.h5ad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">obs</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;L1_new&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;L1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
@@ -2055,14 +1491,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downsample-with-geosketch">Downsample with geosketch</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-anchor-distance-in-pc-space">Compute anchor distance in PC space</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-geosketch-distance-on-pc-space">Integrate with geosketch distance on PC space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-anchor-distance-in-u-space">Compute anchor distance in U space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-geosketch-distance-on-u-space">Integrate with geosketch distance on U space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-leiden-refinement-anchor-re-scoring">3b · leiden refinement + anchor re-scoring</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downsample-with-leiden">Downsample with Leiden</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Compute anchor distance in PC space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-leiden-distance-in-pc-space">Integrate with leiden distance in PC space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Compute anchor distance in U space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrate-with-leiden-distance-on-u-space">Integrate with leiden distance on U space</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-aggregate-refined-mcg-anchors">3c · aggregate refined mCG anchors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-aggregate-refined-3c-anchors">3d · aggregate refined 3C anchors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-refined-per-tissue-joint-embedding">3e · refined per-tissue joint embedding</a></li>
