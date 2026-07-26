@@ -20,17 +20,29 @@ artifacts, being confirmed by a full-scale re-run).
 | `fig4/07.decay_domain` | `merged_cool_raw/L1/c35.mcool` | raw 100 kb cool for merged type c35. |
 | `fig5/06.pycistarget_loopDMR` (Fig 5H) | `loop_dmr_motif/…loopdmr_TF_all.hdf` | pycisTarget/SCENIC+ output (documented — refer to pycisTarget; ship precomputed). |
 
-## B. Code errors — under investigation (full-scale re-run in progress)
-These errored with NO missing file. Several are almost certainly **downsample artifacts**
-(capping a loop to 1 breaks hardcoded cell-type indices — e.g. fig2/02's `-f` path). A
-full-scale re-run is running to separate real bugs from artifacts; real ones will be fixed
-against the originals in `analysis/`.
+## B. Code errors — full-scale re-run results (real causes)
 
-`clustering/05,06`, `fig1/06.compare_bulkmc`, `fig1/07.compare_bulkhic`, `fig2/01.mCG_distribution`,
-`fig2/04.PMD_ATAC`, `fig2/05.PMD_RNA`, `fig2/10.peak_mCG_motif`, `fig2/13.PMD_DMR`,
-`fig3/04.mCH_mCG_comp`, `fig3/06.mCH_clustering`, `fig4/02.decay_compartment`,
-`fig5/03.mCoverCompboundary`, `fig5/04.loop_dmr_enrichment`, `fig6/03.MusSkl_diff_7group`,
-`fig6/04.NTbSchw_clustering`, `fig6/05.Epi-TPB`.
+**Fixed this pass:**
+- `fig4/02.decay_compartment`, `fig5/04.loop_dmr_enrichment` — `'vlag' is not a valid cmap`: added `import seaborn as sns` (seaborn registers `vlag` on import; missed earlier because they use the string `'vlag'` in `imshow`, not `sns.`).
+
+**Data-version mismatch** (code expects columns/variables the current on-disk data no longer has — needs the matching data version, or code updated to the current schema):
+- `fig1/06.compare_bulkmc`, `fig3/06.mCH_clustering` — `None of ['chrom','start','end']` (bed-header) + `chrom1k_da_frac`/`celltype_L2_both_abbr` not present.
+- `fig2/10.peak_mCG_motif` — mcds has no `peak_da_frac` quantifier.
+- `fig2/04.PMD_ATAC`, `fig3/04.mCH_mCG_comp` — `['kmeans3'] not in index` (+ `'Neu Schw'`).
+- `fig2/01.mCG_distribution` — palette dict missing key `'c7'` (raw cluster merged into c35/c36).
+- `fig2/05.PMD_RNA` — reshape size mismatch.
+
+**Template placeholder:** `fig2/13.PMD_DMR` — `group_name` undefined (like the old fig2/14; needs a group assigned to run standalone).
+
+**Out-of-order / missing prior variable** (fixable by restoring the defining cell/order):
+- `fig6/03.MusSkl_diff_7group` — `leg_3c`; `fig6/04.NTbSchw_clustering` — `X_tsne`/`tsne_0`; `fig6/05.Epi-TPB` — `leiden`; `fig2/10` — `data_all`.
+
+**Resource (not a code bug):** `fig1/07.compare_bulkhic`, `fig2/01.mCG_distribution` — `BrokenProcessPool` (heavy `ProcessPoolExecutor`; needs more memory / fewer workers).
+
+**Cache-staleness:** `fig5/03.mCoverCompboundary` — loads a stale on-disk `flankmch.joblib` (70 rows) that overrides the corrected 35-per-major-type compute; a fresh run without the cache produces 35.
+
+**Missing-data cascade:** `clustering/05,06` — need `5kCG_embed.h5ad` which `clustering/02` (data-blocked on the 3C raw npz) never produced.
+
 
 ## Ran clean (32)
 clustering/07; fig1/01,02,03,04,05; fig2/03,06,07,09,11,12,15; fig3/02,05,07; fig4/01,03,04,05,06,08,09,10; fig5/01,02,05,07; fig6/01,02,06,07.
