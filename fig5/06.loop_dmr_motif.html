@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fig. 6 — Discrepant methylation- vs contact-defined cell types" href="../fig6/fig6.html" />
-    <link rel="prev" title="DMR–differential-loop correlation (Fig 5I)" href="07.L2any_L2both.html" />
+    <link rel="next" title="TF motifs at loop-anchor DMRs (Fig 5H)" href="08.pycistarget_loopDMR.html" />
+    <link rel="prev" title="DMR enrichment at loop anchors (Fig S27A)" href="05.loop_dmr_enrichment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -265,11 +265,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig2/16.peak_mCG_motif.html">mCG at ATAC peaks &amp; motif methyl-preference (Fig S14C–E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig2/07.TE_mCG.html">Methylation at transposable elements (Fig 2P, S15)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig2/18.DMR_loop_sLDSC.html">GWAS heritability at loop-anchor DMRs (Fig S29)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/08.PMD_calling_insulation.html">Pipeline: PMD calling &amp; insulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/09.PMD_cell-by-site.html">Pipeline: PMD cell-by-site matrix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/11.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig2/14.PMD_DMR.html">Pipeline: PMD-based DMR calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig2/17.geneCG_expr_corr.html">Gene-body mCG vs expression (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig2/11.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -312,11 +309,11 @@
 <li class="toctree-l2"><a class="reference internal" href="02.comp_pmd.html">Methylation compartments vs A/B compartments (Fig 5C–E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.mCoverCompboundary.html">Methylation at compartment boundaries (Fig 5F,G, S26C/D)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.loop_dmr_enrichment.html">DMR enrichment at loop anchors (Fig S27A)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pipeline: loop-DMR motif compute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08.pycistarget_loopDMR.html">TF motifs at loop-anchor DMRs (Fig 5H)</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="07.L2any_L2both.html">DMR–differential-loop correlation (Fig 5I)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pipeline: loop-DMR motif compute</a></li>
 </ul>
 </details></li>
 </ul>
@@ -540,6 +537,9 @@
   <section class="tex2jax_ignore mathjax_ignore" id="pipeline-loop-dmr-motif-compute">
 <h1>Pipeline: loop-DMR motif compute<a class="headerlink" href="#pipeline-loop-dmr-motif-compute" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig5.html"><span class="std std-doc">Fig. 5 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<blockquote>
+<div><p><strong>Prerequisite generator (no figure panel).</strong> This notebook runs the SCENIC+/cisTarget motif-enrichment pipeline on loop/summit-DMR regions, producing the <code class="docutils literal notranslate"><span class="pre">ctx_results</span></code> tables that <code class="docutils literal notranslate"><span class="pre">fig5/08.pycistarget_loopDMR</span></code> (Fig 5H) reads back. It is placed immediately before its consumer rather than as a standalone pipeline.</p>
+</div></blockquote>
 <section id="required-input-files">
 <h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
 <p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
@@ -858,20 +858,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="07.L2any_L2both.html"
+       href="05.loop_dmr_enrichment.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">DMR–differential-loop correlation (Fig 5I)</p>
+        <p class="prev-next-title">DMR enrichment at loop anchors (Fig S27A)</p>
       </div>
     </a>
     <a class="right-next"
-       href="../fig6/fig6.html"
+       href="08.pycistarget_loopDMR.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Fig. 6 — Discrepant methylation- vs contact-defined cell types</p>
+        <p class="prev-next-title">TF motifs at loop-anchor DMRs (Fig 5H)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

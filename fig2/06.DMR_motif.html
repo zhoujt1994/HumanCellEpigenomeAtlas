@@ -265,11 +265,8 @@
 <li class="toctree-l2"><a class="reference internal" href="16.peak_mCG_motif.html">mCG at ATAC peaks &amp; motif methyl-preference (Fig S14C–E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07.TE_mCG.html">Methylation at transposable elements (Fig 2P, S15)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18.DMR_loop_sLDSC.html">GWAS heritability at loop-anchor DMRs (Fig S29)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08.PMD_calling_insulation.html">Pipeline: PMD calling &amp; insulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09.PMD_cell-by-site.html">Pipeline: PMD cell-by-site matrix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="14.PMD_DMR.html">Pipeline: PMD-based DMR calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="17.geneCG_expr_corr.html">Gene-body mCG vs expression (supporting)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11.PMD_Hema-Tmem.html">Memory-T PMD/DMR analysis (supporting)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -312,11 +309,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../fig5/02.comp_pmd.html">Methylation compartments vs A/B compartments (Fig 5C–E)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/03.mCoverCompboundary.html">Methylation at compartment boundaries (Fig 5F,G, S26C/D)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/05.loop_dmr_enrichment.html">DMR enrichment at loop anchors (Fig S27A)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">Pipeline: loop-DMR motif compute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../fig5/08.pycistarget_loopDMR.html">TF motifs at loop-anchor DMRs (Fig 5H)</a></li>
 
 
 <li class="toctree-l2"><a class="reference internal" href="../fig5/07.L2any_L2both.html">DMR–differential-loop correlation (Fig 5I)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fig5/06.loop_dmr_motif.html">Pipeline: loop-DMR motif compute</a></li>
 </ul>
 </details></li>
 </ul>
@@ -540,6 +537,9 @@
   <section class="tex2jax_ignore mathjax_ignore" id="tf-motif-enrichment-in-dmrs-compute-fig-2o-s13e">
 <h1>TF-motif enrichment in DMRs — compute (Fig 2O, S13E)<a class="headerlink" href="#tf-motif-enrichment-in-dmrs-compute-fig-2o-s13e" title="Link to this heading">#</a></h1>
 <p>Part of the <strong><a class="reference internal" href="fig2.html"><span class="std std-doc">Fig. 2 chapter</span></a></strong> — see it for the panel-by-panel map. The first code cell sets <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code> and activates the no-overwrite guard (see the <a class="reference internal" href="../reproduce.html"><span class="std std-doc">Reproduction guide</span></a>). <em>Outputs shown are the author’s original run.</em></p>
+<blockquote>
+<div><p><strong>Prerequisite compute (plot cell is a known gap).</strong> This notebook runs the SCENIC+/cisTarget motif enrichment on peak-overlapping vs non-overlapping DMRs, producing the TF-motif enrichment behind <strong>Fig 2O / Fig S13E</strong> and <strong>Table S2</strong>. The dot-plot cell that renders 2O/S13E was not included in the release (documented gap in <a class="reference external" href="http://gaps.md">gaps.md</a>); the enrichment tables it depends on are produced here.</p>
+</div></blockquote>
 <section id="required-input-files">
 <h2>📥 Required input files<a class="headerlink" href="#required-input-files" title="Link to this heading">#</a></h2>
 <p>This notebook reads the following files (paths resolve from <code class="docutils literal notranslate"><span class="pre">ENTEX_ROOT</span></code>/<code class="docutils literal notranslate"><span class="pre">REF_ROOT</span></code>; the setup cell sets them). See the chapter’s <code class="docutils literal notranslate"><span class="pre">inputs.md</span></code> for RAW-vs-derived tags.</p>
