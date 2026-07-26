@@ -48,11 +48,8 @@ parts:
           - file: fig2/16.peak_mCG_motif
           - file: fig2/07.TE_mCG
           - file: fig2/18.DMR_loop_sLDSC
-          - file: fig2/08.PMD_calling_insulation
-          - file: fig2/09.PMD_cell-by-site
-          - file: fig2/11.PMD_Hema-Tmem
           - file: fig2/14.PMD_DMR
-          - file: fig2/17.geneCG_expr_corr
+          - file: fig2/11.PMD_Hema-Tmem
   - caption: "Fig. 3 — Non-CG methylation across cell types"
     chapters:
       - file: fig3/fig3
@@ -87,9 +84,9 @@ parts:
           - file: fig5/02.comp_pmd
           - file: fig5/03.mCoverCompboundary
           - file: fig5/05.loop_dmr_enrichment
+          - file: fig5/06.loop_dmr_motif
           - file: fig5/08.pycistarget_loopDMR
           - file: fig5/07.L2any_L2both
-          - file: fig5/06.loop_dmr_motif
   - caption: "Fig. 6 — Discrepant methylation- vs contact-defined types"
     chapters:
       - file: fig6/fig6
