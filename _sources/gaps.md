@@ -1,5 +1,7 @@
 # Coverage & gaps
 
+> ⚠️ **Being regenerated (2026-07-26) from a fresh full-execution pass.** Note: Fig S16 was given up (its notebook `fig3/03` was merged into `fig3/02`); some notebook numbers below are pre-rename.
+
 Every published panel that is **not fully reproducible from a released notebook as-is**.
 Derived from [`PANEL_MAP.md`](PANEL_MAP.md) (all 230 savefig outputs matched to panels by
 reading the figure PDFs + legends + rendered plots). Everything not listed here maps to a
