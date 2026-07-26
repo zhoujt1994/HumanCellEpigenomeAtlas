@@ -523,7 +523,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-genuinely-missing-input-data-needs-the-file-or-confirmation-it-s-unavailable">A. Genuinely missing input data (needs the file, or confirmation it’s unavailable)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-code-errors-under-investigation-full-scale-re-run-in-progress">B. Code errors — under investigation (full-scale re-run in progress)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-code-errors-full-scale-re-run-results-real-causes">B. Code errors — full-scale re-run results (real causes)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ran-clean-32">Ran clean (32)</a></li>
 </ul>
             </nav>
@@ -593,17 +593,28 @@ artifacts, being confirmed by a full-scale re-run).</p>
 </table>
 </div>
 </section>
-<section id="b-code-errors-under-investigation-full-scale-re-run-in-progress">
-<h2>B. Code errors — under investigation (full-scale re-run in progress)<a class="headerlink" href="#b-code-errors-under-investigation-full-scale-re-run-in-progress" title="Link to this heading">#</a></h2>
-<p>These errored with NO missing file. Several are almost certainly <strong>downsample artifacts</strong>
-(capping a loop to 1 breaks hardcoded cell-type indices — e.g. fig2/02’s <code class="docutils literal notranslate"><span class="pre">-f</span></code> path). A
-full-scale re-run is running to separate real bugs from artifacts; real ones will be fixed
-against the originals in <code class="docutils literal notranslate"><span class="pre">analysis/</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">clustering/05,06</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/06.compare_bulkmc</span></code>, <code class="docutils literal notranslate"><span class="pre">fig1/07.compare_bulkhic</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution</span></code>,
-<code class="docutils literal notranslate"><span class="pre">fig2/04.PMD_ATAC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/05.PMD_RNA</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/10.peak_mCG_motif</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/13.PMD_DMR</span></code>,
-<code class="docutils literal notranslate"><span class="pre">fig3/04.mCH_mCG_comp</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/06.mCH_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig4/02.decay_compartment</span></code>,
-<code class="docutils literal notranslate"><span class="pre">fig5/03.mCoverCompboundary</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/04.loop_dmr_enrichment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/03.MusSkl_diff_7group</span></code>,
-<code class="docutils literal notranslate"><span class="pre">fig6/04.NTbSchw_clustering</span></code>, <code class="docutils literal notranslate"><span class="pre">fig6/05.Epi-TPB</span></code>.</p>
+<section id="b-code-errors-full-scale-re-run-results-real-causes">
+<h2>B. Code errors — full-scale re-run results (real causes)<a class="headerlink" href="#b-code-errors-full-scale-re-run-results-real-causes" title="Link to this heading">#</a></h2>
+<p><strong>Fixed this pass:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fig4/02.decay_compartment</span></code>, <code class="docutils literal notranslate"><span class="pre">fig5/04.loop_dmr_enrichment</span></code> — <code class="docutils literal notranslate"><span class="pre">'vlag'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">a</span> <span class="pre">valid</span> <span class="pre">cmap</span></code>: added <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code> (seaborn registers <code class="docutils literal notranslate"><span class="pre">vlag</span></code> on import; missed earlier because they use the string <code class="docutils literal notranslate"><span class="pre">'vlag'</span></code> in <code class="docutils literal notranslate"><span class="pre">imshow</span></code>, not <code class="docutils literal notranslate"><span class="pre">sns.</span></code>).</p></li>
+</ul>
+<p><strong>Data-version mismatch</strong> (code expects columns/variables the current on-disk data no longer has — needs the matching data version, or code updated to the current schema):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fig1/06.compare_bulkmc</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/06.mCH_clustering</span></code> — <code class="docutils literal notranslate"><span class="pre">None</span> <span class="pre">of</span> <span class="pre">['chrom','start','end']</span></code> (bed-header) + <code class="docutils literal notranslate"><span class="pre">chrom1k_da_frac</span></code>/<code class="docutils literal notranslate"><span class="pre">celltype_L2_both_abbr</span></code> not present.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fig2/10.peak_mCG_motif</span></code> — mcds has no <code class="docutils literal notranslate"><span class="pre">peak_da_frac</span></code> quantifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fig2/04.PMD_ATAC</span></code>, <code class="docutils literal notranslate"><span class="pre">fig3/04.mCH_mCG_comp</span></code> — <code class="docutils literal notranslate"><span class="pre">['kmeans3']</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">index</span></code> (+ <code class="docutils literal notranslate"><span class="pre">'Neu</span> <span class="pre">Schw'</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution</span></code> — palette dict missing key <code class="docutils literal notranslate"><span class="pre">'c7'</span></code> (raw cluster merged into c35/c36).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fig2/05.PMD_RNA</span></code> — reshape size mismatch.</p></li>
+</ul>
+<p><strong>Template placeholder:</strong> <code class="docutils literal notranslate"><span class="pre">fig2/13.PMD_DMR</span></code> — <code class="docutils literal notranslate"><span class="pre">group_name</span></code> undefined (like the old fig2/14; needs a group assigned to run standalone).</p>
+<p><strong>Out-of-order / missing prior variable</strong> (fixable by restoring the defining cell/order):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fig6/03.MusSkl_diff_7group</span></code> — <code class="docutils literal notranslate"><span class="pre">leg_3c</span></code>; <code class="docutils literal notranslate"><span class="pre">fig6/04.NTbSchw_clustering</span></code> — <code class="docutils literal notranslate"><span class="pre">X_tsne</span></code>/<code class="docutils literal notranslate"><span class="pre">tsne_0</span></code>; <code class="docutils literal notranslate"><span class="pre">fig6/05.Epi-TPB</span></code> — <code class="docutils literal notranslate"><span class="pre">leiden</span></code>; <code class="docutils literal notranslate"><span class="pre">fig2/10</span></code> — <code class="docutils literal notranslate"><span class="pre">data_all</span></code>.</p></li>
+</ul>
+<p><strong>Resource (not a code bug):</strong> <code class="docutils literal notranslate"><span class="pre">fig1/07.compare_bulkhic</span></code>, <code class="docutils literal notranslate"><span class="pre">fig2/01.mCG_distribution</span></code> — <code class="docutils literal notranslate"><span class="pre">BrokenProcessPool</span></code> (heavy <code class="docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code>; needs more memory / fewer workers).</p>
+<p><strong>Cache-staleness:</strong> <code class="docutils literal notranslate"><span class="pre">fig5/03.mCoverCompboundary</span></code> — loads a stale on-disk <code class="docutils literal notranslate"><span class="pre">flankmch.joblib</span></code> (70 rows) that overrides the corrected 35-per-major-type compute; a fresh run without the cache produces 35.</p>
+<p><strong>Missing-data cascade:</strong> <code class="docutils literal notranslate"><span class="pre">clustering/05,06</span></code> — need <code class="docutils literal notranslate"><span class="pre">5kCG_embed.h5ad</span></code> which <code class="docutils literal notranslate"><span class="pre">clustering/02</span></code> (data-blocked on the 3C raw npz) never produced.</p>
 </section>
 <section id="ran-clean-32">
 <h2>Ran clean (32)<a class="headerlink" href="#ran-clean-32" title="Link to this heading">#</a></h2>
@@ -678,7 +689,7 @@ against the originals in <code class="docutils literal notranslate"><span class=
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-genuinely-missing-input-data-needs-the-file-or-confirmation-it-s-unavailable">A. Genuinely missing input data (needs the file, or confirmation it’s unavailable)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-code-errors-under-investigation-full-scale-re-run-in-progress">B. Code errors — under investigation (full-scale re-run in progress)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-code-errors-full-scale-re-run-results-real-causes">B. Code errors — full-scale re-run results (real causes)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ran-clean-32">Ran clean (32)</a></li>
 </ul>
   </nav></div>
