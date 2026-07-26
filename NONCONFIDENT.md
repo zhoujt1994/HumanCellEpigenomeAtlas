@@ -1,5 +1,7 @@
 # Not-confidently-reproducible notebooks — to discuss
 
+> ⚠️ **Being regenerated (2026-07-26) from a fresh full-execution pass** — entries below are pre-rename/pre-fix and several are now stale (e.g. many Category-B errors were fixed by the cg-restore + import fixes; fig1/08 was dropped; panels were restored in fig2/11/fig3/01/fig4/03/fig6/01). Trust the regenerated version once the execution pass completes.
+
 The book **displays** every panel it can (saved outputs). This page lists notebooks whose
 **fresh re-run** still stops before completing, split into (A) genuinely-missing data /
 external paths that need your input, and (B) deeper code issues where the first blocker was
@@ -11,7 +13,6 @@ panel *after* it is blank until resolved.
 | Notebook | Blocker | Panel impact |
 |----------|---------|--------------|
 | `fig1/04.method_anchor` | `obsm['wnn_pc45_tsne']` absent — the WNN joint embedding was never saved | Fig S2C/D/E render (earlier cells); the WNN-vs-Concat QC after it does not |
-| `fig1/08.L2both_per_celltype` | `FileNotFoundError` opening a per-celltype `L2/{ct}/…embed.h5ad` | **Fig S5 blank** (per-tissue subtype tSNE) |
 | `fig4/01.decay` | Fig 4A/4B reproduce cleanly. **Fig S24B removed** — its code was entangled leftover (CEMBA cell types + a non-existent `saddle_*_mergerawpca.npy`); needs proper wiring to the compartment saddle-strength output. Not wtian-related. | 4A/4B render; S24B dropped |
 | `fig4/03.domainloop_stats` (c11) | `FileNotFoundError` on a domain/loop `.h5ad` | some of Fig 4D/S25 render; the rest blank |
 | `fig5/07.L2any_L2both` (c21) | `FileNotFoundError` on an `.h5ad` | **Fig 5I** (the violin, after c21) blank |
