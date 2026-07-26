@@ -694,13 +694,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_hema_pbmc</span><span class="p">[[</span><span class="s2">&quot;Donor&quot;</span><span class="p">,</span> <span class="s2">&quot;celltype&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">meta_hema_pbmc</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">meta_hema_pbmc</span><span class="p">[</span><span class="s2">&quot;celltype&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Tc-Mem&quot;</span><span class="p">,</span> <span class="s2">&quot;Th-Mem&quot;</span><span class="p">])]</span>
 <span class="n">tmp</span><span class="p">[</span><span class="s2">&quot;allcpath&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ENTEX_ROOT</span><span class="si">}</span><span class="s2">/&quot;</span> <span class="o">+</span> <span class="n">tmp</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="s2">&quot;.CGN-Both.allc.tsv.gz&quot;</span>
 <span class="n">tmp</span><span class="p">[[</span><span class="s2">&quot;allcpath&quot;</span><span class="p">,</span> <span class="s2">&quot;cell_group&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
