@@ -49,7 +49,7 @@ The full legends let me correct my earlier inferences. Key changes applied to th
 
 - **Fig 1B is the assay *workflow diagram* (Illustrator, no code); Fig 1C is the browser
   shot** (`fig1/01`). I had them merged as "1B/C browser" — fixed.
-- **Fig 3F = `fig3/06.mCH_mCG_comp`** (mCH around mCG compartments >100 kb) — I had wrongly
+- **Fig 3F = `fig3/04.mCH_mCG_comp`** (mCH around mCG compartments >100 kb) — I had wrongly
   put 3F on `fig3/08`. This also resolves "nb06 has no figure." 3G/3H = `fig3/07`.
 - **Fig 6G = motif enrichment** of loop-DMR-pair groups (Table S3), not a strength summary.
   **6H** = Epi-TPB t-SNE by subtype-donor; **6I** = DMR mCG + DEG expr; **6J** = DMR
@@ -96,7 +96,7 @@ These are published Extended Data panels whose **plotting code isn't in the rele
 notebooks** — please point me to where they live (likely the messy `analysis/` tree):
 
 - **S3A/B** — DEG↔loop and DEG↔mCG-at-DMR cosine similarity across **colon/stomach/skin/
-  heart** subtypes. `fig4/09.loop_rna` only does the breast analog. Multi-tissue producer?
+  heart** subtypes. `fig4/06.loop_rna` only does the breast analog. Multi-tissue producer?
 - **S4** — per-tissue **ATAC + snm3C joint-embedding** t-SNE (Seurat integration; ST/SkGcn/
   Sk/PBMC/M1C). Not `fig2/05` (that's DMR–peak overlap). Where is the joint embedding done?
 - **S6A/B/C** — subtype-donor mCG & loop-strength correlation heatmaps + donor/subtype/
@@ -119,7 +119,7 @@ S14 A–E; S23 A + B; S28 A/B = `fig5/07` scatter grids; S32 A = Skl 7-group, B�
 - **`fig2/17.geneCG_expr_corr`** — gene mCG vs expression correlation; doesn't match a
   lettered Fig 2 / S9–S15 panel. Supporting analysis? which figure?
 - **`fig2/11,12,14`** — lineage DMR/expression heatmaps; feed the RNA comparison (S3-style)?
-- ~~`fig3/06.mCH_mCG_comp`~~ — **RESOLVED: this is Fig 3F.**
+- ~~`fig3/04.mCH_mCG_comp`~~ — **RESOLVED: this is Fig 3F.**
 
 ---
 
